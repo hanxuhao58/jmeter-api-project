@@ -92,14 +92,61 @@
             <stringProp name="Argument.value">1496984058</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="AD_ID_MAIN" elementType="Argument">
+            <stringProp name="Argument.name">AD_ID_MAIN</stringProp>
+            <stringProp name="Argument.value">1496984058</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="AD_ID_2" elementType="Argument">
+            <stringProp name="Argument.name">AD_ID_2</stringProp>
+            <stringProp name="Argument.value">1498871725</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="AD_ID_SECONDARY" elementType="Argument">
+            <stringProp name="Argument.name">AD_ID_SECONDARY</stringProp>
+            <stringProp name="Argument.value">1498871725</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="SERVICES_AD_ID" elementType="Argument">
+            <stringProp name="Argument.name">SERVICES_AD_ID</stringProp>
+            <stringProp name="Argument.value">1498923849</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="SERVICES_AD_ID_MAIN" elementType="Argument">
+            <stringProp name="Argument.name">SERVICES_AD_ID_MAIN</stringProp>
+            <stringProp name="Argument.value">1498923849</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="SERVICES_AD_ID_2" elementType="Argument">
+            <stringProp name="Argument.name">SERVICES_AD_ID_2</stringProp>
+            <stringProp name="Argument.value">1498923849</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="SERVICES_AD_ID_SECONDARY" elementType="Argument">
+            <stringProp name="Argument.name">SERVICES_AD_ID_SECONDARY</stringProp>
+            <stringProp name="Argument.value">1498923849</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
           <elementProp name="ANDROID_POST_AD_TRANSACTION_ID" elementType="Argument">
             <stringProp name="Argument.name">ANDROID_POST_AD_TRANSACTION_ID</stringProp>
             <stringProp name="Argument.value">3906775808a143cf98bb75573ffb341d</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="TestPlan.comments">用于Android发布广告接口路径中的ID</stringProp>
           </elementProp>
+          <elementProp name="POST_AD_TRANSACTION_ID_ANDROID" elementType="Argument">
+            <stringProp name="Argument.name">POST_AD_TRANSACTION_ID_ANDROID</stringProp>
+            <stringProp name="Argument.value">3906775808a143cf98bb75573ffb341d</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="TestPlan.comments">用于Android发布广告接口路径中的ID</stringProp>
+          </elementProp>
           <elementProp name="IOS_POST_AD_TRANSACTION_ID" elementType="Argument">
             <stringProp name="Argument.name">IOS_POST_AD_TRANSACTION_ID</stringProp>
+            <stringProp name="Argument.value">a7f675666d744dd0b9710ef103d816ed</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="TestPlan.comments">用于iOS发布广告接口路径中的ID (来自curl)</stringProp>
+          </elementProp>
+          <elementProp name="POST_AD_TRANSACTION_ID_IOS" elementType="Argument">
+            <stringProp name="Argument.name">POST_AD_TRANSACTION_ID_IOS</stringProp>
             <stringProp name="Argument.value">a7f675666d744dd0b9710ef103d816ed</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="TestPlan.comments">用于iOS发布广告接口路径中的ID (来自curl)</stringProp>
@@ -230,21 +277,6 @@
             <stringProp name="Argument.value">a07838bb-93dc-3591-9422-ef81e28f25ee</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="AD_ID_2" elementType="Argument">
-            <stringProp name="Argument.name">AD_ID_2</stringProp>
-            <stringProp name="Argument.value">1498871725</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="SERVICES_AD_ID" elementType="Argument">
-            <stringProp name="Argument.name">SERVICES_AD_ID</stringProp>
-            <stringProp name="Argument.value">1498923849</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="SERVICES_AD_ID_2" elementType="Argument">
-            <stringProp name="Argument.name">SERVICES_AD_ID_2</stringProp>
-            <stringProp name="Argument.value">1498923849</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
         </collectionProp>
       </elementProp>
     </TestPlan>
@@ -344,7 +376,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="adId" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">${AD_ID_TO_MANAGE}</stringProp>
+                <stringProp name="Argument.value">${AD_ID_MAIN}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">adId</stringProp>

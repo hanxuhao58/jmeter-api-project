@@ -230,9 +230,14 @@
             <stringProp name="Argument.value">a07838bb-93dc-3591-9422-ef81e28f25ee</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="AD_ID_2" elementType="Argument">
-            <stringProp name="Argument.name">AD_ID_2</stringProp>
-            <stringProp name="Argument.value">1498871725</stringProp>
+          <elementProp name="AD_ID_MAIN" elementType="Argument">
+            <stringProp name="Argument.name">AD_ID_MAIN</stringProp>
+            <stringProp name="Argument.value">1496983864</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="AD_ID_SECONDARY" elementType="Argument">
+            <stringProp name="Argument.name">AD_ID_SECONDARY</stringProp>
+            <stringProp name="Argument.value">1496983864</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="SERVICES_AD_ID" elementType="Argument">
@@ -240,8 +245,13 @@
             <stringProp name="Argument.value">1498923849</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="SERVICES_AD_ID_2" elementType="Argument">
-            <stringProp name="Argument.name">SERVICES_AD_ID_2</stringProp>
+          <elementProp name="SERVICES_AD_ID_MAIN" elementType="Argument">
+            <stringProp name="Argument.name">SERVICES_AD_ID_MAIN</stringProp>
+            <stringProp name="Argument.value">1498923849</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="SERVICES_AD_ID_SECONDARY" elementType="Argument">
+            <stringProp name="Argument.name">SERVICES_AD_ID_SECONDARY</stringProp>
             <stringProp name="Argument.value">1498923849</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
