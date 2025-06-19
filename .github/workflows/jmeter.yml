@@ -29,12 +29,16 @@ jobs:
       - name: Prepare reports directory
         run: mkdir -p reports
 
+      - name: Run Selected Testcases
+        run: |
+          # 每次执行前清空 jtl 文件，避免历史数据影响报告
+          > reports/all_cases.jtl
+
       - name: Run Login Test
         run: |
-          > reports/all_cases.jtl
           ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/tg1_auth_login.jmx -q config/dev.env.properties -l reports/all_cases.jtl
 
-      - name: Run Selected Testcases
+      - name: Run Selected Testcases (白名单)
         run: |
           whitelist=(
             testcases/tg2_registration_register.jmx
