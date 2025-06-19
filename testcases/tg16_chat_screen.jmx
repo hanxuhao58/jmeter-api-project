@@ -426,7 +426,7 @@
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename"></stringProp>
+        <stringProp name="filename">${__P(projectRoot,)}/data/auth_tokens.csv</stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>

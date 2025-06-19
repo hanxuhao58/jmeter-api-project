@@ -409,14 +409,14 @@ if (!prev.isSuccessful() || !responseData) {
 }
 
 try {
-    // --- 3. Write/Overwrite CSV file in the project root &apos;data&apos; folder ---
-    // 获取项目根目录，优先用 -JprojectRoot 传递，否则用 /Users/a58/Documents/jmeter-api-project
-    String projectRoot = props.get(&quot;projectRoot&quot;) ?: &quot;/Users/a58/Documents/jmeter-api-project&quot;
-    File dataDir = new File(projectRoot + File.separator + &quot;data&quot;)
+    // --- 3. Write/Overwrite CSV file in the project root 'data' folder ---
+    // 获取项目根目录，优先用 -JprojectRoot 传递，否则用当前工作目录
+    String projectRoot = props.get("projectRoot") ?: System.getProperty("user.dir")
+    File dataDir = new File(projectRoot + File.separator + "data")
     if (!dataDir.exists()) {
         dataDir.mkdirs()
     }
-    File tokenFile = new File(dataDir, &quot;auth_tokens.csv&quot;)
+    File tokenFile = new File(dataDir, "auth_tokens.csv")
 
     def slurper = new JsonSlurper()
     def jsonResponse = slurper.parseText(responseData)
@@ -432,16 +432,16 @@ try {
 
 
     // --- 2. Set JMeter Properties for immediate use in this test plan ---
-    if (userId) { props.put(&quot;extracted_userId&quot;, userId); log.info(&quot;JSR223: Set JMeter property &apos;extracted_userId&apos; to: &quot; + userId) }
-    if (userToken) { props.put(&quot;extracted_user_token&quot;, userToken); log.info(&quot;JSR223: Set JMeter property &apos;extracted_user_token&apos;.&quot;) }
-    if (userAuthorization) { props.put(&quot;extracted_user_authorization&quot;, userAuthorization); log.info(&quot;JSR223: Set JMeter property &apos;extracted_user_authorization&apos;.&quot;) }
-    if (userEmail) { props.put(&quot;extracted_userEmail&quot;, userEmail); log.info(&quot;JSR223: Set JMeter property &apos;extracted_userEmail&apos; to: &quot; + userEmail) }
-    if (userDisplayName) { props.put(&quot;extracted_userDisplayName&quot;, userDisplayName); log.info(&quot;JSR223: Set JMeter property &apos;extracted_userDisplayName&apos; to: &quot; + userDisplayName) }
-    if (accountId) { props.put(&quot;extracted_accountId&quot;, accountId); log.info(&quot;JSR223: Set JMeter property &apos;extracted_accountId&apos; to: &quot; + accountId) }
-    if (userType) { props.put(&quot;extracted_userType&quot;, userType); log.info(&quot;JSR223: Set JMeter property &apos;extracted_userType&apos; to: &quot; + userType) }
+    if (userId) { props.put(&quot;extracted_userId&quot;, userId); log.info(&quot;JSR223: Set JMeter property 'extracted_userId' to: &quot; + userId) }
+    if (userToken) { props.put(&quot;extracted_user_token&quot;, userToken); log.info(&quot;JSR223: Set JMeter property 'extracted_user_token'.&quot;) }
+    if (userAuthorization) { props.put(&quot;extracted_user_authorization&quot;, userAuthorization); log.info(&quot;JSR223: Set JMeter property 'extracted_user_authorization'.&quot;) }
+    if (userEmail) { props.put(&quot;extracted_userEmail&quot;, userEmail); log.info(&quot;JSR223: Set JMeter property 'extracted_userEmail' to: &quot; + userEmail) }
+    if (userDisplayName) { props.put(&quot;extracted_userDisplayName&quot;, userDisplayName); log.info(&quot;JSR223: Set JMeter property 'extracted_userDisplayName' to: &quot; + userDisplayName) }
+    if (accountId) { props.put(&quot;extracted_accountId&quot;, accountId); log.info(&quot;JSR223: Set JMeter property 'extracted_accountId' to: &quot; + accountId) }
+    if (userType) { props.put(&quot;extracted_userType&quot;, userType); log.info(&quot;JSR223: Set JMeter property 'extracted_userType' to: &quot; + userType) }
 
 
-    // --- 3. Write/Overwrite CSV file in the project root &apos;data&apos; folder ---
+    // --- 3. Write/Overwrite CSV file in the project root 'data' folder ---
     // 确保核心的认证信息存在
     if (userId &amp;&amp; userToken &amp;&amp; userAuthorization) {
         // 添加时间戳以确保文件每次都更新
