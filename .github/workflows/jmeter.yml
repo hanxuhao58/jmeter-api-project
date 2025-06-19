@@ -35,6 +35,7 @@ jobs:
 
       - name: Run Selected Testcases
         run: |
+          # 每次执行前清空 jtl 文件，避免历史数据影响报告
           > reports/all_cases.jtl
           whitelist=(
             testcases/tg2_registration_register.jmx
