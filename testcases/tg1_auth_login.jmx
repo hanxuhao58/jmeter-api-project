@@ -264,7 +264,7 @@
         <stringProp name="TestPlan.comments">包含非常通用的头部。平台特定的头部在各个线程组中设置。</stringProp>
       </HeaderManager>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG1: Login Scenarios (Android)">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG1: Login Scenarios (Android)" enabled="true">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -331,7 +331,7 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Login - Correct Credentials" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Login - Correct Credentials">
           <stringProp name="TestPlan.comments">使用正确的用户名和密码登录</stringProp>
           <stringProp name="HTTPSampler.domain">${HOST_BFF}</stringProp>
           <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
@@ -409,9 +409,14 @@ if (!prev.isSuccessful() || !responseData) {
 }
 
 try {
-    // Define the full file path for the CSV (位于项目根目录 data 目录)
-    String csvFilePath = "data/auth_tokens.csv"
-    File tokenFile = new File(csvFilePath)
+    // --- 3. Write/Overwrite CSV file in the project root 'data' folder ---
+    // 获取项目根目录，优先用 -JprojectRoot 传递，否则用当前工作目录
+    String projectRoot = props.get("projectRoot") ?: System.getProperty("user.dir")
+    File dataDir = new File(projectRoot + File.separator + "data")
+    if (!dataDir.exists()) {
+        dataDir.mkdirs()
+    }
+    File tokenFile = new File(dataDir, "auth_tokens.csv")
 
     def slurper = new JsonSlurper()
     def jsonResponse = slurper.parseText(responseData)
@@ -436,7 +441,7 @@ try {
     if (userType) { props.put(&quot;extracted_userType&quot;, userType); log.info(&quot;JSR223: Set JMeter property &apos;extracted_userType&apos; to: &quot; + userType) }
 
 
-    // --- 3. Write/Overwrite CSV file in a &apos;data&apos; folder relative to the manually set path ---
+    // --- 3. Write/Overwrite CSV file in the project root 'data' folder ---
     // 确保核心的认证信息存在
     if (userId &amp;&amp; userToken &amp;&amp; userAuthorization) {
         // 添加时间戳以确保文件每次都更新
@@ -450,7 +455,7 @@ try {
             writer.writeLine(&quot;${userId},${userToken},${userAuthorization},${userEmail},${userDisplayName},${accountId},${userType},${timestamp}&quot;)
         })
 
-        log.info(&quot;JSR223: Successfully wrote auth tokens to &quot; + csvFilePath + &quot; at &quot; + timestamp)
+        log.info(&quot;JSR223: Successfully wrote auth tokens to &quot; + tokenFile.absolutePath + &quot; at &quot; + timestamp)
 
     } else {
         log.error(&quot;JSR223: Missing one or more required tokens (userId, userToken, userAuthorization). CSV file was not written.&quot;)
@@ -584,7 +589,7 @@ try {
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
