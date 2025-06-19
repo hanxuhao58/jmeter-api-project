@@ -37,12 +37,10 @@ jobs:
         run: |
           > reports/all_cases.jtl
           whitelist=(
-            # testcases/tg1_auth_login.jmx
             testcases/tg2_registration_register.jmx
             testcases/tg3_auth_logout.jmx
             testcases/tg4_account_activation.jmx
             testcases/tg5_password_reset.jmx
-            # testcases/tg6_forgot_password.jmx
             testcases/tg7_ad_posted_analytics.jmx
             testcases/tg8_post_ad.jmx
             testcases/tg9_delete_ad.jmx
@@ -57,11 +55,6 @@ jobs:
             testcases/tg18_conversation_unread_messages.jmx
             testcases/tg19_conversation.jmx
             testcases/tg20_reviews_conversation.jmx
-            # testcases/tg21_vip_phone.jmx
-            # testcases/tg22_vip_reply.jmx
-            # testcases/tg23_auth_reset_pwd.jmx
-            # testcases/tglast_auth_forgot_pwd.jmx
-            # testcases/Gumtree\ API.jmx
           )
           for file in "${whitelist[@]}"; do
             ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/dev.env.properties -l reports/all_cases.jtl
