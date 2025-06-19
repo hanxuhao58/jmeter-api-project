@@ -31,12 +31,11 @@ jobs:
 
       - name: Run Login Test
         run: |
-          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/tg1_auth_login.jmx -q config/dev.env.properties -l reports/login.jtl
+          > reports/all_cases.jtl
+          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/tg1_auth_login.jmx -q config/dev.env.properties -l reports/all_cases.jtl
 
       - name: Run Selected Testcases
         run: |
-          # 每次执行前清空 jtl 文件，避免历史数据影响报告
-          > reports/all_cases.jtl
           whitelist=(
             testcases/tg2_registration_register.jmx
             testcases/tg3_auth_logout.jmx
@@ -60,6 +59,10 @@ jobs:
           for file in "${whitelist[@]}"; do
             ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/dev.env.properties -l reports/all_cases.jtl
           done
+
+      - name: Run tg6 Forgot Password (最后单独执行)
+        run: |
+          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/tg6_forgot_password.jmx -q config/dev.env.properties -l reports/all_cases.jtl
 
       - name: Generate Unified HTML Report
         run: |
