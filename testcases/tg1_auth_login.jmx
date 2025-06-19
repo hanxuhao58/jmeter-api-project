@@ -331,7 +331,7 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Login - Correct Credentials">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Login - Correct Credentials" enabled="true">
           <stringProp name="TestPlan.comments">使用正确的用户名和密码登录</stringProp>
           <stringProp name="HTTPSampler.domain">${HOST_BFF}</stringProp>
           <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
@@ -409,14 +409,14 @@ if (!prev.isSuccessful() || !responseData) {
 }
 
 try {
-    // --- 3. Write/Overwrite CSV file in the project root 'data' folder ---
-    // 获取项目根目录，优先用 -JprojectRoot 传递，否则用当前工作目录
-    String projectRoot = props.get("projectRoot") ?: System.getProperty("user.dir")
-    File dataDir = new File(projectRoot + File.separator + "data")
+    // --- 3. Write/Overwrite CSV file in the project root &apos;data&apos; folder ---
+    // 获取项目根目录，优先用 -JprojectRoot 传递，否则用 /Users/a58/Documents/jmeter-api-project
+    String projectRoot = props.get(&quot;projectRoot&quot;) ?: &quot;/Users/a58/Documents/jmeter-api-project&quot;
+    File dataDir = new File(projectRoot + File.separator + &quot;data&quot;)
     if (!dataDir.exists()) {
         dataDir.mkdirs()
     }
-    File tokenFile = new File(dataDir, "auth_tokens.csv")
+    File tokenFile = new File(dataDir, &quot;auth_tokens.csv&quot;)
 
     def slurper = new JsonSlurper()
     def jsonResponse = slurper.parseText(responseData)
@@ -441,7 +441,7 @@ try {
     if (userType) { props.put(&quot;extracted_userType&quot;, userType); log.info(&quot;JSR223: Set JMeter property &apos;extracted_userType&apos; to: &quot; + userType) }
 
 
-    // --- 3. Write/Overwrite CSV file in the project root 'data' folder ---
+    // --- 3. Write/Overwrite CSV file in the project root &apos;data&apos; folder ---
     // 确保核心的认证信息存在
     if (userId &amp;&amp; userToken &amp;&amp; userAuthorization) {
         // 添加时间戳以确保文件每次都更新
@@ -589,7 +589,7 @@ try {
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>

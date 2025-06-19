@@ -309,7 +309,7 @@
           <stringProp name="variableNames">userId,userToken,userAuthorization</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Delete Ad HTTP Header Manager (iOS)">
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Delete Ad HTTP Header Manager (iOS)" enabled="true">
           <collectionProp name="HeaderManager.headers">
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user</stringProp>
@@ -384,7 +384,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 204 (No Content)">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 204 (No Content)" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49590">204</stringProp>
             </collectionProp>
