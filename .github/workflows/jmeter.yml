@@ -28,7 +28,7 @@ jobs:
 
       - name: Run Login Test
         run: |
-          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/tg1_auth_login.jmx -q config/dev.env.properties
+          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/tg1_auth_login.jmx -q config/dev.env.properties -l reports/tg1_auth_login.jtl -e -o reports/tg1_auth_login_report
 
 #      - name: Run All Other Tests
 #        run: |

@@ -247,6 +247,7 @@
           </elementProp>
         </collectionProp>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
     </TestPlan>
     <hashTree>
       <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="全局通用 HTTP Header Manager (Minimal)">
@@ -274,7 +275,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Generate Dynamic Threat Metrix Session Property">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Generate Dynamic Threat Metrix Session Property" enabled="true">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
@@ -285,7 +286,7 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Login HTTP Header Manager (Android)">
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Login HTTP Header Manager (Android)" enabled="true">
           <collectionProp name="HeaderManager.headers">
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">Content-Type</stringProp>
@@ -330,7 +331,7 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Login - Correct Credentials">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Login - Correct Credentials" enabled="true">
           <stringProp name="TestPlan.comments">使用正确的用户名和密码登录</stringProp>
           <stringProp name="HTTPSampler.domain">${HOST_BFF}</stringProp>
           <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
@@ -359,7 +360,7 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 200">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 200" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
             </collectionProp>
@@ -389,7 +390,7 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
             <stringProp name="INPUT_FORMAT">JSON</stringProp>
           </com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion>
           <hashTree/>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Extract Tokens to Properties and Write to CSV">
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Extract Tokens to Properties and Write to CSV" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -408,9 +409,9 @@ if (!prev.isSuccessful() || !responseData) {
 }
 
 try {
-    // *** 关键修改：路径已修改为本地磁盘的“文稿”文件夹，不再使用iCloud路径 ***
-    // *** IMPORTANT FIX: The path has been changed to the local Documents folder, avoiding iCloud. ***
-    String jmxBaseDir = &quot;/Users/a58/Documents/jmeter-api-project&quot;
+    // Define the full file path for the CSV (位于项目根目录 data 目录)
+    String csvFilePath = "data/auth_tokens.csv"
+    File tokenFile = new File(csvFilePath)
 
     def slurper = new JsonSlurper()
     def jsonResponse = slurper.parseText(responseData)
@@ -438,23 +439,6 @@ try {
     // --- 3. Write/Overwrite CSV file in a &apos;data&apos; folder relative to the manually set path ---
     // 确保核心的认证信息存在
     if (userId &amp;&amp; userToken &amp;&amp; userAuthorization) {
-        // Construct the path to the &apos;data&apos; directory
-        String dataDirPath = jmxBaseDir + File.separator + &quot;data&quot;
-        File dataDir = new File(dataDirPath)
-
-        // Create the &apos;data&apos; directory if it doesn&apos;t exist
-        if (!dataDir.exists()) {
-            log.info(&quot;JSR223: &apos;data&apos; directory does not exist. Creating it at: &quot; + dataDirPath)
-            if (!dataDir.mkdirs()) {
-                 log.error(&quot;JSR223: Failed to create &apos;data&apos; directory. Check permissions.&quot;)
-                 throw new Exception(&quot;Failed to create data directory.&quot;)
-            }
-        }
-
-        // Define the full file path for the CSV (located in the &apos;data&apos; directory)
-        String csvFilePath = dataDirPath + File.separator + &quot;auth_tokens.csv&quot;
-        File tokenFile = new File(csvFilePath)
-        
         // 添加时间戳以确保文件每次都更新
         String timestamp = new Date().format(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;)
 
@@ -560,7 +544,7 @@ try {
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.4 Login - Missing Password">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.4 Login - Missing Password" enabled="true">
           <stringProp name="HTTPSampler.domain">${HOST_BFF}</stringProp>
           <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
           <stringProp name="HTTPSampler.path">/v1/login</stringProp>
@@ -600,7 +584,7 @@ try {
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
