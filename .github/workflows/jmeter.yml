@@ -35,7 +35,7 @@ jobs:
 
       - name: Run Selected Testcases
         run: |
-          for file in testcases/*.jmx; do
+          for file in testcases/tg*.jmx; do
             fname=$(basename "$file")
             if [[ "$fname" != tg1_auth_login.jmx && "$fname" != tg6_forgot_password.jmx && "$fname" != tg21_vip_phone.jmx && "$fname" != tg22_vip_reply.jmx && "$fname" != tg23_auth_reset_pwd.jmx && "$fname" != tglast_auth_forgot_pwd.jmx ]]; then
               ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/dev.env.properties -l "reports/${fname%.jmx}.jtl" -e -o "reports/${fname%.jmx}_report"
