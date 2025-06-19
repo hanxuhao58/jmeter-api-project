@@ -35,11 +35,36 @@ jobs:
 
       - name: Run Selected Testcases
         run: |
-          for file in testcases/tg*.jmx; do
-            fname=$(basename "$file")
-            if [[ "$fname" != tg1_auth_login.jmx && "$fname" != tg6_forgot_password.jmx && "$fname" != tg21_vip_phone.jmx && "$fname" != tg22_vip_reply.jmx && "$fname" != tg23_auth_reset_pwd.jmx && "$fname" != tglast_auth_forgot_pwd.jmx ]]; then
-              ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/dev.env.properties -l reports/all_cases.jtl
-            fi
+          # 只执行需要的用例，注释掉不需要的
+          > reports/all_cases.jtl
+          for file in \
+            # testcases/tg1_auth_login.jmx \
+            testcases/tg2_registration_register.jmx \
+            testcases/tg3_auth_logout.jmx \
+            testcases/tg4_account_activation.jmx \
+            testcases/tg5_password_reset.jmx \
+            # testcases/tg6_forgot_password.jmx \
+            testcases/tg7_ad_posted_analytics.jmx \
+            testcases/tg8_post_ad.jmx \
+            testcases/tg9_delete_ad.jmx \
+            testcases/tg10_promote_ad_screen.jmx \
+            testcases/tg11_user_block.jmx \
+            testcases/tg12_vip_screen.jmx \
+            testcases/tg13_mygumtree_screen.jmx \
+            testcases/tg14_favourites.jmx \
+            testcases/tg15_favourites_screen.jmx \
+            testcases/tg16_chat_screen.jmx \
+            testcases/tg17_conversation_screen.jmx \
+            testcases/tg18_conversation_unread_messages.jmx \
+            testcases/tg19_conversation.jmx \
+            testcases/tg20_reviews_conversation.jmx \
+            # testcases/tg21_vip_phone.jmx \
+            # testcases/tg22_vip_reply.jmx \
+            # testcases/tg23_auth_reset_pwd.jmx \
+            # testcases/tglast_auth_forgot_pwd.jmx \
+            # testcases/Gumtree API.jmx
+          do
+            ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/dev.env.properties -l reports/all_cases.jtl
           done
 
       - name: Generate Unified HTML Report
