@@ -309,6 +309,12 @@
           <stringProp name="variableNames">userId,userToken,userAuthorization</stringProp>
         </CSVDataSet>
         <hashTree/>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler - 打印所有变量" enabled="true"/>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="打印关键变量" enabled="true">
+          <stringProp name="script">log.info("userId=" + vars.get("userId") + ", userToken=" + vars.get("userToken") + ", userAuthorization=" + vars.get("userAuthorization"));</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
         <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Delete Ad HTTP Header Manager (iOS)" enabled="true">
           <collectionProp name="HeaderManager.headers">
             <elementProp name="" elementType="Header">
