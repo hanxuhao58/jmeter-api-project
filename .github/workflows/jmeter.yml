@@ -21,7 +21,7 @@ jobs:
 
       - name: Install JMeter Plugins Manager and JSON Path Assertion
         run: |
-          wget https://mirrors.tuna.tsinghua.edu.cn/apache/jmeter-plugins/jmeter-plugins-manager-1.8.jar -O ./apache-jmeter-5.6.3/lib/ext/jmeter-plugins-manager.jar
+          wget https://mirrors.aliyun.com/apache/jmeter-plugins/jmeter-plugins-manager-1.8.jar -O ./apache-jmeter-5.6.3/lib/ext/jmeter-plugins-manager.jar
           java -cp ./apache-jmeter-5.6.3/lib/ext/jmeter-plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
           ./apache-jmeter-5.6.3/bin/PluginsManagerCMD.sh install jpgc-json
 
