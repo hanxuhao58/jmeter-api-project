@@ -1,87 +1,87 @@
-2025-06-20 16:15:18,887 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
-2025-06-20 16:15:18,900 INFO o.a.j.JMeter: Loading user properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/user.properties
-2025-06-20 16:15:18,900 INFO o.a.j.JMeter: Loading system properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/system.properties
-2025-06-20 16:15:18,900 INFO o.a.j.JMeter: Loading additional properties from: config/dev.env.properties
-2025-06-20 16:15:18,906 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
-2025-06-20 16:15:18,907 INFO o.a.j.JMeter: Version 5.6.3
-2025-06-20 16:15:18,907 INFO o.a.j.JMeter: java.version=21.0.7
-2025-06-20 16:15:18,907 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
-2025-06-20 16:15:18,907 INFO o.a.j.JMeter: os.name=Mac OS X
-2025-06-20 16:15:18,907 INFO o.a.j.JMeter: os.arch=aarch64
-2025-06-20 16:15:18,907 INFO o.a.j.JMeter: os.version=15.5
-2025-06-20 16:15:18,907 INFO o.a.j.JMeter: file.encoding=UTF-8
-2025-06-20 16:15:18,907 INFO o.a.j.JMeter: java.awt.headless=null
-2025-06-20 16:15:18,907 INFO o.a.j.JMeter: Max memory     =1073741824
-2025-06-20 16:15:18,907 INFO o.a.j.JMeter: Available Processors =8
-2025-06-20 16:15:18,913 INFO o.a.j.JMeter: Default Locale=English (EN)
-2025-06-20 16:15:18,913 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
-2025-06-20 16:15:18,913 INFO o.a.j.JMeter: JMeterHome=/opt/homebrew/Cellar/jmeter/5.6.3/libexec
-2025-06-20 16:15:18,913 INFO o.a.j.JMeter: user.dir  =/Users/a58/Documents/jmeter-api-project
-2025-06-20 16:15:18,913 INFO o.a.j.JMeter: PWD       =/Users/a58/Documents/jmeter-api-project
-2025-06-20 16:15:18,915 INFO o.a.j.JMeter: IP: 127.0.0.1 Name: Xuhao-MacBook-Pro.local FullName: localhost
-2025-06-20 16:15:18,922 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
-2025-06-20 16:15:19,129 INFO o.a.j.JMeterGuiLauncher: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.DarculaTheme
-2025-06-20 16:15:19,881 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.action.Command], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-06-20 16:15:19,915 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.action.Command], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-06-20 16:15:19,946 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.plugin.MenuCreator], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-06-20 16:15:19,948 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.plugin.MenuCreator], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-06-20 16:15:19,969 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:7890
-2025-06-20 16:15:19,971 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:7890
-2025-06-20 16:15:20,020 INFO o.j.r.JARSourceHTTP: Found cached repo
-2025-06-20 16:15:20,106 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:7890
-2025-06-20 16:15:20,106 INFO o.j.r.PluginManager: Plugins Status: [jpgc-json=2.7, jpgc-plugins-manager=1.10, jmeter-core=5.6.3, jmeter-ftp=5.6.3, jmeter-http=5.6.3, jmeter-jdbc=5.6.3, jmeter-jms=5.6.3, jmeter-junit=5.6.3, jmeter-java=5.6.3, jmeter-ldap=5.6.3, jmeter-mail=5.6.3, jmeter-mongodb=5.6.3, jmeter-native=5.6.3, jmeter-tcp=5.6.3, jmeter-components=5.6.3]
-2025-06-20 16:15:20,106 INFO o.j.r.PluginManagerMenuItem: Plugins Manager has upgrades: [jpgc-plugins-manager]
-2025-06-20 16:15:49,870 INFO o.a.j.s.FileServer: Default base='/Users/a58/Documents/jmeter-api-project'
-2025-06-20 16:15:49,872 INFO o.a.j.g.a.Load: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/01_login.jmx
-2025-06-20 16:15:49,872 INFO o.a.j.s.FileServer: Set new base='/Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API'
-2025-06-20 16:15:49,962 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
-2025-06-20 16:15:49,966 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
-2025-06-20 16:15:49,966 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
-2025-06-20 16:15:49,967 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/01_login.jmx
-2025-06-20 16:15:50,005 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-06-20 16:15:50,005 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-06-20 16:15:50,005 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-06-20 16:15:50,005 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-06-20 16:15:50,005 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
-2025-06-20 16:15:50,005 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
-2025-06-20 16:15:50,130 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
-2025-06-20 16:15:50,130 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
-2025-06-20 16:15:50,130 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
-2025-06-20 16:15:50,130 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
-2025-06-20 16:15:50,174 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-06-20 16:15:50,175 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-06-20 16:15:50,184 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-06-20 16:15:50,186 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-06-20 16:15:50,210 INFO o.a.j.s.FileServer: Set new base='/Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API'
-2025-06-20 16:15:50,283 INFO o.a.j.c.IncludeController: loadIncludedElements -- try to load included module: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
-2025-06-20 16:15:50,283 INFO o.a.j.c.IncludeController: loadIncludedElements -failed for: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
-2025-06-20 16:15:50,283 INFO o.a.j.c.IncludeController: loadIncludedElements -Attempting to read it from: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
-2025-06-20 16:15:50,283 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
-2025-06-20 16:15:50,348 INFO o.a.j.c.IncludeController: loadIncludedElements -- try to load included module: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
-2025-06-20 16:15:50,348 INFO o.a.j.c.IncludeController: loadIncludedElements -failed for: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
-2025-06-20 16:15:50,348 INFO o.a.j.c.IncludeController: loadIncludedElements -Attempting to read it from: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
-2025-06-20 16:15:50,348 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
-2025-06-20 16:15:52,106 INFO o.a.j.c.IncludeController: loadIncludedElements -- try to load included module: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
-2025-06-20 16:15:52,106 INFO o.a.j.c.IncludeController: loadIncludedElements -failed for: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
-2025-06-20 16:15:52,106 INFO o.a.j.c.IncludeController: loadIncludedElements -Attempting to read it from: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
-2025-06-20 16:15:52,107 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
-2025-06-20 16:15:52,122 INFO o.a.j.c.IncludeController: loadIncludedElements -- try to load included module: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
-2025-06-20 16:15:52,122 INFO o.a.j.c.IncludeController: loadIncludedElements -failed for: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
-2025-06-20 16:15:52,122 INFO o.a.j.c.IncludeController: loadIncludedElements -Attempting to read it from: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
-2025-06-20 16:15:52,122 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
-2025-06-20 16:15:52,131 INFO o.a.j.c.IncludeController: loadIncludedElements -- try to load included module: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
-2025-06-20 16:15:52,131 INFO o.a.j.c.IncludeController: loadIncludedElements -failed for: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
-2025-06-20 16:15:52,132 INFO o.a.j.c.IncludeController: loadIncludedElements -Attempting to read it from: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
-2025-06-20 16:15:52,132 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
-2025-06-20 16:15:52,143 INFO o.a.j.e.StandardJMeterEngine: Running the test!
-2025-06-20 16:15:52,143 INFO o.a.j.s.SampleEvent: List of sample_variables: []
-2025-06-20 16:15:52,144 INFO o.a.j.s.SampleEvent: List of sample_variables: []
-2025-06-20 16:15:52,144 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
-2025-06-20 16:15:52,144 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
-2025-06-20 16:15:52,168 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-06-20 16:15:52,170 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-06-20 16:15:52,171 ERROR o.a.j.e.StandardJMeterEngine: Error occurred compiling the tree:
-java.lang.RuntimeException: org.apache.jmeter.functions.InvalidVariableException: __Random called with wrong number of parameters. Actual: 1. Expected: >= 2 and <= 3
+2025-06-20 16:17:04,535 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2025-06-20 16:17:04,547 INFO o.a.j.JMeter: Loading user properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/user.properties
+2025-06-20 16:17:04,547 INFO o.a.j.JMeter: Loading system properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/system.properties
+2025-06-20 16:17:04,547 INFO o.a.j.JMeter: Loading additional properties from: config/dev.env.properties
+2025-06-20 16:17:04,551 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
+2025-06-20 16:17:04,551 INFO o.a.j.JMeter: Version 5.6.3
+2025-06-20 16:17:04,551 INFO o.a.j.JMeter: java.version=21.0.7
+2025-06-20 16:17:04,551 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2025-06-20 16:17:04,551 INFO o.a.j.JMeter: os.name=Mac OS X
+2025-06-20 16:17:04,551 INFO o.a.j.JMeter: os.arch=aarch64
+2025-06-20 16:17:04,551 INFO o.a.j.JMeter: os.version=15.5
+2025-06-20 16:17:04,551 INFO o.a.j.JMeter: file.encoding=UTF-8
+2025-06-20 16:17:04,551 INFO o.a.j.JMeter: java.awt.headless=null
+2025-06-20 16:17:04,551 INFO o.a.j.JMeter: Max memory     =1073741824
+2025-06-20 16:17:04,551 INFO o.a.j.JMeter: Available Processors =8
+2025-06-20 16:17:04,556 INFO o.a.j.JMeter: Default Locale=English (EN)
+2025-06-20 16:17:04,556 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2025-06-20 16:17:04,556 INFO o.a.j.JMeter: JMeterHome=/opt/homebrew/Cellar/jmeter/5.6.3/libexec
+2025-06-20 16:17:04,557 INFO o.a.j.JMeter: user.dir  =/Users/a58/Documents/jmeter-api-project
+2025-06-20 16:17:04,557 INFO o.a.j.JMeter: PWD       =/Users/a58/Documents/jmeter-api-project
+2025-06-20 16:17:04,558 INFO o.a.j.JMeter: IP: 127.0.0.1 Name: Xuhao-MacBook-Pro.local FullName: localhost
+2025-06-20 16:17:04,564 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2025-06-20 16:17:04,772 INFO o.a.j.JMeterGuiLauncher: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.DarculaTheme
+2025-06-20 16:17:05,528 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.action.Command], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 16:17:05,562 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.action.Command], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 16:17:05,593 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.plugin.MenuCreator], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 16:17:05,594 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.plugin.MenuCreator], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 16:17:05,616 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:7890
+2025-06-20 16:17:05,618 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:7890
+2025-06-20 16:17:05,663 INFO o.j.r.JARSourceHTTP: Found cached repo
+2025-06-20 16:17:05,748 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:7890
+2025-06-20 16:17:05,748 INFO o.j.r.PluginManager: Plugins Status: [jpgc-json=2.7, jpgc-plugins-manager=1.10, jmeter-core=5.6.3, jmeter-ftp=5.6.3, jmeter-http=5.6.3, jmeter-jdbc=5.6.3, jmeter-jms=5.6.3, jmeter-junit=5.6.3, jmeter-java=5.6.3, jmeter-ldap=5.6.3, jmeter-mail=5.6.3, jmeter-mongodb=5.6.3, jmeter-native=5.6.3, jmeter-tcp=5.6.3, jmeter-components=5.6.3]
+2025-06-20 16:17:05,749 INFO o.j.r.PluginManagerMenuItem: Plugins Manager has upgrades: [jpgc-plugins-manager]
+2025-06-20 16:17:10,751 INFO o.a.j.s.FileServer: Default base='/Users/a58/Documents/jmeter-api-project'
+2025-06-20 16:17:10,753 INFO o.a.j.g.a.Load: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/01_login.jmx
+2025-06-20 16:17:10,754 INFO o.a.j.s.FileServer: Set new base='/Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API'
+2025-06-20 16:17:10,841 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2025-06-20 16:17:10,845 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2025-06-20 16:17:10,846 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2025-06-20 16:17:10,846 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/01_login.jmx
+2025-06-20 16:17:10,887 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-06-20 16:17:10,887 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-06-20 16:17:10,887 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-06-20 16:17:10,887 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-06-20 16:17:10,887 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2025-06-20 16:17:10,887 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2025-06-20 16:17:11,021 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2025-06-20 16:17:11,022 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
+2025-06-20 16:17:11,022 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2025-06-20 16:17:11,022 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2025-06-20 16:17:11,066 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 16:17:11,067 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 16:17:11,076 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 16:17:11,077 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 16:17:11,099 INFO o.a.j.s.FileServer: Set new base='/Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API'
+2025-06-20 16:17:11,185 INFO o.a.j.c.IncludeController: loadIncludedElements -- try to load included module: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:17:11,185 INFO o.a.j.c.IncludeController: loadIncludedElements -failed for: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:17:11,185 INFO o.a.j.c.IncludeController: loadIncludedElements -Attempting to read it from: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:17:11,185 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:17:11,228 INFO o.a.j.c.IncludeController: loadIncludedElements -- try to load included module: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:17:11,228 INFO o.a.j.c.IncludeController: loadIncludedElements -failed for: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:17:11,228 INFO o.a.j.c.IncludeController: loadIncludedElements -Attempting to read it from: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:17:11,228 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:17:13,143 INFO o.a.j.c.IncludeController: loadIncludedElements -- try to load included module: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:17:13,143 INFO o.a.j.c.IncludeController: loadIncludedElements -failed for: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:17:13,143 INFO o.a.j.c.IncludeController: loadIncludedElements -Attempting to read it from: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:17:13,143 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:17:13,159 INFO o.a.j.c.IncludeController: loadIncludedElements -- try to load included module: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:17:13,159 INFO o.a.j.c.IncludeController: loadIncludedElements -failed for: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:17:13,159 INFO o.a.j.c.IncludeController: loadIncludedElements -Attempting to read it from: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:17:13,159 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:17:13,167 INFO o.a.j.c.IncludeController: loadIncludedElements -- try to load included module: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:17:13,167 INFO o.a.j.c.IncludeController: loadIncludedElements -failed for: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:17:13,168 INFO o.a.j.c.IncludeController: loadIncludedElements -Attempting to read it from: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:17:13,168 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:17:13,177 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-20 16:17:13,178 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-20 16:17:13,178 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-20 16:17:13,178 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2025-06-20 16:17:13,178 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2025-06-20 16:17:13,205 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 16:17:13,206 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 16:17:13,208 ERROR o.a.j.e.StandardJMeterEngine: Error occurred compiling the tree:
+java.lang.RuntimeException: org.apache.jmeter.functions.InvalidVariableException: __P called with wrong number of parameters. Actual: 3. Expected: >= 1 and <= 2
 	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:37) ~[ApacheJMeter_core.jar:5.6.3]
 	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:168) ~[ApacheJMeter_core.jar:5.6.3]
 	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
@@ -97,21 +97,17 @@ java.lang.RuntimeException: org.apache.jmeter.functions.InvalidVariableException
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
 	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
-Caused by: org.apache.jmeter.functions.InvalidVariableException: __Random called with wrong number of parameters. Actual: 1. Expected: >= 2 and <= 3
+Caused by: org.apache.jmeter.functions.InvalidVariableException: __P called with wrong number of parameters. Actual: 3. Expected: >= 1 and <= 2
 	at org.apache.jmeter.functions.AbstractFunction.checkParameterCount(AbstractFunction.java:98) ~[ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.functions.Random.setParameters(Random.java:88) ~[ApacheJMeter_functions.jar:5.6.3]
-	at org.apache.jmeter.engine.util.FunctionParser.makeFunction(FunctionParser.java:131) ~[ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.engine.util.FunctionParser.compileString(FunctionParser.java:79) ~[ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.engine.util.CompoundVariable.setParameters(CompoundVariable.java:184) ~[ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.engine.util.FunctionParser.parseParams(FunctionParser.java:219) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.functions.Property2.setParameters(Property2.java:92) ~[ApacheJMeter_functions.jar:5.6.3]
 	at org.apache.jmeter.engine.util.FunctionParser.makeFunction(FunctionParser.java:131) ~[ApacheJMeter_core.jar:5.6.3]
 	at org.apache.jmeter.engine.util.FunctionParser.compileString(FunctionParser.java:79) ~[ApacheJMeter_core.jar:5.6.3]
 	at org.apache.jmeter.engine.util.CompoundVariable.setParameters(CompoundVariable.java:184) ~[ApacheJMeter_core.jar:5.6.3]
 	at org.apache.jmeter.engine.util.ReplaceStringWithFunctions.transformValue(ReplaceStringWithFunctions.java:44) ~[ApacheJMeter_core.jar:5.6.3]
 	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:35) ~[ApacheJMeter_core.jar:5.6.3]
 	... 14 more
-2025-06-20 16:15:52,174 ERROR o.a.j.u.JMeterUtils: Error occurred compiling the tree: - see log file
-java.lang.RuntimeException: org.apache.jmeter.functions.InvalidVariableException: __Random called with wrong number of parameters. Actual: 1. Expected: >= 2 and <= 3
+2025-06-20 16:17:13,211 ERROR o.a.j.u.JMeterUtils: Error occurred compiling the tree: - see log file
+java.lang.RuntimeException: org.apache.jmeter.functions.InvalidVariableException: __P called with wrong number of parameters. Actual: 3. Expected: >= 1 and <= 2
 	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:37) ~[ApacheJMeter_core.jar:5.6.3]
 	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:168) ~[ApacheJMeter_core.jar:5.6.3]
 	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
@@ -127,13 +123,9 @@ java.lang.RuntimeException: org.apache.jmeter.functions.InvalidVariableException
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
 	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
-Caused by: org.apache.jmeter.functions.InvalidVariableException: __Random called with wrong number of parameters. Actual: 1. Expected: >= 2 and <= 3
+Caused by: org.apache.jmeter.functions.InvalidVariableException: __P called with wrong number of parameters. Actual: 3. Expected: >= 1 and <= 2
 	at org.apache.jmeter.functions.AbstractFunction.checkParameterCount(AbstractFunction.java:98) ~[ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.functions.Random.setParameters(Random.java:88) ~[ApacheJMeter_functions.jar:5.6.3]
-	at org.apache.jmeter.engine.util.FunctionParser.makeFunction(FunctionParser.java:131) ~[ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.engine.util.FunctionParser.compileString(FunctionParser.java:79) ~[ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.engine.util.CompoundVariable.setParameters(CompoundVariable.java:184) ~[ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.engine.util.FunctionParser.parseParams(FunctionParser.java:219) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.functions.Property2.setParameters(Property2.java:92) ~[ApacheJMeter_functions.jar:5.6.3]
 	at org.apache.jmeter.engine.util.FunctionParser.makeFunction(FunctionParser.java:131) ~[ApacheJMeter_core.jar:5.6.3]
 	at org.apache.jmeter.engine.util.FunctionParser.compileString(FunctionParser.java:79) ~[ApacheJMeter_core.jar:5.6.3]
 	at org.apache.jmeter.engine.util.CompoundVariable.setParameters(CompoundVariable.java:184) ~[ApacheJMeter_core.jar:5.6.3]
