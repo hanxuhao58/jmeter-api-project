@@ -2,9 +2,9 @@ name: JMeter CI
 
 on:
   push:
-    branches: [ feature/1.0 ]
+    branches: [ "1.0" ]
   pull_request:
-    branches: [ feature/1.0 ]
+    branches: [ "1.0" ]
 
 jobs:
   jmeter:
