@@ -290,11 +290,11 @@
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>

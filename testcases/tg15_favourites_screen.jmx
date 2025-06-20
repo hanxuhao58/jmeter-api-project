@@ -325,7 +325,7 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
-              <stringProp name="Header.value">${__P(dynamic_threat_metrix_session, vzun1wtjpxyh4idlb0w9bzqh3beya2r4_fallback)}</stringProp>
+              <stringProp name="Header.value">${threatMetrixSession}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
@@ -604,7 +604,7 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
-              <stringProp name="Header.value">${__P(dynamic_threat_metrix_session, vzun1wtjpxyh4idlb0w9bzqh3beya2r4_fallback)}</stringProp>
+              <stringProp name="Header.value">${threatMetrixSession}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
@@ -731,11 +731,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -771,7 +771,7 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
-              <stringProp name="Header.value">${__P(dynamic_threat_metrix_session, vzun1wtjpxyh4idlb0w9bzqh3beya2r4_fallback)}</stringProp>
+              <stringProp name="Header.value">${threatMetrixSession}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
@@ -790,7 +790,7 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-    &quot;userId&quot;: &quot;${__P(extracted_userId_for_logout,NOT_FOUND_USERID)}&quot;,&#xd;
+    &quot;userId&quot;: &quot;${userId}&quot;,&#xd;
     &quot;pushToken&quot;: &quot;&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -872,7 +872,7 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
-              <stringProp name="Header.value">${__P(dynamic_threat_metrix_session, vzun1wtjpxyh4idlb0w9bzqh3beya2r4_fallback)}</stringProp>
+              <stringProp name="Header.value">${threatMetrixSession}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
@@ -1034,7 +1034,7 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
-              <stringProp name="Header.value">${__P(dynamic_threat_metrix_session, vzun1wtjpxyh4idlb0w9bzqh3beya2r4_fallback)}</stringProp>
+              <stringProp name="Header.value">${threatMetrixSession}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
@@ -1225,7 +1225,7 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
-              <stringProp name="Header.value">${__P(dynamic_threat_metrix_session, vzun1wtjpxyh4idlb0w9bzqh3beya2r4_fallback)}</stringProp>
+              <stringProp name="Header.value">${threatMetrixSession}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
@@ -1396,11 +1396,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -1436,7 +1436,7 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
-              <stringProp name="Header.value">${__P(dynamic_threat_metrix_session, vzun1wtjpxyh4idlb0w9bzqh3beya2r4_fallback)}</stringProp>
+              <stringProp name="Header.value">${threatMetrixSession}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
@@ -1685,11 +1685,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -1783,11 +1783,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -1823,7 +1823,7 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
-              <stringProp name="Header.value">${__P(dynamic_threat_metrix_session, vzun1wtjpxyh4idlb0w9bzqh3beya2r4_fallback)}</stringProp>
+              <stringProp name="Header.value">${threatMetrixSession}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
@@ -1889,11 +1889,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -2047,11 +2047,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -2196,11 +2196,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -2335,11 +2335,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -2480,11 +2480,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -2609,11 +2609,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -2738,11 +2738,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -2857,11 +2857,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -2976,11 +2976,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -3115,11 +3115,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -3262,11 +3262,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -3314,7 +3314,7 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
-              <stringProp name="Header.value">${__P(dynamic_threat_metrix_session, vzun1wtjpxyh4idlb0w9bzqh3beya2r4_fallback)}</stringProp>
+              <stringProp name="Header.value">${threatMetrixSession}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
@@ -3395,11 +3395,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -3447,7 +3447,7 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
-              <stringProp name="Header.value">${__P(dynamic_threat_metrix_session, vzun1wtjpxyh4idlb0w9bzqh3beya2r4_fallback)}</stringProp>
+              <stringProp name="Header.value">${threatMetrixSession}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
@@ -3520,11 +3520,11 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -3572,7 +3572,7 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
-              <stringProp name="Header.value">${__P(dynamic_threat_metrix_session, vzun1wtjpxyh4idlb0w9bzqh3beya2r4_fallback)}</stringProp>
+              <stringProp name="Header.value">${threatMetrixSession}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
@@ -3666,7 +3666,7 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
-              <stringProp name="Header.value">${__P(dynamic_threat_metrix_session, vzun1wtjpxyh4idlb0w9bzqh3beya2r4_fallback)}</stringProp>
+              <stringProp name="Header.value">${threatMetrixSession}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>

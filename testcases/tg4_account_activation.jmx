@@ -7,249 +7,21 @@
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments">
-          <elementProp name="HOST_BFF" elementType="Argument">
-            <stringProp name="Argument.name">HOST_BFF</stringProp>
-            <stringProp name="Argument.value">mobile-apps-bff.gumtree.com</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="HOST_MY_GUMTREE" elementType="Argument">
-            <stringProp name="Argument.name">HOST_MY_GUMTREE</stringProp>
-            <stringProp name="Argument.value">my.gumtree.com</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="PROTOCOL" elementType="Argument">
-            <stringProp name="Argument.name">PROTOCOL</stringProp>
-            <stringProp name="Argument.value">https</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="CORRECT_USERNAME" elementType="Argument">
-            <stringProp name="Argument.name">CORRECT_USERNAME</stringProp>
-            <stringProp name="Argument.value">donny.han@gumtree.com</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="CORRECT_PASSWORD" elementType="Argument">
-            <stringProp name="Argument.name">CORRECT_PASSWORD</stringProp>
-            <stringProp name="Argument.value">Gumtree123!</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="INCORRECT_PASSWORD" elementType="Argument">
-            <stringProp name="Argument.name">INCORRECT_PASSWORD</stringProp>
-            <stringProp name="Argument.value">WrongPassword123</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="REG_FIRST_NAME" elementType="Argument">
-            <stringProp name="Argument.name">REG_FIRST_NAME</stringProp>
-            <stringProp name="Argument.value">absent</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="REG_LAST_NAME" elementType="Argument">
-            <stringProp name="Argument.name">REG_LAST_NAME</stringProp>
-            <stringProp name="Argument.value">salmon</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
           <elementProp name="REG_USER_NAME" elementType="Argument">
             <stringProp name="Argument.name">REG_USER_NAME</stringProp>
             <stringProp name="Argument.value">abaent.salmon${__Random(1000,9999)}@maildrop.cc</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="REG_PASSWORD" elementType="Argument">
-            <stringProp name="Argument.name">REG_PASSWORD</stringProp>
-            <stringProp name="Argument.value">Gumtree123!</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="REG_OPTIN_FIRST_NAME" elementType="Argument">
-            <stringProp name="Argument.name">REG_OPTIN_FIRST_NAME</stringProp>
-            <stringProp name="Argument.value">donnyoptin</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="REG_OPTIN_LAST_NAME" elementType="Argument">
-            <stringProp name="Argument.name">REG_OPTIN_LAST_NAME</stringProp>
-            <stringProp name="Argument.value">protonopt</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="REG_OPTIN_USER_NAME" elementType="Argument">
-            <stringProp name="Argument.name">REG_OPTIN_USER_NAME</stringProp>
-            <stringProp name="Argument.value">donnyoptin${__Random(1000,9999)}@maildrop.cc</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="REG_OPTIN_PASSWORD" elementType="Argument">
-            <stringProp name="Argument.name">REG_OPTIN_PASSWORD</stringProp>
-            <stringProp name="Argument.value">GumtreeOpt123!</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="ACTIVATION_TOKEN_DUMMY" elementType="Argument">
-            <stringProp name="Argument.name">ACTIVATION_TOKEN_DUMMY</stringProp>
-            <stringProp name="Argument.value">dummyActivateTokenForTest${__Random(1000,9999)}</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="NON_EXISTENT_EMAIL" elementType="Argument">
-            <stringProp name="Argument.name">NON_EXISTENT_EMAIL</stringProp>
-            <stringProp name="Argument.value">nonexistentuser${__Random(10000,99999)}@example.com</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="AD_ID_TO_MANAGE" elementType="Argument">
-            <stringProp name="Argument.name">AD_ID_TO_MANAGE</stringProp>
-            <stringProp name="Argument.value">1496984058</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="ANDROID_POST_AD_TRANSACTION_ID" elementType="Argument">
-            <stringProp name="Argument.name">ANDROID_POST_AD_TRANSACTION_ID</stringProp>
-            <stringProp name="Argument.value">3906775808a143cf98bb75573ffb341d</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="TestPlan.comments">用于Android发布广告接口路径中的ID</stringProp>
-          </elementProp>
-          <elementProp name="IOS_POST_AD_TRANSACTION_ID" elementType="Argument">
-            <stringProp name="Argument.name">IOS_POST_AD_TRANSACTION_ID</stringProp>
-            <stringProp name="Argument.value">a7f675666d744dd0b9710ef103d816ed</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="TestPlan.comments">用于iOS发布广告接口路径中的ID (来自curl)</stringProp>
-          </elementProp>
-          <elementProp name="USER_ID_TO_BLOCK" elementType="Argument">
-            <stringProp name="Argument.name">USER_ID_TO_BLOCK</stringProp>
-            <stringProp name="Argument.value">98949604</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="ANDROID_USER_AGENT" elementType="Argument">
-            <stringProp name="Argument.name">ANDROID_USER_AGENT</stringProp>
-            <stringProp name="Argument.value">Android/GumtreeApp</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="ANDROID_PLATFORM" elementType="Argument">
-            <stringProp name="Argument.name">ANDROID_PLATFORM</stringProp>
-            <stringProp name="Argument.value">ANDROID</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="ANDROID_UDID" elementType="Argument">
-            <stringProp name="Argument.name">ANDROID_UDID</stringProp>
-            <stringProp name="Argument.value">1fef9674f58f2a44780fc0390d2da239</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="ANDROID_APP_VERSION" elementType="Argument">
-            <stringProp name="Argument.name">ANDROID_APP_VERSION</stringProp>
-            <stringProp name="Argument.value">10.1.27</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="ANDROID_OS_VERSION" elementType="Argument">
-            <stringProp name="Argument.name">ANDROID_OS_VERSION</stringProp>
-            <stringProp name="Argument.value">14</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="ANDROID_DEVICE" elementType="Argument">
-            <stringProp name="Argument.name">ANDROID_DEVICE</stringProp>
-            <stringProp name="Argument.value">mobile</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="ANDROID_EXPERIMENTS" elementType="Argument">
-            <stringProp name="Argument.name">ANDROID_EXPERIMENTS</stringProp>
-            <stringProp name="Argument.value">GTNA-4006.A,GTB-8.B,GTCON-28.B,GTNA-4299.A,GTB-119.B,GTB-263.C,GTCON-209.A,srp_recall_all_cate_flag.A,srp_rank_relevant_flag.A,srp_filter_mobile_colour_storage_condition.A,srp_filter_mobile_apple_samsung_model.A,srp_filter_mobile_model_google_xiaomi_huawei.A</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="ANDROID_APP_DEBUG_MODE" elementType="Argument">
-            <stringProp name="Argument.name">ANDROID_APP_DEBUG_MODE</stringProp>
-            <stringProp name="Argument.value">true</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="IOS_USER_AGENT_BFF" elementType="Argument">
-            <stringProp name="Argument.name">IOS_USER_AGENT_BFF</stringProp>
-            <stringProp name="Argument.value">Gumtree/5239 CFNetwork/1474 Darwin/23.0.0</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="TestPlan.comments">iOS User Agent for mobile-apps-bff.gumtree.com</stringProp>
-          </elementProp>
-          <elementProp name="IOS_USER_AGENT_MY_GUMTREE" elementType="Argument">
-            <stringProp name="Argument.name">IOS_USER_AGENT_MY_GUMTREE</stringProp>
-            <stringProp name="Argument.value">Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 iOS/GumtreeApp</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="TestPlan.comments">iOS User Agent for my.gumtree.com</stringProp>
-          </elementProp>
-          <elementProp name="IOS_PLATFORM" elementType="Argument">
-            <stringProp name="Argument.name">IOS_PLATFORM</stringProp>
-            <stringProp name="Argument.value">ios</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="IOS_UDID" elementType="Argument">
-            <stringProp name="Argument.name">IOS_UDID</stringProp>
-            <stringProp name="Argument.value">C6328DEC-5DE8-4583-882E-2962C31F6A93</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="IOS_APP_VERSION_BFF" elementType="Argument">
-            <stringProp name="Argument.name">IOS_APP_VERSION_BFF</stringProp>
-            <stringProp name="Argument.value">18.1.29</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="TestPlan.comments">iOS App Version for mobile-apps-bff.gumtree.com</stringProp>
-          </elementProp>
-          <elementProp name="IOS_EXPERIMENTS_BFF" elementType="Argument">
-            <stringProp name="Argument.name">IOS_EXPERIMENTS_BFF</stringProp>
-            <stringProp name="Argument.value">GTNA-4005.A,GTB-9.A,GTNA-4300.A,GTB-262.A,srp_recall_all_cate_flag.A,srp_rank_relevant_flag.A,srp_filter_mobile_colour_storage_condition.A,srp_filter_mobile_apple_samsung_model.A,srp_filter_mobile_model_google_xiaomi_huawei.A</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="TestPlan.comments">iOS Experiments for mobile-apps-bff.gumtree.com</stringProp>
-          </elementProp>
-          <elementProp name="IOS_APP_DEBUG_MODE" elementType="Argument">
-            <stringProp name="Argument.name">IOS_APP_DEBUG_MODE</stringProp>
-            <stringProp name="Argument.value">false</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="IOS_ACCOUNTID" elementType="Argument">
-            <stringProp name="Argument.name">IOS_ACCOUNTID</stringProp>
-            <stringProp name="Argument.value">99099479</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="IOS_USERID_HEADER" elementType="Argument">
-            <stringProp name="Argument.name">IOS_USERID_HEADER</stringProp>
-            <stringProp name="Argument.value">99639924</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="IOS_COOKIE_GCLB_BFF" elementType="Argument">
-            <stringProp name="Argument.name">IOS_COOKIE_GCLB_BFF</stringProp>
-            <stringProp name="Argument.value">GCLB=CMWN6o-JwLfruAEQAw</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="TestPlan.comments">iOS GCLB Cookie for mobile-apps-bff.gumtree.com</stringProp>
-          </elementProp>
-          <elementProp name="IOS_MY_GUMTREE_COOKIE" elementType="Argument">
-            <stringProp name="Argument.name">IOS_MY_GUMTREE_COOKIE</stringProp>
-            <stringProp name="Argument.value">GT_GA4_POSTPONED_TRACKING=; _ga_2Q8ZPXEV7H=GS2.1.s1749023938$o1$g0$t1749023973$j25$l0$h0; GTSELLERSESSIONID=node0qw12p2l26y5y5z6fvks38bdl7477654.node0; _ga=GA1.1.1134684166.1749023938; gt_ab=ln:MXoxaHQ=; gt_appBanner=; gt_p=id:ODZiZWRhYWItYTk0NC00ODkyLWIwYzctOTM3ZDNiNTMwM2M1; gt_s=id:bm9kZTAxYXF2NmNxaTRxdmI2MTBucXYxcnVqYjR4eTc1Mjk0NDI=; gt_tm=8e01018a-882c-4805-beae-152c15cb1003; gt_userPref=isSearchOpen:dHJ1ZQ==|recentAdsOne:Y2Fycy12YW5zLW1vdG9yYmlrZXM=|cookiePolicy:ZmFsc2U=|recentAdsTwo:Zm9yLXNhbGU=|location:dWs=; gt_capi_auth=ZW1haWw9ZG9ubnkuaGFuQGd1bXRyZWUuY29tLHRva2VuPXlHQ3U4c1lCdExmSHcwMVJrQ1pGUHdSa2NUT3YrVHdNb0ZmREpKTnM3c0FsYWlnUUlQcUwvcENscnhSS3hEY3dNSmg4SCtUMlpGWm1VWEo1U1NobWJVcG5DZldDdSs5a2pHYmNFMURYVVZRPQ==; gt_rememberMe=iIvYgXqHem1JDw5goW7dOv528GASGPo2hG+Y7hKNK8oPNK7JutSeh2YMA1LQuP3VLEBL7kLbudI7X9or+ON3NrksfZY7maJdC3iMeyiQI6KkP/bIlvk53TVNxEzAnKJYBEImqwfb9oD2R9lkytKVSPtmCIqsBD4sNHhmVPit2RE=; GCLB=CMu3k7zv49j0mgEQAw</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="TestPlan.comments">Full cookie string for iOS Post Ad on my.gumtree.com</stringProp>
-          </elementProp>
-          <elementProp name="IOS_ACCEPT_LANGUAGE" elementType="Argument">
-            <stringProp name="Argument.name">IOS_ACCEPT_LANGUAGE</stringProp>
-            <stringProp name="Argument.value">zh-CN,zh-Hans;q=0.9</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="IOS_DEVICE_TYPE" elementType="Argument">
-            <stringProp name="Argument.name">IOS_DEVICE_TYPE</stringProp>
-            <stringProp name="Argument.value">mobile</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="AD_ID" elementType="Argument">
-            <stringProp name="Argument.name">AD_ID</stringProp>
-            <stringProp name="Argument.value">1496983864</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="CHAT_ID" elementType="Argument">
-            <stringProp name="Argument.name">CHAT_ID</stringProp>
-            <stringProp name="Argument.value">a07838bb-93dc-3591-9422-ef81e28f25ee</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="AD_ID_2" elementType="Argument">
-            <stringProp name="Argument.name">AD_ID_2</stringProp>
-            <stringProp name="Argument.value">1498871725</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="SERVICES_AD_ID" elementType="Argument">
-            <stringProp name="Argument.name">SERVICES_AD_ID</stringProp>
-            <stringProp name="Argument.value">1498923849</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="SERVICES_AD_ID_2" elementType="Argument">
-            <stringProp name="Argument.name">SERVICES_AD_ID_2</stringProp>
-            <stringProp name="Argument.value">1498923849</stringProp>
+          <elementProp name="REG_ACTIVATIONTOKEN" elementType="Argument">
+            <stringProp name="Argument.name">REG_ACTIVATIONTOKEN</stringProp>
+            <stringProp name="Argument.value">${__RandomString(32,abcdefghijklmnopqrstuvwxyz)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
       </elementProp>
     </TestPlan>
     <hashTree>
-      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="全局通用 HTTP Header Manager (Minimal)">
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="全局通用 HTTP Header Manager (Minimal)" enabled="false">
         <collectionProp name="HeaderManager.headers">
           <elementProp name="" elementType="Header">
             <stringProp name="Header.name">accept</stringProp>
@@ -258,6 +30,190 @@
           <elementProp name="" elementType="Header">
             <stringProp name="Header.name">accept-charset</stringProp>
             <stringProp name="Header.value">UTF-8</stringProp>
+          </elementProp>
+          <elementProp name="HOST_BFF" elementType="Header">
+            <stringProp name="Header.name">HOST_BFF</stringProp>
+            <stringProp name="Header.value">mobile-apps-bff.gumtree.com</stringProp>
+          </elementProp>
+          <elementProp name="HOST_MY_GUMTREE" elementType="Header">
+            <stringProp name="Header.name">HOST_MY_GUMTREE</stringProp>
+            <stringProp name="Header.value">my.gumtree.com</stringProp>
+          </elementProp>
+          <elementProp name="PROTOCOL" elementType="Header">
+            <stringProp name="Header.name">PROTOCOL</stringProp>
+            <stringProp name="Header.value">https</stringProp>
+          </elementProp>
+          <elementProp name="CORRECT_USERNAME" elementType="Header">
+            <stringProp name="Header.name">CORRECT_USERNAME</stringProp>
+            <stringProp name="Header.value">donny.han@gumtree.com</stringProp>
+          </elementProp>
+          <elementProp name="CORRECT_PASSWORD" elementType="Header">
+            <stringProp name="Header.name">CORRECT_PASSWORD</stringProp>
+            <stringProp name="Header.value">Gumtree123!</stringProp>
+          </elementProp>
+          <elementProp name="INCORRECT_PASSWORD" elementType="Header">
+            <stringProp name="Header.name">INCORRECT_PASSWORD</stringProp>
+            <stringProp name="Header.value">WrongPassword123</stringProp>
+          </elementProp>
+          <elementProp name="REG_FIRST_NAME" elementType="Header">
+            <stringProp name="Header.name">REG_FIRST_NAME</stringProp>
+            <stringProp name="Header.value">absent</stringProp>
+          </elementProp>
+          <elementProp name="REG_LAST_NAME" elementType="Header">
+            <stringProp name="Header.name">REG_LAST_NAME</stringProp>
+            <stringProp name="Header.value">salmon</stringProp>
+          </elementProp>
+          <elementProp name="REG_USER_NAME" elementType="Header">
+            <stringProp name="Header.name">REG_USER_NAME</stringProp>
+            <stringProp name="Header.value">abaent.salmon${__Random(1000,9999)}@maildrop.cc</stringProp>
+          </elementProp>
+          <elementProp name="REG_PASSWORD" elementType="Header">
+            <stringProp name="Header.name">REG_PASSWORD</stringProp>
+            <stringProp name="Header.value">Gumtree123!</stringProp>
+          </elementProp>
+          <elementProp name="REG_OPTIN_FIRST_NAME" elementType="Header">
+            <stringProp name="Header.name">REG_OPTIN_FIRST_NAME</stringProp>
+            <stringProp name="Header.value">donnyoptin</stringProp>
+          </elementProp>
+          <elementProp name="REG_OPTIN_LAST_NAME" elementType="Header">
+            <stringProp name="Header.name">REG_OPTIN_LAST_NAME</stringProp>
+            <stringProp name="Header.value">protonopt</stringProp>
+          </elementProp>
+          <elementProp name="REG_OPTIN_USER_NAME" elementType="Header">
+            <stringProp name="Header.name">REG_OPTIN_USER_NAME</stringProp>
+            <stringProp name="Header.value">donnyoptin${__Random(1000,9999)}@maildrop.cc</stringProp>
+          </elementProp>
+          <elementProp name="REG_OPTIN_PASSWORD" elementType="Header">
+            <stringProp name="Header.name">REG_OPTIN_PASSWORD</stringProp>
+            <stringProp name="Header.value">GumtreeOpt123!</stringProp>
+          </elementProp>
+          <elementProp name="ACTIVATION_TOKEN_DUMMY" elementType="Header">
+            <stringProp name="Header.name">ACTIVATION_TOKEN_DUMMY</stringProp>
+            <stringProp name="Header.value">dummyActivateTokenForTest${__Random(1000,9999)}</stringProp>
+          </elementProp>
+          <elementProp name="NON_EXISTENT_EMAIL" elementType="Header">
+            <stringProp name="Header.name">NON_EXISTENT_EMAIL</stringProp>
+            <stringProp name="Header.value">nonexistentuser${__Random(10000,99999)}@example.com</stringProp>
+          </elementProp>
+          <elementProp name="AD_ID_TO_MANAGE" elementType="Header">
+            <stringProp name="Header.name">AD_ID_TO_MANAGE</stringProp>
+            <stringProp name="Header.value">1496984058</stringProp>
+          </elementProp>
+          <elementProp name="ANDROID_POST_AD_TRANSACTION_ID" elementType="Header">
+            <stringProp name="Header.name">ANDROID_POST_AD_TRANSACTION_ID</stringProp>
+            <stringProp name="Header.value">3906775808a143cf98bb75573ffb341d</stringProp>
+          </elementProp>
+          <elementProp name="IOS_POST_AD_TRANSACTION_ID" elementType="Header">
+            <stringProp name="Header.name">IOS_POST_AD_TRANSACTION_ID</stringProp>
+            <stringProp name="Header.value">a7f675666d744dd0b9710ef103d816ed</stringProp>
+          </elementProp>
+          <elementProp name="USER_ID_TO_BLOCK" elementType="Header">
+            <stringProp name="Header.name">USER_ID_TO_BLOCK</stringProp>
+            <stringProp name="Header.value">98949604</stringProp>
+          </elementProp>
+          <elementProp name="ANDROID_USER_AGENT" elementType="Header">
+            <stringProp name="Header.name">ANDROID_USER_AGENT</stringProp>
+            <stringProp name="Header.value">Android/GumtreeApp</stringProp>
+          </elementProp>
+          <elementProp name="ANDROID_PLATFORM" elementType="Header">
+            <stringProp name="Header.name">ANDROID_PLATFORM</stringProp>
+            <stringProp name="Header.value">ANDROID</stringProp>
+          </elementProp>
+          <elementProp name="ANDROID_UDID" elementType="Header">
+            <stringProp name="Header.name">ANDROID_UDID</stringProp>
+            <stringProp name="Header.value">1fef9674f58f2a44780fc0390d2da239</stringProp>
+          </elementProp>
+          <elementProp name="ANDROID_APP_VERSION" elementType="Header">
+            <stringProp name="Header.name">ANDROID_APP_VERSION</stringProp>
+            <stringProp name="Header.value">10.1.27</stringProp>
+          </elementProp>
+          <elementProp name="ANDROID_OS_VERSION" elementType="Header">
+            <stringProp name="Header.name">ANDROID_OS_VERSION</stringProp>
+            <stringProp name="Header.value">14</stringProp>
+          </elementProp>
+          <elementProp name="ANDROID_DEVICE" elementType="Header">
+            <stringProp name="Header.name">ANDROID_DEVICE</stringProp>
+            <stringProp name="Header.value">mobile</stringProp>
+          </elementProp>
+          <elementProp name="ANDROID_EXPERIMENTS" elementType="Header">
+            <stringProp name="Header.name">ANDROID_EXPERIMENTS</stringProp>
+            <stringProp name="Header.value">GTNA-4006.A,GTB-8.B,GTCON-28.B,GTNA-4299.A,GTB-119.B,GTB-263.C,GTCON-209.A,srp_recall_all_cate_flag.A,srp_rank_relevant_flag.A,srp_filter_mobile_colour_storage_condition.A,srp_filter_mobile_apple_samsung_model.A,srp_filter_mobile_model_google_xiaomi_huawei.A</stringProp>
+          </elementProp>
+          <elementProp name="ANDROID_APP_DEBUG_MODE" elementType="Header">
+            <stringProp name="Header.name">ANDROID_APP_DEBUG_MODE</stringProp>
+            <stringProp name="Header.value">true</stringProp>
+          </elementProp>
+          <elementProp name="IOS_USER_AGENT_BFF" elementType="Header">
+            <stringProp name="Header.name">IOS_USER_AGENT_BFF</stringProp>
+            <stringProp name="Header.value">Gumtree/5239 CFNetwork/1474 Darwin/23.0.0</stringProp>
+          </elementProp>
+          <elementProp name="IOS_USER_AGENT_MY_GUMTREE" elementType="Header">
+            <stringProp name="Header.name">IOS_USER_AGENT_MY_GUMTREE</stringProp>
+            <stringProp name="Header.value">Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 iOS/GumtreeApp</stringProp>
+          </elementProp>
+          <elementProp name="IOS_PLATFORM" elementType="Header">
+            <stringProp name="Header.name">IOS_PLATFORM</stringProp>
+            <stringProp name="Header.value">ios</stringProp>
+          </elementProp>
+          <elementProp name="IOS_UDID" elementType="Header">
+            <stringProp name="Header.name">IOS_UDID</stringProp>
+            <stringProp name="Header.value">C6328DEC-5DE8-4583-882E-2962C31F6A93</stringProp>
+          </elementProp>
+          <elementProp name="IOS_APP_VERSION_BFF" elementType="Header">
+            <stringProp name="Header.name">IOS_APP_VERSION_BFF</stringProp>
+            <stringProp name="Header.value">18.1.29</stringProp>
+          </elementProp>
+          <elementProp name="IOS_EXPERIMENTS_BFF" elementType="Header">
+            <stringProp name="Header.name">IOS_EXPERIMENTS_BFF</stringProp>
+            <stringProp name="Header.value">GTNA-4005.A,GTB-9.A,GTNA-4300.A,GTB-262.A,srp_recall_all_cate_flag.A,srp_rank_relevant_flag.A,srp_filter_mobile_colour_storage_condition.A,srp_filter_mobile_apple_samsung_model.A,srp_filter_mobile_model_google_xiaomi_huawei.A</stringProp>
+          </elementProp>
+          <elementProp name="IOS_APP_DEBUG_MODE" elementType="Header">
+            <stringProp name="Header.name">IOS_APP_DEBUG_MODE</stringProp>
+            <stringProp name="Header.value">false</stringProp>
+          </elementProp>
+          <elementProp name="IOS_ACCOUNTID" elementType="Header">
+            <stringProp name="Header.name">IOS_ACCOUNTID</stringProp>
+            <stringProp name="Header.value">99099479</stringProp>
+          </elementProp>
+          <elementProp name="IOS_USERID_HEADER" elementType="Header">
+            <stringProp name="Header.name">IOS_USERID_HEADER</stringProp>
+            <stringProp name="Header.value">99639924</stringProp>
+          </elementProp>
+          <elementProp name="IOS_COOKIE_GCLB_BFF" elementType="Header">
+            <stringProp name="Header.name">IOS_COOKIE_GCLB_BFF</stringProp>
+            <stringProp name="Header.value">GCLB=CMWN6o-JwLfruAEQAw</stringProp>
+          </elementProp>
+          <elementProp name="IOS_MY_GUMTREE_COOKIE&#x9;GT_GA4_POSTPONED_TRACKING=; _ga_2Q8ZPXEV7H=GS2.1.s1749023938$o1$g0$t1749023973$j25$l0$h0; GTSELLERSESSIONID=node0qw12p2l26y5y5z6fvks38bdl7477654.node0; _ga=GA1.1.1134684166.1749023938; gt_ab=ln" elementType="Header">
+            <stringProp name="Header.name">IOS_MY_GUMTREE_COOKIE	GT_GA4_POSTPONED_TRACKING=; _ga_2Q8ZPXEV7H=GS2.1.s1749023938$o1$g0$t1749023973$j25$l0$h0; GTSELLERSESSIONID=node0qw12p2l26y5y5z6fvks38bdl7477654.node0; _ga=GA1.1.1134684166.1749023938; gt_ab=ln</stringProp>
+            <stringProp name="Header.value">MXoxaHQ=; gt_appBanner=; gt_p=id:ODZiZWRhYWItYTk0NC00ODkyLWIwYzctOTM3ZDNiNTMwM2M1; gt_s=id:bm9kZTAxYXF2NmNxaTRxdmI2MTBucXYxcnVqYjR4eTc1Mjk0NDI=; gt_tm=8e01018a-882c-4805-beae-152c15cb1003; gt_userPref=isSearchOpen:dHJ1ZQ==|recentAdsOne:Y2Fycy12YW5zLW1vdG9yYmlrZXM=|cookiePolicy:ZmFsc2U=|recentAdsTwo:Zm9yLXNhbGU=|location:dWs=; gt_capi_auth=ZW1haWw9ZG9ubnkuaGFuQGd1bXRyZWUuY29tLHRva2VuPXlHQ3U4c1lCdExmSHcwMVJrQ1pGUHdSa2NUT3YrVHdNb0ZmREpKTnM3c0FsYWlnUUlQcUwvcENscnhSS3hEY3dNSmg4SCtUMlpGWm1VWEo1U1NobWJVcG5DZldDdSs5a2pHYmNFMURYVVZRPQ==; gt_rememberMe=iIvYgXqHem1JDw5goW7dOv528GASGPo2hG+Y7hKNK8oPNK7JutSeh2YMA1LQuP3VLEBL7kLbudI7X9or+ON3NrksfZY7maJdC3iMeyiQI6KkP/bIlvk53TVNxEzAnKJYBEImqwfb9oD2R9lkytKVSPtmCIqsBD4sNHhmVPit2RE=; GCLB=CMu3k7zv49j0mgEQAw</stringProp>
+          </elementProp>
+          <elementProp name="IOS_ACCEPT_LANGUAGE" elementType="Header">
+            <stringProp name="Header.name">IOS_ACCEPT_LANGUAGE</stringProp>
+            <stringProp name="Header.value">zh-CN,zh-Hans;q=0.9</stringProp>
+          </elementProp>
+          <elementProp name="IOS_DEVICE_TYPE" elementType="Header">
+            <stringProp name="Header.name">IOS_DEVICE_TYPE</stringProp>
+            <stringProp name="Header.value">mobile</stringProp>
+          </elementProp>
+          <elementProp name="AD_ID" elementType="Header">
+            <stringProp name="Header.name">AD_ID</stringProp>
+            <stringProp name="Header.value">1496983864</stringProp>
+          </elementProp>
+          <elementProp name="CHAT_ID" elementType="Header">
+            <stringProp name="Header.name">CHAT_ID</stringProp>
+            <stringProp name="Header.value">a07838bb-93dc-3591-9422-ef81e28f25ee</stringProp>
+          </elementProp>
+          <elementProp name="AD_ID_2" elementType="Header">
+            <stringProp name="Header.name">AD_ID_2</stringProp>
+            <stringProp name="Header.value">1498871725</stringProp>
+          </elementProp>
+          <elementProp name="SERVICES_AD_ID" elementType="Header">
+            <stringProp name="Header.name">SERVICES_AD_ID</stringProp>
+            <stringProp name="Header.value">1498923849</stringProp>
+          </elementProp>
+          <elementProp name="SERVICES_AD_ID_2" elementType="Header">
+            <stringProp name="Header.name">SERVICES_AD_ID_2</stringProp>
+            <stringProp name="Header.value">1498923849</stringProp>
           </elementProp>
         </collectionProp>
         <stringProp name="TestPlan.comments">包含非常通用的头部。平台特定的头部在各个线程组中设置。</stringProp>
@@ -274,7 +230,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Activation HTTP Header Manager (Android)" enabled="true">
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Activation HTTP Header Manager (Android)">
           <collectionProp name="HeaderManager.headers">
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">Content-Type</stringProp>
@@ -314,13 +270,13 @@
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
-              <stringProp name="Header.value">${__P(dynamic_threat_metrix_session, vzun1wtjpxyh4idlb0w9bzqh3beya2r4_fallback)}</stringProp>
+              <stringProp name="Header.value">${threatMetrixSession}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.1 Activate Account - Successful (Newly Registered User)" enabled="true">
-          <stringProp name="TestPlan.comments">尝试激活新注册的用户。预期成功 (200 或 204)。REG_USER_NAME 来自TG2。</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.1 Activate Account - Successful (Newly Registered User)" enabled="false">
+          <stringProp name="TestPlan.comments">尝试激活新注册的用户。预期成功 (204)。</stringProp>
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
           <stringProp name="HTTPSampler.path">/v1/registration/activate</stringProp>
@@ -333,8 +289,8 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-    &quot;email&quot;: &quot;${__P(REG_USER_NAME)}&quot;,&#xd;
-    &quot;token&quot;: &quot;${__P(ACTIVATION_TOKEN_DUMMY)}&quot;&#xd;
+    &quot;userName&quot;: &quot;${REG_USER_NAME}&quot;,&#xd;
+    &quot;activationToken&quot;: &quot;${REG_ACTIVATIONTOKEN}&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -342,19 +298,18 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 200 或 204 (成功)" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 204 (成功)">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="49586">200</stringProp>
               <stringProp name="49590">204</stringProp>
             </collectionProp>
             <stringProp name="Assertion.custom_message">期望激活成功返回状态码 200 (OK) 或 204 (No Content)。</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
-            <intProp name="Assertion.test_type">1</intProp>
+            <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.2 Activate Account - Invalid Token" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.2 Activate Account - missing Token">
           <stringProp name="TestPlan.comments">尝试使用无效Token激活账户。预期失败 (400 或 401)。</stringProp>
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
@@ -368,8 +323,8 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-    &quot;email&quot;: &quot;${__P(REG_USER_NAME)}&quot;,&#xd;
-    &quot;token&quot;: &quot;INVALID_ACTIVATION_TOKEN_12345&quot;&#xd;
+    &quot;userName&quot;: &quot;${REG_USER_NAME}&quot;,&#xd;
+    &quot;activationToken&quot;: &quot;&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -377,20 +332,29 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 400 或 401 (客户端错误)" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 400 ">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="51508">400</stringProp>
-              <stringProp name="51509">401</stringProp>
             </collectionProp>
             <stringProp name="Assertion.custom_message">期望无效Token激活返回状态码 400 (Bad Request) 或 401 (Unauthorized)。</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">1</intProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言返回信息">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-755615791">Something is wrong with your request data</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message">期望无效Token激活返回状态码 400 (Bad Request) 或 401 (Unauthorized)。</stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">true</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.3 Activate Account - User Not Found" enabled="true">
-          <stringProp name="TestPlan.comments">尝试激活不存在的用户。预期失败 (404 或 400)。</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.3 Activate Account - Missing User ">
+          <stringProp name="TestPlan.comments">尝试激活不存在的用户。预期失败 (400)。</stringProp>
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
           <stringProp name="HTTPSampler.path">/v1/registration/activate</stringProp>
@@ -403,8 +367,8 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-    &quot;email&quot;: &quot;${__P(NON_EXISTENT_EMAIL)}&quot;,&#xd;
-    &quot;token&quot;: &quot;${__P(ACTIVATION_TOKEN_DUMMY)}&quot;&#xd;
+    &quot;userName&quot;: &quot;&quot;,&#xd;
+    &quot;activationToken&quot;: &quot;${REG_ACTIVATIONTOKEN}&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -412,20 +376,63 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 404 或 400 (未找到/错误请求)" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 400 ">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="51512">404</stringProp>
               <stringProp name="51508">400</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">期望激活不存在用户返回状态码 404 (Not Found) 或 400 (Bad Request)。</stringProp>
+            <stringProp name="Assertion.custom_message">期望无效Token激活返回状态码 400 (Bad Request) 或 401 (Unauthorized)。</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">1</intProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言返回信息">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-755615791">Something is wrong with your request data</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message">期望无效Token激活返回状态码 400 (Bad Request) 或 401 (Unauthorized)。</stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">true</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.4 Activate Account - 500">
+          <stringProp name="TestPlan.comments">尝试激活不存在的用户。预期500。</stringProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.path">/v1/registration/activate</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;userName&quot;: &quot;${REG_USER_NAME}&quot;,&#xd;
+    &quot;activationToken&quot;: &quot;${REG_ACTIVATIONTOKEN}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 500 ">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="52469">500</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message">期望无效Token激活返回状态码 400 (Bad Request) 或 401 (Unauthorized)。</stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">true</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>

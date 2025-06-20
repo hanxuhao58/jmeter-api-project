@@ -8,9 +8,10 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG1: Login Scenarios (Android)" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG1: Login Scenarios (Android)">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -21,7 +22,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Generate Dynamic Threat Metrix Session Property" enabled="true">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Generate Dynamic Threat Metrix Session Property">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
@@ -72,12 +73,12 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
-              <stringProp name="Header.value">${__P(dynamic_threat_metrix_session, vzun1wtjpxyh4idlb0w9bzqh3beya2r4_fallback)}</stringProp>
+              <stringProp name="Header.value">${threatMetrixSession}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Login - Correct Credentials">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Login - Correct Credentials" enabled="true">
           <stringProp name="TestPlan.comments">使用正确的用户名和密码登录</stringProp>
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
@@ -116,9 +117,9 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
             <stringProp name="Assertion.custom_message"></stringProp>
           </ResponseAssertion>
           <hashTree/>
-          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.gui.JSONPathAssertionGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion" testname="断言 userId">
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.gui.JSONPathAssertionGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion" testname="断言 userId" enabled="true">
             <stringProp name="JSON_PATH">$.userId</stringProp>
-            <stringProp name="EXPECTED_VALUE">99639924</stringProp>
+            <stringProp name="EXPECTED_VALUE">${__P(CORRECT_USERID)}</stringProp>
             <boolProp name="JSONVALIDATION">true</boolProp>
             <boolProp name="EXPECT_NULL">false</boolProp>
             <boolProp name="INVERT">false</boolProp>
@@ -126,7 +127,7 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
             <stringProp name="INPUT_FORMAT">JSON</stringProp>
           </com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion>
           <hashTree/>
-          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.gui.JSONPathAssertionGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion" testname="断言 userEmail">
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.gui.JSONPathAssertionGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion" testname="断言 userEmail" enabled="true">
             <stringProp name="JSON_PATH">$.userEmail</stringProp>
             <stringProp name="EXPECTED_VALUE">${__P(CORRECT_USERNAME)}</stringProp>
             <boolProp name="JSONVALIDATION">true</boolProp>
@@ -142,82 +143,57 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
             <stringProp name="parameters"></stringProp>
             <stringProp name="script">import groovy.json.JsonSlurper
 import java.io.File
-// Note: Removed imports that are no longer needed for automatic path detection
-// import org.apache.jmeter.services.FileServer
-// import org.apache.jmeter.threads.JMeterContextService
-// import org.apache.jmeter.threads.JMeterContext
 
 // --- 1. Get response data ---
 String responseData = prev.getResponseDataAsString()
 if (!prev.isSuccessful() || !responseData) {
     log.warn(&quot;JSR223: Sampler failed or response was empty. Skipping token extraction and CSV writing.&quot;)
-    return // Exit script
+    return
 }
 
 try {
-    // --- 3. Write/Overwrite CSV file in the project root &apos;data&apos; folder ---
-    // 获取项目根目录，优先用 -JprojectRoot 传递，否则用当前工作目录
+    // --- 2. Parse JSON and extract needed fields ---
+    def json = new JsonSlurper().parseText(responseData)
+    String userId = json.userId?.toString()
+    String userToken = json.userToken?.toString()
+    String userAuthorization = json.userAuthorization?.toString()
+    String userEmail = json.userEmail?.toString()
+    String userDisplayName = json.userDisplayName?.toString()
+    String accountId = json.accountId?.toString()
+    String userType = json.userType?.toString()
+    String threatMetrixSession = props.get(&quot;dynamic_threat_metrix_session&quot;) ?: &quot;&quot;
+
+    if (!(userId &amp;&amp; userToken &amp;&amp; userAuthorization)) {
+        log.error(&quot;JSR223: Missing required fields. Skipping CSV write.&quot;)
+        return
+    }
+
+    // --- 3. Write to CSV ---
     String projectRoot = props.get(&quot;projectRoot&quot;) ?: System.getProperty(&quot;user.dir&quot;)
-    File dataDir = new File(projectRoot + File.separator + &quot;data&quot;)
-    if (!dataDir.exists()) {
-        dataDir.mkdirs()
-    }
+    File dataDir = new File(projectRoot, &quot;data&quot;)
+    dataDir.mkdirs()
+
     File tokenFile = new File(dataDir, &quot;auth_tokens.csv&quot;)
+    String timestamp = new Date().format(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;)
 
-    def slurper = new JsonSlurper()
-    def jsonResponse = slurper.parseText(responseData)
-
-    // --- 提取所有需要的字段 ---
-    String userId = jsonResponse.userId?.toString()
-    String userToken = jsonResponse.userToken?.toString()
-    String userAuthorization = jsonResponse.userAuthorization?.toString()
-    String userEmail = jsonResponse.userEmail?.toString()
-    String userDisplayName = jsonResponse.userDisplayName?.toString()
-    String accountId = jsonResponse.accountId?.toString()
-    String userType = jsonResponse.userType?.toString()
-
-
-    // --- 2. Set JMeter Properties for immediate use in this test plan ---
-    if (userId) { props.put(&quot;extracted_userId&quot;, userId); log.info(&quot;JSR223: Set JMeter property &apos;extracted_userId&apos; to: &quot; + userId) }
-    if (userToken) { props.put(&quot;extracted_user_token&quot;, userToken); log.info(&quot;JSR223: Set JMeter property &apos;extracted_user_token&apos;.&quot;) }
-    if (userAuthorization) { props.put(&quot;extracted_user_authorization&quot;, userAuthorization); log.info(&quot;JSR223: Set JMeter property &apos;extracted_user_authorization&apos;.&quot;) }
-    if (userEmail) { props.put(&quot;extracted_userEmail&quot;, userEmail); log.info(&quot;JSR223: Set JMeter property &apos;extracted_userEmail&apos; to: &quot; + userEmail) }
-    if (userDisplayName) { props.put(&quot;extracted_userDisplayName&quot;, userDisplayName); log.info(&quot;JSR223: Set JMeter property &apos;extracted_userDisplayName&apos; to: &quot; + userDisplayName) }
-    if (accountId) { props.put(&quot;extracted_accountId&quot;, accountId); log.info(&quot;JSR223: Set JMeter property &apos;extracted_accountId&apos; to: &quot; + accountId) }
-    if (userType) { props.put(&quot;extracted_userType&quot;, userType); log.info(&quot;JSR223: Set JMeter property &apos;extracted_userType&apos; to: &quot; + userType) }
-
-
-    // --- 3. Write/Overwrite CSV file in the project root &apos;data&apos; folder ---
-    // 确保核心的认证信息存在
-    if (userId &amp;&amp; userToken &amp;&amp; userAuthorization) {
-        // 添加时间戳以确保文件每次都更新
-        String timestamp = new Date().format(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;)
-
-        // 使用 .withWriter 自动管理资源
-        tokenFile.withWriter(&apos;UTF-8&apos;, { writer -&gt;
-            // *** 新增：更新CSV文件的表头 ***
-            writer.writeLine(&apos;userId,userToken,userAuthorization,userEmail,userDisplayName,accountId,userType,lastUpdated&apos;)
-            // *** 新增：更新写入CSV文件的数据行 ***
-            writer.writeLine(&quot;${userId},${userToken},${userAuthorization},${userEmail},${userDisplayName},${accountId},${userType},${timestamp}&quot;)
-        })
-
-        log.info(&quot;JSR223: Successfully wrote auth tokens to &quot; + tokenFile.absolutePath + &quot; at &quot; + timestamp)
-
-    } else {
-        log.error(&quot;JSR223: Missing one or more required tokens (userId, userToken, userAuthorization). CSV file was not written.&quot;)
+    tokenFile.withWriter(&apos;UTF-8&apos;) { writer -&gt;
+        writer.writeLine(&apos;userId,userToken,userAuthorization,threatMetrixSession,userEmail,userDisplayName,accountId,userType,lastUpdated&apos;)
+        writer.writeLine(&quot;${userId},${userToken},${userAuthorization},${threatMetrixSession},${userEmail},${userDisplayName},${accountId},${userType},${timestamp}&quot;)
     }
+
+    log.info(&quot;JSR223: Token info written to ${tokenFile.absolutePath}, ${timestamp}&quot;)
 
 } catch (Exception e) {
-    log.error(&quot;JSR223: Error processing JSON response or writing to CSV file.&quot;, e)
+    log.error(&quot;JSR223: Exception during token extraction or CSV writing.&quot;, e)
     prev.setSuccessful(false)
-    prev.setResponseMessage(&quot;Error in JSR223 PostProcessor: &quot; + e.getMessage())
+    prev.setResponseMessage(&quot;JSR223 Error: ${e.message}&quot;)
 }
 </stringProp>
             <stringProp name="scriptLanguage">groovy</stringProp>
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.2 Login - Incorrect Password">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.2 Login - Incorrect Password" enabled="true">
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
           <stringProp name="HTTPSampler.path">/v1/login</stringProp>
@@ -245,7 +221,7 @@ try {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 403 (Forbidden)">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 403 (Forbidden)" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="51511">403</stringProp>
             </collectionProp>
@@ -256,7 +232,7 @@ try {
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.3 Login - Missing Username">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.3 Login - Missing Username" enabled="true">
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
           <stringProp name="HTTPSampler.path">/v1/login</stringProp>
@@ -294,8 +270,18 @@ try {
             <stringProp name="Assertion.custom_message"></stringProp>
           </ResponseAssertion>
           <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言返回的文字" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1494300546">Missing or wrong request parameter</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">true</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.4 Login - Missing Password">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.4 Login - Missing Password" enabled="true">
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
           <stringProp name="HTTPSampler.path">/v1/login</stringProp>
@@ -333,9 +319,19 @@ try {
             <stringProp name="Assertion.custom_message"></stringProp>
           </ResponseAssertion>
           <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言返回的文字" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1494300546">Missing or wrong request parameter</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">true</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>

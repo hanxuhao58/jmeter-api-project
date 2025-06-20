@@ -309,11 +309,11 @@
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_token,NOT_FOUND_TOKEN)}</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorization</stringProp>
-              <stringProp name="Header.value">${__P(extracted_user_authorization,NOT_FOUND_AUTH)}</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
@@ -349,7 +349,7 @@
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
-              <stringProp name="Header.value">${__P(dynamic_threat_metrix_session, vzun1wtjpxyh4idlb0w9bzqh3beya2r4_fallback)}</stringProp>
+              <stringProp name="Header.value">${threatMetrixSession}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
@@ -443,7 +443,7 @@
     <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
       <stringProp name="filename">data/auth_tokens.csv</stringProp>
       <stringProp name="fileEncoding">UTF-8</stringProp>
-      <stringProp name="variableNames">userId,userToken,userAuthorization</stringProp>
+      <stringProp name="variableNames">userId,userToken,userAuthorization,threatMetrixSession</stringProp>
       <boolProp name="ignoreFirstLine">true</boolProp>
       <stringProp name="delimiter">,</stringProp>
       <boolProp name="quotedData">false</boolProp>
