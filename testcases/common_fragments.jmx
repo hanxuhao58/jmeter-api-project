@@ -219,7 +219,7 @@
             </elementProp>
             <elementProp name="IOS_ACCEPT_LANGUAGE" elementType="Argument">
               <stringProp name="Argument.name">IOS_ACCEPT_LANGUAGE</stringProp>
-              <stringProp name="Argument.value">${__P(IOS_ACCEPT_LANGUAGE, zh-CN,zh-Hans;q=0.9)}</stringProp>
+              <stringProp name="Argument.value">${__P(IOS_ACCEPT_LANGUAGE, zh-CN\,zh-Hans;q=0.9)}</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="IOS_DEVICE_TYPE" elementType="Argument">
