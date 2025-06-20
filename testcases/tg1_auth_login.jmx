@@ -390,7 +390,7 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
             <stringProp name="INPUT_FORMAT">JSON</stringProp>
           </com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion>
           <hashTree/>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Extract Tokens to Properties and Write to CSV" enabled="true">
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Extract Tokens to Properties and Write to CSV">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -589,7 +589,7 @@ try {
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
