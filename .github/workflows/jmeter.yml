@@ -2,9 +2,9 @@ name: JMeter CI
 
 on:
   push:
-    branches: [ feature/jmeter-login-only ]
+    branches: [ feature/1.0 ]
   pull_request:
-    branches: [ feature/jmeter-login-only ]
+    branches: [ feature/1.0 ]
 
 jobs:
   jmeter:
