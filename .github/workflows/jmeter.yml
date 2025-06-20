@@ -80,7 +80,17 @@ jobs:
             testcases/tg9_delete_ad.jmx
             
           )
+          
+          echo "Current working directory: $(pwd)"
+          echo "Directory contents:"
+          ls -la
+          echo "Data directory contents:"
+          ls -la data/
+          echo "CSV file contents before running tg9:"
+          cat data/auth_tokens.csv
+          
           for file in "${whitelist[@]}"; do
+            echo "Running: $file"
             ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/dev.env.properties -l reports/all_cases.jtl
           done
 
