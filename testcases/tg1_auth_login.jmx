@@ -7,11 +7,6 @@
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments">
-          <elementProp name="HOST_BFF" elementType="Argument">
-            <stringProp name="Argument.name">HOST_BFF</stringProp>
-            <stringProp name="Argument.value">mobile-apps-bff.gumtree.com</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
           <elementProp name="HOST_MY_GUMTREE" elementType="Argument">
             <stringProp name="Argument.name">HOST_MY_GUMTREE</stringProp>
             <stringProp name="Argument.value">my.gumtree.com</stringProp>
@@ -247,10 +242,9 @@
           </elementProp>
         </collectionProp>
       </elementProp>
-      <boolProp name="TestPlan.functional_mode">false</boolProp>
     </TestPlan>
     <hashTree>
-      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="全局通用 HTTP Header Manager (Minimal)">
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="全局通用 HTTP Header Manager (Minimal)" enabled="false">
         <collectionProp name="HeaderManager.headers">
           <elementProp name="" elementType="Header">
             <stringProp name="Header.name">accept</stringProp>
@@ -264,7 +258,7 @@
         <stringProp name="TestPlan.comments">包含非常通用的头部。平台特定的头部在各个线程组中设置。</stringProp>
       </HeaderManager>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG1: Login Scenarios (Android)" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG1: Login Scenarios (Android)">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -275,7 +269,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Generate Dynamic Threat Metrix Session Property" enabled="true">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Generate Dynamic Threat Metrix Session Property">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
@@ -286,43 +280,43 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Login HTTP Header Manager (Android)" enabled="true">
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Login HTTP Header Manager (Android)">
           <collectionProp name="HeaderManager.headers">
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">Content-Type</stringProp>
-              <stringProp name="Header.value">application/x-www-form-urlencoded; charset=UTF-8</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_CONTENT_TYPE)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
-              <stringProp name="Header.value">${ANDROID_USER_AGENT}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_USER_AGENT)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">platform</stringProp>
-              <stringProp name="Header.value">${ANDROID_PLATFORM}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_PLATFORM)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">udid</stringProp>
-              <stringProp name="Header.value">${ANDROID_UDID}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_UDID)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">app-version</stringProp>
-              <stringProp name="Header.value">${ANDROID_APP_VERSION}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_APP_VERSION)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">device</stringProp>
-              <stringProp name="Header.value">${ANDROID_DEVICE}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_DEVICE)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">os-version</stringProp>
-              <stringProp name="Header.value">${ANDROID_OS_VERSION}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_OS_VERSION)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">experiments</stringProp>
-              <stringProp name="Header.value">${ANDROID_EXPERIMENTS}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_EXPERIMENTS)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">app-debug-mode</stringProp>
-              <stringProp name="Header.value">${ANDROID_APP_DEBUG_MODE}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_APP_DEBUG_MODE)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
@@ -331,10 +325,10 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Login - Correct Credentials" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Login - Correct Credentials">
           <stringProp name="TestPlan.comments">使用正确的用户名和密码登录</stringProp>
-          <stringProp name="HTTPSampler.domain">${HOST_BFF}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
           <stringProp name="HTTPSampler.path">/v1/login</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -344,14 +338,14 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
             <collectionProp name="Arguments.arguments">
               <elementProp name="userName" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${CORRECT_USERNAME}</stringProp>
+                <stringProp name="Argument.value">${__P(CORRECT_USERNAME)}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">userName</stringProp>
               </elementProp>
               <elementProp name="userSecret" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${CORRECT_PASSWORD}</stringProp>
+                <stringProp name="Argument.value">${__P(CORRECT_PASSWORD)}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">userSecret</stringProp>
@@ -390,7 +384,7 @@ log.info(&quot;JSR223 PreProc (TG1): Set dynamic_threat_metrix_session property 
             <stringProp name="INPUT_FORMAT">JSON</stringProp>
           </com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion>
           <hashTree/>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Extract Tokens to Properties and Write to CSV">
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Extract Tokens to Properties and Write to CSV" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -471,7 +465,7 @@ try {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.2 Login - Incorrect Password" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.2 Login - Incorrect Password">
           <stringProp name="HTTPSampler.domain">${HOST_BFF}</stringProp>
           <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
           <stringProp name="HTTPSampler.path">/v1/login</stringProp>
@@ -483,14 +477,14 @@ try {
             <collectionProp name="Arguments.arguments">
               <elementProp name="userName" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${CORRECT_USERNAME}</stringProp>
+                <stringProp name="Argument.value">${__P(CORRECT_USERNAME)}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">userName</stringProp>
               </elementProp>
               <elementProp name="userSecret" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${INCORRECT_PASSWORD}</stringProp>
+                <stringProp name="Argument.value">${__P(CORRECT_PASSWORD)}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">userSecret</stringProp>
@@ -510,7 +504,7 @@ try {
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.3 Login - Missing Username" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.3 Login - Missing Username">
           <stringProp name="HTTPSampler.domain">${HOST_BFF}</stringProp>
           <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
           <stringProp name="HTTPSampler.path">/v1/login</stringProp>
@@ -520,19 +514,19 @@ try {
           <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
             <collectionProp name="Arguments.arguments">
-              <elementProp name="userSecret" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${CORRECT_PASSWORD}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">userSecret</stringProp>
-              </elementProp>
               <elementProp name="userName" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value"></stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">userName</stringProp>
+              </elementProp>
+              <elementProp name="userSecret" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">${__P(CORRECT_PASSWORD)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">userSecret</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
@@ -549,7 +543,7 @@ try {
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.4 Login - Missing Password" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.4 Login - Missing Password">
           <stringProp name="HTTPSampler.domain">${HOST_BFF}</stringProp>
           <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
           <stringProp name="HTTPSampler.path">/v1/login</stringProp>
@@ -559,19 +553,19 @@ try {
           <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
             <collectionProp name="Arguments.arguments">
-              <elementProp name="userName" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${CORRECT_USERNAME}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">userName</stringProp>
-              </elementProp>
               <elementProp name="userSecret" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value"></stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">userSecret</stringProp>
+              </elementProp>
+              <elementProp name="userName" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">${__P(CORRECT_USERNAME)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">userName</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
