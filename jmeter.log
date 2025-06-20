@@ -395,3 +395,309 @@ Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to
 2025-06-20 21:04:16,095 INFO o.a.j.t.JMeterThread: Thread finished: TG4: Account Activation Scenarios (Android) 1-1
 2025-06-20 21:04:16,097 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
 2025-06-20 21:04:16,097 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-06-20 21:06:15,913 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-20 21:06:15,914 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-20 21:06:15,914 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-06-20 21:06:15,956 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : TG4: Account Activation Scenarios (Android)
+2025-06-20 21:06:15,956 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group TG4: Account Activation Scenarios (Android).
+2025-06-20 21:06:15,956 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-20 21:06:15,956 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-06-20 21:06:15,957 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-06-20 21:06:15,957 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-06-20 21:06:15,957 INFO o.a.j.t.JMeterThread: Thread started: TG4: Account Activation Scenarios (Android) 1-1
+2025-06-20 21:06:17,489 INFO o.a.j.t.JMeterThread: Thread is done: TG4: Account Activation Scenarios (Android) 1-1
+2025-06-20 21:06:17,489 INFO o.a.j.t.JMeterThread: Thread finished: TG4: Account Activation Scenarios (Android) 1-1
+2025-06-20 21:06:17,489 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-06-20 21:06:17,489 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-06-20 21:06:26,227 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 21:06:26,231 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 21:06:26,243 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 21:06:26,245 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 21:06:26,263 INFO o.a.j.g.a.Load: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/tg5_password_reset.jmx
+2025-06-20 21:06:26,263 INFO o.a.j.s.FileServer: Set new base='/Users/a58/Documents/jmeter-api-project/testcases'
+2025-06-20 21:06:26,263 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/tg5_password_reset.jmx
+2025-06-20 21:06:26,307 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 21:06:26,308 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 21:06:26,311 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 21:06:26,312 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 21:06:26,323 INFO o.a.j.s.FileServer: Set new base='/Users/a58/Documents/jmeter-api-project/testcases'
+2025-06-20 21:06:28,594 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-20 21:06:28,595 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-20 21:06:28,596 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-06-20 21:06:28,641 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : TG5: Password Reset Scenarios (Android)
+2025-06-20 21:06:28,642 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group TG5: Password Reset Scenarios (Android).
+2025-06-20 21:06:28,642 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-20 21:06:28,642 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-06-20 21:06:28,642 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-06-20 21:06:28,642 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-06-20 21:06:28,642 INFO o.a.j.t.JMeterThread: Thread started: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:06:30,167 INFO o.a.j.t.JMeterThread: Thread is done: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:06:30,168 INFO o.a.j.t.JMeterThread: Thread finished: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:06:30,168 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-06-20 21:06:30,168 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-06-20 21:13:12,796 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-20 21:13:12,797 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-20 21:13:12,797 WARN o.a.j.e.u.FunctionParser: Probably an invalid function string: REG_PASSWORD}
+2025-06-20 21:13:12,798 ERROR o.a.j.e.StandardJMeterEngine: Error occurred compiling the tree:
+java.lang.RuntimeException: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:37) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:168) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.PreCompiler.addNode(PreCompiler.java:88) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jorphan.collections.HashTree.traverse(HashTree.java:1011) ~[jorphan.jar:5.6.3]
+	at org.apache.jmeter.engine.StandardJMeterEngine.run(StandardJMeterEngine.java:413) ~[ApacheJMeter_core.jar:5.6.3]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.FunctionParser.makeFunction(FunctionParser.java:136) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.FunctionParser.compileString(FunctionParser.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.CompoundVariable.setParameters(CompoundVariable.java:184) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ReplaceStringWithFunctions.transformValue(ReplaceStringWithFunctions.java:44) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:35) ~[ApacheJMeter_core.jar:5.6.3]
+	... 13 more
+2025-06-20 21:13:12,805 ERROR o.a.j.u.JMeterUtils: Error occurred compiling the tree: - see log file
+java.lang.RuntimeException: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:37) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:168) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.PreCompiler.addNode(PreCompiler.java:88) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jorphan.collections.HashTree.traverse(HashTree.java:1011) ~[jorphan.jar:5.6.3]
+	at org.apache.jmeter.engine.StandardJMeterEngine.run(StandardJMeterEngine.java:413) ~[ApacheJMeter_core.jar:5.6.3]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.FunctionParser.makeFunction(FunctionParser.java:136) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.FunctionParser.compileString(FunctionParser.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.CompoundVariable.setParameters(CompoundVariable.java:184) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ReplaceStringWithFunctions.transformValue(ReplaceStringWithFunctions.java:44) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:35) ~[ApacheJMeter_core.jar:5.6.3]
+	... 13 more
+2025-06-20 21:13:35,984 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-20 21:13:35,984 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-20 21:13:35,984 WARN o.a.j.e.u.FunctionParser: Probably an invalid function string: REG_PASSWORD}
+2025-06-20 21:13:35,984 ERROR o.a.j.e.StandardJMeterEngine: Error occurred compiling the tree:
+java.lang.RuntimeException: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:37) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:168) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.PreCompiler.addNode(PreCompiler.java:88) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jorphan.collections.HashTree.traverse(HashTree.java:1011) ~[jorphan.jar:5.6.3]
+	at org.apache.jmeter.engine.StandardJMeterEngine.run(StandardJMeterEngine.java:413) ~[ApacheJMeter_core.jar:5.6.3]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.FunctionParser.makeFunction(FunctionParser.java:136) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.FunctionParser.compileString(FunctionParser.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.CompoundVariable.setParameters(CompoundVariable.java:184) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ReplaceStringWithFunctions.transformValue(ReplaceStringWithFunctions.java:44) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:35) ~[ApacheJMeter_core.jar:5.6.3]
+	... 13 more
+2025-06-20 21:13:35,985 ERROR o.a.j.u.JMeterUtils: Error occurred compiling the tree: - see log file
+java.lang.RuntimeException: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:37) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:168) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.PreCompiler.addNode(PreCompiler.java:88) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jorphan.collections.HashTree.traverse(HashTree.java:1011) ~[jorphan.jar:5.6.3]
+	at org.apache.jmeter.engine.StandardJMeterEngine.run(StandardJMeterEngine.java:413) ~[ApacheJMeter_core.jar:5.6.3]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.FunctionParser.makeFunction(FunctionParser.java:136) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.FunctionParser.compileString(FunctionParser.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.CompoundVariable.setParameters(CompoundVariable.java:184) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ReplaceStringWithFunctions.transformValue(ReplaceStringWithFunctions.java:44) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:35) ~[ApacheJMeter_core.jar:5.6.3]
+	... 13 more
+2025-06-20 21:13:39,816 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-20 21:13:39,817 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-20 21:13:39,817 WARN o.a.j.e.u.FunctionParser: Probably an invalid function string: REG_PASSWORD}
+2025-06-20 21:13:39,817 ERROR o.a.j.e.StandardJMeterEngine: Error occurred compiling the tree:
+java.lang.RuntimeException: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:37) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:168) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.PreCompiler.addNode(PreCompiler.java:88) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jorphan.collections.HashTree.traverse(HashTree.java:1011) ~[jorphan.jar:5.6.3]
+	at org.apache.jmeter.engine.StandardJMeterEngine.run(StandardJMeterEngine.java:413) ~[ApacheJMeter_core.jar:5.6.3]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.FunctionParser.makeFunction(FunctionParser.java:136) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.FunctionParser.compileString(FunctionParser.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.CompoundVariable.setParameters(CompoundVariable.java:184) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ReplaceStringWithFunctions.transformValue(ReplaceStringWithFunctions.java:44) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:35) ~[ApacheJMeter_core.jar:5.6.3]
+	... 13 more
+2025-06-20 21:13:39,817 ERROR o.a.j.u.JMeterUtils: Error occurred compiling the tree: - see log file
+java.lang.RuntimeException: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:37) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:168) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.PreCompiler.addNode(PreCompiler.java:88) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jorphan.collections.HashTree.traverse(HashTree.java:1011) ~[jorphan.jar:5.6.3]
+	at org.apache.jmeter.engine.StandardJMeterEngine.run(StandardJMeterEngine.java:413) ~[ApacheJMeter_core.jar:5.6.3]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.FunctionParser.makeFunction(FunctionParser.java:136) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.FunctionParser.compileString(FunctionParser.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.CompoundVariable.setParameters(CompoundVariable.java:184) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ReplaceStringWithFunctions.transformValue(ReplaceStringWithFunctions.java:44) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:35) ~[ApacheJMeter_core.jar:5.6.3]
+	... 13 more
+2025-06-20 21:14:11,063 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-20 21:14:11,064 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-20 21:14:11,064 WARN o.a.j.e.u.FunctionParser: Probably an invalid function string: REG_PASSWORD}
+2025-06-20 21:14:11,064 ERROR o.a.j.e.StandardJMeterEngine: Error occurred compiling the tree:
+java.lang.RuntimeException: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:37) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:168) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.PreCompiler.addNode(PreCompiler.java:88) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jorphan.collections.HashTree.traverse(HashTree.java:1011) ~[jorphan.jar:5.6.3]
+	at org.apache.jmeter.engine.StandardJMeterEngine.run(StandardJMeterEngine.java:413) ~[ApacheJMeter_core.jar:5.6.3]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.FunctionParser.makeFunction(FunctionParser.java:136) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.FunctionParser.compileString(FunctionParser.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.CompoundVariable.setParameters(CompoundVariable.java:184) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ReplaceStringWithFunctions.transformValue(ReplaceStringWithFunctions.java:44) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:35) ~[ApacheJMeter_core.jar:5.6.3]
+	... 13 more
+2025-06-20 21:14:11,065 ERROR o.a.j.u.JMeterUtils: Error occurred compiling the tree: - see log file
+java.lang.RuntimeException: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:37) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:168) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:176) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueReplacer.replaceValues(ValueReplacer.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.PreCompiler.addNode(PreCompiler.java:88) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jorphan.collections.HashTree.traverse(HashTree.java:1011) ~[jorphan.jar:5.6.3]
+	at org.apache.jmeter.engine.StandardJMeterEngine.run(StandardJMeterEngine.java:413) ~[ApacheJMeter_core.jar:5.6.3]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: org.apache.jmeter.functions.InvalidVariableException: Expected } after __P function call in ${__P(REG_PASSWORD}
+	at org.apache.jmeter.engine.util.FunctionParser.makeFunction(FunctionParser.java:136) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.FunctionParser.compileString(FunctionParser.java:79) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.CompoundVariable.setParameters(CompoundVariable.java:184) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ReplaceStringWithFunctions.transformValue(ReplaceStringWithFunctions.java:44) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.util.ValueTransformer.transform(ValueTransformer.java:35) ~[ApacheJMeter_core.jar:5.6.3]
+	... 13 more
+2025-06-20 21:14:36,664 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-20 21:14:36,664 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-20 21:14:36,665 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-06-20 21:14:36,714 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : TG5: Password Reset Scenarios (Android)
+2025-06-20 21:14:36,715 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group TG5: Password Reset Scenarios (Android).
+2025-06-20 21:14:36,715 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-20 21:14:36,715 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-06-20 21:14:36,715 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-06-20 21:14:36,715 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-06-20 21:14:36,715 INFO o.a.j.t.JMeterThread: Thread started: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:14:38,254 INFO o.a.j.t.JMeterThread: Thread is done: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:14:38,254 INFO o.a.j.t.JMeterThread: Thread finished: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:14:38,255 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-06-20 21:14:38,255 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-06-20 21:15:19,573 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-20 21:15:19,574 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-20 21:15:19,574 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-06-20 21:15:19,614 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : TG5: Password Reset Scenarios (Android)
+2025-06-20 21:15:19,614 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group TG5: Password Reset Scenarios (Android).
+2025-06-20 21:15:19,615 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-20 21:15:19,615 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-06-20 21:15:19,615 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-06-20 21:15:19,615 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-06-20 21:15:19,615 INFO o.a.j.t.JMeterThread: Thread started: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:15:21,148 INFO o.a.j.t.JMeterThread: Thread is done: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:15:21,148 INFO o.a.j.t.JMeterThread: Thread finished: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:15:21,149 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-06-20 21:15:21,149 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-06-20 21:17:41,898 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-20 21:17:41,899 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-20 21:17:41,899 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-06-20 21:17:41,952 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : TG5: Password Reset Scenarios (Android)
+2025-06-20 21:17:41,952 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group TG5: Password Reset Scenarios (Android).
+2025-06-20 21:17:41,952 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-20 21:17:41,952 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-06-20 21:17:41,952 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-06-20 21:17:41,952 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-06-20 21:17:41,952 INFO o.a.j.t.JMeterThread: Thread started: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:17:44,155 INFO o.a.j.t.JMeterThread: Thread is done: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:17:44,155 INFO o.a.j.t.JMeterThread: Thread finished: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:17:44,155 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-06-20 21:17:44,156 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-06-20 21:21:41,897 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-20 21:21:41,897 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-20 21:21:41,898 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-06-20 21:21:41,943 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : TG5: Password Reset Scenarios (Android)
+2025-06-20 21:21:41,943 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group TG5: Password Reset Scenarios (Android).
+2025-06-20 21:21:41,943 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-20 21:21:41,943 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-06-20 21:21:41,943 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-06-20 21:21:41,944 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-06-20 21:21:41,944 INFO o.a.j.t.JMeterThread: Thread started: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:21:43,794 INFO o.a.j.t.JMeterThread: Thread is done: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:21:43,794 INFO o.a.j.t.JMeterThread: Thread finished: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:21:43,794 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-06-20 21:21:43,795 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-06-20 21:22:47,204 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-20 21:22:47,205 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-20 21:22:47,206 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-06-20 21:22:47,254 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : TG5: Password Reset Scenarios (Android)
+2025-06-20 21:22:47,255 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group TG5: Password Reset Scenarios (Android).
+2025-06-20 21:22:47,255 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-20 21:22:47,255 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-06-20 21:22:47,255 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-06-20 21:22:47,255 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-06-20 21:22:47,255 INFO o.a.j.t.JMeterThread: Thread started: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:22:48,886 INFO o.a.j.t.JMeterThread: Thread is done: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:22:48,886 INFO o.a.j.t.JMeterThread: Thread finished: TG5: Password Reset Scenarios (Android) 1-1
+2025-06-20 21:22:48,887 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-06-20 21:22:48,887 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
