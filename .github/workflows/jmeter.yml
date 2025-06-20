@@ -55,31 +55,32 @@ jobs:
 
       - name: Run Selected Testcases (白名单)
         run: |
-          # whitelist=(
-          #   testcases/tg2_registration_register.jmx
-          #   testcases/tg3_auth_logout.jmx
-          #   testcases/tg4_account_activation.jmx
-          #   testcases/tg5_password_reset.jmx
-          #   testcases/tg7_ad_posted_analytics.jmx
-          #   testcases/tg8_post_ad.jmx
-          #   testcases/tg9_delete_ad.jmx
-          #   testcases/tg10_promote_ad_screen.jmx
-          #   testcases/tg11_user_block.jmx
-          #   testcases/tg12_vip_screen.jmx
-          #   testcases/tg13_mygumtree_screen.jmx
-          #   testcases/tg14_favourites.jmx
-          #   testcases/tg15_favourites_screen.jmx
-          #   testcases/tg16_chat_screen.jmx
-          #   testcases/tg17_conversation_screen.jmx
-          #   testcases/tg18_conversation_unread_messages.jmx
-          #   testcases/tg19_conversation.jmx
-          #   testcases/tg20_reviews_conversation.jmx
-          # )
           whitelist=(
-            
+            testcases/tg2_registration_register.jmx
+            testcases/tg3_auth_logout.jmx
+            testcases/tg4_account_activation.jmx
+            testcases/tg5_password_reset.jmx
+            testcases/tg7_ad_posted_analytics.jmx
+            testcases/tg8_post_ad.jmx
             testcases/tg9_delete_ad.jmx
-            
+            testcases/tg10_promote_ad_screen.jmx
+            testcases/tg11_user_block.jmx
+            testcases/tg12_vip_screen.jmx
+            testcases/tg13_mygumtree_screen.jmx
+            testcases/tg14_favourites.jmx
+            testcases/tg15_favourites_screen.jmx
+            testcases/tg16_chat_screen.jmx
+            testcases/tg17_conversation_screen.jmx
+            testcases/tg18_conversation_unread_messages.jmx
+            testcases/tg19_conversation.jmx
+            testcases/tg20_reviews_conversation.jmx
+            testcases/tg23_auth_reset_pwd.jmx
           )
+          # whitelist=(
+            
+          #   testcases/tg9_delete_ad.jmx
+            
+          # )
           
           echo "Current working directory: $(pwd)"
           echo "Directory contents:"
