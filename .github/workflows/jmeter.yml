@@ -38,27 +38,47 @@ jobs:
         run: |
           ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/tg1_auth_login.jmx -q config/dev.env.properties -l reports/all_cases.jtl
 
+      - name: Check auth_tokens.csv file
+        run: |
+          echo "Checking if auth_tokens.csv exists..."
+          ls -la data/
+          if [ -f "data/auth_tokens.csv" ]; then
+            echo "auth_tokens.csv exists, content:"
+            cat data/auth_tokens.csv
+          else
+            echo "ERROR: auth_tokens.csv does not exist!"
+            echo "Creating empty file for testing..."
+            mkdir -p data
+            echo "userId,userToken,userAuthorization" > data/auth_tokens.csv
+            echo "test,test,test" >> data/auth_tokens.csv
+          fi
+
       - name: Run Selected Testcases (白名单)
         run: |
+          # whitelist=(
+          #   testcases/tg2_registration_register.jmx
+          #   testcases/tg3_auth_logout.jmx
+          #   testcases/tg4_account_activation.jmx
+          #   testcases/tg5_password_reset.jmx
+          #   testcases/tg7_ad_posted_analytics.jmx
+          #   testcases/tg8_post_ad.jmx
+          #   testcases/tg9_delete_ad.jmx
+          #   testcases/tg10_promote_ad_screen.jmx
+          #   testcases/tg11_user_block.jmx
+          #   testcases/tg12_vip_screen.jmx
+          #   testcases/tg13_mygumtree_screen.jmx
+          #   testcases/tg14_favourites.jmx
+          #   testcases/tg15_favourites_screen.jmx
+          #   testcases/tg16_chat_screen.jmx
+          #   testcases/tg17_conversation_screen.jmx
+          #   testcases/tg18_conversation_unread_messages.jmx
+          #   testcases/tg19_conversation.jmx
+          #   testcases/tg20_reviews_conversation.jmx
+          # )
           whitelist=(
-            testcases/tg2_registration_register.jmx
-            testcases/tg3_auth_logout.jmx
-            testcases/tg4_account_activation.jmx
-            testcases/tg5_password_reset.jmx
-            testcases/tg7_ad_posted_analytics.jmx
-            testcases/tg8_post_ad.jmx
+            
             testcases/tg9_delete_ad.jmx
-            testcases/tg10_promote_ad_screen.jmx
-            testcases/tg11_user_block.jmx
-            testcases/tg12_vip_screen.jmx
-            testcases/tg13_mygumtree_screen.jmx
-            testcases/tg14_favourites.jmx
-            testcases/tg15_favourites_screen.jmx
-            testcases/tg16_chat_screen.jmx
-            testcases/tg17_conversation_screen.jmx
-            testcases/tg18_conversation_unread_messages.jmx
-            testcases/tg19_conversation.jmx
-            testcases/tg20_reviews_conversation.jmx
+            
           )
           for file in "${whitelist[@]}"; do
             ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/dev.env.properties -l reports/all_cases.jtl

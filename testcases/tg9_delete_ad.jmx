@@ -286,7 +286,7 @@
         <stringProp name="TestPlan.comments">包含非常通用的头部。平台特定的头部在各个线程组中设置。</stringProp>
       </HeaderManager>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG9: Delete Ad Scenario (iOS)">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG9: Delete Ad Scenario (iOS)" enabled="true">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -297,10 +297,10 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
           <stringProp name="delimiter">,</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
-          <stringProp name="filename">${__P(projectRoot,)}/data/auth_tokens.csv</stringProp>
+          <stringProp name="filename">data/auth_tokens.csv</stringProp>
           <boolProp name="ignoreFirstLine">false</boolProp>
           <boolProp name="quotedData">false</boolProp>
           <boolProp name="recycle">true</boolProp>
@@ -308,12 +308,6 @@
           <boolProp name="stopThread">false</boolProp>
           <stringProp name="variableNames">userId,userToken,userAuthorization</stringProp>
         </CSVDataSet>
-        <hashTree/>
-        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler - 打印所有变量" enabled="true"/>
-        <hashTree/>
-        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="打印关键变量" enabled="true">
-          <stringProp name="script">log.info("userId=" + vars.get("userId") + ", userToken=" + vars.get("userToken") + ", userAuthorization=" + vars.get("userAuthorization"));</stringProp>
-        </JSR223Sampler>
         <hashTree/>
         <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Delete Ad HTTP Header Manager (iOS)" enabled="true">
           <collectionProp name="HeaderManager.headers">
@@ -376,7 +370,7 @@
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="9.1 Delete Ad">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="9.1 Delete Ad" enabled="true">
           <stringProp name="TestPlan.comments">删除指定ID的广告。预期成功 (204)。依赖TG1登录成功并提取tokens，可能依赖TG8发布/重新发布成功。</stringProp>
           <stringProp name="HTTPSampler.domain">${HOST_BFF}</stringProp>
           <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
