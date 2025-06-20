@@ -326,7 +326,7 @@
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-email</stringProp>
-              <stringProp name="Header.value">${CORRECT_USERNAME}</stringProp>
+              <stringProp name="Header.value">${__P(CORRECT_USERNAME)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
@@ -338,35 +338,35 @@
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
-              <stringProp name="Header.value">${ANDROID_USER_AGENT}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_USER_AGENT)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">platform</stringProp>
-              <stringProp name="Header.value">${ANDROID_PLATFORM}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_PLATFORM)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">udid</stringProp>
-              <stringProp name="Header.value">${ANDROID_UDID}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_UDID)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">app-version</stringProp>
-              <stringProp name="Header.value">${ANDROID_APP_VERSION}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_APP_VERSION)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">device</stringProp>
-              <stringProp name="Header.value">${ANDROID_DEVICE}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_DEVICE)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">os-version</stringProp>
-              <stringProp name="Header.value">${ANDROID_OS_VERSION}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_OS_VERSION)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">experiments</stringProp>
-              <stringProp name="Header.value">${ANDROID_EXPERIMENTS}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_EXPERIMENTS)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">app-debug-mode</stringProp>
-              <stringProp name="Header.value">${ANDROID_APP_DEBUG_MODE}</stringProp>
+              <stringProp name="Header.value">${__P(ANDROID_APP_DEBUG_MODE)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">threat-metrix-session</stringProp>
@@ -377,8 +377,8 @@
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="10.1 Promote Ad Screen" enabled="true">
           <stringProp name="TestPlan.comments">获取推广广告屏幕信息。预期成功 (200)。依赖TG1登录成功并提取tokens。</stringProp>
-          <stringProp name="HTTPSampler.domain">${HOST_BFF}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
           <stringProp name="HTTPSampler.path">/v1/promote/screen</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -388,7 +388,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="adId" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">${AD_ID_MAIN}</stringProp>
+                <stringProp name="Argument.value">${__P(AD_ID_MAIN)}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">adId</stringProp>

@@ -310,27 +310,27 @@
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
-              <stringProp name="Header.value">${IOS_USER_AGENT_BFF}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_USER_AGENT_BFF)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">platform</stringProp>
-              <stringProp name="Header.value">${IOS_PLATFORM}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_PLATFORM)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">udid</stringProp>
-              <stringProp name="Header.value">${IOS_UDID}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_UDID)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">app-version</stringProp>
-              <stringProp name="Header.value">${IOS_APP_VERSION_BFF}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_APP_VERSION_BFF)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">experiments</stringProp>
-              <stringProp name="Header.value">${IOS_EXPERIMENTS_BFF}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_EXPERIMENTS_BFF)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">app-debug-mode</stringProp>
-              <stringProp name="Header.value">${IOS_APP_DEBUG_MODE}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_APP_DEBUG_MODE)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">userid</stringProp>
@@ -338,15 +338,15 @@
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">Cookie</stringProp>
-              <stringProp name="Header.value">${IOS_COOKIE_GCLB_BFF}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_COOKIE_GCLB_BFF)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">accept-language</stringProp>
-              <stringProp name="Header.value">${IOS_ACCEPT_LANGUAGE}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_ACCEPT_LANGUAGE)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">device-type</stringProp>
-              <stringProp name="Header.value">${IOS_DEVICE_TYPE}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_DEVICE_TYPE)}</stringProp>
             </elementProp>
             <elementProp name="accountid" elementType="Header">
               <stringProp name="Header.name">accountid</stringProp>
@@ -357,9 +357,9 @@
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="11.1 Block User">
           <stringProp name="TestPlan.comments">屏蔽指定ID的用户。预期成功 (201)。依赖TG1登录。</stringProp>
-          <stringProp name="HTTPSampler.domain">${HOST_BFF}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
-          <stringProp name="HTTPSampler.path">/v1/block-user/${USER_ID_TO_BLOCK}</stringProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.path">/v1/block-user/${__P(USER_ID_TO_BLOCK)}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -399,9 +399,9 @@
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="11.2 Unblock User">
           <stringProp name="TestPlan.comments">取消屏蔽指定ID的用户。预期成功 (204)。依赖TG1登录成功并提取tokens。</stringProp>
-          <stringProp name="HTTPSampler.domain">${HOST_BFF}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
-          <stringProp name="HTTPSampler.path">/v1/block-user/${USER_ID_TO_BLOCK}</stringProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.path">/v1/block-user/${__P(USER_ID_TO_BLOCK)}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">DELETE</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>

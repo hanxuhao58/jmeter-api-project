@@ -296,7 +296,7 @@
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-email</stringProp>
-              <stringProp name="Header.value">${CORRECT_USERNAME}</stringProp>
+              <stringProp name="Header.value">${__P(CORRECT_USERNAME)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">authorisation-user-token</stringProp>
@@ -308,47 +308,47 @@
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">user-agent</stringProp>
-              <stringProp name="Header.value">${IOS_USER_AGENT_BFF}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_USER_AGENT_BFF)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">platform</stringProp>
-              <stringProp name="Header.value">${IOS_PLATFORM}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_PLATFORM)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">udid</stringProp>
-              <stringProp name="Header.value">${IOS_UDID}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_UDID)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">app-version</stringProp>
-              <stringProp name="Header.value">${IOS_APP_VERSION_BFF}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_APP_VERSION_BFF)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">experiments</stringProp>
-              <stringProp name="Header.value">${IOS_EXPERIMENTS_BFF}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_EXPERIMENTS_BFF)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">app-debug-mode</stringProp>
-              <stringProp name="Header.value">${IOS_APP_DEBUG_MODE}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_APP_DEBUG_MODE)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">userid</stringProp>
-              <stringProp name="Header.value">${IOS_USERID_HEADER}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_USERID_HEADER)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">Cookie</stringProp>
-              <stringProp name="Header.value">${IOS_COOKIE_GCLB_BFF}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_COOKIE_GCLB_BFF)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">accept-language</stringProp>
-              <stringProp name="Header.value">${IOS_ACCEPT_LANGUAGE}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_ACCEPT_LANGUAGE)}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">device-type</stringProp>
-              <stringProp name="Header.value">${IOS_DEVICE_TYPE}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_DEVICE_TYPE)}</stringProp>
             </elementProp>
             <elementProp name="accountid" elementType="Header">
               <stringProp name="Header.name">accountid</stringProp>
-              <stringProp name="Header.value">${IOS_ACCOUNTID}</stringProp>
+              <stringProp name="Header.value">${__P(IOS_ACCOUNTID)}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
@@ -358,9 +358,9 @@
           <intProp name="HTTPSampler.concurrentPool">6</intProp>
           <intProp name="HTTPSampler.connect_timeout">0</intProp>
           <intProp name="HTTPSampler.response_timeout">0</intProp>
-          <stringProp name="HTTPSampler.domain">${HOST_BFF}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
-          <stringProp name="HTTPSampler.path">v1/reviews/conversation/${CHAT_ID}</stringProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.path">v1/reviews/conversation/${__P(CHAT_ID)}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
