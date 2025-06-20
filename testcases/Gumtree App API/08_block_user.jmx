@@ -7,7 +7,7 @@
     </TestPlan>
     <hashTree>
       <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Common Fragments" enabled="true">
-        <stringProp name="IncludeController.includepath">../../common_fragments.jmx</stringProp>
+        <stringProp name="IncludeController.includepath">../common_fragments.jmx</stringProp>
       </IncludeController>
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="08.1: Block User (iOS)">

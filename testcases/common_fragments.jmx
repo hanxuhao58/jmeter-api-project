@@ -148,7 +148,7 @@
             </elementProp>
             <elementProp name="ANDROID_EXPERIMENTS" elementType="Argument">
               <stringProp name="Argument.name">ANDROID_EXPERIMENTS</stringProp>
-              <stringProp name="Argument.value">${__P(ANDROID_EXPERIMENTS, GTNA-4006.A,GTB-8.B,GTCON-28.B,GTNA-4299.A,GTB-119.B,GTB-263.C,GTCON-209.A,srp_recall_all_cate_flag.A,srp_rank_relevant_flag.A,srp_filter_mobile_colour_storage_condition.A,srp_filter_mobile_apple_samsung_model.A,srp_filter_mobile_model_google_xiaomi_huawei.A)}</stringProp>
+              <stringProp name="Argument.value">${__P(ANDROID_EXPERIMENTS, GTNA-4006.A\,GTB-8.B\,GTCON-28.B\,GTNA-4299.A\,GTB-119.B\,GTB-263.C\,GTCON-209.A\,srp_recall_all_cate_flag.A\,srp_rank_relevant_flag.A\,srp_filter_mobile_colour_storage_condition.A\,srp_filter_mobile_apple_samsung_model.A\,srp_filter_mobile_model_google_xiaomi_huawei.A)}</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="ANDROID_APP_DEBUG_MODE" elementType="Argument">
@@ -186,7 +186,7 @@
             </elementProp>
             <elementProp name="IOS_EXPERIMENTS_BFF" elementType="Argument">
               <stringProp name="Argument.name">IOS_EXPERIMENTS_BFF</stringProp>
-              <stringProp name="Argument.value">${__P(IOS_EXPERIMENTS_BFF, GTNA-4005.A,GTB-9.A,GTNA-4300.A,GTB-262.A,srp_recall_all_cate_flag.A,srp_rank_relevant_flag.A,srp_filter_mobile_colour_storage_condition.A,srp_filter_mobile_apple_samsung_model.A,srp_filter_mobile_model_google_xiaomi_huawei.A)}</stringProp>
+              <stringProp name="Argument.value">${__P(IOS_EXPERIMENTS_BFF, GTNA-4005.A\,GTB-9.A\,GTNA-4300.A\,GTB-262.A\,srp_recall_all_cate_flag.A\,srp_rank_relevant_flag.A\,srp_filter_mobile_colour_storage_condition.A\,srp_filter_mobile_apple_samsung_model.A\,srp_filter_mobile_model_google_xiaomi_huawei.A)}</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
               <stringProp name="TestPlan.comments">iOS Experiments for mobile-apps-bff.gumtree.com</stringProp>
             </elementProp>
