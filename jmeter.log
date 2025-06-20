@@ -296,3 +296,86 @@ org.apache.jorphan.util.JMeterStopTestException: ModuleController:MC - Android H
 2025-06-20 16:28:27,947 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
 2025-06-20 16:28:27,947 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
 2025-06-20 16:28:27,947 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-06-20 16:28:45,919 INFO o.a.j.g.a.Load: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/01_login.jmx
+2025-06-20 16:28:45,919 INFO o.a.j.s.FileServer: Set new base='/Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API'
+2025-06-20 16:28:45,919 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/01_login.jmx
+2025-06-20 16:28:45,946 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 16:28:45,947 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 16:28:45,954 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 16:28:45,955 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-20 16:28:45,970 INFO o.a.j.s.FileServer: Set new base='/Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API'
+2025-06-20 16:28:45,992 INFO o.a.j.c.IncludeController: loadIncludedElements -- try to load included module: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:28:45,992 INFO o.a.j.c.IncludeController: loadIncludedElements -failed for: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:28:45,992 INFO o.a.j.c.IncludeController: loadIncludedElements -Attempting to read it from: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:28:45,993 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:28:46,014 INFO o.a.j.c.IncludeController: loadIncludedElements -- try to load included module: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:28:46,014 INFO o.a.j.c.IncludeController: loadIncludedElements -failed for: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:28:46,014 INFO o.a.j.c.IncludeController: loadIncludedElements -Attempting to read it from: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:28:46,014 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:28:49,344 INFO o.a.j.c.IncludeController: loadIncludedElements -- try to load included module: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:28:49,344 INFO o.a.j.c.IncludeController: loadIncludedElements -failed for: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:28:49,344 INFO o.a.j.c.IncludeController: loadIncludedElements -Attempting to read it from: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:28:49,345 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:28:49,352 INFO o.a.j.c.IncludeController: loadIncludedElements -- try to load included module: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:28:49,353 INFO o.a.j.c.IncludeController: loadIncludedElements -failed for: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:28:49,353 INFO o.a.j.c.IncludeController: loadIncludedElements -Attempting to read it from: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:28:49,353 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:28:49,358 INFO o.a.j.c.IncludeController: loadIncludedElements -- try to load included module: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:28:49,358 INFO o.a.j.c.IncludeController: loadIncludedElements -failed for: /Users/a58/Documents/jmeter-api-project/../common_fragments.jmx
+2025-06-20 16:28:49,358 INFO o.a.j.c.IncludeController: loadIncludedElements -Attempting to read it from: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:28:49,358 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/Gumtree App API/../common_fragments.jmx
+2025-06-20 16:28:49,363 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-20 16:28:49,363 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-20 16:28:49,365 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-06-20 16:28:49,392 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : 01.1: Login (iOS)
+2025-06-20 16:28:49,392 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group 01.1: Login (iOS).
+2025-06-20 16:28:49,392 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-20 16:28:49,392 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-06-20 16:28:49,392 ERROR o.a.j.u.JMeterUtils: Error occurred starting thread group :01.1: Login (iOS), error message:ModuleController:MC - iOS Headers has no selected Controller (did you rename some element in the path to target controller?), test was shutdown as a consequence, 
+see log file for more details
+org.apache.jorphan.util.JMeterStopTestException: ModuleController:MC - iOS Headers has no selected Controller (did you rename some element in the path to target controller?), test was shutdown as a consequence
+	at org.apache.jmeter.control.ModuleController.resolveReplacementSubTree(ModuleController.java:143) ~[ApacheJMeter_components.jar:5.6.3]
+	at org.apache.jmeter.control.ModuleController.restoreSelected(ModuleController.java:126) ~[ApacheJMeter_components.jar:5.6.3]
+	at org.apache.jmeter.control.ModuleController.clone(ModuleController.java:70) ~[ApacheJMeter_components.jar:5.6.3]
+	at org.apache.jmeter.engine.TreeCloner.addNodeToTree(TreeCloner.java:76) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.TreeCloner.addNode(TreeCloner.java:63) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jorphan.collections.HashTree.traverseInto(HashTree.java:1029) ~[jorphan.jar:5.6.3]
+	at org.apache.jorphan.collections.HashTree.traverse(HashTree.java:1012) ~[jorphan.jar:5.6.3]
+	at org.apache.jmeter.threads.AbstractThreadGroup.cloneTree(AbstractThreadGroup.java:400) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.threads.ThreadGroup.startNewThread(ThreadGroup.java:273) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.threads.ThreadGroup.start(ThreadGroup.java:254) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.StandardJMeterEngine.startThreadGroup(StandardJMeterEngine.java:577) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.StandardJMeterEngine.run(StandardJMeterEngine.java:502) ~[ApacheJMeter_core.jar:5.6.3]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+2025-06-20 16:28:49,393 INFO o.a.j.e.StandardJMeterEngine: Waiting for thread group: 01.1: Login (iOS) to finish before starting next group
+2025-06-20 16:28:49,393 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 2 : 01.2: Login (Android)
+2025-06-20 16:28:49,393 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group 01.2: Login (Android).
+2025-06-20 16:28:49,393 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-20 16:28:49,393 INFO o.a.j.t.ThreadGroup: Starting thread group... number=2 threads=1 ramp-up=1 delayedStart=false
+2025-06-20 16:28:49,393 ERROR o.a.j.u.JMeterUtils: Error occurred starting thread group :01.2: Login (Android), error message:ModuleController:MC - Android Headers has no selected Controller (did you rename some element in the path to target controller?), test was shutdown as a consequence, 
+see log file for more details
+org.apache.jorphan.util.JMeterStopTestException: ModuleController:MC - Android Headers has no selected Controller (did you rename some element in the path to target controller?), test was shutdown as a consequence
+	at org.apache.jmeter.control.ModuleController.resolveReplacementSubTree(ModuleController.java:143) ~[ApacheJMeter_components.jar:5.6.3]
+	at org.apache.jmeter.control.ModuleController.restoreSelected(ModuleController.java:126) ~[ApacheJMeter_components.jar:5.6.3]
+	at org.apache.jmeter.control.ModuleController.clone(ModuleController.java:70) ~[ApacheJMeter_components.jar:5.6.3]
+	at org.apache.jmeter.engine.TreeCloner.addNodeToTree(TreeCloner.java:76) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.TreeCloner.addNode(TreeCloner.java:63) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jorphan.collections.HashTree.traverseInto(HashTree.java:1029) ~[jorphan.jar:5.6.3]
+	at org.apache.jorphan.collections.HashTree.traverse(HashTree.java:1012) ~[jorphan.jar:5.6.3]
+	at org.apache.jmeter.threads.AbstractThreadGroup.cloneTree(AbstractThreadGroup.java:400) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.threads.ThreadGroup.startNewThread(ThreadGroup.java:273) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.threads.ThreadGroup.start(ThreadGroup.java:254) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.StandardJMeterEngine.startThreadGroup(StandardJMeterEngine.java:577) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.engine.StandardJMeterEngine.run(StandardJMeterEngine.java:502) ~[ApacheJMeter_core.jar:5.6.3]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+2025-06-20 16:28:49,393 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-06-20 16:28:49,393 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-06-20 16:28:49,393 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
