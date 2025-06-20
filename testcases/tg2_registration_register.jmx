@@ -345,7 +345,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 204 (No Content)" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 204 (No Content)">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49590">204</stringProp>
             </collectionProp>
@@ -355,7 +355,7 @@
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
           <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言响应体为空" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言响应体为空">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="0"></stringProp>
             </collectionProp>
@@ -414,7 +414,7 @@
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -451,17 +451,18 @@
         <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
+        <stringProp name="delimiter">,</stringProp>
+        <stringProp name="fileEncoding">UTF-8</stringProp>
+        <stringProp name="filename">data/auth_tokens.csv</stringProp>
+        <boolProp name="ignoreFirstLine">true</boolProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="variableNames">userId,userToken,userAuthorization</stringProp>
+      </CSVDataSet>
+      <hashTree/>
     </hashTree>
-    <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
-      <stringProp name="delimiter">,</stringProp>
-      <stringProp name="fileEncoding">UTF-8</stringProp>
-      <stringProp name="filename">data/auth_tokens.csv</stringProp>
-      <boolProp name="ignoreFirstLine">true</boolProp>
-      <boolProp name="quotedData">false</boolProp>
-      <boolProp name="recycle">true</boolProp>
-      <stringProp name="shareMode">shareMode.all</stringProp>
-      <boolProp name="stopThread">false</boolProp>
-      <stringProp name="variableNames">userId,userToken,userAuthorization</stringProp>
-    </CSVDataSet>
   </hashTree>
 </jmeterTestPlan>
