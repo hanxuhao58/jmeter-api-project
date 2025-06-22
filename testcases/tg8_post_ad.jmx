@@ -247,6 +247,7 @@
           </elementProp>
         </collectionProp>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
     </TestPlan>
     <hashTree>
       <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="全局通用 HTTP Header Manager (Minimal)">
@@ -263,8 +264,8 @@
         <stringProp name="TestPlan.comments">包含非常通用的头部。平台特定的头部在各个线程组中设置。</stringProp>
       </HeaderManager>
       <hashTree/>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
-        <stringProp name="filename"></stringProp>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+        <stringProp name="filename">data/auth_tokens.csv</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
         <stringProp name="variableNames">userId,userToken,userAuthorization,threatMetrixSession,userEmail,userDisplayName,accountId,userType,lastUpdated</stringProp>
         <boolProp name="ignoreFirstLine">true</boolProp>
@@ -275,7 +276,7 @@
         <stringProp name="shareMode">shareMode.all</stringProp>
       </CSVDataSet>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG8: Post Ad Scenario (iOS - my.gumtree.com)">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG8: Post Ad Scenario (iOS - my.gumtree.com)" enabled="true">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -286,7 +287,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Post Ad HTTP Header Manager (iOS - my.gumtree.com)">
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Post Ad HTTP Header Manager (iOS - my.gumtree.com)" enabled="true">
           <collectionProp name="HeaderManager.headers">
             <elementProp name="Host" elementType="Header">
               <stringProp name="Header.name">Host</stringProp>
@@ -352,14 +353,14 @@
           <stringProp name="TestPlan.comments">Headers for iOS Post Ad to my.gumtree.com. Cookie is critical and provided via variable.</stringProp>
         </HeaderManager>
         <hashTree/>
-        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
           <collectionProp name="CookieManager.cookies"/>
           <stringProp name="TestPlan.comments">处理my.gumtree.com的Cookie</stringProp>
           <boolProp name="CookieManager.clearEachIteration">false</boolProp>
           <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
         </CookieManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="8.1 Post Ad (iOS)">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="8.1 Post Ad (iOS)" enabled="true">
           <stringProp name="TestPlan.comments">发布/重新发布广告接口 (iOS version)。预期成功 (200)。</stringProp>
           <stringProp name="HTTPSampler.domain">${__P(HOST_MY_GUMTREE)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
@@ -436,7 +437,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 200 (OK)">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 200 (OK)" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
             </collectionProp>
@@ -448,7 +449,7 @@
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>

@@ -11,7 +11,7 @@
     </TestPlan>
     <hashTree>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
-        <stringProp name="filename"></stringProp>
+        <stringProp name="filename">data/auth_tokens.csv</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
         <stringProp name="variableNames">userId,userToken,userAuthorization,threatMetrixSession,userEmail,userDisplayName,accountId,userType,lastUpdated</stringProp>
         <boolProp name="ignoreFirstLine">true</boolProp>
