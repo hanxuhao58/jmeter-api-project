@@ -3875,7 +3875,7 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">data/auth_tokens.csv</stringProp>
+        <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>
