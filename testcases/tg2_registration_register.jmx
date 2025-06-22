@@ -40,7 +40,7 @@
         <boolProp name="recycle">true</boolProp>
         <stringProp name="shareMode">shareMode.all</stringProp>
         <boolProp name="stopThread">false</boolProp>
-        <stringProp name="variableNames">userId,userToken,userAuthorization,threatMetrixSession</stringProp>
+        <stringProp name="variableNames">userId,userToken,userAuthorization,threatMetrixSession,userEmail,userDisplayName,accountId,userType,lastUpdated</stringProp>
       </CSVDataSet>
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG2: Registration Scenario (Android)">
