@@ -74,7 +74,6 @@ jobs:
             testcases/tg18_conversation_unread_messages.jmx
             testcases/tg19_conversation.jmx
             testcases/tg20_reviews_conversation.jmx
-            testcases/tg23_auth_reset_pwd.jmx
           )
           # whitelist=(
             
