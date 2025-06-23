@@ -22,7 +22,9 @@ jobs:
       - name: Install JMeter Plugins Manager and JSON Path Assertion
         run: |
           wget https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.3/cmdrunner-2.3.jar -O ./apache-jmeter-5.6.3/lib/cmdrunner-2.3.jar
-          wget https://jmeter-plugins.org/get/ -O ./apache-jmeter-5.6.3/lib/ext/jmeter-plugins-manager.jar
+          # jmeter-plugins.org/get/ 有时会返回 404，改为从 Maven Central 下载指定版本
+          PLUGIN_VERSION=1.8
+          wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/${PLUGIN_VERSION}/jmeter-plugins-manager-${PLUGIN_VERSION}.jar -O ./apache-jmeter-5.6.3/lib/ext/jmeter-plugins-manager.jar
           java -cp ./apache-jmeter-5.6.3/lib/ext/jmeter-plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
           ./apache-jmeter-5.6.3/bin/PluginsManagerCMD.sh install jpgc-json
 
