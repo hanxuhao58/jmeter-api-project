@@ -22,7 +22,7 @@
         <stringProp name="shareMode">shareMode.all</stringProp>
       </CSVDataSet>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG8: Post Ad Scenario (iOS - my.gumtree.com)">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG8: Post Ad Scenario (iOS - my.gumtree.com)" enabled="false">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -33,7 +33,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Post Ad HTTP Header Manager (iOS - my.gumtree.com)">
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Post Ad HTTP Header Manager (iOS - my.gumtree.com)" enabled="true">
           <collectionProp name="HeaderManager.headers">
             <elementProp name="Host" elementType="Header">
               <stringProp name="Header.name">Host</stringProp>
@@ -99,7 +99,7 @@
           <stringProp name="TestPlan.comments">Headers for iOS Post Ad to my.gumtree.com. Cookie is critical and provided via variable.</stringProp>
         </HeaderManager>
         <hashTree/>
-        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
           <collectionProp name="CookieManager.cookies"/>
           <stringProp name="TestPlan.comments">处理my.gumtree.com的Cookie</stringProp>
           <boolProp name="CookieManager.clearEachIteration">false</boolProp>
@@ -183,9 +183,115 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 200 (OK)">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 200 (OK)" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message">期望发布广告成功返回状态码 200 (OK)。</stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG8: Post Ad Scenario (iOS - my.gumtree.com)">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Post Ad HTTP Header Manager (iOS - my.gumtree.com)">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="authorisation-user" elementType="Header">
+              <stringProp name="Header.name">authorisation-user</stringProp>
+              <stringProp name="Header.value">Basic bW9iaWxlOjBudGgzbTB2MyE=</stringProp>
+            </elementProp>
+            <elementProp name="authorisation-user-email" elementType="Header">
+              <stringProp name="Header.name">authorisation-user-email</stringProp>
+              <stringProp name="Header.value">${__P(CORRECT_USERNAME)}</stringProp>
+            </elementProp>
+            <elementProp name="authorisation-user-token" elementType="Header">
+              <stringProp name="Header.name">authorisation-user-token</stringProp>
+              <stringProp name="Header.value">${userToken}</stringProp>
+            </elementProp>
+            <elementProp name="authorization" elementType="Header">
+              <stringProp name="Header.name">authorization</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
+            </elementProp>
+            <elementProp name="user-agent" elementType="Header">
+              <stringProp name="Header.name">user-agent</stringProp>
+              <stringProp name="Header.value">${__P(IOS_USER_AGENT_BFF)}</stringProp>
+            </elementProp>
+            <elementProp name="platform" elementType="Header">
+              <stringProp name="Header.name">platform</stringProp>
+              <stringProp name="Header.value">${__P(IOS_PLATFORM)}</stringProp>
+            </elementProp>
+            <elementProp name="udid" elementType="Header">
+              <stringProp name="Header.name">udid</stringProp>
+              <stringProp name="Header.value">${__P(IOS_UDID)}</stringProp>
+            </elementProp>
+            <elementProp name="app-version" elementType="Header">
+              <stringProp name="Header.name">app-version</stringProp>
+              <stringProp name="Header.value">${__P(IOS_APP_VERSION_BFF)}</stringProp>
+            </elementProp>
+            <elementProp name="experiments" elementType="Header">
+              <stringProp name="Header.name">experiments</stringProp>
+              <stringProp name="Header.value">${__P(IOS_EXPERIMENTS_BFF)}</stringProp>
+            </elementProp>
+            <elementProp name="app-debug-mode" elementType="Header">
+              <stringProp name="Header.name">app-debug-mode</stringProp>
+              <stringProp name="Header.value">${__P(IOS_APP_DEBUG_MODE)}</stringProp>
+            </elementProp>
+            <elementProp name="userid" elementType="Header">
+              <stringProp name="Header.name">userid</stringProp>
+              <stringProp name="Header.value">${userId}</stringProp>
+            </elementProp>
+            <elementProp name="Cookie" elementType="Header">
+              <stringProp name="Header.name">Cookie</stringProp>
+              <stringProp name="Header.value">${__P(IOS_COOKIE_GCLB_BFF)}</stringProp>
+            </elementProp>
+            <elementProp name="accept-language" elementType="Header">
+              <stringProp name="Header.name">accept-language</stringProp>
+              <stringProp name="Header.value">${__P(IOS_ACCEPT_LANGUAGE)}</stringProp>
+            </elementProp>
+            <elementProp name="device-type" elementType="Header">
+              <stringProp name="Header.name">device-type</stringProp>
+              <stringProp name="Header.value">${__P(IOS_DEVICE_TYPE)}</stringProp>
+            </elementProp>
+          </collectionProp>
+          <stringProp name="TestPlan.comments">Headers for iOS Post Ad to my.gumtree.com. Cookie is critical and provided via variable.</stringProp>
+        </HeaderManager>
+        <hashTree/>
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
+          <collectionProp name="CookieManager.cookies"/>
+          <stringProp name="TestPlan.comments">处理my.gumtree.com的Cookie</stringProp>
+          <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+          <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
+        </CookieManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="8.1 Post Ad ">
+          <stringProp name="TestPlan.comments">发布/重新发布广告接口 (iOS version)。预期成功 (200)。</stringProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.path">/v2/my-gumtree/ad/3906775808a143cf98bb75573ffb341d/repost</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 204">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49590">204</stringProp>
             </collectionProp>
             <stringProp name="Assertion.custom_message">期望发布广告成功返回状态码 200 (OK)。</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
