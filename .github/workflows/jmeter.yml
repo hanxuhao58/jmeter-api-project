@@ -2,9 +2,9 @@ name: JMeter CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "1.0" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "1.0" ]
 
 jobs:
   jmeter:
@@ -16,20 +16,94 @@ jobs:
 
       - name: Install JMeter
         run: |
-          wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz
+          wget https://mirrors.tuna.tsinghua.edu.cn/apache/jmeter/binaries/apache-jmeter-5.6.3.tgz
           tar -xzf apache-jmeter-5.6.3.tgz
+
+      - name: Install JMeter Plugins Manager and JSON Path Assertion
+        run: |
+          wget https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.3/cmdrunner-2.3.jar -O ./apache-jmeter-5.6.3/lib/cmdrunner-2.3.jar
+          # jmeter-plugins.org/get/ 有时会返回 404，改为从 Maven Central 下载指定版本
+          PLUGIN_VERSION=1.8
+          wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/${PLUGIN_VERSION}/jmeter-plugins-manager-${PLUGIN_VERSION}.jar -O ./apache-jmeter-5.6.3/lib/ext/jmeter-plugins-manager.jar
+          # 直接手动下载 JSON Path Assertion 插件，避免依赖在线仓库
+          JSON_PLUGIN_VERSION=2.7
+          wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-json/${JSON_PLUGIN_VERSION}/jmeter-plugins-json-${JSON_PLUGIN_VERSION}.jar -O ./apache-jmeter-5.6.3/lib/ext/jmeter-plugins-json.jar
+
+      - name: Prepare reports directory
+        run: mkdir -p reports
+
+      - name: Run Selected Testcases
+        run: |
+          # 每次执行前清空 jtl 文件，避免历史数据影响报告
+          > reports/all_cases.jtl
 
       - name: Run Login Test
         run: |
-          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/auth/auth_login.jmx -q config/dev.env.properties
+          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/tg1_auth_login.jmx -q config/dev.env.properties -l reports/all_cases.jtl
 
-      - name: Run All Other Tests
+      - name: Check auth_tokens.csv file
         run: |
-          for file in testcases/*.jmx; do
-            if [[ "$file" != *auth_login.jmx ]]; then
-              ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/dev.env.properties -l "reports/$(basename $file .jmx).jtl" -e -o "reports/$(basename $file .jmx)_report"
-            fi
+          echo "Checking if auth_tokens.csv exists..."
+          ls -la data/
+          if [ -f "data/auth_tokens.csv" ]; then
+            echo "auth_tokens.csv exists, content:"
+            cat data/auth_tokens.csv
+          else
+            echo "ERROR: auth_tokens.csv does not exist!"
+            echo "Creating empty file for testing..."
+            mkdir -p data
+            echo "userId,userToken,userAuthorization" > data/auth_tokens.csv
+            echo "test,test,test" >> data/auth_tokens.csv
+          fi
+
+      - name: Run Selected Testcases (白名单)
+        run: |
+          whitelist=(
+            testcases/tg2_registration_register.jmx
+            testcases/tg3_auth_logout.jmx
+            testcases/tg4_account_activation.jmx
+            testcases/tg5_password_reset.jmx
+            testcases/tg7_ad_posted_analytics.jmx
+            testcases/tg8_post_ad.jmx
+            testcases/tg9_delete_ad.jmx
+            testcases/tg10_promote_ad_screen.jmx
+            testcases/tg11_user_block.jmx
+            testcases/tg12_vip_screen.jmx
+            testcases/tg13_mygumtree_screen.jmx
+            testcases/tg14_favourites.jmx
+            testcases/tg15_favourites_screen.jmx
+            testcases/tg16_chat_screen.jmx
+            testcases/tg17_conversation_screen.jmx
+            testcases/tg18_conversation_unread_messages.jmx
+            testcases/tg19_conversation.jmx
+            testcases/tg20_reviews_conversation.jmx
+          )
+          # whitelist=(
+            
+          #   testcases/tg9_delete_ad.jmx
+            
+          # )
+          
+          echo "Current working directory: $(pwd)"
+          echo "Directory contents:"
+          ls -la
+          echo "Data directory contents:"
+          ls -la data/
+          echo "CSV file contents before running tg9:"
+          cat data/auth_tokens.csv
+          
+          for file in "${whitelist[@]}"; do
+            echo "Running: $file"
+            ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/dev.env.properties -l reports/all_cases.jtl
           done
+
+      - name: Run tg6 Forgot Password (最后单独执行)
+        run: |
+          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/tg6_forgot_password.jmx -q config/dev.env.properties -l reports/all_cases.jtl
+
+      - name: Generate Unified HTML Report
+        run: |
+          ./apache-jmeter-5.6.3/bin/jmeter -g reports/all_cases.jtl -e -o reports/all_cases_report
 
       - name: Upload reports
         uses: actions/upload-artifact@v4

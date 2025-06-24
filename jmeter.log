@@ -1,0 +1,164 @@
+2025-06-23 15:06:54,398 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2025-06-23 15:06:54,409 INFO o.a.j.JMeter: Loading user properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/user.properties
+2025-06-23 15:06:54,409 INFO o.a.j.JMeter: Loading system properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/system.properties
+2025-06-23 15:06:54,409 INFO o.a.j.JMeter: Loading additional properties from: config/dev.env.properties
+2025-06-23 15:06:54,413 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
+2025-06-23 15:06:54,413 INFO o.a.j.JMeter: Version 5.6.3
+2025-06-23 15:06:54,413 INFO o.a.j.JMeter: java.version=21.0.7
+2025-06-23 15:06:54,413 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2025-06-23 15:06:54,413 INFO o.a.j.JMeter: os.name=Mac OS X
+2025-06-23 15:06:54,413 INFO o.a.j.JMeter: os.arch=aarch64
+2025-06-23 15:06:54,413 INFO o.a.j.JMeter: os.version=15.5
+2025-06-23 15:06:54,413 INFO o.a.j.JMeter: file.encoding=UTF-8
+2025-06-23 15:06:54,413 INFO o.a.j.JMeter: java.awt.headless=null
+2025-06-23 15:06:54,413 INFO o.a.j.JMeter: Max memory     =1073741824
+2025-06-23 15:06:54,413 INFO o.a.j.JMeter: Available Processors =8
+2025-06-23 15:06:54,418 INFO o.a.j.JMeter: Default Locale=English (EN)
+2025-06-23 15:06:54,418 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2025-06-23 15:06:54,418 INFO o.a.j.JMeter: JMeterHome=/opt/homebrew/Cellar/jmeter/5.6.3/libexec
+2025-06-23 15:06:54,418 INFO o.a.j.JMeter: user.dir  =/Users/a58/Documents/jmeter-api-project
+2025-06-23 15:06:54,418 INFO o.a.j.JMeter: PWD       =/Users/a58/Documents/jmeter-api-project
+2025-06-23 15:06:54,420 INFO o.a.j.JMeter: IP: 127.0.0.1 Name: Xuhao-MacBook-Pro.local FullName: localhost
+2025-06-23 15:06:54,426 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2025-06-23 15:06:54,663 INFO o.a.j.JMeterGuiLauncher: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.DarculaTheme
+2025-06-23 15:06:55,438 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.action.Command], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-23 15:06:55,473 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.action.Command], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-23 15:06:55,503 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.plugin.MenuCreator], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-23 15:06:55,504 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.plugin.MenuCreator], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-23 15:06:55,557 INFO o.j.r.JARSourceHTTP: Requesting https://jmeter-plugins.org/repo/?installID=mac_os_x-6521f0305169af3739090e3e840cb273-gui
+2025-06-23 15:06:57,691 INFO o.j.r.PluginManager: Plugins Status: [jpgc-json=2.7, jpgc-plugins-manager=1.10, jmeter-core=5.6.3, jmeter-ftp=5.6.3, jmeter-http=5.6.3, jmeter-jdbc=5.6.3, jmeter-jms=5.6.3, jmeter-junit=5.6.3, jmeter-java=5.6.3, jmeter-ldap=5.6.3, jmeter-mail=5.6.3, jmeter-mongodb=5.6.3, jmeter-native=5.6.3, jmeter-tcp=5.6.3, jmeter-components=5.6.3]
+2025-06-23 15:06:57,692 INFO o.j.r.PluginManagerMenuItem: Plugins Manager has upgrades: [jpgc-plugins-manager]
+2025-06-23 15:07:48,738 INFO o.a.j.s.FileServer: Default base='/Users/a58/Documents/jmeter-api-project'
+2025-06-23 15:07:48,740 INFO o.a.j.g.a.Load: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/tg9_delete_ad.jmx
+2025-06-23 15:07:48,740 INFO o.a.j.s.FileServer: Set new base='/Users/a58/Documents/jmeter-api-project/testcases'
+2025-06-23 15:07:48,829 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2025-06-23 15:07:48,832 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2025-06-23 15:07:48,833 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2025-06-23 15:07:48,834 INFO o.a.j.s.SaveService: Loading file: /Users/a58/Documents/jmeter-api-project/testcases/tg9_delete_ad.jmx
+2025-06-23 15:07:48,872 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-06-23 15:07:48,872 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-06-23 15:07:48,872 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-06-23 15:07:48,872 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-06-23 15:07:48,872 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2025-06-23 15:07:48,872 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2025-06-23 15:07:49,014 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2025-06-23 15:07:49,014 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
+2025-06-23 15:07:49,014 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2025-06-23 15:07:49,014 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2025-06-23 15:07:49,072 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-23 15:07:49,074 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-23 15:07:49,084 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-23 15:07:49,085 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-json-2.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-06-23 15:07:49,117 INFO o.a.j.s.FileServer: Set new base='/Users/a58/Documents/jmeter-api-project/testcases'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        2025-06-23 15:10:21,495 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-23 15:10:21,495 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-23 15:10:21,496 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-06-23 15:10:21,526 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : TG8: Post Ad Scenario (iOS - my.gumtree.com)
+2025-06-23 15:10:21,526 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group TG8: Post Ad Scenario (iOS - my.gumtree.com).
+2025-06-23 15:10:21,526 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-23 15:10:21,526 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-06-23 15:10:21,527 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-06-23 15:10:21,527 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-06-23 15:10:21,527 INFO o.a.j.t.JMeterThread: Thread started: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:10:21,527 INFO o.a.j.s.FileServer: Stored: data/auth_tokens.csv
+2025-06-23 15:10:22,253 INFO o.a.j.t.JMeterThread: Thread is done: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:10:22,253 INFO o.a.j.t.JMeterThread: Thread finished: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:10:22,253 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-06-23 15:10:22,253 INFO o.a.j.s.FileServer: Close: data/auth_tokens.csv
+2025-06-23 15:10:22,253 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-06-23 15:12:45,249 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-23 15:12:45,249 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-23 15:12:45,250 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-06-23 15:12:45,285 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : TG8: Post Ad Scenario (iOS - my.gumtree.com)
+2025-06-23 15:12:45,285 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group TG8: Post Ad Scenario (iOS - my.gumtree.com).
+2025-06-23 15:12:45,285 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-23 15:12:45,285 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-06-23 15:12:45,286 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-06-23 15:12:45,286 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-06-23 15:12:45,286 INFO o.a.j.t.JMeterThread: Thread started: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:12:45,286 INFO o.a.j.s.FileServer: Stored: data/auth_tokens.csv
+2025-06-23 15:12:46,352 INFO o.a.j.t.JMeterThread: Thread is done: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:12:46,352 INFO o.a.j.t.JMeterThread: Thread finished: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:12:46,354 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-06-23 15:12:46,354 INFO o.a.j.s.FileServer: Close: data/auth_tokens.csv
+2025-06-23 15:12:46,354 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-06-23 15:15:20,355 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-23 15:15:20,356 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-23 15:15:20,356 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-06-23 15:15:20,391 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : TG8: Post Ad Scenario (iOS - my.gumtree.com)
+2025-06-23 15:15:20,392 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group TG8: Post Ad Scenario (iOS - my.gumtree.com).
+2025-06-23 15:15:20,392 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-23 15:15:20,392 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-06-23 15:15:20,392 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-06-23 15:15:20,392 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-06-23 15:15:20,392 INFO o.a.j.t.JMeterThread: Thread started: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:15:20,393 INFO o.a.j.s.FileServer: Stored: data/auth_tokens.csv
+2025-06-23 15:15:21,226 INFO o.a.j.t.JMeterThread: Thread is done: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:15:21,226 INFO o.a.j.t.JMeterThread: Thread finished: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:15:21,226 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-06-23 15:15:21,226 INFO o.a.j.s.FileServer: Close: data/auth_tokens.csv
+2025-06-23 15:15:21,226 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-06-23 15:25:17,878 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-23 15:25:17,880 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-23 15:25:17,881 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-06-23 15:25:17,922 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : TG8: Post Ad Scenario (iOS - my.gumtree.com)
+2025-06-23 15:25:17,922 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group TG8: Post Ad Scenario (iOS - my.gumtree.com).
+2025-06-23 15:25:17,922 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-23 15:25:17,922 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-06-23 15:25:17,922 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-06-23 15:25:17,922 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-06-23 15:25:17,923 INFO o.a.j.t.JMeterThread: Thread started: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:25:17,923 INFO o.a.j.s.FileServer: Stored: data/auth_tokens.csv
+2025-06-23 15:25:18,413 INFO o.a.j.t.JMeterThread: Thread is done: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:25:18,413 INFO o.a.j.t.JMeterThread: Thread finished: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:25:18,414 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-06-23 15:25:18,414 INFO o.a.j.s.FileServer: Close: data/auth_tokens.csv
+2025-06-23 15:25:18,414 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-06-23 15:26:00,043 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-23 15:26:00,044 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-23 15:26:00,045 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-06-23 15:26:00,088 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : TG8: Post Ad Scenario (iOS - my.gumtree.com)
+2025-06-23 15:26:00,089 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group TG8: Post Ad Scenario (iOS - my.gumtree.com).
+2025-06-23 15:26:00,089 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-23 15:26:00,089 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-06-23 15:26:00,089 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-06-23 15:26:00,089 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-06-23 15:26:00,090 INFO o.a.j.t.JMeterThread: Thread started: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:26:00,090 INFO o.a.j.s.FileServer: Stored: data/auth_tokens.csv
+2025-06-23 15:26:00,568 INFO o.a.j.t.JMeterThread: Thread is done: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:26:00,568 INFO o.a.j.t.JMeterThread: Thread finished: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:26:00,568 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-06-23 15:26:00,568 INFO o.a.j.s.FileServer: Close: data/auth_tokens.csv
+2025-06-23 15:26:00,568 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-06-23 15:26:48,188 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-23 15:26:48,189 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-23 15:26:48,190 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-06-23 15:26:48,223 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : TG8: Post Ad Scenario (iOS - my.gumtree.com)
+2025-06-23 15:26:48,223 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group TG8: Post Ad Scenario (iOS - my.gumtree.com).
+2025-06-23 15:26:48,223 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-23 15:26:48,223 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-06-23 15:26:48,224 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-06-23 15:26:48,224 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-06-23 15:26:48,224 INFO o.a.j.t.JMeterThread: Thread started: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:26:48,224 INFO o.a.j.s.FileServer: Stored: data/auth_tokens.csv
+2025-06-23 15:26:48,725 INFO o.a.j.t.JMeterThread: Thread is done: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:26:48,725 INFO o.a.j.t.JMeterThread: Thread finished: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:26:48,726 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-06-23 15:26:48,726 INFO o.a.j.s.FileServer: Close: data/auth_tokens.csv
+2025-06-23 15:26:48,726 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-06-23 15:27:17,731 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-06-23 15:27:17,732 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-06-23 15:27:17,732 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-06-23 15:27:17,767 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : TG8: Post Ad Scenario (iOS - my.gumtree.com)
+2025-06-23 15:27:17,768 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group TG8: Post Ad Scenario (iOS - my.gumtree.com).
+2025-06-23 15:27:17,768 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-06-23 15:27:17,768 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-06-23 15:27:17,768 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-06-23 15:27:17,769 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-06-23 15:27:17,769 INFO o.a.j.t.JMeterThread: Thread started: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:27:17,769 INFO o.a.j.s.FileServer: Stored: data/auth_tokens.csv
+2025-06-23 15:27:18,255 INFO o.a.j.t.JMeterThread: Thread is done: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:27:18,255 INFO o.a.j.t.JMeterThread: Thread finished: TG8: Post Ad Scenario (iOS - my.gumtree.com) 1-1
+2025-06-23 15:27:18,256 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-06-23 15:27:18,256 INFO o.a.j.s.FileServer: Close: data/auth_tokens.csv
+2025-06-23 15:27:18,256 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)

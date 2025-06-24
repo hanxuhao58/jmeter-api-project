@@ -1,0 +1,74 @@
+name: Poll Company Repo & Run JMeter
+on:
+  schedule:
+    - cron: '*/5 * * * *'      # 每 5 分钟轮询
+  workflow_dispatch:           # 手动触发
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    env:
+      COMPANY_REPO: gumtree-tech/mobile-apps-bff   # 目标仓库
+      BRANCH: main                                 # 监控分支
+      STATE: .last_sha_bff                         # 记录文件名
+    steps:
+      # 1 拉自己仓库（保存状态用）
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      # 2 读上次 sha
+      - id: prev
+        run: echo "SHA=$(cat $STATE 2>/dev/null || echo none)" >> $GITHUB_OUTPUT
+
+      # 3 查询最新 sha（只用 PAT）
+      - id: latest
+        run: |
+          LATEST=$(curl -s -H "Authorization: Bearer ${{ secrets.COMPANY_PAT }}" \
+          https://api.github.com/repos/${COMPANY_REPO}/commits/${BRANCH} | jq -r .sha)
+          echo "LATEST=$LATEST" >> $GITHUB_OUTPUT
+
+      # 设置环境变量供后续步骤使用
+      - name: Export LATEST env
+        run: echo "LATEST=${{ steps.latest.outputs.LATEST }}" >> $GITHUB_ENV
+
+      # 4 无更新就提前结束
+      - name: No change
+        if: env.LATEST == steps.prev.outputs.SHA
+        run: echo "No new commit."
+
+      # 5 有更新才继续
+      - name: Checkout company repo
+        if: env.LATEST != steps.prev.outputs.SHA
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.COMPANY_REPO }}
+          ref: ${{ env.BRANCH }}
+          token: ${{ secrets.COMPANY_PAT }}   # SSH 方案可删
+          path: company_src
+
+      - name: Install JMeter & plugins
+        if: env.LATEST != steps.prev.outputs.SHA
+        run: bash scripts/install_jmeter.sh
+
+      - name: Run tests
+        if: env.LATEST != steps.prev.outputs.SHA
+        run: bash scripts/run_all.sh
+
+      - uses: actions/upload-artifact@v4
+        if: env.LATEST != steps.prev.outputs.SHA
+        with:
+          name: jmeter-report
+          path: reports/
+
+      # 6 记录新 sha
+      - name: Save sha
+        if: env.LATEST != steps.prev.outputs.SHA
+        run: |
+          echo "${{ env.LATEST }}" > $STATE
+          git config user.name "ci-bot"
+          git config user.email "ci-bot@users.noreply.github.com"
+          git add $STATE
+          git commit -m "update sha"
+          git push
