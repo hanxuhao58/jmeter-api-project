@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       COMPANY_REPO: gumtree-tech/mobile-apps-bff   # 目标仓库
-      BRANCH: main                                 # 监控分支
+      BRANCH: master                                 # 监控分支
       STATE: .last_sha_bff                         # 记录文件名
       ACTIONS_STEP_DEBUG: ${{ secrets.ACTIONS_STEP_DEBUG }} # 打开 Checkout 调试日志
     steps:
