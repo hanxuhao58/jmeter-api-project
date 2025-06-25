@@ -7,7 +7,15 @@ JTL=${REPORT_DIR}/all_cases.jtl
 mkdir -p ${REPORT_DIR}
 > ${JTL}
 
-CONFIG_FILE=config/dev.env.properties
+# 根据第一个参数决定环境名，默认为 dev
+ENV_NAME=${1:-dev}
+CONFIG_FILE=config/${ENV_NAME}.env.properties
+
+# 若配置文件不存在则报错退出
+if [ ! -f "$CONFIG_FILE" ]; then
+  echo "ERROR: Config file $CONFIG_FILE not found."
+  exit 1
+fi
 
 # 先跑登录获取 token
 ${JMETER_DIR}/bin/jmeter -n -t testcases/tg1_auth_login.jmx -q ${CONFIG_FILE} -l ${JTL}
