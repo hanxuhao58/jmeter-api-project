@@ -47,7 +47,7 @@ jobs:
           repository: gumtree-tech/mobile-apps-bff          # 目标仓库
           token: ${{ secrets.COMPANY_PAT }}                 # 统一使用 COMPANY_PAT Secret
           path: company_src                                 # 放到子目录
-          ref: main                                         # 若默认分支不是 main，请改
+          ref: ${{ env.BRANCH }}                            # 使用 env 中定义的分支
           fetch-depth: 0                                    # 如需完整历史
           submodules: true                                  # 仓库里有子模块就加
 
