@@ -11,6 +11,7 @@ jobs:
       COMPANY_REPO: gumtree-tech/mobile-apps-bff   # 目标仓库
       BRANCH: main                                 # 监控分支
       STATE: .last_sha_bff                         # 记录文件名
+      ACTIONS_STEP_DEBUG: ${{ secrets.ACTIONS_STEP_DEBUG }} # 打开 Checkout 调试日志
     steps:
       # 1 拉自己仓库（保存状态用）
       - uses: actions/checkout@v4
@@ -39,14 +40,16 @@ jobs:
         run: echo "No new commit."
 
       # 5 有更新才继续
-      - name: Checkout company repo
+      - name: Checkout BFF repo
         if: env.LATEST != steps.prev.outputs.SHA
         uses: actions/checkout@v4
         with:
-          repository: ${{ env.COMPANY_REPO }}
-          ref: ${{ env.BRANCH }}
-          token: ${{ secrets.COMPANY_PAT }}   # SSH 方案可删
-          path: company_src
+          repository: gumtree-tech/mobile-apps-bff          # 目标仓库
+          token: ${{ secrets.COMPANY_PAT }}                 # 统一使用 COMPANY_PAT Secret
+          path: company_src                                 # 放到子目录
+          ref: main                                         # 若默认分支不是 main，请改
+          fetch-depth: 0                                    # 如需完整历史
+          submodules: true                                  # 仓库里有子模块就加
 
       - name: Install JMeter & plugins
         if: env.LATEST != steps.prev.outputs.SHA
