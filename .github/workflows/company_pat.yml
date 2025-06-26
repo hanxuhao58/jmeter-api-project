@@ -6,6 +6,8 @@ on:
 
 jobs:
   poll:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     env:
       COMPANY_REPO: gumtree-tech/mobile-apps-bff   # 目标仓库
