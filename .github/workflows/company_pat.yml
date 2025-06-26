@@ -1,19 +1,19 @@
 name: Poll Company Repo & Run JMeter
 on:
   schedule:
-    - cron: '*/10 * * * *'      # 每 10 分钟轮询
-  workflow_dispatch:           # 手动触发
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
 
 env:
   COMPANY_REPO: gumtree-tech/mobile-apps-bff   # 目标仓库
-  BRANCH: master                                 # 监控分支
+  BRANCH: master                               # 监控分支
   STATE: .last_sha_bff                         # 记录文件名
 
 jobs:
   check:
     runs-on: ubuntu-latest
     outputs:
-      updated: ${{ steps.diff.outputs.updated }}
+      updated: ${{ steps.set.outputs.updated }}
       latest_sha: ${{ steps.latest.outputs.sha }}
     steps:
       - name: Checkout self
@@ -27,15 +27,15 @@ jobs:
       - id: latest
         run: |
           sha=$(curl -s -H "Authorization: Bearer ${{ secrets.COMPANY_PAT }}" \
-                https://api.github.com/repos/${{ env.COMPANY_REPO }}/commits/${{ env.BRANCH }} | jq -r .sha)
+              https://api.github.com/repos/${{ env.COMPANY_REPO }}/commits/${{ env.BRANCH }} | jq -r .sha)
           echo "sha=$sha" >> $GITHUB_OUTPUT
 
-      - id: diff
+      - id: set
         run: |
           if [ "${{ steps.latest.outputs.sha }}" = "${{ steps.prev.outputs.sha }}" ]; then
             echo "updated=false" >> $GITHUB_OUTPUT
           else
-            echo "updated=true"  >> $GITHUB_OUTPUT
+            echo "updated=true" >> $GITHUB_OUTPUT
           fi
 
   jmeter:
@@ -45,10 +45,8 @@ jobs:
     permissions:
       contents: write
     env:
-      COMPANY_REPO: ${{ env.COMPANY_REPO }}
-      BRANCH: ${{ env.BRANCH }}
-      STATE: ${{ env.STATE }}
       LATEST: ${{ needs.check.outputs.latest_sha }}
+      STATE: ${{ env.STATE }}
     steps:
       - name: Checkout self repo (for pushing state file)
         uses: actions/checkout@v4
