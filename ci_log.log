@@ -1,0 +1,1171 @@
+2025-06-25T23:51:01.1652157Z ##[debug]Starting: poll
+2025-06-25T23:51:01.1683515Z ##[debug]Cleaning runner temp folder: /home/runner/work/_temp
+2025-06-25T23:51:01.1798851Z ##[debug]Starting: Set up job
+2025-06-25T23:51:01.1799943Z Current runner version: '2.325.0'
+2025-06-25T23:51:01.1826816Z ##[group]Operating System
+2025-06-25T23:51:01.1827787Z Ubuntu
+2025-06-25T23:51:01.1828582Z 24.04.2
+2025-06-25T23:51:01.1829259Z LTS
+2025-06-25T23:51:01.1829959Z ##[endgroup]
+2025-06-25T23:51:01.1830542Z ##[group]Runner Image
+2025-06-25T23:51:01.1831246Z Image: ubuntu-24.04
+2025-06-25T23:51:01.1831773Z Version: 20250622.1.0
+2025-06-25T23:51:01.1832811Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250622.1/images/ubuntu/Ubuntu2404-Readme.md
+2025-06-25T23:51:01.1834207Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250622.1
+2025-06-25T23:51:01.1835114Z ##[endgroup]
+2025-06-25T23:51:01.1835644Z ##[group]Runner Image Provisioner
+2025-06-25T23:51:01.1836507Z 2.0.437.1
+2025-06-25T23:51:01.1837244Z ##[endgroup]
+2025-06-25T23:51:01.1838345Z ##[group]GITHUB_TOKEN Permissions
+2025-06-25T23:51:01.1840652Z Contents: read
+2025-06-25T23:51:01.1841219Z Metadata: read
+2025-06-25T23:51:01.1841738Z Packages: read
+2025-06-25T23:51:01.1842428Z ##[endgroup]
+2025-06-25T23:51:01.1844509Z Secret source: Actions
+2025-06-25T23:51:01.1845356Z ##[debug]Primary repository: hanxuhao58/jmeter-api-project
+2025-06-25T23:51:01.1846212Z Prepare workflow directory
+2025-06-25T23:51:01.1911088Z ##[debug]Creating pipeline directory: '/home/runner/work/jmeter-api-project'
+2025-06-25T23:51:01.1914525Z ##[debug]Creating workspace directory: '/home/runner/work/jmeter-api-project/jmeter-api-project'
+2025-06-25T23:51:01.1916521Z ##[debug]Update context data
+2025-06-25T23:51:01.1920198Z ##[debug]Evaluating job-level environment variables
+2025-06-25T23:51:01.2277758Z ##[debug]Evaluating: secrets.ACTIONS_STEP_DEBUG
+2025-06-25T23:51:01.2283447Z ##[debug]Evaluating Index:
+2025-06-25T23:51:01.2285838Z ##[debug]..Evaluating secrets:
+2025-06-25T23:51:01.2296026Z ##[debug]..=> Object
+2025-06-25T23:51:01.2304730Z ##[debug]..Evaluating String:
+2025-06-25T23:51:01.2305867Z ##[debug]..=> 'ACTIONS_STEP_DEBUG'
+2025-06-25T23:51:01.2310664Z ##[debug]=> 'true'
+2025-06-25T23:51:01.2313845Z ##[debug]Result: 'true'
+2025-06-25T23:51:01.2333123Z ##[debug]Evaluating job container
+2025-06-25T23:51:01.2335670Z ##[debug]Evaluating job service containers
+2025-06-25T23:51:01.2338560Z ##[debug]Evaluating job defaults
+2025-06-25T23:51:01.2363609Z Prepare all required actions
+2025-06-25T23:51:01.2401451Z Getting action download info
+2025-06-25T23:51:01.5598010Z ##[group]Download immutable action package 'actions/checkout@v4'
+2025-06-25T23:51:01.5599027Z Version: 4.2.2
+2025-06-25T23:51:01.5600399Z Digest: sha256:ccb2698953eaebd21c7bf6268a94f9c26518a7e38e27e0b83c1fe1ad049819b1
+2025-06-25T23:51:01.5601698Z Source commit SHA: 11bd71901bbe5b1630ceea73d27597364c9af683
+2025-06-25T23:51:01.5602415Z ##[endgroup]
+2025-06-25T23:51:01.5627597Z ##[debug]Copied action archive '/opt/actionarchivecache/actions_checkout/11bd71901bbe5b1630ceea73d27597364c9af683.tar.gz' to '/home/runner/work/_actions/_temp_ff3b60db-d707-4e20-8ebb-3d8cf89a7f08/d436d843-f756-432d-89e0-fd60ca8b8567.tar.gz'
+2025-06-25T23:51:01.6255309Z ##[debug]Unwrap 'actions-checkout-11bd719' to '/home/runner/work/_actions/actions/checkout/v4'
+2025-06-25T23:51:01.6399374Z ##[debug]Archive '/home/runner/work/_actions/_temp_ff3b60db-d707-4e20-8ebb-3d8cf89a7f08/d436d843-f756-432d-89e0-fd60ca8b8567.tar.gz' has been unzipped into '/home/runner/work/_actions/actions/checkout/v4'.
+2025-06-25T23:51:01.6506888Z ##[debug]Action 'actions/checkout@v4' already downloaded at '/home/runner/work/_actions/actions/checkout/v4'.
+2025-06-25T23:51:01.6513218Z ##[group]Download immutable action package 'actions/upload-artifact@v4'
+2025-06-25T23:51:01.6514543Z Version: 4.6.2
+2025-06-25T23:51:01.6515763Z Digest: sha256:290722aa3281d5caf23d0acdc3dbeb3424786a1a01a9cc97e72f147225e37c38
+2025-06-25T23:51:01.6517635Z Source commit SHA: ea165f8d65b6e75b540449e92b4886f43607fa02
+2025-06-25T23:51:01.6519172Z ##[endgroup]
+2025-06-25T23:51:01.6593808Z ##[debug]Copied action archive '/opt/actionarchivecache/actions_upload-artifact/ea165f8d65b6e75b540449e92b4886f43607fa02.tar.gz' to '/home/runner/work/_actions/_temp_845b0f9f-eed2-45e9-81b1-ec0a6c5246ae/939fcfcd-35e3-4404-a3f6-c1cb15739627.tar.gz'
+2025-06-25T23:51:01.7323168Z ##[debug]Unwrap 'actions-upload-artifact-ea165f8' to '/home/runner/work/_actions/actions/upload-artifact/v4'
+2025-06-25T23:51:01.7636062Z ##[debug]Archive '/home/runner/work/_actions/_temp_845b0f9f-eed2-45e9-81b1-ec0a6c5246ae/939fcfcd-35e3-4404-a3f6-c1cb15739627.tar.gz' has been unzipped into '/home/runner/work/_actions/actions/upload-artifact/v4'.
+2025-06-25T23:51:01.7699327Z ##[debug]action.yml for action: '/home/runner/work/_actions/actions/checkout/v4/action.yml'.
+2025-06-25T23:51:01.8265270Z ##[debug]action.yml for action: '/home/runner/work/_actions/actions/checkout/v4/action.yml'.
+2025-06-25T23:51:01.8353319Z ##[debug]action.yml for action: '/home/runner/work/_actions/actions/upload-artifact/v4/action.yml'.
+2025-06-25T23:51:01.8431442Z ##[debug]Set step '__actions_checkout' display name to: 'Run actions/checkout@v4'
+2025-06-25T23:51:01.8436048Z ##[debug]Set step 'prev' display name to: 'Run echo "SHA=$(cat $STATE 2>/dev/null || echo none)" >> $GITHUB_OUTPUT'
+2025-06-25T23:51:01.8470341Z ##[debug]Set step 'latest' display name to: 'Run LATEST=$(curl -s -H "Authorization: *** secrets.COMPANY_PAT }}" \'
+2025-06-25T23:51:01.8472347Z ##[debug]Set step '__run' display name to: 'Export LATEST env'
+2025-06-25T23:51:01.8473846Z ##[debug]Set step '__run_2' display name to: 'No change'
+2025-06-25T23:51:01.8475319Z ##[debug]Set step '__actions_checkout_2' display name to: 'Checkout BFF repo'
+2025-06-25T23:51:01.8477146Z ##[debug]Set step '__run_3' display name to: 'Install JMeter & plugins'
+2025-06-25T23:51:01.8478664Z ##[debug]Set step '__run_4' display name to: 'Run tests'
+2025-06-25T23:51:01.8480261Z ##[debug]Set step '__actions_upload-artifact' display name to: 'Run actions/upload-artifact@v4'
+2025-06-25T23:51:01.8481841Z ##[debug]Set step '__run_5' display name to: 'Save sha'
+2025-06-25T23:51:01.8482499Z Complete job name: poll
+2025-06-25T23:51:01.8524073Z ##[debug]Collect running processes for tracking orphan processes.
+2025-06-25T23:51:01.8733127Z ##[debug]Finishing: Set up job
+2025-06-25T23:51:01.8845128Z ##[debug]Evaluating condition for step: 'Run actions/checkout@v4'
+2025-06-25T23:51:01.8859127Z ##[debug]Evaluating: success()
+2025-06-25T23:51:01.8860380Z ##[debug]Evaluating success:
+2025-06-25T23:51:01.8867744Z ##[debug]=> true
+2025-06-25T23:51:01.8870024Z ##[debug]Result: true
+2025-06-25T23:51:01.8884579Z ##[debug]Starting: Run actions/checkout@v4
+2025-06-25T23:51:01.8952354Z ##[debug]Register post job cleanup for action: actions/checkout@v4
+2025-06-25T23:51:01.9025968Z ##[debug]Loading inputs
+2025-06-25T23:51:01.9034272Z ##[debug]Evaluating: github.repository
+2025-06-25T23:51:01.9034892Z ##[debug]Evaluating Index:
+2025-06-25T23:51:01.9035381Z ##[debug]..Evaluating github:
+2025-06-25T23:51:01.9035902Z ##[debug]..=> Object
+2025-06-25T23:51:01.9036507Z ##[debug]..Evaluating String:
+2025-06-25T23:51:01.9037003Z ##[debug]..=> 'repository'
+2025-06-25T23:51:01.9037848Z ##[debug]=> 'hanxuhao58/jmeter-api-project'
+2025-06-25T23:51:01.9038505Z ##[debug]Result: 'hanxuhao58/jmeter-api-project'
+2025-06-25T23:51:01.9040561Z ##[debug]Evaluating: github.token
+2025-06-25T23:51:01.9041077Z ##[debug]Evaluating Index:
+2025-06-25T23:51:01.9041553Z ##[debug]..Evaluating github:
+2025-06-25T23:51:01.9042031Z ##[debug]..=> Object
+2025-06-25T23:51:01.9042475Z ##[debug]..Evaluating String:
+2025-06-25T23:51:01.9042938Z ##[debug]..=> 'token'
+2025-06-25T23:51:01.9043625Z ##[debug]=> '***'
+2025-06-25T23:51:01.9044190Z ##[debug]Result: '***'
+2025-06-25T23:51:01.9057351Z ##[debug]Loading env
+2025-06-25T23:51:01.9116040Z ##[group]Run actions/checkout@v4
+2025-06-25T23:51:01.9116995Z with:
+2025-06-25T23:51:01.9117418Z   ref: main
+2025-06-25T23:51:01.9117829Z   fetch-depth: 0
+2025-06-25T23:51:01.9118550Z   repository: hanxuhao58/jmeter-api-project
+2025-06-25T23:51:01.9119253Z   token: ***
+2025-06-25T23:51:01.9119634Z   ssh-strict: true
+2025-06-25T23:51:01.9120032Z   ssh-user: git
+2025-06-25T23:51:01.9120431Z   persist-credentials: true
+2025-06-25T23:51:01.9120882Z   clean: true
+2025-06-25T23:51:01.9121295Z   sparse-checkout-cone-mode: true
+2025-06-25T23:51:01.9121776Z   fetch-tags: false
+2025-06-25T23:51:01.9122173Z   show-progress: true
+2025-06-25T23:51:01.9122576Z   lfs: false
+2025-06-25T23:51:01.9122953Z   submodules: false
+2025-06-25T23:51:01.9123367Z   set-safe-directory: true
+2025-06-25T23:51:01.9124521Z env:
+2025-06-25T23:51:01.9125196Z   COMPANY_REPO: gumtree-tech/mobile-apps-bff
+2025-06-25T23:51:01.9126037Z   BRANCH: master
+2025-06-25T23:51:01.9126885Z   STATE: .last_sha_bff
+2025-06-25T23:51:01.9127592Z   ACTIONS_STEP_DEBUG: true
+2025-06-25T23:51:01.9128308Z ##[endgroup]
+2025-06-25T23:51:02.0788093Z ##[debug]GITHUB_WORKSPACE = '/home/runner/work/jmeter-api-project/jmeter-api-project'
+2025-06-25T23:51:02.0790792Z ##[debug]qualified repository = 'hanxuhao58/jmeter-api-project'
+2025-06-25T23:51:02.0792369Z ##[debug]ref = 'main'
+2025-06-25T23:51:02.0793479Z ##[debug]commit = 'undefined'
+2025-06-25T23:51:02.0794646Z ##[debug]clean = true
+2025-06-25T23:51:02.0795847Z ##[debug]filter = undefined
+2025-06-25T23:51:02.0797188Z ##[debug]fetch depth = 0
+2025-06-25T23:51:02.0797991Z ##[debug]fetch tags = false
+2025-06-25T23:51:02.0798688Z ##[debug]show progress = true
+2025-06-25T23:51:02.0799381Z ##[debug]lfs = false
+2025-06-25T23:51:02.0800044Z ##[debug]submodules = false
+2025-06-25T23:51:02.0800932Z ##[debug]recursive submodules = false
+2025-06-25T23:51:02.0802111Z ##[debug]GitHub Host URL = 
+2025-06-25T23:51:02.0803756Z ::add-matcher::/home/runner/work/_actions/actions/checkout/v4/dist/problem-matcher.json
+2025-06-25T23:51:02.0887604Z ##[debug]Added matchers: 'checkout-git'. Problem matchers scan action output for known warning or error strings and report these inline.
+2025-06-25T23:51:02.0893596Z Syncing repository: hanxuhao58/jmeter-api-project
+2025-06-25T23:51:02.0895197Z ::group::Getting Git version info
+2025-06-25T23:51:02.0897096Z ##[group]Getting Git version info
+2025-06-25T23:51:02.0898056Z Working directory is '/home/runner/work/jmeter-api-project/jmeter-api-project'
+2025-06-25T23:51:02.0899614Z ##[debug]Getting git version
+2025-06-25T23:51:02.0900190Z [command]/usr/bin/git version
+2025-06-25T23:51:02.0931937Z git version 2.49.0
+2025-06-25T23:51:02.0956788Z ##[debug]0
+2025-06-25T23:51:02.0957742Z ##[debug]git version 2.49.0
+2025-06-25T23:51:02.0958291Z ##[debug]
+2025-06-25T23:51:02.0960082Z ##[debug]Set git useragent to: git/2.49.0 (github-actions-checkout)
+2025-06-25T23:51:02.0961804Z ::endgroup::
+2025-06-25T23:51:02.0962550Z ##[endgroup]
+2025-06-25T23:51:02.0967917Z ::add-mask::***
+2025-06-25T23:51:02.0977294Z Temporarily overriding HOME='/home/runner/work/_temp/f1823f20-8bb3-456f-9c4a-b925cfafd74f' before making global git config changes
+2025-06-25T23:51:02.0979662Z Adding repository directory to the temporary git global config as a safe directory
+2025-06-25T23:51:02.0992021Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/jmeter-api-project/jmeter-api-project
+2025-06-25T23:51:02.1022126Z ##[debug]0
+2025-06-25T23:51:02.1023234Z ##[debug]
+2025-06-25T23:51:02.1028355Z Deleting the contents of '/home/runner/work/jmeter-api-project/jmeter-api-project'
+2025-06-25T23:51:02.1032462Z ::group::Initializing the repository
+2025-06-25T23:51:02.1033400Z ##[group]Initializing the repository
+2025-06-25T23:51:02.1037873Z [command]/usr/bin/git init /home/runner/work/jmeter-api-project/jmeter-api-project
+2025-06-25T23:51:02.1106821Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-06-25T23:51:02.1107888Z hint: is subject to change. To configure the initial branch name to use in all
+2025-06-25T23:51:02.1108785Z hint: of your new repositories, which will suppress this warning, call:
+2025-06-25T23:51:02.1109455Z hint:
+2025-06-25T23:51:02.1110134Z hint: 	git config --global init.defaultBranch <name>
+2025-06-25T23:51:02.1110970Z hint:
+2025-06-25T23:51:02.1111802Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-06-25T23:51:02.1112673Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-06-25T23:51:02.1113351Z hint:
+2025-06-25T23:51:02.1113729Z hint: 	git branch -m <name>
+2025-06-25T23:51:02.1114562Z Initialized empty Git repository in /home/runner/work/jmeter-api-project/jmeter-api-project/.git/
+2025-06-25T23:51:02.1116764Z ##[debug]0
+2025-06-25T23:51:02.1117832Z ##[debug]Initialized empty Git repository in /home/runner/work/jmeter-api-project/jmeter-api-project/.git/
+2025-06-25T23:51:02.1118680Z ##[debug]
+2025-06-25T23:51:02.1122440Z [command]/usr/bin/git remote add origin https://github.com/hanxuhao58/jmeter-api-project
+2025-06-25T23:51:02.1153925Z ##[debug]0
+2025-06-25T23:51:02.1154594Z ##[debug]
+2025-06-25T23:51:02.1155285Z ::endgroup::
+2025-06-25T23:51:02.1155656Z ##[endgroup]
+2025-06-25T23:51:02.1156561Z ::group::Disabling automatic garbage collection
+2025-06-25T23:51:02.1157307Z ##[group]Disabling automatic garbage collection
+2025-06-25T23:51:02.1158788Z [command]/usr/bin/git config --local gc.auto 0
+2025-06-25T23:51:02.1186616Z ##[debug]0
+2025-06-25T23:51:02.1187290Z ##[debug]
+2025-06-25T23:51:02.1187926Z ::endgroup::
+2025-06-25T23:51:02.1188292Z ##[endgroup]
+2025-06-25T23:51:02.1188938Z ::group::Setting up auth
+2025-06-25T23:51:02.1189378Z ##[group]Setting up auth
+2025-06-25T23:51:02.1194383Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-06-25T23:51:02.1219471Z ##[debug]1
+2025-06-25T23:51:02.1220251Z ##[debug]
+2025-06-25T23:51:02.1225454Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-06-25T23:51:02.1529824Z ##[debug]0
+2025-06-25T23:51:02.1530927Z ##[debug]
+2025-06-25T23:51:02.1536684Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-06-25T23:51:02.1562067Z ##[debug]1
+2025-06-25T23:51:02.1563171Z ##[debug]
+2025-06-25T23:51:02.1569059Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-06-25T23:51:02.1793731Z ##[debug]0
+2025-06-25T23:51:02.1794885Z ##[debug]
+2025-06-25T23:51:02.1803291Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-06-25T23:51:02.1838231Z ##[debug]0
+2025-06-25T23:51:02.1839315Z ##[debug]
+2025-06-25T23:51:02.1850724Z ::endgroup::
+2025-06-25T23:51:02.1851375Z ##[endgroup]
+2025-06-25T23:51:02.1852243Z ::group::Fetching the repository
+2025-06-25T23:51:02.1852755Z ##[group]Fetching the repository
+2025-06-25T23:51:02.1864087Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2025-06-25T23:51:02.5526681Z From https://github.com/hanxuhao58/jmeter-api-project
+2025-06-25T23:51:02.5528309Z  * [new branch]      1.0        -> origin/1.0
+2025-06-25T23:51:02.5529903Z  * [new branch]      feature/jmeter-login-only -> origin/feature/jmeter-login-only
+2025-06-25T23:51:02.5532041Z  * [new branch]      main       -> origin/main
+2025-06-25T23:51:02.5533050Z  * [new branch]      test       -> origin/test
+2025-06-25T23:51:02.5569432Z ##[debug]0
+2025-06-25T23:51:02.5570651Z ##[debug]
+2025-06-25T23:51:02.5572214Z ::endgroup::
+2025-06-25T23:51:02.5572917Z ##[endgroup]
+2025-06-25T23:51:02.5574208Z ::group::Determining the checkout info
+2025-06-25T23:51:02.5575193Z ##[group]Determining the checkout info
+2025-06-25T23:51:02.5581405Z [command]/usr/bin/git branch --list --remote origin/main
+2025-06-25T23:51:02.5609442Z   origin/main
+2025-06-25T23:51:02.5614124Z ##[debug]0
+2025-06-25T23:51:02.5615195Z ##[debug]  origin/main
+2025-06-25T23:51:02.5616638Z ##[debug]
+2025-06-25T23:51:02.5617817Z ::endgroup::
+2025-06-25T23:51:02.5618431Z ##[endgroup]
+2025-06-25T23:51:02.5622942Z [command]/usr/bin/git sparse-checkout disable
+2025-06-25T23:51:02.5662622Z ##[debug]0
+2025-06-25T23:51:02.5663973Z ##[debug]
+2025-06-25T23:51:02.5668742Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-06-25T23:51:02.5697939Z ##[debug]0
+2025-06-25T23:51:02.5699012Z ##[debug]
+2025-06-25T23:51:02.5700107Z ::group::Checking out the ref
+2025-06-25T23:51:02.5700929Z ##[group]Checking out the ref
+2025-06-25T23:51:02.5704101Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-06-25T23:51:02.5802982Z Switched to a new branch 'main'
+2025-06-25T23:51:02.5804809Z branch 'main' set up to track 'origin/main'.
+2025-06-25T23:51:02.5812533Z ##[debug]0
+2025-06-25T23:51:02.5814384Z ##[debug]branch 'main' set up to track 'origin/main'.
+2025-06-25T23:51:02.5815737Z ##[debug]
+2025-06-25T23:51:02.5817626Z ::endgroup::
+2025-06-25T23:51:02.5818574Z ##[endgroup]
+2025-06-25T23:51:02.5846938Z ##[debug]0
+2025-06-25T23:51:02.5849177Z ##[debug]commit cedaeaffefd8f23d9f4a6add200b730ef0c5edc5
+2025-06-25T23:51:02.5850777Z ##[debug]Merge: 8c85db8 d72b8f9
+2025-06-25T23:51:02.5852081Z ##[debug]Author: hanxuhao58 <hanxuhao58@gmail.com>
+2025-06-25T23:51:02.5853597Z ##[debug]Date:   Wed Jun 25 16:20:34 2025 +0800
+2025-06-25T23:51:02.5854884Z ##[debug]
+2025-06-25T23:51:02.5855918Z ##[debug]    Merge pull request #2 from hanxuhao58/1.0
+2025-06-25T23:51:02.5857526Z ##[debug]    
+2025-06-25T23:51:02.5858143Z ##[debug]    1.1合并
+2025-06-25T23:51:02.5858874Z ##[debug]
+2025-06-25T23:51:02.5859639Z [command]/usr/bin/git log -1 --format=%H
+2025-06-25T23:51:02.5874645Z cedaeaffefd8f23d9f4a6add200b730ef0c5edc5
+2025-06-25T23:51:02.5880130Z ##[debug]0
+2025-06-25T23:51:02.5882201Z ##[debug]cedaeaffefd8f23d9f4a6add200b730ef0c5edc5
+2025-06-25T23:51:02.5883795Z ##[debug]
+2025-06-25T23:51:02.5886582Z ##[debug]Unsetting HOME override
+2025-06-25T23:51:02.5896062Z ::remove-matcher owner=checkout-git::
+2025-06-25T23:51:02.5911475Z ##[debug]Removed matchers: 'checkout-git'
+2025-06-25T23:51:02.5970272Z ##[debug]Node Action run completed with exit code 0
+2025-06-25T23:51:02.6005044Z ##[debug]Save intra-action state isPost = true
+2025-06-25T23:51:02.6006978Z ##[debug]Save intra-action state setSafeDirectory = true
+2025-06-25T23:51:02.6009015Z ##[debug]Save intra-action state repositoryPath = /home/runner/work/jmeter-api-project/jmeter-api-project
+2025-06-25T23:51:02.6014561Z ##[debug]Set output commit = cedaeaffefd8f23d9f4a6add200b730ef0c5edc5
+2025-06-25T23:51:02.6016813Z ##[debug]Set output ref = main
+2025-06-25T23:51:02.6023004Z ##[debug]Finishing: Run actions/checkout@v4
+2025-06-25T23:51:02.6049453Z ##[debug]Evaluating condition for step: 'Run echo "SHA=$(cat $STATE 2>/dev/null || echo none)" >> $GITHUB_OUTPUT'
+2025-06-25T23:51:02.6053553Z ##[debug]Evaluating: success()
+2025-06-25T23:51:02.6054976Z ##[debug]Evaluating success:
+2025-06-25T23:51:02.6056547Z ##[debug]=> true
+2025-06-25T23:51:02.6057858Z ##[debug]Result: true
+2025-06-25T23:51:02.6060053Z ##[debug]Starting: Run echo "SHA=$(cat $STATE 2>/dev/null || echo none)" >> $GITHUB_OUTPUT
+2025-06-25T23:51:02.6078842Z ##[debug]Loading inputs
+2025-06-25T23:51:02.6081203Z ##[debug]Loading env
+2025-06-25T23:51:02.6105105Z ##[group]Run echo "SHA=$(cat $STATE 2>/dev/null || echo none)" >> $GITHUB_OUTPUT
+2025-06-25T23:51:02.6107241Z [36;1mecho "SHA=$(cat $STATE 2>/dev/null || echo none)" >> $GITHUB_OUTPUT[0m
+2025-06-25T23:51:02.6201953Z shell: /usr/bin/bash -e {0}
+2025-06-25T23:51:02.6202897Z env:
+2025-06-25T23:51:02.6203713Z   COMPANY_REPO: gumtree-tech/mobile-apps-bff
+2025-06-25T23:51:02.6204852Z   BRANCH: master
+2025-06-25T23:51:02.6205661Z   STATE: .last_sha_bff
+2025-06-25T23:51:02.6206852Z   ACTIONS_STEP_DEBUG: true
+2025-06-25T23:51:02.6207763Z ##[endgroup]
+2025-06-25T23:51:02.6285380Z ##[debug]/usr/bin/bash -e /home/runner/work/_temp/1b0e94dd-1ec5-4cba-ad22-5661219c072b.sh
+2025-06-25T23:51:02.6352624Z ##[debug]Set output SHA = none
+2025-06-25T23:51:02.6355583Z ##[debug]Finishing: Run echo "SHA=$(cat $STATE 2>/dev/null || echo none)" >> $GITHUB_OUTPUT
+2025-06-25T23:51:02.6379266Z ##[debug]Evaluating condition for step: 'Run LATEST=$(curl -s -H "Authorization: *** secrets.COMPANY_PAT }}" \'
+2025-06-25T23:51:02.6384402Z ##[debug]Evaluating: format('LATEST=$(curl -s -H "Authorization: ***" \
+2025-06-25T23:51:02.6386784Z ##[debug]https://api.github.com/repos/${{COMPANY_REPO}}/commits/${{BRANCH}} | jq -r .sha)
+2025-06-25T23:51:02.6388559Z ##[debug]echo "LATEST=$LATEST" >> $GITHUB_OUTPUT
+2025-06-25T23:51:02.6389742Z ##[debug]', secrets.COMPANY_PAT)
+2025-06-25T23:51:02.6390755Z ##[debug]Evaluating format:
+2025-06-25T23:51:02.6395385Z ##[debug]..Evaluating String:
+2025-06-25T23:51:02.6397088Z ##[debug]..=> 'LATEST=$(curl -s -H "Authorization: ***" \
+2025-06-25T23:51:02.6398960Z ##[debug]https://api.github.com/repos/${{COMPANY_REPO}}/commits/${{BRANCH}} | jq -r .sha)
+2025-06-25T23:51:02.6400757Z ##[debug]echo "LATEST=$LATEST" >> $GITHUB_OUTPUT
+2025-06-25T23:51:02.6401869Z ##[debug]'
+2025-06-25T23:51:02.6414470Z ##[debug]..Evaluating Index:
+2025-06-25T23:51:02.6415514Z ##[debug]....Evaluating secrets:
+2025-06-25T23:51:02.6416654Z ##[debug]....=> Object
+2025-06-25T23:51:02.6417559Z ##[debug]....Evaluating String:
+2025-06-25T23:51:02.6418552Z ##[debug]....=> 'COMPANY_PAT'
+2025-06-25T23:51:02.6419915Z ##[debug]..=> '***'
+2025-06-25T23:51:02.6422311Z ##[debug]=> 'LATEST=$(curl -s -H "Authorization: ***" \
+2025-06-25T23:51:02.6424071Z ##[debug]https://api.github.com/repos/${COMPANY_REPO}/commits/${BRANCH} | jq -r .sha)
+2025-06-25T23:51:02.6425795Z ##[debug]echo "LATEST=$LATEST" >> $GITHUB_OUTPUT
+2025-06-25T23:51:02.6427139Z ##[debug]'
+2025-06-25T23:51:02.6428765Z ##[debug]Result: 'LATEST=$(curl -s -H "Authorization: ***" \
+2025-06-25T23:51:02.6430559Z ##[debug]https://api.github.com/repos/${COMPANY_REPO}/commits/${BRANCH} | jq -r .sha)
+2025-06-25T23:51:02.6432253Z ##[debug]echo "LATEST=$LATEST" >> $GITHUB_OUTPUT
+2025-06-25T23:51:02.6433305Z ##[debug]'
+2025-06-25T23:51:02.6435789Z ##[debug]Set step 'latest' display name to: 'Run LATEST=$(curl -s -H "Authorization: ***" \'
+2025-06-25T23:51:02.6440839Z ##[debug]Evaluating: success()
+2025-06-25T23:51:02.6442130Z ##[debug]Evaluating success:
+2025-06-25T23:51:02.6443319Z ##[debug]=> true
+2025-06-25T23:51:02.6444395Z ##[debug]Result: true
+2025-06-25T23:51:02.6445992Z ##[debug]Starting: Run LATEST=$(curl -s -H "Authorization: ***" \
+2025-06-25T23:51:02.6460876Z ##[debug]Loading inputs
+2025-06-25T23:51:02.6524803Z ##[debug]Evaluating: format('LATEST=$(curl -s -H "Authorization: ***" \
+2025-06-25T23:51:02.6527301Z ##[debug]https://api.github.com/repos/${{COMPANY_REPO}}/commits/${{BRANCH}} | jq -r .sha)
+2025-06-25T23:51:02.6529611Z ##[debug]echo "LATEST=$LATEST" >> $GITHUB_OUTPUT
+2025-06-25T23:51:02.6530743Z ##[debug]', secrets.COMPANY_PAT)
+2025-06-25T23:51:02.6531700Z ##[debug]Evaluating format:
+2025-06-25T23:51:02.6532594Z ##[debug]..Evaluating String:
+2025-06-25T23:51:02.6533866Z ##[debug]..=> 'LATEST=$(curl -s -H "Authorization: ***" \
+2025-06-25T23:51:02.6536247Z ##[debug]https://api.github.com/repos/${{COMPANY_REPO}}/commits/${{BRANCH}} | jq -r .sha)
+2025-06-25T23:51:02.6538096Z ##[debug]echo "LATEST=$LATEST" >> $GITHUB_OUTPUT
+2025-06-25T23:51:02.6539229Z ##[debug]'
+2025-06-25T23:51:02.6540309Z ##[debug]..Evaluating Index:
+2025-06-25T23:51:02.6541416Z ##[debug]....Evaluating secrets:
+2025-06-25T23:51:02.6542522Z ##[debug]....=> Object
+2025-06-25T23:51:02.6543353Z ##[debug]....Evaluating String:
+2025-06-25T23:51:02.6544261Z ##[debug]....=> 'COMPANY_PAT'
+2025-06-25T23:51:02.6545489Z ##[debug]..=> '***'
+2025-06-25T23:51:02.6547200Z ##[debug]=> 'LATEST=$(curl -s -H "Authorization: ***" \
+2025-06-25T23:51:02.6548884Z ##[debug]https://api.github.com/repos/${COMPANY_REPO}/commits/${BRANCH} | jq -r .sha)
+2025-06-25T23:51:02.6550537Z ##[debug]echo "LATEST=$LATEST" >> $GITHUB_OUTPUT
+2025-06-25T23:51:02.6551568Z ##[debug]'
+2025-06-25T23:51:02.6553095Z ##[debug]Result: 'LATEST=$(curl -s -H "Authorization: ***" \
+2025-06-25T23:51:02.6555033Z ##[debug]https://api.github.com/repos/${COMPANY_REPO}/commits/${BRANCH} | jq -r .sha)
+2025-06-25T23:51:02.6557069Z ##[debug]echo "LATEST=$LATEST" >> $GITHUB_OUTPUT
+2025-06-25T23:51:02.6558125Z ##[debug]'
+2025-06-25T23:51:02.6559009Z ##[debug]Loading env
+2025-06-25T23:51:02.6572032Z ##[group]Run LATEST=$(curl -s -H "Authorization: ***" \
+2025-06-25T23:51:02.6573955Z [36;1mLATEST=$(curl -s -H "Authorization: ***" \[0m
+2025-06-25T23:51:02.6575615Z [36;1mhttps://api.github.com/repos/${COMPANY_REPO}/commits/${BRANCH} | jq -r .sha)[0m
+2025-06-25T23:51:02.6577416Z [36;1mecho "LATEST=$LATEST" >> $GITHUB_OUTPUT[0m
+2025-06-25T23:51:02.6637444Z shell: /usr/bin/bash -e {0}
+2025-06-25T23:51:02.6638306Z env:
+2025-06-25T23:51:02.6639047Z   COMPANY_REPO: gumtree-tech/mobile-apps-bff
+2025-06-25T23:51:02.6640083Z   BRANCH: master
+2025-06-25T23:51:02.6640787Z   STATE: .last_sha_bff
+2025-06-25T23:51:02.6641578Z   ACTIONS_STEP_DEBUG: true
+2025-06-25T23:51:02.6642385Z ##[endgroup]
+2025-06-25T23:51:02.6702255Z ##[debug]/usr/bin/bash -e /home/runner/work/_temp/8564bb4f-1030-42dd-88cd-f5744909bbe2.sh
+2025-06-25T23:51:02.8811054Z ##[debug]Set output LATEST = 1130f07802daa0fc142a472f9209b280aa2bc718
+2025-06-25T23:51:02.8811926Z ##[debug]Finishing: Run LATEST=$(curl -s -H "Authorization: ***" \
+2025-06-25T23:51:02.8820762Z ##[debug]Evaluating condition for step: 'Export LATEST env'
+2025-06-25T23:51:02.8823065Z ##[debug]Evaluating: success()
+2025-06-25T23:51:02.8823591Z ##[debug]Evaluating success:
+2025-06-25T23:51:02.8824148Z ##[debug]=> true
+2025-06-25T23:51:02.8824767Z ##[debug]Result: true
+2025-06-25T23:51:02.8825533Z ##[debug]Starting: Export LATEST env
+2025-06-25T23:51:02.8835903Z ##[debug]Loading inputs
+2025-06-25T23:51:02.8838333Z ##[debug]Evaluating: format('echo "LATEST={0}" >> $GITHUB_ENV', steps.latest.outputs.LATEST)
+2025-06-25T23:51:02.8839006Z ##[debug]Evaluating format:
+2025-06-25T23:51:02.8839481Z ##[debug]..Evaluating String:
+2025-06-25T23:51:02.8840005Z ##[debug]..=> 'echo "LATEST={0}" >> $GITHUB_ENV'
+2025-06-25T23:51:02.8840698Z ##[debug]..Evaluating Index:
+2025-06-25T23:51:02.8841175Z ##[debug]....Evaluating Index:
+2025-06-25T23:51:02.8841671Z ##[debug]......Evaluating Index:
+2025-06-25T23:51:02.8842146Z ##[debug]........Evaluating steps:
+2025-06-25T23:51:02.8842683Z ##[debug]........=> Object
+2025-06-25T23:51:02.8843174Z ##[debug]........Evaluating String:
+2025-06-25T23:51:02.8843652Z ##[debug]........=> 'latest'
+2025-06-25T23:51:02.8844135Z ##[debug]......=> Object
+2025-06-25T23:51:02.8844598Z ##[debug]......Evaluating String:
+2025-06-25T23:51:02.8845080Z ##[debug]......=> 'outputs'
+2025-06-25T23:51:02.8845531Z ##[debug]....=> Object
+2025-06-25T23:51:02.8845975Z ##[debug]....Evaluating String:
+2025-06-25T23:51:02.8846676Z ##[debug]....=> 'LATEST'
+2025-06-25T23:51:02.8847220Z ##[debug]..=> '1130f07802daa0fc142a472f9209b280aa2bc718'
+2025-06-25T23:51:02.8847939Z ##[debug]=> 'echo "LATEST=1130f07802daa0fc142a472f9209b280aa2bc718" >> $GITHUB_ENV'
+2025-06-25T23:51:02.8848727Z ##[debug]Result: 'echo "LATEST=1130f07802daa0fc142a472f9209b280aa2bc718" >> $GITHUB_ENV'
+2025-06-25T23:51:02.8849639Z ##[debug]Loading env
+2025-06-25T23:51:02.8855809Z ##[group]Run echo "LATEST=1130f07802daa0fc142a472f9209b280aa2bc718" >> $GITHUB_ENV
+2025-06-25T23:51:02.8856960Z [36;1mecho "LATEST=1130f07802daa0fc142a472f9209b280aa2bc718" >> $GITHUB_ENV[0m
+2025-06-25T23:51:02.8916951Z shell: /usr/bin/bash -e {0}
+2025-06-25T23:51:02.8917381Z env:
+2025-06-25T23:51:02.8917775Z   COMPANY_REPO: gumtree-tech/mobile-apps-bff
+2025-06-25T23:51:02.8918243Z   BRANCH: master
+2025-06-25T23:51:02.8918616Z   STATE: .last_sha_bff
+2025-06-25T23:51:02.8919018Z   ACTIONS_STEP_DEBUG: true
+2025-06-25T23:51:02.8919417Z ##[endgroup]
+2025-06-25T23:51:02.8978989Z ##[debug]/usr/bin/bash -e /home/runner/work/_temp/4bc332de-2a1d-4cff-a461-629ba828afb8.sh
+2025-06-25T23:51:02.9004975Z ##[debug]LATEST='1130f07802daa0fc142a472f9209b280aa2bc718'
+2025-06-25T23:51:02.9007435Z ##[debug]Finishing: Export LATEST env
+2025-06-25T23:51:02.9014807Z ##[debug]Evaluating condition for step: 'No change'
+2025-06-25T23:51:02.9023187Z ##[debug]Evaluating: (success() && (env.LATEST == steps.prev.outputs.SHA))
+2025-06-25T23:51:02.9024110Z ##[debug]Evaluating And:
+2025-06-25T23:51:02.9026479Z ##[debug]..Evaluating success:
+2025-06-25T23:51:02.9027166Z ##[debug]..=> true
+2025-06-25T23:51:02.9027789Z ##[debug]..Evaluating Equal:
+2025-06-25T23:51:02.9029146Z ##[debug]....Evaluating Index:
+2025-06-25T23:51:02.9029734Z ##[debug]......Evaluating env:
+2025-06-25T23:51:02.9030360Z ##[debug]......=> Object
+2025-06-25T23:51:02.9030941Z ##[debug]......Evaluating String:
+2025-06-25T23:51:02.9031498Z ##[debug]......=> 'LATEST'
+2025-06-25T23:51:02.9033473Z ##[debug]....=> '1130f07802daa0fc142a472f9209b280aa2bc718'
+2025-06-25T23:51:02.9034153Z ##[debug]....Evaluating Index:
+2025-06-25T23:51:02.9034706Z ##[debug]......Evaluating Index:
+2025-06-25T23:51:02.9035261Z ##[debug]........Evaluating Index:
+2025-06-25T23:51:02.9035859Z ##[debug]..........Evaluating steps:
+2025-06-25T23:51:02.9036708Z ##[debug]..........=> Object
+2025-06-25T23:51:02.9037293Z ##[debug]..........Evaluating String:
+2025-06-25T23:51:02.9037879Z ##[debug]..........=> 'prev'
+2025-06-25T23:51:02.9038708Z ##[debug]........=> Object
+2025-06-25T23:51:02.9039271Z ##[debug]........Evaluating String:
+2025-06-25T23:51:02.9039843Z ##[debug]........=> 'outputs'
+2025-06-25T23:51:02.9040388Z ##[debug]......=> Object
+2025-06-25T23:51:02.9040927Z ##[debug]......Evaluating String:
+2025-06-25T23:51:02.9041456Z ##[debug]......=> 'SHA'
+2025-06-25T23:51:02.9042054Z ##[debug]....=> 'none'
+2025-06-25T23:51:02.9045859Z ##[debug]..=> false
+2025-06-25T23:51:02.9046898Z ##[debug]=> false
+2025-06-25T23:51:02.9050740Z ##[debug]Expanded: (true && ('1130f07802daa0fc142a472f9209b280aa2bc718' == 'none'))
+2025-06-25T23:51:02.9051498Z ##[debug]Result: false
+2025-06-25T23:51:02.9058170Z ##[debug]Evaluating condition for step: 'Checkout BFF repo'
+2025-06-25T23:51:02.9061578Z ##[debug]Evaluating: (success() && (env.LATEST != steps.prev.outputs.SHA))
+2025-06-25T23:51:02.9062290Z ##[debug]Evaluating And:
+2025-06-25T23:51:02.9062849Z ##[debug]..Evaluating success:
+2025-06-25T23:51:02.9063424Z ##[debug]..=> true
+2025-06-25T23:51:02.9064008Z ##[debug]..Evaluating NotEqual:
+2025-06-25T23:51:02.9065283Z ##[debug]....Evaluating Index:
+2025-06-25T23:51:02.9065842Z ##[debug]......Evaluating env:
+2025-06-25T23:51:02.9066652Z ##[debug]......=> Object
+2025-06-25T23:51:02.9067226Z ##[debug]......Evaluating String:
+2025-06-25T23:51:02.9067776Z ##[debug]......=> 'LATEST'
+2025-06-25T23:51:02.9068472Z ##[debug]....=> '1130f07802daa0fc142a472f9209b280aa2bc718'
+2025-06-25T23:51:02.9069115Z ##[debug]....Evaluating Index:
+2025-06-25T23:51:02.9069657Z ##[debug]......Evaluating Index:
+2025-06-25T23:51:02.9070210Z ##[debug]........Evaluating Index:
+2025-06-25T23:51:02.9070802Z ##[debug]..........Evaluating steps:
+2025-06-25T23:51:02.9071357Z ##[debug]..........=> Object
+2025-06-25T23:51:02.9071932Z ##[debug]..........Evaluating String:
+2025-06-25T23:51:02.9072486Z ##[debug]..........=> 'prev'
+2025-06-25T23:51:02.9073036Z ##[debug]........=> Object
+2025-06-25T23:51:02.9073562Z ##[debug]........Evaluating String:
+2025-06-25T23:51:02.9074112Z ##[debug]........=> 'outputs'
+2025-06-25T23:51:02.9074636Z ##[debug]......=> Object
+2025-06-25T23:51:02.9075166Z ##[debug]......Evaluating String:
+2025-06-25T23:51:02.9075700Z ##[debug]......=> 'SHA'
+2025-06-25T23:51:02.9076203Z ##[debug]....=> 'none'
+2025-06-25T23:51:02.9077405Z ##[debug]..=> true
+2025-06-25T23:51:02.9078076Z ##[debug]=> true
+2025-06-25T23:51:02.9079830Z ##[debug]Expanded: (true && ('1130f07802daa0fc142a472f9209b280aa2bc718' != 'none'))
+2025-06-25T23:51:02.9080573Z ##[debug]Result: true
+2025-06-25T23:51:02.9081312Z ##[debug]Starting: Checkout BFF repo
+2025-06-25T23:51:02.9120288Z ##[debug]Register post job cleanup for action: actions/checkout@v4
+2025-06-25T23:51:02.9133563Z ##[debug]Loading inputs
+2025-06-25T23:51:02.9134923Z ##[debug]Evaluating: secrets.COMPANY_PAT
+2025-06-25T23:51:02.9135360Z ##[debug]Evaluating Index:
+2025-06-25T23:51:02.9135742Z ##[debug]..Evaluating secrets:
+2025-06-25T23:51:02.9136570Z ##[debug]..=> Object
+2025-06-25T23:51:02.9136955Z ##[debug]..Evaluating String:
+2025-06-25T23:51:02.9137343Z ##[debug]..=> 'COMPANY_PAT'
+2025-06-25T23:51:02.9138117Z ##[debug]=> '***'
+2025-06-25T23:51:02.9138625Z ##[debug]Result: '***'
+2025-06-25T23:51:02.9139444Z ##[debug]Evaluating: env.BRANCH
+2025-06-25T23:51:02.9139853Z ##[debug]Evaluating Index:
+2025-06-25T23:51:02.9140232Z ##[debug]..Evaluating env:
+2025-06-25T23:51:02.9140633Z ##[debug]..=> Object
+2025-06-25T23:51:02.9141029Z ##[debug]..Evaluating String:
+2025-06-25T23:51:02.9141430Z ##[debug]..=> 'BRANCH'
+2025-06-25T23:51:02.9141818Z ##[debug]=> 'master'
+2025-06-25T23:51:02.9142196Z ##[debug]Result: 'master'
+2025-06-25T23:51:02.9153026Z ##[debug]Loading env
+2025-06-25T23:51:02.9161851Z ##[group]Run actions/checkout@v4
+2025-06-25T23:51:02.9162400Z with:
+2025-06-25T23:51:02.9162926Z   repository: gumtree-tech/mobile-apps-bff
+2025-06-25T23:51:02.9163705Z   token: ***
+2025-06-25T23:51:02.9164185Z   path: company_src
+2025-06-25T23:51:02.9164685Z   ref: master
+2025-06-25T23:51:02.9165159Z   fetch-depth: 0
+2025-06-25T23:51:02.9165653Z   submodules: true
+2025-06-25T23:51:02.9166142Z   ssh-strict: true
+2025-06-25T23:51:02.9166845Z   ssh-user: git
+2025-06-25T23:51:02.9167355Z   persist-credentials: true
+2025-06-25T23:51:02.9167889Z   clean: true
+2025-06-25T23:51:02.9168403Z   sparse-checkout-cone-mode: true
+2025-06-25T23:51:02.9168988Z   fetch-tags: false
+2025-06-25T23:51:02.9169484Z   show-progress: true
+2025-06-25T23:51:02.9170006Z   lfs: false
+2025-06-25T23:51:02.9170568Z   set-safe-directory: true
+2025-06-25T23:51:02.9171163Z env:
+2025-06-25T23:51:02.9171744Z   COMPANY_REPO: gumtree-tech/mobile-apps-bff
+2025-06-25T23:51:02.9172457Z   BRANCH: master
+2025-06-25T23:51:02.9173254Z   STATE: .last_sha_bff
+2025-06-25T23:51:02.9173881Z   ACTIONS_STEP_DEBUG: true
+2025-06-25T23:51:02.9174555Z   LATEST: 1130f07802daa0fc142a472f9209b280aa2bc718
+2025-06-25T23:51:02.9175257Z ##[endgroup]
+2025-06-25T23:51:03.0068361Z ##[debug]GITHUB_WORKSPACE = '/home/runner/work/jmeter-api-project/jmeter-api-project'
+2025-06-25T23:51:03.0071760Z ##[debug]qualified repository = 'gumtree-tech/mobile-apps-bff'
+2025-06-25T23:51:03.0073515Z ##[debug]ref = 'master'
+2025-06-25T23:51:03.0074679Z ##[debug]commit = 'undefined'
+2025-06-25T23:51:03.0075735Z ##[debug]clean = true
+2025-06-25T23:51:03.0076911Z ##[debug]filter = undefined
+2025-06-25T23:51:03.0077935Z ##[debug]fetch depth = 0
+2025-06-25T23:51:03.0078930Z ##[debug]fetch tags = false
+2025-06-25T23:51:03.0079757Z ##[debug]show progress = true
+2025-06-25T23:51:03.0080406Z ##[debug]lfs = false
+2025-06-25T23:51:03.0080979Z ##[debug]submodules = true
+2025-06-25T23:51:03.0081594Z ##[debug]recursive submodules = false
+2025-06-25T23:51:03.0094333Z ##[debug]GitHub Host URL = 
+2025-06-25T23:51:03.0096007Z ::add-matcher::/home/runner/work/_actions/actions/checkout/v4/dist/problem-matcher.json
+2025-06-25T23:51:03.0101024Z ##[debug]Added matchers: 'checkout-git'. Problem matchers scan action output for known warning or error strings and report these inline.
+2025-06-25T23:51:03.0102452Z Syncing repository: gumtree-tech/mobile-apps-bff
+2025-06-25T23:51:03.0106056Z ::group::Getting Git version info
+2025-06-25T23:51:03.0106925Z ##[group]Getting Git version info
+2025-06-25T23:51:03.0107986Z Working directory is '/home/runner/work/jmeter-api-project/jmeter-api-project/company_src'
+2025-06-25T23:51:03.0137484Z ##[debug]Getting git version
+2025-06-25T23:51:03.0152176Z [command]/usr/bin/git version
+2025-06-25T23:51:03.0189090Z git version 2.49.0
+2025-06-25T23:51:03.0217036Z ##[debug]0
+2025-06-25T23:51:03.0217871Z ##[debug]git version 2.49.0
+2025-06-25T23:51:03.0218245Z ##[debug]
+2025-06-25T23:51:03.0219358Z ##[debug]Set git useragent to: git/2.49.0 (github-actions-checkout)
+2025-06-25T23:51:03.0220600Z ::endgroup::
+2025-06-25T23:51:03.0221153Z ##[endgroup]
+2025-06-25T23:51:03.0222299Z ::add-mask::***
+2025-06-25T23:51:03.0233414Z Temporarily overriding HOME='/home/runner/work/_temp/238c9af1-f96a-4c78-b1b4-193f401b73aa' before making global git config changes
+2025-06-25T23:51:03.0235281Z Adding repository directory to the temporary git global config as a safe directory
+2025-06-25T23:51:03.0246479Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/jmeter-api-project/jmeter-api-project/company_src
+2025-06-25T23:51:03.0273344Z ##[debug]0
+2025-06-25T23:51:03.0274308Z ##[debug]
+2025-06-25T23:51:03.0276604Z ::group::Initializing the repository
+2025-06-25T23:51:03.0277113Z ##[group]Initializing the repository
+2025-06-25T23:51:03.0282054Z [command]/usr/bin/git init /home/runner/work/jmeter-api-project/jmeter-api-project/company_src
+2025-06-25T23:51:03.0318214Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-06-25T23:51:03.0319459Z hint: is subject to change. To configure the initial branch name to use in all
+2025-06-25T23:51:03.0320581Z hint: of your new repositories, which will suppress this warning, call:
+2025-06-25T23:51:03.0321237Z hint:
+2025-06-25T23:51:03.0321649Z hint: 	git config --global init.defaultBranch <name>
+2025-06-25T23:51:03.0322124Z hint:
+2025-06-25T23:51:03.0322737Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-06-25T23:51:03.0323468Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-06-25T23:51:03.0324067Z hint:
+2025-06-25T23:51:03.0324422Z hint: 	git branch -m <name>
+2025-06-25T23:51:03.0325145Z Initialized empty Git repository in /home/runner/work/jmeter-api-project/jmeter-api-project/company_src/.git/
+2025-06-25T23:51:03.0326100Z ##[debug]0
+2025-06-25T23:51:03.0327236Z ##[debug]Initialized empty Git repository in /home/runner/work/jmeter-api-project/jmeter-api-project/company_src/.git/
+2025-06-25T23:51:03.0327915Z ##[debug]
+2025-06-25T23:51:03.0331521Z [command]/usr/bin/git remote add origin https://github.com/gumtree-tech/mobile-apps-bff
+2025-06-25T23:51:03.0362139Z ##[debug]0
+2025-06-25T23:51:03.0363058Z ##[debug]
+2025-06-25T23:51:03.0363971Z ::endgroup::
+2025-06-25T23:51:03.0364531Z ##[endgroup]
+2025-06-25T23:51:03.0365309Z ::group::Disabling automatic garbage collection
+2025-06-25T23:51:03.0365800Z ##[group]Disabling automatic garbage collection
+2025-06-25T23:51:03.0367088Z [command]/usr/bin/git config --local gc.auto 0
+2025-06-25T23:51:03.0394530Z ##[debug]0
+2025-06-25T23:51:03.0395484Z ##[debug]
+2025-06-25T23:51:03.0396597Z ::endgroup::
+2025-06-25T23:51:03.0397170Z ##[endgroup]
+2025-06-25T23:51:03.0397882Z ::group::Setting up auth
+2025-06-25T23:51:03.0398275Z ##[group]Setting up auth
+2025-06-25T23:51:03.0401557Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-06-25T23:51:03.0425190Z ##[debug]1
+2025-06-25T23:51:03.0426130Z ##[debug]
+2025-06-25T23:51:03.0430331Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-06-25T23:51:03.0649461Z ##[debug]0
+2025-06-25T23:51:03.0650077Z ##[debug]
+2025-06-25T23:51:03.0654605Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-06-25T23:51:03.0679307Z ##[debug]1
+2025-06-25T23:51:03.0680035Z ##[debug]
+2025-06-25T23:51:03.0684091Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-06-25T23:51:03.0901567Z ##[debug]0
+2025-06-25T23:51:03.0902325Z ##[debug]
+2025-06-25T23:51:03.0910455Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-06-25T23:51:03.0943450Z ##[debug]0
+2025-06-25T23:51:03.0944101Z ##[debug]
+2025-06-25T23:51:03.0951655Z ::endgroup::
+2025-06-25T23:51:03.0952177Z ##[endgroup]
+2025-06-25T23:51:03.0952830Z ::group::Fetching the repository
+2025-06-25T23:51:03.0953271Z ##[group]Fetching the repository
+2025-06-25T23:51:03.0960837Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2025-06-25T23:51:04.3038479Z From https://github.com/gumtree-tech/mobile-apps-bff
+2025-06-25T23:51:04.3039624Z  * [new branch]        2025-06-19-fix-conversation-report-reson -> origin/2025-06-19-fix-conversation-report-reson
+2025-06-25T23:51:04.3040658Z  * [new branch]        GJH-1087_app_trigger    -> origin/GJH-1087_app_trigger
+2025-06-25T23:51:04.3041428Z  * [new branch]        GJH-1087_app_trigger_bak -> origin/GJH-1087_app_trigger_bak
+2025-06-25T23:51:04.3042283Z  * [new branch]        GJH-250515-bumup        -> origin/GJH-250515-bumup
+2025-06-25T23:51:04.3043409Z  * [new branch]        GJH-Carwow              -> origin/GJH-Carwow
+2025-06-25T23:51:04.3046067Z  * [new branch]        GT-10-sug-optimize      -> origin/GT-10-sug-optimize
+2025-06-25T23:51:04.3047839Z  * [new branch]        GT-11                   -> origin/GT-11
+2025-06-25T23:51:04.3050353Z  * [new branch]        GT-2-braze-notification -> origin/GT-2-braze-notification
+2025-06-25T23:51:04.3052115Z  * [new branch]        GT-TnS-0311             -> origin/GT-TnS-0311
+2025-06-25T23:51:04.3054302Z  * [new branch]        GT58-jenkins-pipeline   -> origin/GT58-jenkins-pipeline
+2025-06-25T23:51:04.3057709Z  * [new branch]        GTB-407-search          -> origin/GTB-407-search
+2025-06-25T23:51:04.3059095Z  * [new branch]        GTCE-50-remove-CAPI-post-new-SS -> origin/GTCE-50-remove-CAPI-post-new-SS
+2025-06-25T23:51:04.3061304Z  * [new branch]        GTCE-54-remove-capi-from-seller-other-listings -> origin/GTCE-54-remove-capi-from-seller-other-listings
+2025-06-25T23:51:04.3063236Z  * [new branch]        GTCON-27-email-CTA-experiment -> origin/GTCON-27-email-CTA-experiment
+2025-06-25T23:51:04.3067478Z  * [new branch]        GTNA-4361/use-default-retrofit-client-everywhere -> origin/GTNA-4361/use-default-retrofit-client-everywhere
+2025-06-25T23:51:04.3068701Z  * [new branch]        PayShip                 -> origin/PayShip
+2025-06-25T23:51:04.3071754Z  * [new branch]        PayShip-zyu             -> origin/PayShip-zyu
+2025-06-25T23:51:04.3076175Z  * [new branch]        PayShipOrder            -> origin/PayShipOrder
+2025-06-25T23:51:04.3077325Z  * [new branch]        PayShipOrderMerge       -> origin/PayShipOrderMerge
+2025-06-25T23:51:04.3078113Z  * [new branch]        add-analytics-to-chips  -> origin/add-analytics-to-chips
+2025-06-25T23:51:04.3080507Z  * [new branch]        add-post-a-job          -> origin/add-post-a-job
+2025-06-25T23:51:04.3081318Z  * [new branch]        bark-integration-1      -> origin/bark-integration-1
+2025-06-25T23:51:04.3084257Z  * [new branch]        bark-leads              -> origin/bark-leads
+2025-06-25T23:51:04.3086639Z  * [new branch]        bark_integration_1      -> origin/bark_integration_1
+2025-06-25T23:51:04.3090013Z  * [new branch]        bug/GTB-163_remove-nearest-first-uk -> origin/bug/GTB-163_remove-nearest-first-uk
+2025-06-25T23:51:04.3091477Z  * [new branch]        chat-report             -> origin/chat-report
+2025-06-25T23:51:04.3093452Z  * [new branch]        create-new-test-env-unicorn -> origin/create-new-test-env-unicorn
+2025-06-25T23:51:04.3095452Z  * [new branch]        hacka                   -> origin/hacka
+2025-06-25T23:51:04.3097691Z  * [new branch]        icon-sticky-bar         -> origin/icon-sticky-bar
+2025-06-25T23:51:04.3099983Z  * [new branch]        master                  -> origin/master
+2025-06-25T23:51:04.3102014Z  * [new branch]        notifications-ios-changes -> origin/notifications-ios-changes
+2025-06-25T23:51:04.3104588Z  * [new branch]        notifications-respond-with-capi-errors -> origin/notifications-respond-with-capi-errors
+2025-06-25T23:51:04.3106490Z  * [new branch]        notifications-test-capi -> origin/notifications-test-capi
+2025-06-25T23:51:04.3108688Z  * [new branch]        optional-dob            -> origin/optional-dob
+2025-06-25T23:51:04.3110778Z  * [new branch]        pet-breed-search        -> origin/pet-breed-search
+2025-06-25T23:51:04.3112746Z  * [new branch]        report-chat             -> origin/report-chat
+2025-06-25T23:51:04.3114959Z  * [new branch]        search-service          -> origin/search-service
+2025-06-25T23:51:04.3116948Z  * [new branch]        srp-ui-opt              -> origin/srp-ui-opt
+2025-06-25T23:51:04.3119404Z  * [new branch]        switch-to-nexus         -> origin/switch-to-nexus
+2025-06-25T23:51:04.3122516Z  * [new branch]        task/GTB-257_analytics-event-home-feed-existing-chips -> origin/task/GTB-257_analytics-event-home-feed-existing-chips
+2025-06-25T23:51:04.3124163Z  * [new branch]        taxonomy-deploy         -> origin/taxonomy-deploy
+2025-06-25T23:51:04.3125936Z  * [new branch]        test_wyt                -> origin/test_wyt
+2025-06-25T23:51:04.3128582Z  * [new branch]        tmp-0624                -> origin/tmp-0624
+2025-06-25T23:51:04.3130668Z  * [new branch]        use-labels-instead-of-chips -> origin/use-labels-instead-of-chips
+2025-06-25T23:51:04.3169858Z ##[debug]0
+2025-06-25T23:51:04.3171559Z ##[debug]
+2025-06-25T23:51:04.3172376Z ::endgroup::
+2025-06-25T23:51:04.3172712Z ##[endgroup]
+2025-06-25T23:51:04.3173298Z ::group::Determining the checkout info
+2025-06-25T23:51:04.3173767Z ##[group]Determining the checkout info
+2025-06-25T23:51:04.3180573Z [command]/usr/bin/git branch --list --remote origin/master
+2025-06-25T23:51:04.3208602Z   origin/master
+2025-06-25T23:51:04.3213225Z ##[debug]0
+2025-06-25T23:51:04.3214040Z ##[debug]  origin/master
+2025-06-25T23:51:04.3214405Z ##[debug]
+2025-06-25T23:51:04.3215107Z ::endgroup::
+2025-06-25T23:51:04.3215392Z ##[endgroup]
+2025-06-25T23:51:04.3219297Z [command]/usr/bin/git sparse-checkout disable
+2025-06-25T23:51:04.3252984Z ##[debug]0
+2025-06-25T23:51:04.3254523Z ##[debug]
+2025-06-25T23:51:04.3258252Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-06-25T23:51:04.3285206Z ##[debug]0
+2025-06-25T23:51:04.3285901Z ##[debug]
+2025-06-25T23:51:04.3286684Z ::group::Checking out the ref
+2025-06-25T23:51:04.3287072Z ##[group]Checking out the ref
+2025-06-25T23:51:04.3290749Z [command]/usr/bin/git checkout --progress --force -B master refs/remotes/origin/master
+2025-06-25T23:51:04.4267928Z Reset branch 'master'
+2025-06-25T23:51:04.4270201Z branch 'master' set up to track 'origin/master'.
+2025-06-25T23:51:04.4284504Z ##[debug]0
+2025-06-25T23:51:04.4285084Z ##[debug]branch 'master' set up to track 'origin/master'.
+2025-06-25T23:51:04.4285564Z ##[debug]
+2025-06-25T23:51:04.4286110Z ::endgroup::
+2025-06-25T23:51:04.4286600Z ##[endgroup]
+2025-06-25T23:51:04.4287267Z ::group::Setting up auth for fetching submodules
+2025-06-25T23:51:04.4287830Z ##[group]Setting up auth for fetching submodules
+2025-06-25T23:51:04.4293400Z [command]/usr/bin/git config --global http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-06-25T23:51:04.4323687Z ##[debug]0
+2025-06-25T23:51:04.4324318Z ##[debug]
+2025-06-25T23:51:04.4332968Z [command]/usr/bin/git config --global --unset-all url.https://github.com/.insteadOf
+2025-06-25T23:51:04.4358253Z ##[debug]5
+2025-06-25T23:51:04.4358616Z ##[debug]
+2025-06-25T23:51:04.4362902Z [command]/usr/bin/git config --global --add url.https://github.com/.insteadOf git@github.com:
+2025-06-25T23:51:04.4389406Z ##[debug]0
+2025-06-25T23:51:04.4389898Z ##[debug]
+2025-06-25T23:51:04.4393371Z [command]/usr/bin/git config --global --add url.https://github.com/.insteadOf org-216124949@github.com:
+2025-06-25T23:51:04.4417920Z ##[debug]0
+2025-06-25T23:51:04.4418404Z ##[debug]
+2025-06-25T23:51:04.4418816Z ::endgroup::
+2025-06-25T23:51:04.4418991Z ##[endgroup]
+2025-06-25T23:51:04.4419289Z ::group::Fetching submodules
+2025-06-25T23:51:04.4419517Z ##[group]Fetching submodules
+2025-06-25T23:51:04.4422713Z [command]/usr/bin/git submodule sync
+2025-06-25T23:51:04.4645821Z ##[debug]0
+2025-06-25T23:51:04.4646431Z ##[debug]
+2025-06-25T23:51:04.4651166Z [command]/usr/bin/git -c protocol.version=2 submodule update --init --force
+2025-06-25T23:51:04.4872233Z ##[debug]0
+2025-06-25T23:51:04.4872817Z ##[debug]
+2025-06-25T23:51:04.4876107Z [command]/usr/bin/git submodule foreach git config --local gc.auto 0
+2025-06-25T23:51:04.5090434Z ##[debug]0
+2025-06-25T23:51:04.5090937Z ##[debug]
+2025-06-25T23:51:04.5091430Z ::endgroup::
+2025-06-25T23:51:04.5091717Z ##[endgroup]
+2025-06-25T23:51:04.5092254Z ::group::Persisting credentials for submodules
+2025-06-25T23:51:04.5092747Z ##[group]Persisting credentials for submodules
+2025-06-25T23:51:04.5099830Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'url\.https\:\/\/github\.com\/\.insteadOf' && git config --local --unset-all 'url.https://github.com/.insteadOf' || :"
+2025-06-25T23:51:04.5336426Z ##[debug]0
+2025-06-25T23:51:04.5336930Z ##[debug]
+2025-06-25T23:51:04.5345890Z [command]/usr/bin/git submodule foreach sh -c "git config --local 'http.https://github.com/.extraheader' 'AUTHORIZATION: basic ***' && git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2025-06-25T23:51:04.5565942Z ##[debug]0
+2025-06-25T23:51:04.5566699Z ##[debug]
+2025-06-25T23:51:04.5572382Z [command]/usr/bin/git submodule foreach git config --local --add 'url.https://github.com/.insteadOf' 'git@github.com:'
+2025-06-25T23:51:04.5789137Z ##[debug]0
+2025-06-25T23:51:04.5789627Z ##[debug]
+2025-06-25T23:51:04.5794140Z [command]/usr/bin/git submodule foreach git config --local --add 'url.https://github.com/.insteadOf' 'org-216124949@github.com:'
+2025-06-25T23:51:04.6013646Z ##[debug]0
+2025-06-25T23:51:04.6014230Z ##[debug]
+2025-06-25T23:51:04.6014927Z ::endgroup::
+2025-06-25T23:51:04.6015175Z ##[endgroup]
+2025-06-25T23:51:04.6047239Z ##[debug]0
+2025-06-25T23:51:04.6047881Z ##[debug]commit 1130f07802daa0fc142a472f9209b280aa2bc718
+2025-06-25T23:51:04.6048481Z ##[debug]Author: Vincent Shuai <Vincent.Shuai@gumtree.com>
+2025-06-25T23:51:04.6048985Z ##[debug]Date:   Wed Jun 25 16:23:03 2025 +0800
+2025-06-25T23:51:04.6049741Z ##[debug]
+2025-06-25T23:51:04.6050030Z ##[debug]    remove release (#164)
+2025-06-25T23:51:04.6050391Z ##[debug]
+2025-06-25T23:51:04.6051325Z [command]/usr/bin/git log -1 --format=%H
+2025-06-25T23:51:04.6073116Z 1130f07802daa0fc142a472f9209b280aa2bc718
+2025-06-25T23:51:04.6077724Z ##[debug]0
+2025-06-25T23:51:04.6078269Z ##[debug]1130f07802daa0fc142a472f9209b280aa2bc718
+2025-06-25T23:51:04.6078624Z ##[debug]
+2025-06-25T23:51:04.6082738Z ##[debug]Unsetting HOME override
+2025-06-25T23:51:04.6088246Z ::remove-matcher owner=checkout-git::
+2025-06-25T23:51:04.6089749Z ##[debug]Removed matchers: 'checkout-git'
+2025-06-25T23:51:04.6152702Z ##[debug]Node Action run completed with exit code 0
+2025-06-25T23:51:04.6156895Z ##[debug]Save intra-action state isPost = true
+2025-06-25T23:51:04.6157254Z ##[debug]Save intra-action state setSafeDirectory = true
+2025-06-25T23:51:04.6157814Z ##[debug]Save intra-action state repositoryPath = /home/runner/work/jmeter-api-project/jmeter-api-project/company_src
+2025-06-25T23:51:04.6158796Z ##[debug]Set output commit = 1130f07802daa0fc142a472f9209b280aa2bc718
+2025-06-25T23:51:04.6159157Z ##[debug]Set output ref = master
+2025-06-25T23:51:04.6159649Z ##[debug]Finishing: Checkout BFF repo
+2025-06-25T23:51:04.6184838Z ##[debug]Evaluating condition for step: 'Install JMeter & plugins'
+2025-06-25T23:51:04.6188670Z ##[debug]Evaluating: (success() && (env.LATEST != steps.prev.outputs.SHA))
+2025-06-25T23:51:04.6189225Z ##[debug]Evaluating And:
+2025-06-25T23:51:04.6189526Z ##[debug]..Evaluating success:
+2025-06-25T23:51:04.6189970Z ##[debug]..=> true
+2025-06-25T23:51:04.6190287Z ##[debug]..Evaluating NotEqual:
+2025-06-25T23:51:04.6190589Z ##[debug]....Evaluating Index:
+2025-06-25T23:51:04.6190880Z ##[debug]......Evaluating env:
+2025-06-25T23:51:04.6191162Z ##[debug]......=> Object
+2025-06-25T23:51:04.6191467Z ##[debug]......Evaluating String:
+2025-06-25T23:51:04.6191778Z ##[debug]......=> 'LATEST'
+2025-06-25T23:51:04.6192180Z ##[debug]....=> '1130f07802daa0fc142a472f9209b280aa2bc718'
+2025-06-25T23:51:04.6192534Z ##[debug]....Evaluating Index:
+2025-06-25T23:51:04.6192823Z ##[debug]......Evaluating Index:
+2025-06-25T23:51:04.6193126Z ##[debug]........Evaluating Index:
+2025-06-25T23:51:04.6193453Z ##[debug]..........Evaluating steps:
+2025-06-25T23:51:04.6193953Z ##[debug]..........=> Object
+2025-06-25T23:51:04.6194268Z ##[debug]..........Evaluating String:
+2025-06-25T23:51:04.6194565Z ##[debug]..........=> 'prev'
+2025-06-25T23:51:04.6194847Z ##[debug]........=> Object
+2025-06-25T23:51:04.6195134Z ##[debug]........Evaluating String:
+2025-06-25T23:51:04.6195429Z ##[debug]........=> 'outputs'
+2025-06-25T23:51:04.6195707Z ##[debug]......=> Object
+2025-06-25T23:51:04.6195986Z ##[debug]......Evaluating String:
+2025-06-25T23:51:04.6196463Z ##[debug]......=> 'SHA'
+2025-06-25T23:51:04.6196742Z ##[debug]....=> 'none'
+2025-06-25T23:51:04.6197011Z ##[debug]..=> true
+2025-06-25T23:51:04.6197267Z ##[debug]=> true
+2025-06-25T23:51:04.6197905Z ##[debug]Expanded: (true && ('1130f07802daa0fc142a472f9209b280aa2bc718' != 'none'))
+2025-06-25T23:51:04.6198358Z ##[debug]Result: true
+2025-06-25T23:51:04.6199096Z ##[debug]Starting: Install JMeter & plugins
+2025-06-25T23:51:04.6208736Z ##[debug]Loading inputs
+2025-06-25T23:51:04.6209891Z ##[debug]Loading env
+2025-06-25T23:51:04.6213600Z ##[group]Run bash scripts/install_jmeter.sh
+2025-06-25T23:51:04.6213890Z [36;1mbash scripts/install_jmeter.sh[0m
+2025-06-25T23:51:04.6274013Z shell: /usr/bin/bash -e {0}
+2025-06-25T23:51:04.6274233Z env:
+2025-06-25T23:51:04.6274433Z   COMPANY_REPO: gumtree-tech/mobile-apps-bff
+2025-06-25T23:51:04.6274694Z   BRANCH: master
+2025-06-25T23:51:04.6274874Z   STATE: .last_sha_bff
+2025-06-25T23:51:04.6275070Z   ACTIONS_STEP_DEBUG: true
+2025-06-25T23:51:04.6275315Z   LATEST: 1130f07802daa0fc142a472f9209b280aa2bc718
+2025-06-25T23:51:04.6275571Z ##[endgroup]
+2025-06-25T23:51:04.6331121Z ##[debug]/usr/bin/bash -e /home/runner/work/_temp/5e45d4a1-f341-4c4a-87dd-f7f046dc776d.sh
+2025-06-25T23:51:04.6364530Z Downloading JMeter 5.6.3 ...
+2025-06-25T23:51:17.9054207Z JMeter and plugins installed successfully.
+2025-06-25T23:51:17.9062598Z ##[debug]Finishing: Install JMeter & plugins
+2025-06-25T23:51:17.9069657Z ##[debug]Evaluating condition for step: 'Run tests'
+2025-06-25T23:51:17.9071763Z ##[debug]Evaluating: (success() && (env.LATEST != steps.prev.outputs.SHA))
+2025-06-25T23:51:17.9072219Z ##[debug]Evaluating And:
+2025-06-25T23:51:17.9072525Z ##[debug]..Evaluating success:
+2025-06-25T23:51:17.9072890Z ##[debug]..=> true
+2025-06-25T23:51:17.9073203Z ##[debug]..Evaluating NotEqual:
+2025-06-25T23:51:17.9073534Z ##[debug]....Evaluating Index:
+2025-06-25T23:51:17.9073812Z ##[debug]......Evaluating env:
+2025-06-25T23:51:17.9074094Z ##[debug]......=> Object
+2025-06-25T23:51:17.9074391Z ##[debug]......Evaluating String:
+2025-06-25T23:51:17.9074686Z ##[debug]......=> 'LATEST'
+2025-06-25T23:51:17.9075082Z ##[debug]....=> '1130f07802daa0fc142a472f9209b280aa2bc718'
+2025-06-25T23:51:17.9075427Z ##[debug]....Evaluating Index:
+2025-06-25T23:51:17.9075708Z ##[debug]......Evaluating Index:
+2025-06-25T23:51:17.9075999Z ##[debug]........Evaluating Index:
+2025-06-25T23:51:17.9076533Z ##[debug]..........Evaluating steps:
+2025-06-25T23:51:17.9076856Z ##[debug]..........=> Object
+2025-06-25T23:51:17.9077161Z ##[debug]..........Evaluating String:
+2025-06-25T23:51:17.9077466Z ##[debug]..........=> 'prev'
+2025-06-25T23:51:17.9077762Z ##[debug]........=> Object
+2025-06-25T23:51:17.9078042Z ##[debug]........Evaluating String:
+2025-06-25T23:51:17.9078348Z ##[debug]........=> 'outputs'
+2025-06-25T23:51:17.9078623Z ##[debug]......=> Object
+2025-06-25T23:51:17.9078893Z ##[debug]......Evaluating String:
+2025-06-25T23:51:17.9079165Z ##[debug]......=> 'SHA'
+2025-06-25T23:51:17.9079433Z ##[debug]....=> 'none'
+2025-06-25T23:51:17.9079705Z ##[debug]..=> true
+2025-06-25T23:51:17.9079971Z ##[debug]=> true
+2025-06-25T23:51:17.9080560Z ##[debug]Expanded: (true && ('1130f07802daa0fc142a472f9209b280aa2bc718' != 'none'))
+2025-06-25T23:51:17.9080999Z ##[debug]Result: true
+2025-06-25T23:51:17.9081557Z ##[debug]Starting: Run tests
+2025-06-25T23:51:17.9088995Z ##[debug]Loading inputs
+2025-06-25T23:51:17.9089893Z ##[debug]Loading env
+2025-06-25T23:51:17.9093233Z ##[group]Run bash scripts/run_all.sh
+2025-06-25T23:51:17.9093490Z [36;1mbash scripts/run_all.sh[0m
+2025-06-25T23:51:17.9152379Z shell: /usr/bin/bash -e {0}
+2025-06-25T23:51:17.9152596Z env:
+2025-06-25T23:51:17.9152803Z   COMPANY_REPO: gumtree-tech/mobile-apps-bff
+2025-06-25T23:51:17.9153060Z   BRANCH: master
+2025-06-25T23:51:17.9153233Z   STATE: .last_sha_bff
+2025-06-25T23:51:17.9153438Z   ACTIONS_STEP_DEBUG: true
+2025-06-25T23:51:17.9153674Z   LATEST: 1130f07802daa0fc142a472f9209b280aa2bc718
+2025-06-25T23:51:17.9153930Z ##[endgroup]
+2025-06-25T23:51:17.9208345Z ##[debug]/usr/bin/bash -e /home/runner/work/_temp/eb35f928-45bc-4146-b53b-f56acc15b052.sh
+2025-06-25T23:51:18.6777814Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:18.6854383Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:18.6884749Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:18.7108690Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:19.0040235Z Jun 25, 2025 11:51:18 PM java.util.prefs.FileSystemPreferences$1 run
+2025-06-25T23:51:19.0040934Z INFO: Created user preferences directory.
+2025-06-25T23:51:19.4634697Z Creating summariser <summary>
+2025-06-25T23:51:19.4640314Z Created the tree successfully using testcases/tg1_auth_login.jmx
+2025-06-25T23:51:19.4740193Z Starting standalone test @ 2025 Jun 25 23:51:19 UTC (1750895479466)
+2025-06-25T23:51:19.5015449Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:51:22.0136036Z summary =      4 in 00:00:02 =    1.9/s Avg:   250 Min:   132 Max:   574 Err:     0 (0.00%)
+2025-06-25T23:51:22.0137297Z Tidying up ...    @ 2025 Jun 25 23:51:22 UTC (1750895482013)
+2025-06-25T23:51:22.0137820Z ... end of run
+2025-06-25T23:51:23.6842690Z Running testcases/tg2_registration_register.jmx
+2025-06-25T23:51:24.2961836Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:24.3044896Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:24.3077381Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:24.3291139Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:24.8184106Z Creating summariser <summary>
+2025-06-25T23:51:24.8191184Z Created the tree successfully using testcases/tg2_registration_register.jmx
+2025-06-25T23:51:24.8272670Z Starting standalone test @ 2025 Jun 25 23:51:24 UTC (1750895484821)
+2025-06-25T23:51:24.8358507Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:51:25.7755722Z summary =      2 in 00:00:01 =    2.5/s Avg:   340 Min:   204 Max:   477 Err:     0 (0.00%)
+2025-06-25T23:51:25.7756577Z Tidying up ...    @ 2025 Jun 25 23:51:25 UTC (1750895485775)
+2025-06-25T23:51:25.7757033Z ... end of run
+2025-06-25T23:51:27.1034370Z Running testcases/tg3_auth_logout.jmx
+2025-06-25T23:51:27.6829826Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:27.6908391Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:27.6939628Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:27.7130939Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:28.1444294Z Creating summariser <summary>
+2025-06-25T23:51:28.1450169Z Created the tree successfully using testcases/tg3_auth_logout.jmx
+2025-06-25T23:51:28.1531293Z Starting standalone test @ 2025 Jun 25 23:51:28 UTC (1750895488147)
+2025-06-25T23:51:28.1620957Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:51:28.8353123Z summary =      1 in 00:00:01 =    1.8/s Avg:   408 Min:   408 Max:   408 Err:     0 (0.00%)
+2025-06-25T23:51:28.8353910Z Tidying up ...    @ 2025 Jun 25 23:51:28 UTC (1750895488835)
+2025-06-25T23:51:28.8354412Z ... end of run
+2025-06-25T23:51:30.1623461Z Running testcases/tg4_account_activation.jmx
+2025-06-25T23:51:30.7191014Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:30.7262994Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:30.7295280Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:30.7501910Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:31.2377922Z Creating summariser <summary>
+2025-06-25T23:51:31.2382830Z Created the tree successfully using testcases/tg4_account_activation.jmx
+2025-06-25T23:51:31.2456666Z Starting standalone test @ 2025 Jun 25 23:51:31 UTC (1750895491240)
+2025-06-25T23:51:31.2571673Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:51:32.0167398Z summary +      1 in 00:00:01 =    1.6/s Avg:   527 Min:   527 Max:   527 Err:     0 (0.00%) Active: 1 Started: 1 Finished: 0
+2025-06-25T23:51:32.2968595Z summary +      2 in 00:00:00 =    7.1/s Avg:   137 Min:   129 Max:   146 Err:     0 (0.00%) Active: 0 Started: 1 Finished: 1
+2025-06-25T23:51:32.2972738Z summary =      3 in 00:00:01 =    3.3/s Avg:   267 Min:   129 Max:   527 Err:     0 (0.00%)
+2025-06-25T23:51:32.2975193Z Tidying up ...    @ 2025 Jun 25 23:51:32 UTC (1750895492297)
+2025-06-25T23:51:32.2975918Z ... end of run
+2025-06-25T23:51:33.6250859Z Running testcases/tg5_password_reset.jmx
+2025-06-25T23:51:34.1917072Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:34.1987942Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:34.2018335Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:34.2220318Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:34.7024024Z Creating summariser <summary>
+2025-06-25T23:51:34.7030313Z Created the tree successfully using testcases/tg5_password_reset.jmx
+2025-06-25T23:51:34.7104542Z Starting standalone test @ 2025 Jun 25 23:51:34 UTC (1750895494705)
+2025-06-25T23:51:34.7185560Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:51:35.4382977Z summary +      1 in 00:00:01 =    1.7/s Avg:   511 Min:   511 Max:   511 Err:     0 (0.00%) Active: 1 Started: 1 Finished: 0
+2025-06-25T23:51:35.9609215Z summary +      3 in 00:00:01 =    5.7/s Avg:   172 Min:   152 Max:   184 Err:     0 (0.00%) Active: 0 Started: 1 Finished: 1
+2025-06-25T23:51:35.9612228Z summary =      4 in 00:00:01 =    3.5/s Avg:   256 Min:   152 Max:   511 Err:     0 (0.00%)
+2025-06-25T23:51:35.9614238Z Tidying up ...    @ 2025 Jun 25 23:51:35 UTC (1750895495961)
+2025-06-25T23:51:35.9614740Z ... end of run
+2025-06-25T23:51:37.2881725Z Running testcases/tg7_ad_posted_analytics.jmx
+2025-06-25T23:51:37.8567011Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:37.8650346Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:37.8680561Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:37.8876766Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:38.3575304Z Creating summariser <summary>
+2025-06-25T23:51:38.3586141Z Created the tree successfully using testcases/tg7_ad_posted_analytics.jmx
+2025-06-25T23:51:38.3669013Z Starting standalone test @ 2025 Jun 25 23:51:38 UTC (1750895498361)
+2025-06-25T23:51:38.3749033Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:51:39.1509638Z summary =      1 in 00:00:01 =    1.5/s Avg:   485 Min:   485 Max:   485 Err:     0 (0.00%)
+2025-06-25T23:51:39.1510580Z Tidying up ...    @ 2025 Jun 25 23:51:39 UTC (1750895499150)
+2025-06-25T23:51:39.1511096Z ... end of run
+2025-06-25T23:51:40.4782313Z Running testcases/tg8_post_ad.jmx
+2025-06-25T23:51:41.0602823Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:41.0692271Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:41.0725598Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:41.0914297Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:41.5370860Z Creating summariser <summary>
+2025-06-25T23:51:41.5376781Z Created the tree successfully using testcases/tg8_post_ad.jmx
+2025-06-25T23:51:41.5461452Z Starting standalone test @ 2025 Jun 25 23:51:41 UTC (1750895501540)
+2025-06-25T23:51:41.5559979Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:51:42.2083094Z summary =      1 in 00:00:00 =    2.0/s Avg:   372 Min:   372 Max:   372 Err:     1 (100.00%)
+2025-06-25T23:51:42.2083872Z Tidying up ...    @ 2025 Jun 25 23:51:42 UTC (1750895502208)
+2025-06-25T23:51:42.2084362Z ... end of run
+2025-06-25T23:51:43.5356090Z Running testcases/tg9_delete_ad.jmx
+2025-06-25T23:51:44.1309997Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:44.1382714Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:44.1425788Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:44.1626727Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:44.6347190Z Creating summariser <summary>
+2025-06-25T23:51:44.6347837Z Created the tree successfully using testcases/tg9_delete_ad.jmx
+2025-06-25T23:51:44.6425466Z Starting standalone test @ 2025 Jun 25 23:51:44 UTC (1750895504636)
+2025-06-25T23:51:44.6508832Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:51:45.4843910Z summary =      1 in 00:00:01 =    1.4/s Avg:   569 Min:   569 Max:   569 Err:     1 (100.00%)
+2025-06-25T23:51:45.4844695Z Tidying up ...    @ 2025 Jun 25 23:51:45 UTC (1750895505484)
+2025-06-25T23:51:45.4845195Z ... end of run
+2025-06-25T23:51:46.8114664Z Running testcases/tg10_promote_ad_screen.jmx
+2025-06-25T23:51:47.3834056Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:47.3909117Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:47.3940753Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:47.4146716Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:47.9267572Z Creating summariser <summary>
+2025-06-25T23:51:47.9274694Z Created the tree successfully using testcases/tg10_promote_ad_screen.jmx
+2025-06-25T23:51:47.9353305Z Starting standalone test @ 2025 Jun 25 23:51:47 UTC (1750895507929)
+2025-06-25T23:51:47.9431671Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:51:48.6251536Z summary =      1 in 00:00:01 =    1.8/s Avg:   406 Min:   406 Max:   406 Err:     0 (0.00%)
+2025-06-25T23:51:48.6252442Z Tidying up ...    @ 2025 Jun 25 23:51:48 UTC (1750895508625)
+2025-06-25T23:51:48.6253898Z ... end of run
+2025-06-25T23:51:49.9529455Z Running testcases/tg11_user_block.jmx
+2025-06-25T23:51:50.5370105Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:50.5450693Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:50.5485208Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:50.5692243Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:51.0894228Z Creating summariser <summary>
+2025-06-25T23:51:51.0900656Z Created the tree successfully using testcases/tg11_user_block.jmx
+2025-06-25T23:51:51.0985531Z Starting standalone test @ 2025 Jun 25 23:51:51 UTC (1750895511092)
+2025-06-25T23:51:51.1059973Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:51:51.9607596Z summary =      2 in 00:00:01 =    2.7/s Avg:   299 Min:   150 Max:   449 Err:     0 (0.00%)
+2025-06-25T23:51:51.9608524Z Tidying up ...    @ 2025 Jun 25 23:51:51 UTC (1750895511960)
+2025-06-25T23:51:51.9610229Z ... end of run
+2025-06-25T23:51:53.2873757Z Running testcases/tg12_vip_screen.jmx
+2025-06-25T23:51:53.8490916Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:53.8560339Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:53.8587734Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:53.8779383Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:54.3371718Z Creating summariser <summary>
+2025-06-25T23:51:54.3381941Z Created the tree successfully using testcases/tg12_vip_screen.jmx
+2025-06-25T23:51:54.3466589Z Starting standalone test @ 2025 Jun 25 23:51:54 UTC (1750895514340)
+2025-06-25T23:51:54.3551615Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:51:55.1687451Z summary =      1 in 00:00:01 =    1.4/s Avg:   519 Min:   519 Max:   519 Err:     0 (0.00%)
+2025-06-25T23:51:55.1688550Z Tidying up ...    @ 2025 Jun 25 23:51:55 UTC (1750895515168)
+2025-06-25T23:51:55.1689005Z ... end of run
+2025-06-25T23:51:56.4967117Z Running testcases/tg13_mygumtree_screen.jmx
+2025-06-25T23:51:57.1001916Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:57.1078132Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:57.1110763Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:57.1310852Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:51:57.6136789Z Creating summariser <summary>
+2025-06-25T23:51:57.6141625Z Created the tree successfully using testcases/tg13_mygumtree_screen.jmx
+2025-06-25T23:51:57.6217374Z Starting standalone test @ 2025 Jun 25 23:51:57 UTC (1750895517616)
+2025-06-25T23:51:57.6275791Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:51:58.9176812Z summary =      1 in 00:00:01 =    0.9/s Avg:   982 Min:   982 Max:   982 Err:     0 (0.00%)
+2025-06-25T23:51:58.9177949Z Tidying up ...    @ 2025 Jun 25 23:51:58 UTC (1750895518917)
+2025-06-25T23:51:58.9178411Z ... end of run
+2025-06-25T23:52:00.2448930Z Running testcases/tg14_favourites.jmx
+2025-06-25T23:52:00.8402087Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:00.8473984Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:00.8505772Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:00.8710968Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:01.3370947Z Creating summariser <summary>
+2025-06-25T23:52:01.3377562Z Created the tree successfully using testcases/tg14_favourites.jmx
+2025-06-25T23:52:01.3458957Z Starting standalone test @ 2025 Jun 25 23:52:01 UTC (1750895521339)
+2025-06-25T23:52:01.3519825Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:52:02.0737498Z summary +      1 in 00:00:01 =    1.7/s Avg:   450 Min:   450 Max:   450 Err:     0 (0.00%) Active: 1 Started: 1 Finished: 0
+2025-06-25T23:52:02.2826647Z summary +      1 in 00:00:00 =    4.8/s Avg:   204 Min:   204 Max:   204 Err:     0 (0.00%) Active: 0 Started: 1 Finished: 1
+2025-06-25T23:52:02.2828020Z summary =      2 in 00:00:01 =    2.5/s Avg:   327 Min:   204 Max:   450 Err:     0 (0.00%)
+2025-06-25T23:52:02.2831260Z Tidying up ...    @ 2025 Jun 25 23:52:02 UTC (1750895522282)
+2025-06-25T23:52:02.2831751Z ... end of run
+2025-06-25T23:52:03.6100352Z Running testcases/tg15_favourites_screen.jmx
+2025-06-25T23:52:04.2126723Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:04.2212168Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:04.2246532Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:04.2441383Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:04.7051023Z Creating summariser <summary>
+2025-06-25T23:52:04.7051687Z Created the tree successfully using testcases/tg15_favourites_screen.jmx
+2025-06-25T23:52:04.7130220Z Starting standalone test @ 2025 Jun 25 23:52:04 UTC (1750895524707)
+2025-06-25T23:52:04.7213569Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:52:05.4861452Z summary +      1 in 00:00:01 =    1.6/s Avg:   472 Min:   472 Max:   472 Err:     0 (0.00%) Active: 1 Started: 1 Finished: 0
+2025-06-25T23:52:05.4897063Z summary =      1 in 00:00:01 =    1.5/s Avg:   472 Min:   472 Max:   472 Err:     0 (0.00%)
+2025-06-25T23:52:05.4898653Z Tidying up ...    @ 2025 Jun 25 23:52:05 UTC (1750895525489)
+2025-06-25T23:52:05.4899181Z ... end of run
+2025-06-25T23:52:06.8170604Z Running testcases/tg16_chat_screen.jmx
+2025-06-25T23:52:07.3829416Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:07.3914458Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:07.3939661Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:07.4155850Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:07.9124119Z Creating summariser <summary>
+2025-06-25T23:52:07.9128469Z Created the tree successfully using testcases/tg16_chat_screen.jmx
+2025-06-25T23:52:07.9208106Z Starting standalone test @ 2025 Jun 25 23:52:07 UTC (1750895527914)
+2025-06-25T23:52:07.9322864Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:52:09.0111649Z summary =      1 in 00:00:01 =    1.0/s Avg:   802 Min:   802 Max:   802 Err:     0 (0.00%)
+2025-06-25T23:52:09.0112578Z Tidying up ...    @ 2025 Jun 25 23:52:09 UTC (1750895529010)
+2025-06-25T23:52:09.0114266Z ... end of run
+2025-06-25T23:52:10.3388873Z Running testcases/tg17_conversation_screen.jmx
+2025-06-25T23:52:10.9117649Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:10.9192572Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:10.9222337Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:10.9417760Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:11.4062110Z Creating summariser <summary>
+2025-06-25T23:52:11.4067750Z Created the tree successfully using testcases/tg17_conversation_screen.jmx
+2025-06-25T23:52:11.4147658Z Starting standalone test @ 2025 Jun 25 23:52:11 UTC (1750895531409)
+2025-06-25T23:52:11.4228097Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:52:12.4374614Z summary =      1 in 00:00:01 =    1.1/s Avg:   738 Min:   738 Max:   738 Err:     0 (0.00%)
+2025-06-25T23:52:12.4375506Z Tidying up ...    @ 2025 Jun 25 23:52:12 UTC (1750895532437)
+2025-06-25T23:52:12.4375960Z ... end of run
+2025-06-25T23:52:13.7652738Z Running testcases/tg18_conversation_unread_messages.jmx
+2025-06-25T23:52:14.3521918Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:14.3591804Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:14.3648589Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:14.3826951Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:14.8827882Z Creating summariser <summary>
+2025-06-25T23:52:14.8840370Z Created the tree successfully using testcases/tg18_conversation_unread_messages.jmx
+2025-06-25T23:52:14.8923961Z Starting standalone test @ 2025 Jun 25 23:52:14 UTC (1750895534885)
+2025-06-25T23:52:14.9020825Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:52:15.7152629Z summary =      1 in 00:00:01 =    1.5/s Avg:   514 Min:   514 Max:   514 Err:     0 (0.00%)
+2025-06-25T23:52:15.7153465Z Tidying up ...    @ 2025 Jun 25 23:52:15 UTC (1750895535715)
+2025-06-25T23:52:15.7153923Z ... end of run
+2025-06-25T23:52:17.0431798Z Running testcases/tg19_conversation.jmx
+2025-06-25T23:52:17.5985202Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:17.6061470Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:17.6092496Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:17.6286096Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:18.0785004Z Creating summariser <summary>
+2025-06-25T23:52:18.0789836Z Created the tree successfully using testcases/tg19_conversation.jmx
+2025-06-25T23:52:18.0865368Z Starting standalone test @ 2025 Jun 25 23:52:18 UTC (1750895538080)
+2025-06-25T23:52:18.0945228Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:52:19.1573567Z summary =      1 in 00:00:01 =    1.1/s Avg:   775 Min:   775 Max:   775 Err:     0 (0.00%)
+2025-06-25T23:52:19.1574330Z Tidying up ...    @ 2025 Jun 25 23:52:19 UTC (1750895539157)
+2025-06-25T23:52:19.1574800Z ... end of run
+2025-06-25T23:52:20.4845657Z Running testcases/tg20_reviews_conversation.jmx
+2025-06-25T23:52:21.0479885Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:21.0557611Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:21.0588573Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:21.0797157Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:21.5519728Z Creating summariser <summary>
+2025-06-25T23:52:21.5524447Z Created the tree successfully using testcases/tg20_reviews_conversation.jmx
+2025-06-25T23:52:21.5603061Z Starting standalone test @ 2025 Jun 25 23:52:21 UTC (1750895541554)
+2025-06-25T23:52:21.5696073Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:52:22.5520784Z summary =      1 in 00:00:01 =    1.2/s Avg:   684 Min:   684 Max:   684 Err:     0 (0.00%)
+2025-06-25T23:52:22.5521654Z Tidying up ...    @ 2025 Jun 25 23:52:22 UTC (1750895542551)
+2025-06-25T23:52:22.5523317Z ... end of run
+2025-06-25T23:52:24.4848212Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:24.4925585Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:24.4959901Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:24.5153111Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:24.9617535Z Creating summariser <summary>
+2025-06-25T23:52:24.9621837Z Created the tree successfully using testcases/tg6_forgot_password.jmx
+2025-06-25T23:52:24.9702746Z Starting standalone test @ 2025 Jun 25 23:52:24 UTC (1750895544964)
+2025-06-25T23:52:24.9795589Z Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+2025-06-25T23:52:26.5275512Z summary =      4 in 00:00:01 =    2.8/s Avg:   322 Min:   191 Max:   534 Err:     0 (0.00%)
+2025-06-25T23:52:26.5276132Z Tidying up ...    @ 2025 Jun 25 23:52:26 UTC (1750895546527)
+2025-06-25T23:52:26.5276737Z ... end of run
+2025-06-25T23:52:28.4357392Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:28.4428223Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:28.4463072Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:28.4678253Z WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2025-06-25T23:52:28.9105556Z File '/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases.jtl' does not contain the field names header, ensure the jmeter.save.saveservice.* properties are the same as when the CSV file was created or the file may be read incorrectly when generating report
+2025-06-25T23:52:29.5918943Z All JMeter tests executed and report generated at reports/all_cases_report
+2025-06-25T23:52:29.5927770Z ##[debug]Finishing: Run tests
+2025-06-25T23:52:29.5935166Z ##[debug]Evaluating condition for step: 'Run actions/upload-artifact@v4'
+2025-06-25T23:52:29.5938079Z ##[debug]Evaluating: (success() && (env.LATEST != steps.prev.outputs.SHA))
+2025-06-25T23:52:29.5938552Z ##[debug]Evaluating And:
+2025-06-25T23:52:29.5938854Z ##[debug]..Evaluating success:
+2025-06-25T23:52:29.5939232Z ##[debug]..=> true
+2025-06-25T23:52:29.5939515Z ##[debug]..Evaluating NotEqual:
+2025-06-25T23:52:29.5939828Z ##[debug]....Evaluating Index:
+2025-06-25T23:52:29.5940112Z ##[debug]......Evaluating env:
+2025-06-25T23:52:29.5940410Z ##[debug]......=> Object
+2025-06-25T23:52:29.5940709Z ##[debug]......Evaluating String:
+2025-06-25T23:52:29.5941006Z ##[debug]......=> 'LATEST'
+2025-06-25T23:52:29.5941424Z ##[debug]....=> '1130f07802daa0fc142a472f9209b280aa2bc718'
+2025-06-25T23:52:29.5941786Z ##[debug]....Evaluating Index:
+2025-06-25T23:52:29.5942070Z ##[debug]......Evaluating Index:
+2025-06-25T23:52:29.5942359Z ##[debug]........Evaluating Index:
+2025-06-25T23:52:29.5942688Z ##[debug]..........Evaluating steps:
+2025-06-25T23:52:29.5943122Z ##[debug]..........=> Object
+2025-06-25T23:52:29.5945508Z ##[debug]..........Evaluating String:
+2025-06-25T23:52:29.5945848Z ##[debug]..........=> 'prev'
+2025-06-25T23:52:29.5946152Z ##[debug]........=> Object
+2025-06-25T23:52:29.5946895Z ##[debug]........Evaluating String:
+2025-06-25T23:52:29.5947199Z ##[debug]........=> 'outputs'
+2025-06-25T23:52:29.5947486Z ##[debug]......=> Object
+2025-06-25T23:52:29.5947768Z ##[debug]......Evaluating String:
+2025-06-25T23:52:29.5948054Z ##[debug]......=> 'SHA'
+2025-06-25T23:52:29.5948343Z ##[debug]....=> 'none'
+2025-06-25T23:52:29.5948594Z ##[debug]..=> true
+2025-06-25T23:52:29.5948834Z ##[debug]=> true
+2025-06-25T23:52:29.5949461Z ##[debug]Expanded: (true && ('1130f07802daa0fc142a472f9209b280aa2bc718' != 'none'))
+2025-06-25T23:52:29.5949903Z ##[debug]Result: true
+2025-06-25T23:52:29.5950485Z ##[debug]Starting: Run actions/upload-artifact@v4
+2025-06-25T23:52:29.5985455Z ##[debug]Loading inputs
+2025-06-25T23:52:29.5989011Z ##[debug]Loading env
+2025-06-25T23:52:29.5992519Z ##[group]Run actions/upload-artifact@v4
+2025-06-25T23:52:29.5993677Z with:
+2025-06-25T23:52:29.5993859Z   name: jmeter-report
+2025-06-25T23:52:29.5994070Z   path: reports/
+2025-06-25T23:52:29.5994263Z   if-no-files-found: warn
+2025-06-25T23:52:29.5994494Z   compression-level: 6
+2025-06-25T23:52:29.5994718Z   overwrite: false
+2025-06-25T23:52:29.5994933Z   include-hidden-files: false
+2025-06-25T23:52:29.5995140Z env:
+2025-06-25T23:52:29.5995368Z   COMPANY_REPO: gumtree-tech/mobile-apps-bff
+2025-06-25T23:52:29.5995651Z   BRANCH: master
+2025-06-25T23:52:29.5995826Z   STATE: .last_sha_bff
+2025-06-25T23:52:29.5996019Z   ACTIONS_STEP_DEBUG: true
+2025-06-25T23:52:29.5996250Z   LATEST: 1130f07802daa0fc142a472f9209b280aa2bc718
+2025-06-25T23:52:29.5996780Z ##[endgroup]
+2025-06-25T23:52:29.8036035Z ##[debug]followSymbolicLinks 'true'
+2025-06-25T23:52:29.8037718Z ##[debug]implicitDescendants 'true'
+2025-06-25T23:52:29.8038439Z ##[debug]omitBrokenSymbolicLinks 'true'
+2025-06-25T23:52:29.8039147Z ##[debug]excludeHiddenFiles 'true'
+2025-06-25T23:52:29.8060601Z ##[debug]followSymbolicLinks 'true'
+2025-06-25T23:52:29.8061751Z ##[debug]implicitDescendants 'true'
+2025-06-25T23:52:29.8062607Z ##[debug]matchDirectories 'true'
+2025-06-25T23:52:29.8063624Z ##[debug]omitBrokenSymbolicLinks 'true'
+2025-06-25T23:52:29.8064496Z ##[debug]excludeHiddenFiles 'true'
+2025-06-25T23:52:29.8068491Z ##[debug]Search path '/home/runner/work/jmeter-api-project/jmeter-api-project/reports'
+2025-06-25T23:52:29.8322264Z ##[debug]Removing /home/runner/work/jmeter-api-project/jmeter-api-project/reports from rawSearchResults because it is a directory
+2025-06-25T23:52:29.8324581Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases.jtl was found using the provided searchPath
+2025-06-25T23:52:29.8325922Z ##[debug]Removing /home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report from rawSearchResults because it is a directory
+2025-06-25T23:52:29.8328216Z ##[debug]Removing /home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content from rawSearchResults because it is a directory
+2025-06-25T23:52:29.8330118Z ##[debug]Removing /home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/css from rawSearchResults because it is a directory
+2025-06-25T23:52:29.8332177Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/css/dashboard.css was found using the provided searchPath
+2025-06-25T23:52:29.8334300Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/css/jquery-ui.min.css was found using the provided searchPath
+2025-06-25T23:52:29.8336581Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/css/jquery-ui.structure.min.css was found using the provided searchPath
+2025-06-25T23:52:29.8338915Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/css/jquery-ui.theme.min.css was found using the provided searchPath
+2025-06-25T23:52:29.8341090Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/css/legends.css was found using the provided searchPath
+2025-06-25T23:52:29.8343226Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/css/theme.blue.css was found using the provided searchPath
+2025-06-25T23:52:29.8345344Z ##[debug]Removing /home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/js from rawSearchResults because it is a directory
+2025-06-25T23:52:29.8347668Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/js/curvedLines.js was found using the provided searchPath
+2025-06-25T23:52:29.8349825Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/js/customGraph.js was found using the provided searchPath
+2025-06-25T23:52:29.8351922Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/js/dashboard-commons.js was found using the provided searchPath
+2025-06-25T23:52:29.8354069Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/js/dashboard.js was found using the provided searchPath
+2025-06-25T23:52:29.8356073Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/js/graph.js was found using the provided searchPath
+2025-06-25T23:52:29.8358327Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/js/hashtable.js was found using the provided searchPath
+2025-06-25T23:52:29.8360420Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/js/jquery-ui.min.js was found using the provided searchPath
+2025-06-25T23:52:29.8362587Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/js/jquery.cookie.js was found using the provided searchPath
+2025-06-25T23:52:29.8364775Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/js/jquery.flot.stack.js was found using the provided searchPath
+2025-06-25T23:52:29.8367215Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/js/jquery.numberformatter-1.2.3.min.js was found using the provided searchPath
+2025-06-25T23:52:29.8369792Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/js/jquery.tablesorter.min.js was found using the provided searchPath
+2025-06-25T23:52:29.8371943Z ##[debug]Removing /home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/pages from rawSearchResults because it is a directory
+2025-06-25T23:52:29.8374271Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/pages/CustomsGraphs.html was found using the provided searchPath
+2025-06-25T23:52:29.8376701Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/pages/OverTime.html was found using the provided searchPath
+2025-06-25T23:52:29.8378855Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/pages/ResponseTimes.html was found using the provided searchPath
+2025-06-25T23:52:29.8381018Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/pages/Throughput.html was found using the provided searchPath
+2025-06-25T23:52:29.8383190Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/content/pages/icon-apache.png was found using the provided searchPath
+2025-06-25T23:52:29.8385182Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/index.html was found using the provided searchPath
+2025-06-25T23:52:29.8387185Z ##[debug]Removing /home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/sbadmin2-1.0.7 from rawSearchResults because it is a directory
+2025-06-25T23:52:29.8389166Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/sbadmin2-1.0.7/README.md was found using the provided searchPath
+2025-06-25T23:52:29.8391122Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/sbadmin2-1.0.7/bower.json was found using the provided searchPath
+2025-06-25T23:52:29.8393227Z ##[debug]Removing /home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/sbadmin2-1.0.7/bower_components from rawSearchResults because it is a directory
+2025-06-25T23:52:29.8395467Z ##[debug]Removing /home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/sbadmin2-1.0.7/bower_components/bootstrap from rawSearchResults because it is a directory
+2025-06-25T23:52:29.8397996Z ##[debug]File:/home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/sbadmin2-1.0.7/bower_components/bootstrap/README.md was found using the provided searchPath
+2025-06-25T23:52:29.8400465Z ##[debug]Removing /home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/sbadmin2-1.0.7/bower_components/bootstrap/dist from rawSearchResults because it is a directory
+2025-06-25T23:52:29.8402961Z ##[debug]Removing /home/runner/work/jmeter-api-project/jmeter-api-project/reports/all_cases_report/sbadmin2-1.0.7/bower_components/bootstrap/dist/css from rawSearchResults because it is a directory
+2025-06-25T23:5
