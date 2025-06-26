@@ -1,77 +1,85 @@
 name: Poll Company Repo & Run JMeter
 on:
   schedule:
-    - cron: '*/5 * * * *'      # 每 5 分钟轮询
+    - cron: '*/10 * * * *'      # 每 10 分钟轮询
   workflow_dispatch:           # 手动触发
 
+env:
+  COMPANY_REPO: gumtree-tech/mobile-apps-bff   # 目标仓库
+  BRANCH: master                                 # 监控分支
+  STATE: .last_sha_bff                         # 记录文件名
+
 jobs:
-  poll:
-    permissions:
-      contents: write
+  check:
     runs-on: ubuntu-latest
-    env:
-      COMPANY_REPO: gumtree-tech/mobile-apps-bff   # 目标仓库
-      BRANCH: master                                 # 监控分支
-      STATE: .last_sha_bff                         # 记录文件名
-      ACTIONS_STEP_DEBUG: ${{ secrets.ACTIONS_STEP_DEBUG }} # 打开 Checkout 调试日志
+    outputs:
+      updated: ${{ steps.diff.outputs.updated }}
+      latest_sha: ${{ steps.latest.outputs.sha }}
     steps:
-      # 1 拉自己仓库（保存状态用）
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 0
-
-      # 2 读上次 sha
-      - id: prev
-        run: echo "SHA=$(cat $STATE 2>/dev/null || echo none)" >> $GITHUB_OUTPUT
-
-      # 3 查询最新 sha（只用 PAT）
-      - id: latest
-        run: |
-          LATEST=$(curl -s -H "Authorization: Bearer ${{ secrets.COMPANY_PAT }}" \
-          https://api.github.com/repos/${COMPANY_REPO}/commits/${BRANCH} | jq -r .sha)
-          echo "LATEST=$LATEST" >> $GITHUB_OUTPUT
-
-      # 设置环境变量供后续步骤使用
-      - name: Export LATEST env
-        run: echo "LATEST=${{ steps.latest.outputs.LATEST }}" >> $GITHUB_ENV
-
-      # 4 无更新就提前结束
-      - name: No change
-        if: env.LATEST == steps.prev.outputs.SHA
-        run: echo "No new commit."
-
-      # 5 有更新才继续
-      - name: Checkout BFF repo
-        if: env.LATEST != steps.prev.outputs.SHA
+      - name: Checkout self
         uses: actions/checkout@v4
         with:
-          repository: gumtree-tech/mobile-apps-bff          # 目标仓库
-          token: ${{ secrets.COMPANY_PAT }}                 # 统一使用 COMPANY_PAT Secret
-          path: company_src                                 # 放到子目录
-          ref: ${{ env.BRANCH }}                            # 使用 env 中定义的分支
-          fetch-depth: 0                                    # 如需完整历史
-          submodules: true                                  # 仓库里有子模块就加
+          fetch-depth: 0
+
+      - id: prev
+        run: echo "sha=$(cat $STATE 2>/dev/null || echo none)" >> $GITHUB_OUTPUT
+
+      - id: latest
+        run: |
+          sha=$(curl -s -H "Authorization: Bearer ${{ secrets.COMPANY_PAT }}" \
+                https://api.github.com/repos/${{ env.COMPANY_REPO }}/commits/${{ env.BRANCH }} | jq -r .sha)
+          echo "sha=$sha" >> $GITHUB_OUTPUT
+
+      - id: diff
+        run: |
+          if [ "${{ steps.latest.outputs.sha }}" = "${{ steps.prev.outputs.sha }}" ]; then
+            echo "updated=false" >> $GITHUB_OUTPUT
+          else
+            echo "updated=true"  >> $GITHUB_OUTPUT
+          fi
+
+  jmeter:
+    needs: check
+    if: needs.check.outputs.updated == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      COMPANY_REPO: ${{ env.COMPANY_REPO }}
+      BRANCH: ${{ env.BRANCH }}
+      STATE: ${{ env.STATE }}
+      LATEST: ${{ needs.check.outputs.latest_sha }}
+    steps:
+      - name: Checkout self repo (for pushing state file)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout BFF repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.COMPANY_REPO }}
+          token: ${{ secrets.COMPANY_PAT }}
+          ref: ${{ env.BRANCH }}
+          path: company_src
+          fetch-depth: 0
+          submodules: true
 
       - name: Install JMeter & plugins
-        if: env.LATEST != steps.prev.outputs.SHA
         run: bash scripts/install_jmeter.sh
 
       - name: Run tests
-        if: env.LATEST != steps.prev.outputs.SHA
         run: bash scripts/run_all.sh
 
-      - uses: actions/upload-artifact@v4
-        if: env.LATEST != steps.prev.outputs.SHA
+      - name: Upload report
+        uses: actions/upload-artifact@v4
         with:
           name: jmeter-report
           path: reports/
 
-      # 6 记录新 sha
-      - name: Save sha
-        if: env.LATEST != steps.prev.outputs.SHA
+      - name: Save new sha
         run: |
-          echo "${{ env.LATEST }}" > $STATE
+          echo "$LATEST" > $STATE
           git config user.name "ci-bot"
           git config user.email "ci-bot@users.noreply.github.com"
           git add $STATE
