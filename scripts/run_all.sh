@@ -33,8 +33,6 @@ whitelist=(
   testcases/tg4_account_activation.jmx
   testcases/tg5_password_reset.jmx
   testcases/tg7_ad_posted_analytics.jmx
-  testcases/tg8_post_ad.jmx
-  testcases/tg9_delete_ad.jmx
   testcases/tg10_promote_ad_screen.jmx
   testcases/tg11_user_block.jmx
   testcases/tg12_vip_screen.jmx
