@@ -1,0 +1,32 @@
+1750909484713,538,1.1 Login - Correct Credentials,200,OK,TG1: Login Scenarios (Android) 1-1,text,true,,1389,714,1,1,https://mobile-apps-bff.gumtree.com/v1/login,533,0,324
+1750909485493,157,1.2 Login - Incorrect Password,403,Forbidden,TG1: Login Scenarios (Android) 1-1,text,true,,424,717,1,1,https://mobile-apps-bff.gumtree.com/v1/login,157,0,0
+1750909485653,271,1.3 Login - Missing Username,400,Bad Request,TG1: Login Scenarios (Android) 1-1,text,true,,461,691,1,1,https://mobile-apps-bff.gumtree.com/v1/login,271,0,0
+1750909485926,541,1.4 Login - Missing Password,400,Bad Request,TG1: Login Scenarios (Android) 1-1,text,true,,459,701,1,1,https://mobile-apps-bff.gumtree.com/v1/login,541,0,0
+1750909489506,473,2.1 Registration Request - Opt-Out Marketing,204,No Content,TG2: Registration Scenario (Android) 1-1,,true,,364,817,1,1,https://mobile-apps-bff.gumtree.com/v1/registration,0,0,239
+1750909489987,228,2.2 Registration Request - Opt-In Marketing,204,No Content,TG2: Registration Scenario (Android) 1-1,,true,,366,823,1,1,https://mobile-apps-bff.gumtree.com/v1/registration,0,0,0
+1750909492917,546,3.1 Logout Request,404,Not Found,TG3: Logout Scenario (Android) 1-1,,true,,364,1558,1,1,https://mobile-apps-bff.gumtree.com/logout,546,0,244
+1750909496083,433,4.2 Activate Account - missing Token,400,Bad Request,TG4: Account Activation Scenarios (Android) 1-1,text,true,,466,722,1,1,https://mobile-apps-bff.gumtree.com/v1/registration/activate,430,0,264
+1750909496522,1062,4.3 Activate Account - Missing User ,400,Bad Request,TG4: Account Activation Scenarios (Android) 1-1,text,true,,468,725,1,1,https://mobile-apps-bff.gumtree.com/v1/registration/activate,1062,0,0
+1750909497585,178,4.4 Activate Account - 500,500,Internal Server Error,TG4: Account Activation Scenarios (Android) 1-1,text,true,,505,755,1,1,https://mobile-apps-bff.gumtree.com/v1/registration/activate,178,0,0
+1750909500464,407,5.2 Reset Password - empty resetToken ,400,Bad Request,TG5: Password Reset Scenarios (Android) 1-1,text,true,,468,693,1,1,https://mobile-apps-bff.gumtree.com/v1/resetpassword,404,0,216
+1750909500879,145,5.3 Reset Password - empty userSecret,400,Bad Request,TG5: Password Reset Scenarios (Android) 1-1,text,true,,468,718,1,1,https://mobile-apps-bff.gumtree.com/v1/resetpassword,145,0,0
+1750909501025,150,5.4 Reset Password - no content,400,Bad Request,TG5: Password Reset Scenarios (Android) 1-1,text,true,,468,634,1,1,https://mobile-apps-bff.gumtree.com/v1/resetpassword,149,0,0
+1750909501176,168,5.5 Reset Password - wrong info,500,Internal Server Error,TG5: Password Reset Scenarios (Android) 1-1,text,true,,507,729,1,1,https://mobile-apps-bff.gumtree.com/v1/resetpassword,168,0,0
+1750909504047,538,7.1 Ad Posted Analytics Event,200,OK,TG7: Ad Posted Analytics Event Scenario (Android) 1-1,text,true,,1487,1528,1,1,https://mobile-apps-bff.gumtree.com/v2/my-gumtree/adPostedAnalyticsEvent?adId=1496984058&postType=NEW&isPaidAd=false,538,0,346
+1750909507336,430,10.1 Promote Ad Screen,200,OK,TG10: Promote Ad Screen Scenario (Android) 1-1,text,true,,4455,1481,1,1,https://mobile-apps-bff.gumtree.com/v1/promote/screen?adId=1496984058,429,0,258
+1750909510546,471,11.1 Block User,201,Created,TG11: Block User Scenario (iOS) 1-1,text,true,,345,1557,1,1,https://mobile-apps-bff.gumtree.com/v1/block-user/98949604,471,0,239
+1750909511023,195,11.2 Unblock User,204,No Content,TG11: Block User Scenario (iOS) 1-1,,true,,311,1557,1,1,https://mobile-apps-bff.gumtree.com/v1/block-user/98949604,0,0,0
+1750909513915,608,12.1 VIP Screen,200,OK,TG12: VIP Screen Scenario 1-1,text,true,,14559,1537,1,1,https://mobile-apps-bff.gumtree.com/v2/vip/screen/1496983864,605,0,300
+1750909517284,924,13.1 MyGumtree Screen,200,OK,TG13: MyGumtree Screen Scenario 1-1,text,true,,32371,1533,1,1,https://mobile-apps-bff.gumtree.com/v2/my-gumtree/screen,919,0,226
+1750909521019,479,14.1 Favourites ads,201,Created,TG14: Favourites Scenario 1-1,,true,,310,1570,1,1,https://mobile-apps-bff.gumtree.com/v1/favourites,479,0,216
+1750909521503,394,14.2 Cancel favourites ads,204,No Content,TG14: Favourites Scenario 1-1,,true,,312,1559,1,1,https://mobile-apps-bff.gumtree.com/v1/favourites/1496984058,0,0,0
+1750909524622,480,15.1 Favourites Screen,200,OK,TG15: Favourites Screen Scenario 1-1,text,true,,31881,1533,1,1,https://mobile-apps-bff.gumtree.com/v1/favourites/screen,475,0,230
+1750909527897,670,16.1 Chat Screen,200,OK,TG16: Chat Screen Scenario 1-1,text,true,,7426,1564,1,1,https://mobile-apps-bff.gumtree.com/v1/chat/screen/a07838bb-93dc-3591-9422-ef81e28f25ee,669,0,239
+1750909531247,621,17.1 Conversation Screen,200,OK,TG17: Conversation Screen Scenario 1-1,text,true,,38925,1536,1,1,https://mobile-apps-bff.gumtree.com/v1/conversations/screen,615,0,235
+1750909534596,616,18.1 Conversation Unread Messages,200,OK,TG18: Conversation Unread Messages Scenario 1-1,text,true,,386,1554,1,1,https://mobile-apps-bff.gumtree.com/v1/conversations/unread-messages/99639924,616,0,206
+1750909537962,606,19.1 Conversation ,200,OK,TG19: Conversation Scenario 1-1,text,true,,497,1622,1,1,https://mobile-apps-bff.gumtree.com/v1/conversations/1498871725,606,0,208
+1750909541300,557,20.1 Reviews Conversation ,200,OK,TG20: Reviews Conversation Scenario 1-1,text,true,,15459,1582,1,1,https://mobile-apps-bff.gumtree.com/v1/reviews/conversation/a07838bb-93dc-3591-9422-ef81e28f25ee?rating=5,553,0,213
+1750909544627,489,6.1 Forgot Password - User Exists,204,No Content,TG6: Forgot Password Scenarios (Android) 1-1,,true,,364,689,1,1,https://mobile-apps-bff.gumtree.com/v1/forgotpassword,0,0,291
+1750909545123,160,6.2 Forgot Password - User Does Not Exist,500,Internal Server Error,TG6: Forgot Password Scenarios (Android) 1-1,text,true,,505,700,1,1,https://mobile-apps-bff.gumtree.com/v1/forgotpassword,160,0,0
+1750909545284,374,6.3 Forgot Password - Invalid Email Format,400,Bad Request,TG6: Forgot Password Scenarios (Android) 1-1,text,true,,468,688,1,1,https://mobile-apps-bff.gumtree.com/v1/forgotpassword,374,0,0
+1750909545659,171,6.4 Forgot Password - Missing Email,400,Bad Request,TG6: Forgot Password Scenarios (Android) 1-1,text,true,,466,649,1,1,https://mobile-apps-bff.gumtree.com/v1/forgotpassword,171,0,0

@@ -110,3 +110,53 @@ jobs:
         with:
           name: jmeter-reports
           path: reports/
+
+      - name: Send success notification
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "✅ JMeter CI 测试成功 - ${{ github.repository }}"
+          to: ${{ secrets.NOTIFICATION_EMAIL }}
+          from: ${{ secrets.MAIL_USERNAME }}
+          body: |
+            🎉 JMeter CI 测试执行成功！
+            
+            📊 测试详情:
+            - 仓库: ${{ github.repository }}
+            - 分支: ${{ github.ref_name }}
+            - 提交: ${{ github.sha }}
+            - 触发者: ${{ github.actor }}
+            - 执行时间: ${{ github.event.head_commit.timestamp }}
+            
+            📁 测试报告已生成，可在 GitHub Actions 中下载。
+            
+            🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+      - name: Send failure notification
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "❌ JMeter CI 测试失败 - ${{ github.repository }}"
+          to: ${{ secrets.NOTIFICATION_EMAIL }}
+          from: ${{ secrets.MAIL_USERNAME }}
+          body: |
+            🚨 JMeter CI 测试执行失败！
+            
+            📊 失败详情:
+            - 仓库: ${{ github.repository }}
+            - 分支: ${{ github.ref_name }}
+            - 提交: ${{ github.sha }}
+            - 触发者: ${{ github.actor }}
+            - 执行时间: ${{ github.event.head_commit.timestamp }}
+            
+            ⚠️ 请立即检查测试失败原因并修复问题。
+            
+            🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
