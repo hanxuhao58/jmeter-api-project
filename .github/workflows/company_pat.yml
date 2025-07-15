@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 env:
-  COMPANY_REPO: gumtree-tech/mobile-apps-bff   # 目标仓库
+  COMPANY_REPO: gumtree-tech/mobile-apps-bff   # 目标仓库12
   BRANCH: master                               # 监控分支
   STATE: .last_sha_bff                         # 记录文件名
 
