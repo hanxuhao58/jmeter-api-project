@@ -1,7 +1,7 @@
 name: Poll Company Repo & Run JMeter
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 env:
@@ -17,7 +17,7 @@ jobs:
       latest_sha: ${{ steps.latest.outputs.sha }}
       check_success: ${{ steps.set.outputs.check_success }}
     steps:
-      - name: Checkout self
+      - name: Checkoutself
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -244,6 +244,10 @@ jobs:
             
             🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
+      - name: Mark summary as no update
+        if: steps.check_date.outputs.notification_sent == 'false'
+        run: echo "## 本次检测：无更新" >> $GITHUB_STEP_SUMMARY
+
       - name: Update notification date
         if: steps.check_date.outputs.notification_sent == 'false'
         run: |
@@ -252,3 +256,7 @@ jobs:
           git add .last_no_update_notification
           git commit -m "Update last no-update notification date: $today"
           git push
+
+      - name: Mark summary as updated
+        if: success()
+        run: echo "## 本次检测：有更新并已执行自动化" >> $GITHUB_STEP_SUMMARY
