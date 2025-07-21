@@ -5,9 +5,9 @@ on:
   workflow_dispatch:
 
 env:
-  COMPANY_REPO: gumtree-tech/mobile-apps-bff   # 目标仓库
-  BRANCH: master                               # 监控分支
-  STATE: .last_sha_bff                         # 记录文件名
+  COMPANY_REPO: gumtree-tech/mobile-apps-bff   #  目标仓库
+  BRANCH: master                               #  监控分支
+  STATE: .last_sha_bff                         #  记录文件名
 
 jobs:
   check:
@@ -15,6 +15,7 @@ jobs:
     outputs:
       updated: ${{ steps.set.outputs.updated }}
       latest_sha: ${{ steps.latest.outputs.sha }}
+      check_success: ${{ steps.set.outputs.check_success }}
     steps:
       - name: Checkout self
         uses: actions/checkout@v4
@@ -26,21 +27,68 @@ jobs:
 
       - id: latest
         run: |
-          sha=$(curl -s -H "Authorization: Bearer ${{ secrets.COMPANY_PAT }}" \
-              https://api.github.com/repos/${{ env.COMPANY_REPO }}/commits/${{ env.BRANCH }} | jq -r .sha)
-          echo "sha=$sha" >> $GITHUB_OUTPUT
+          # 添加错误处理，避免网络问题导致的失败
+          response=$(curl -s -w "%{http_code}" -H "Authorization: Bearer ${{ secrets.COMPANY_PAT }}" \
+              https://api.github.com/repos/${{ env.COMPANY_REPO }}/commits/${{ env.BRANCH }})
+          
+          http_code="${response: -3}"
+          body="${response%???}"
+          
+          if [ "$http_code" = "200" ]; then
+            sha=$(echo "$body" | jq -r .sha)
+            echo "sha=$sha" >> $GITHUB_OUTPUT
+          else
+            echo "Error: HTTP $http_code when fetching commit info" >&2
+            echo "Response: $body" >&2
+            exit 1
+          fi
 
       - id: set
         run: |
           if [ "${{ steps.latest.outputs.sha }}" = "${{ steps.prev.outputs.sha }}" ]; then
             echo "updated=false" >> $GITHUB_OUTPUT
+            echo "check_success=true" >> $GITHUB_OUTPUT
           else
             echo "updated=true" >> $GITHUB_OUTPUT
+            echo "check_success=true" >> $GITHUB_OUTPUT
           fi
+
+  # 检测失败通知 - 只在检测阶段失败时发送
+  check-failure-notification:
+    needs: check
+    if: failure() && needs.check.outputs.check_success != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send check failure notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "⚠️ 公司仓库监控检测失败 - ${{ env.COMPANY_REPO }}"
+          to: ${{ secrets.NOTIFICATION_EMAIL }}
+          from: ${{ secrets.MAIL_USERNAME }}
+          body: |
+            ⚠️ 公司仓库监控检测阶段失败！
+            
+            📊 失败详情:
+            - 监控仓库: ${{ env.COMPANY_REPO }}
+            - 监控分支: ${{ env.BRANCH }}
+            - 失败时间: ${{ github.event.head_commit.timestamp || '定时触发' }}
+            - 失败原因: 可能是网络问题、API访问权限问题或仓库不存在
+            
+            🔧 可能的解决方案:
+            1. 检查网络连接
+            2. 验证 COMPANY_PAT token 是否有效
+            3. 确认仓库地址和分支名称正确
+            4. 检查 GitHub API 状态
+            
+            🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
   jmeter:
     needs: check
-    if: needs.check.outputs.updated == 'true'
+    if: needs.check.outputs.updated == 'true' && needs.check.outputs.check_success == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -49,6 +97,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Checkout BFF repo
         uses: actions/checkout@v4
@@ -75,8 +128,127 @@ jobs:
       - name: Save new sha
         run: |
           echo "${{ needs.check.outputs.latest_sha }}" > $STATE
-          git config user.name "ci-bot"
-          git config user.email "ci-bot@users.noreply.github.com"
           git add $STATE
           git commit -m "update sha"
+          git push
+
+      - name: Send success notification
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "✅ 公司仓库监控测试成功 - ${{ env.COMPANY_REPO }}"
+          to: ${{ secrets.NOTIFICATION_EMAIL }}
+          from: ${{ secrets.MAIL_USERNAME }}
+          body: |
+            🎉 公司仓库监控测试执行成功！
+            
+            📊 测试详情:
+            - 监控仓库: ${{ env.COMPANY_REPO }}
+            - 监控分支: ${{ env.BRANCH }}
+            - 最新提交: ${{ needs.check.outputs.latest_sha }}
+            - 触发时间: ${{ github.event.head_commit.timestamp || '定时触发' }}
+            
+            📁 测试报告已生成，可在 GitHub Actions 中下载。
+            
+            🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+      - name: Send failure notification
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "❌ 公司仓库监控测试失败 - ${{ env.COMPANY_REPO }}"
+          to: ${{ secrets.NOTIFICATION_EMAIL }}
+          from: ${{ secrets.MAIL_USERNAME }}
+          body: |
+            🚨 公司仓库监控测试执行失败！
+            
+            📊 失败详情:
+            - 监控仓库: ${{ env.COMPANY_REPO }}
+            - 监控分支: ${{ env.BRANCH }}
+            - 最新提交: ${{ needs.check.outputs.latest_sha }}
+            - 触发时间: ${{ github.event.head_commit.timestamp || '定时触发' }}
+            
+            ⚠️ 请立即检查测试失败原因并修复问题。
+            
+            🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+  # 无更新通知 - 当检测成功但没有更新时发送（每天最多一封）
+  no-update-notification:
+    needs: check
+    if: success() && needs.check.outputs.updated == 'false' && needs.check.outputs.check_success == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout self repo (for updating notification file)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Check if notification already sent today
+        id: check_date
+        run: |
+          today=$(date +%Y-%m-%d)
+          last_notification_file=".last_no_update_notification"
+          
+          if [ -f "$last_notification_file" ]; then
+            last_date=$(cat "$last_notification_file")
+            if [ "$last_date" = "$today" ]; then
+              echo "notification_sent=true" >> $GITHUB_OUTPUT
+              echo "Already sent notification today ($today), skipping..."
+            else
+              echo "notification_sent=false" >> $GITHUB_OUTPUT
+              echo "Last notification was on $last_date, sending today's notification..."
+            fi
+          else
+            echo "notification_sent=false" >> $GITHUB_OUTPUT
+            echo "No previous notification found, sending first notification..."
+          fi
+
+      - name: Send no update notification
+        if: steps.check_date.outputs.notification_sent == 'false'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "ℹ️ 公司仓库无更新 - ${{ env.COMPANY_REPO }}"
+          to: ${{ secrets.NOTIFICATION_EMAIL }}
+          from: ${{ secrets.MAIL_USERNAME }}
+          body: |
+            ℹ️ 公司仓库监控检测完成，无新更新。
+            
+            📊 检测详情:
+            - 监控仓库: ${{ env.COMPANY_REPO }}
+            - 监控分支: ${{ env.BRANCH }}
+            - 当前提交: ${{ needs.check.outputs.latest_sha }}
+            - 检测时间: ${{ github.event.head_commit.timestamp || '定时触发' }}
+            
+            ✅ 监控系统运行正常，等待下次检测。
+            
+            📝 注意：为避免邮件轰炸，无更新通知每天最多发送一次。
+            
+            🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+      - name: Update notification date
+        if: steps.check_date.outputs.notification_sent == 'false'
+        run: |
+          today=$(date +%Y-%m-%d)
+          echo "$today" > .last_no_update_notification
+          git add .last_no_update_notification
+          git commit -m "Update last no-update notification date: $today"
           git push
