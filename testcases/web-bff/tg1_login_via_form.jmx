@@ -1,0 +1,1057 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Gumtree Web Login API Test">
+      <stringProp name="TestPlan.comments">Test plan for Gumtree Web Login API - /bff-api/login/via-form</stringProp>
+      <boolProp name="TestPlan.serialize_threadgroups">true</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG1: Web Login Scenarios">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
+          <collectionProp name="CookieManager.cookies"/>
+          <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+          <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
+        </CookieManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="0.9 Preheat - GET /login">
+          <intProp name="HTTPSampler.connect_timeout">30000</intProp>
+          <intProp name="HTTPSampler.response_timeout">60000</intProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.path">${__P(LOGIN_PAGE_PATH)}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Web Login HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">${__P(CONTENT_TYPE)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">User-Agent</stringProp>
+              <stringProp name="Header.value">${__P(USER_AGENT)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Accept</stringProp>
+              <stringProp name="Header.value">${__P(ACCEPT)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Accept-Language</stringProp>
+              <stringProp name="Header.value">${__P(ACCEPT_LANGUAGE)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Accept-Encoding</stringProp>
+              <stringProp name="Header.value">${__P(ACCEPT_ENCODING)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Origin</stringProp>
+              <stringProp name="Header.value">${__P(ORIGIN)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Referer</stringProp>
+              <stringProp name="Header.value">${__P(REFERER)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Connection</stringProp>
+              <stringProp name="Header.value">${__P(CONNECTION)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">sec-ch-ua</stringProp>
+              <stringProp name="Header.value">${__P(SEC_CH_UA)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+              <stringProp name="Header.value">${__P(SEC_CH_UA_MOBILE)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+              <stringProp name="Header.value">${__P(SEC_CH_UA_PLATFORM)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">sec-fetch-site</stringProp>
+              <stringProp name="Header.value">${__P(SEC_FETCH_SITE)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">sec-fetch-mode</stringProp>
+              <stringProp name="Header.value">${__P(SEC_FETCH_MODE)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">sec-fetch-dest</stringProp>
+              <stringProp name="Header.value">${__P(SEC_FETCH_DEST)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Cache-Control</stringProp>
+              <stringProp name="Header.value">${__P(CACHE_CONTROL)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Pragma</stringProp>
+              <stringProp name="Header.value">${__P(PRAGMA)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Host</stringProp>
+              <stringProp name="Header.value">${__P(HOST)}</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Login - Correct Credentials">
+          <stringProp name="TestPlan.comments">使用正确的用户名和密码登录</stringProp>
+          <intProp name="HTTPSampler.connect_timeout">60000</intProp>
+          <intProp name="HTTPSampler.response_timeout">120000</intProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.path">${__P(LOGIN_PATH)}</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="username" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${__P(CORRECT_USERNAME)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">username</stringProp>
+              </elementProp>
+              <elementProp name="password" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${__P(CORRECT_PASSWORD)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">password</stringProp>
+              </elementProp>
+              <elementProp name="legacy" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${__P(LEGACY_VALUE)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">legacy</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 200" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言响应包含 manage/ads" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1255755612">${__P(EXPECTED_REDIRECT_PATH)}</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+            <stringProp name="Assertion.custom_message">期望登录成功后重定向到 manage/ads 页面</stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="提取认证信息并保存到CSV" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">import java.io.File
+import java.io.FileWriter
+import java.text.SimpleDateFormat
+import groovy.json.JsonSlurper
+import org.apache.jmeter.services.FileServer
+
+// === 路径定位：以 JMX 所在目录为起点，定位到包含 data 的项目根；找不到就用 jmeter-api-project 或当前目录
+File baseDir = new File(FileServer.getFileServer().getBaseDir())
+File projectRoot = baseDir
+int hops = 0
+while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
+  if (projectRoot.name == &quot;jmeter-api-project&quot;) break
+  projectRoot = projectRoot.getParentFile()
+  hops++
+}
+if (projectRoot == null) projectRoot = baseDir
+
+File dataDir = new File(projectRoot, &quot;data&quot;)
+if (!dataDir.exists()) dataDir.mkdirs()
+File debugDir = new File(dataDir, &quot;debug&quot;)
+if (!debugDir.exists()) debugDir.mkdirs()
+
+log.info(&quot;=== 开始提取认证信息 ===&quot;)
+
+// 时间戳
+def timestamp = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;).format(new Date())
+
+// 响应对象
+def responseData = prev.getResponseDataAsString()
+def responseHeaders = prev.getResponseHeaders()
+def responseCode = prev.getResponseCode()
+def responseTime = prev.getTime()
+
+// 运行参数
+def username = props.get(&quot;CORRECT_USERNAME&quot;) ?: &quot;unknown&quot;
+
+// 认证信息占位
+def sessionId = &quot;NO_SESSION_ID&quot;
+def rememberMe = &quot;NO_REMEMBER_ME&quot;
+def gtMc = &quot;NO_GT_MC&quot;
+def location = &quot;NO_LOCATION&quot;
+def upstreamServiceTime = &quot;NO_RESPONSE_TIME&quot;
+def userToken = &quot;NO_USER_TOKEN&quot;
+def userAuthorization = &quot;NO_USER_AUTHORIZATION&quot;
+def conversationsToken = &quot;NO_CONVERSATIONS_TOKEN&quot;
+def csrfToken = &quot;NO_CSRF_TOKEN&quot;
+
+// 请求头占位（用于记录）
+def userAgent = props.get(&quot;USER_AGENT&quot;) ?: &quot;NO_USER_AGENT&quot;
+def acceptLanguage = props.get(&quot;ACCEPT_LANGUAGE&quot;) ?: &quot;NO_ACCEPT_LANGUAGE&quot;
+def acceptEncoding = props.get(&quot;ACCEPT_ENCODING&quot;) ?: &quot;NO_ACCEPT_ENCODING&quot;
+def secChUa = props.get(&quot;SEC_CH_UA&quot;) ?: &quot;NO_SEC_CH_UA&quot;
+def secChUaMobile = props.get(&quot;SEC_CH_UA_MOBILE&quot;) ?: &quot;NO_SEC_CH_UA_MOBILE&quot;
+def secChUaPlatform = props.get(&quot;SEC_CH_UA_PLATFORM&quot;) ?: &quot;NO_SEC_CH_UA_PLATFORM&quot;
+def secFetchSite = props.get(&quot;SEC_FETCH_SITE&quot;) ?: &quot;NO_SEC_FETCH_SITE&quot;
+def secFetchMode = props.get(&quot;SEC_FETCH_MODE&quot;) ?: &quot;NO_SEC_FETCH_MODE&quot;
+def secFetchDest = props.get(&quot;SEC_FETCH_DEST&quot;) ?: &quot;NO_SEC_FETCH_DEST&quot;
+def connection = props.get(&quot;CONNECTION&quot;) ?: &quot;NO_CONNECTION&quot;
+def cacheControl = props.get(&quot;CACHE_CONTROL&quot;) ?: &quot;NO_CACHE_CONTROL&quot;
+def pragma = props.get(&quot;PRAGMA&quot;) ?: &quot;NO_PRAGMA&quot;
+def host = props.get(&quot;HOST&quot;) ?: &quot;NO_HOST&quot;
+
+// 调试落盘
+try {
+  String ts = new java.text.SimpleDateFormat(&quot;yyyyMMdd_HHmmss_SSS&quot;).format(new Date())
+  new File(debugDir, &quot;last_login_headers_&quot;+ts+&quot;.txt&quot;).write(responseHeaders ?: &quot;&quot;, &quot;UTF-8&quot;)
+  new File(debugDir, &quot;last_login_body_&quot;+ts+&quot;.txt&quot;).write(responseData ?: &quot;&quot;, &quot;UTF-8&quot;)
+} catch (Exception dx) {
+  log.warn(&quot;debug dump failed: ${dx.message}&quot;)
+}
+
+log.info(&quot;响应状态码: ${responseCode}&quot;)
+log.info(&quot;响应时间: ${responseTime}ms&quot;)
+
+// 1) 解析响应头
+if (responseHeaders) {
+  log.info(&quot;正在解析响应头...&quot;)
+
+  // Location
+  def locationMatch = responseHeaders =~ /(?im)^Location:\s*(.+)$/
+  if (locationMatch.find()) {
+    location = locationMatch.group(1).trim()
+    log.info(&quot;✓ 提取到Location: ${location}&quot;)
+  }
+
+  // Set-Cookie（findAll -&gt; List&lt;groups&gt;，groups[1] 才是括号分组内容）
+  def setCookieMatcher = responseHeaders =~ /(?im)^Set-Cookie:\s*(.+)$/
+  setCookieMatcher.findAll().each { List groups -&gt;
+    def cookieLine = (groups.size() &gt; 1 ? groups[1] : groups[0]).trim()
+    log.info(&quot;  Set-Cookie: ${cookieLine}&quot;)
+
+    def m
+
+    m = cookieLine =~ /GTSELLERSESSIONID=([^;]+)/
+    if (m.find()) {
+      sessionId = m.group(1).trim()
+      log.info(&quot;  ✓ 提取到SessionID: ${sessionId}&quot;)
+    }
+
+    m = cookieLine =~ /gt_rememberMe=([^;]+)/
+    if (m.find()) {
+      rememberMe = m.group(1).trim()
+      log.info(&quot;  ✓ 提取到RememberMe: ${rememberMe}&quot;)
+    }
+
+    m = cookieLine =~ /gt_mc=([^;]+)/
+    if (m.find()) {
+      gtMc = m.group(1).trim()
+      log.info(&quot;  ✓ 提取到GT_MC: ${gtMc}&quot;)
+    }
+
+    m = cookieLine =~ /conversationsToken=([^;]+)/
+    if (m.find()) {
+      conversationsToken = m.group(1).trim()
+      log.info(&quot;  ✓ 提取到ConversationsToken: ${conversationsToken}&quot;)
+    }
+
+    m = cookieLine =~ /csrfToken=([^;]+)/
+    if (m.find()) {
+      csrfToken = m.group(1).trim()
+      userToken = csrfToken
+      log.info(&quot;  ✓ 提取到CSRF Token: ${csrfToken}&quot;)
+    }
+  }
+
+  // X-Envoy-Upstream-Service-Time
+  def upstreamMatch = responseHeaders =~ /(?im)^X-Envoy-Upstream-Service-Time:\s*(.+)$/
+  if (upstreamMatch.find()) {
+    upstreamServiceTime = upstreamMatch.group(1).trim()
+    log.info(&quot;✓ 提取到Upstream Service Time: ${upstreamServiceTime}&quot;)
+  }
+}
+
+// 2) 解析响应体 JSON（如果有）
+if (responseData &amp;&amp; responseData.trim().startsWith(&quot;{&quot;)) {
+  log.info(&quot;正在解析响应体JSON...&quot;)
+  try {
+    def json = new JsonSlurper().parseText(responseData)
+
+    if (json.userToken) {
+      userToken = json.userToken.toString()
+      log.info(&quot;✓ 从JSON提取到UserToken: ${userToken}&quot;)
+    }
+    if (json.userAuthorization) {
+      userAuthorization = json.userAuthorization.toString()
+      log.info(&quot;✓ 从JSON提取到UserAuthorization: ${userAuthorization}&quot;)
+    }
+    if (json.token) {
+      userToken = json.token.toString()
+      log.info(&quot;✓ 从JSON提取到Token: ${userToken}&quot;)
+    }
+    if (json.accessToken) {
+      userAuthorization = &quot;Bearer &quot; + json.accessToken.toString()
+      log.info(&quot;✓ 从JSON提取到AccessToken: ${userAuthorization}&quot;)
+    }
+    if (json.csrfToken) {
+      userToken = json.csrfToken.toString()
+      csrfToken = userToken
+      log.info(&quot;✓ 从JSON提取到CSRF Token: ${csrfToken}&quot;)
+    }
+    if (json.authorization) {
+      userAuthorization = json.authorization.toString()
+      log.info(&quot;✓ 从JSON提取到Authorization: ${userAuthorization}&quot;)
+    }
+    if (json.auth) {
+      userAuthorization = &quot;Bearer &quot; + json.auth.toString()
+      log.info(&quot;✓ 从JSON提取到Auth Token: ${userAuthorization}&quot;)
+    }
+    if (userAuthorization != &quot;NO_USER_AUTHORIZATION&quot; &amp;&amp; !userAuthorization.startsWith(&quot;Bearer &quot;)) {
+      userAuthorization = &quot;Bearer &quot; + userAuthorization
+      log.info(&quot;✓ 自动添加Bearer前缀: ${userAuthorization}&quot;)
+    }
+  } catch (Exception e) {
+    log.warn(&quot;⚠ 解析响应JSON时出错: ${e.message}&quot;)
+  }
+}
+
+// 3) 增强版Cookie提取和保存
+def cookieString = &quot;&quot;
+def authData = [:]
+
+// 提取更多认证cookies
+def setCookieMatcher = responseHeaders =~ /(?im)^Set-Cookie:\s*(.+)$/
+setCookieMatcher.findAll().each { List groups -&gt;
+  def cookieLine = (groups.size() &gt; 1 ? groups[1] : groups[0]).trim()
+  
+  // 提取关键认证cookies
+  def patterns = [
+    &apos;GTSELLERSESSIONID&apos;: /GTSELLERSESSIONID=([^;]+)/,
+    &apos;gt_p&apos;: /gt_p=([^;]+)/,
+    &apos;gt_s&apos;: /gt_s=([^;]+)/,
+    &apos;gt_tm&apos;: /gt_tm=([^;]+)/,
+    &apos;gt_rememberMe&apos;: /gt_rememberMe=([^;]+)/,
+    &apos;gt_mc&apos;: /gt_mc=([^;]+)/,
+    &apos;conversationsToken&apos;: /conversationsToken=([^;]+)/,
+    &apos;waap_id&apos;: /waap_id=([^;]+)/,
+    &apos;lux_uid&apos;: /lux_uid=([^;]+)/,
+    &apos;_ga&apos;: /_ga=([^;]+)/,
+    &apos;_fbp&apos;: /_fbp=([^;]+)/,
+    &apos;pbjs-unifiedid&apos;: /pbjs-unifiedid=([^;]+)/,
+    &apos;gt_userPref&apos;: /gt_userPref=([^;]+)/,
+    &apos;gt_bff_ab2&apos;: /gt_bff_ab2=([^;]+)/,
+    &apos;gt_gb_exp_uid&apos;: /gt_gb_exp_uid=([^;]+)/,
+    &apos;eupubconsent-v2&apos;: /eupubconsent-v2=([^;]+)/,
+    &apos;OptanonConsent&apos;: /OptanonConsent=([^;]+)/
+  ]
+  
+  patterns.each { key, pattern -&gt;
+    def m = cookieLine =~ pattern
+    if (m.find()) {
+      authData[key] = m.group(1).trim()
+      log.info(&quot;✓ 提取到 ${key}: ${authData[key].substring(0, Math.min(30, authData[key].length()))}...&quot;)
+    }
+  }
+}
+
+// 保存认证数据到properties文件
+try {
+  def props = new Properties()
+  def authDataFile = new File(&quot;/Users/a58/Documents/文稿 - Xuhao的MacBook Pro/frontend-master/jmeter-api-project/data/auth_data.properties&quot;)
+  
+  // 如果文件存在，先读取现有数据
+  if (authDataFile.exists()) {
+    props.load(new FileReader(authDataFile))
+  }
+  
+  // 更新认证数据
+  authData.each { key, value -&gt;
+    props.setProperty(key, value)
+  }
+  
+  // 添加时间戳
+  props.setProperty(&quot;last_updated&quot;, System.currentTimeMillis().toString())
+  props.setProperty(&quot;extraction_count&quot;, (props.getProperty(&quot;extraction_count&quot;, &quot;0&quot;).toInteger() + 1).toString())
+  
+  // 保存到文件
+  props.store(new FileWriter(authDataFile), &quot;Authentication Data - Auto Generated by JMeter&quot;)
+  
+  log.info(&quot;✓ 认证数据已保存到: ${authDataFile.absolutePath}&quot;)
+  log.info(&quot;本次提取了 ${authData.size()} 个认证字段&quot;)
+} catch (Exception e) {
+  log.error(&quot;❌ 保存认证数据失败: ${e.message}&quot;)
+}
+
+// 构建完整的Cookie字符串
+def priorityCookies = [
+  &apos;gt_p&apos;, &apos;gt_s&apos;, &apos;GTSELLERSESSIONID&apos;, &apos;gt_tm&apos;, 
+  &apos;conversationsToken&apos;, &apos;gt_rememberMe&apos;, &apos;gt_mc&apos;,
+  &apos;_ga&apos;, &apos;_fbp&apos;, &apos;pbjs-unifiedid&apos;, &apos;gt_userPref&apos;,
+  &apos;waap_id&apos;, &apos;lux_uid&apos;, &apos;gt_bff_ab2&apos;, &apos;gt_gb_exp_uid&apos;,
+  &apos;eupubconsent-v2&apos;, &apos;OptanonConsent&apos;
+]
+
+priorityCookies.each { cookieName -&gt;
+  if (authData[cookieName]) {
+    cookieString += &quot;${cookieName}=${authData[cookieName]}; &quot;
+  }
+}
+
+// 回退到原有逻辑（如果增强版没有提取到数据）
+if (cookieString.isEmpty()) {
+  if (sessionId != &quot;NO_SESSION_ID&quot;) cookieString += &quot;GTSELLERSESSIONID=${sessionId}; &quot;
+  if (rememberMe != &quot;NO_REMEMBER_ME&quot;) cookieString += &quot;gt_rememberMe=${rememberMe}; &quot;
+  if (gtMc != &quot;NO_GT_MC&quot;) cookieString += &quot;gt_mc=${gtMc}; &quot;
+  if (conversationsToken != &quot;NO_CONVERSATIONS_TOKEN&quot;) cookieString += &quot;conversationsToken=${conversationsToken}; &quot;
+  if (csrfToken != &quot;NO_CSRF_TOKEN&quot;) cookieString += &quot;csrfToken=${csrfToken}; &quot;
+  log.info(&quot;⚠ 使用原有逻辑构建Cookie字符串&quot;)
+} else {
+  log.info(&quot;✓ 使用增强版提取了 ${authData.size()} 个认证cookies&quot;)
+}
+
+cookieString = cookieString.trim()
+
+if (cookieString.isEmpty()) cookieString = &quot;NO_COOKIE_STRING&quot;
+
+// --- CSV 工具：转义字段，适配 Excel ---
+String csvField(Object v) {
+  if (v == null) return &quot;\&quot;\&quot;&quot;
+  String s = v.toString()
+  // 转义双引号 -&gt; 两个双引号
+  s = s.replace(&quot;\&quot;&quot;, &quot;\&quot;\&quot;&quot;)
+  // 统一换行
+  s = s.replace(&quot;\r\n&quot;, &quot;\n&quot;).replace(&quot;\r&quot;, &quot;\n&quot;)
+  return &quot;\&quot;&quot; + s + &quot;\&quot;&quot;
+}
+
+// 4) CSV 输出：覆盖写，仅保留最新一行
+File csvFile = new File(dataDir, &quot;web_auth_tokens.csv&quot;)
+try {
+  def writer = new FileWriter(csvFile, false) // 覆盖写入
+  // 始终写入 BOM + 表头（仅保留与登录响应对应的字段）
+  writer.write(&quot;\uFEFF&quot;)
+  writer.write(&quot;timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,cookieString\r\n&quot;)
+
+  // 所有值都用 csvField 包起来，避免逗号/引号导致错列
+  def cols = [
+    timestamp, username, responseCode, responseTime, sessionId, rememberMe, gtMc, location,
+    upstreamServiceTime, cookieString
+  ].collect { v -&gt; csvField(v) }
+
+  writer.write(cols.join(&quot;,&quot;) + &quot;\r\n&quot;)
+  writer.close()
+
+  // 暴露变量（保留原样）
+  vars.put(&quot;AUTH_SESSION_ID&quot;, sessionId)
+  vars.put(&quot;AUTH_REMEMBER_ME&quot;, rememberMe)
+  vars.put(&quot;AUTH_GT_MC&quot;, gtMc)
+  vars.put(&quot;AUTH_COOKIE_STRING&quot;, cookieString)
+  vars.put(&quot;AUTH_LOCATION&quot;, location)
+  vars.put(&quot;AUTH_USER_TOKEN&quot;, userToken)
+  vars.put(&quot;AUTH_USER_AUTHORIZATION&quot;, userAuthorization)
+  vars.put(&quot;AUTH_CONVERSATIONS_TOKEN&quot;, conversationsToken)
+  vars.put(&quot;AUTH_CSRF_TOKEN&quot;, csrfToken)
+
+  log.info(&quot;✓ 认证信息已保存到: ${csvFile.absolutePath}&quot;)
+} catch (Exception e) {
+  log.error(&quot;❌ 保存认证信息时出错: ${e.message}&quot;)
+  prev.setSuccessful(false)
+  prev.setResponseMessage(&quot;认证信息保存失败: ${e.message}&quot;)
+}
+
+// 打印摘要
+log.info(&quot;=== 认证信息提取完成 ===&quot;)
+log.info(&quot;SessionID: ${sessionId}&quot;)
+log.info(&quot;RememberMe: ${rememberMe}&quot;)
+log.info(&quot;GT_MC: ${gtMc}&quot;)
+log.info(&quot;Location: ${location}&quot;)
+log.info(&quot;UserToken: ${userToken}&quot;)
+log.info(&quot;UserAuthorization: ${userAuthorization}&quot;)
+log.info(&quot;ConversationsToken: ${conversationsToken}&quot;)
+log.info(&quot;CSRFToken: ${csrfToken}&quot;)
+log.info(&quot;Cookie字符串: ${cookieString}&quot;)
+log.info(&quot;=== 请求头信息 ==&quot;)
+log.info(&quot;User-Agent: ${userAgent}&quot;)
+log.info(&quot;Accept-Language: ${acceptLanguage}&quot;)
+log.info(&quot;Accept-Encoding: ${acceptEncoding}&quot;)
+log.info(&quot;sec-ch-ua: ${secChUa}&quot;)
+log.info(&quot;sec-ch-ua-mobile: ${secChUaMobile}&quot;)
+log.info(&quot;sec-ch-ua-platform: ${secChUaPlatform}&quot;)
+log.info(&quot;sec-fetch-site: ${secFetchSite}&quot;)
+log.info(&quot;sec-fetch-mode: ${secFetchMode}&quot;)
+log.info(&quot;sec-fetch-dest: ${secFetchDest}&quot;)
+log.info(&quot;Connection: ${connection}&quot;)
+log.info(&quot;Cache-Control: ${cacheControl}&quot;)
+log.info(&quot;Pragma: ${pragma}&quot;)
+log.info(&quot;Host: ${host}&quot;)</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1.1 Post-Login Page Access - GET /manage/ads" enabled="true">
+          <stringProp name="TestPlan.comments">登录后访问管理页面获取更多cookies</stringProp>
+          <intProp name="HTTPSampler.connect_timeout">30000</intProp>
+          <intProp name="HTTPSampler.response_timeout">60000</intProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.path">/manage/ads</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Post-Login HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">User-Agent</stringProp>
+                <stringProp name="Header.value">${__P(USER_AGENT)}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept-Language</stringProp>
+                <stringProp name="Header.value">${__P(ACCEPT_LANGUAGE)}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept-Encoding</stringProp>
+                <stringProp name="Header.value">${__P(ACCEPT_ENCODING)}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Referer</stringProp>
+                <stringProp name="Header.value">https://www.gumtree.com/login</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua</stringProp>
+                <stringProp name="Header.value">${__P(SEC_CH_UA)}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+                <stringProp name="Header.value">${__P(SEC_CH_UA_MOBILE)}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+                <stringProp name="Header.value">${__P(SEC_CH_UA_PLATFORM)}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-site</stringProp>
+                <stringProp name="Header.value">same-origin</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-mode</stringProp>
+                <stringProp name="Header.value">navigate</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-dest</stringProp>
+                <stringProp name="Header.value">document</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-user</stringProp>
+                <stringProp name="Header.value">?1</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="提取页面访问的额外cookies" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">// 提取页面访问时获得的额外cookies
+def responseHeaders = prev.getResponseHeaders()
+def additionalAuthData = [:]
+
+log.info(&quot;=== 提取页面访问的额外cookies ===&quot;)
+
+// 解析Set-Cookie头
+def setCookieMatcher = responseHeaders =~ /(?im)^Set-Cookie:\s*(.+)$/
+setCookieMatcher.findAll().each { List groups -&gt;
+  def cookieLine = (groups.size() &gt; 1 ? groups[1] : groups[0]).trim()
+  log.info(&quot;页面访问Set-Cookie: ${cookieLine}&quot;)
+  
+  // 提取关键认证cookies
+  def patterns = [
+    &apos;gt_p&apos;: /gt_p=([^;]+)/,
+    &apos;gt_s&apos;: /gt_s=([^;]+)/,
+    &apos;gt_tm&apos;: /gt_tm=([^;]+)/,
+    &apos;conversationsToken&apos;: /conversationsToken=([^;]+)/,
+    &apos;waap_id&apos;: /waap_id=([^;]+)/,
+    &apos;lux_uid&apos;: /lux_uid=([^;]+)/,
+    &apos;_ga&apos;: /_ga=([^;]+)/,
+    &apos;_fbp&apos;: /_fbp=([^;]+)/,
+    &apos;pbjs-unifiedid&apos;: /pbjs-unifiedid=([^;]+)/,
+    &apos;gt_userPref&apos;: /gt_userPref=([^;]+)/,
+    &apos;gt_bff_ab2&apos;: /gt_bff_ab2=([^;]+)/,
+    &apos;gt_gb_exp_uid&apos;: /gt_gb_exp_uid=([^;]+)/,
+    &apos;eupubconsent-v2&apos;: /eupubconsent-v2=([^;]+)/,
+    &apos;OptanonConsent&apos;: /OptanonConsent=([^;]+)/
+  ]
+  
+  patterns.each { key, pattern -&gt;
+    def m = cookieLine =~ pattern
+    if (m.find()) {
+      additionalAuthData[key] = m.group(1).trim()
+      log.info(&quot;✓ 页面访问提取到 ${key}: ${additionalAuthData[key].substring(0, Math.min(30, additionalAuthData[key].length()))}...&quot;)
+    }
+  }
+}
+
+// 将额外cookies合并到现有认证数据中
+if (!additionalAuthData.isEmpty()) {
+  try {
+    def props = new Properties()
+    def authDataFile = new File(&quot;/Users/a58/Documents/文稿 - Xuhao的MacBook Pro/frontend-master/jmeter-api-project/data/auth_data.properties&quot;)
+    
+    if (authDataFile.exists()) {
+      props.load(new FileReader(authDataFile))
+    }
+    
+    // 更新额外认证数据
+    additionalAuthData.each { key, value -&gt;
+      props.setProperty(key, value)
+    }
+    
+    // 更新合并时间戳
+    props.setProperty(&quot;page_access_updated&quot;, System.currentTimeMillis().toString())
+    
+    // 保存到文件
+    props.store(new FileWriter(authDataFile), &quot;Authentication Data - Auto Generated by JMeter&quot;)
+    
+    log.info(&quot;✓ 页面访问额外cookies已合并到认证数据文件&quot;)
+    log.info(&quot;本次页面访问提取了 ${additionalAuthData.size()} 个额外认证字段&quot;)
+  } catch (Exception e) {
+    log.error(&quot;❌ 合并页面访问cookies失败: ${e.message}&quot;)
+  }
+} else {
+  log.info(&quot;页面访问未发现额外cookies&quot;)
+}</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="cacheKey">false</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.2 Login - Incorrect Credentials" enabled="false">
+          <stringProp name="TestPlan.comments">使用错误的密码登录</stringProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.path">${__P(LOGIN_PATH)}</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="username" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${__P(CORRECT_USERNAME)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">username</stringProp>
+              </elementProp>
+              <elementProp name="password" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${__P(INCORRECT_PASSWORD)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">password</stringProp>
+              </elementProp>
+              <elementProp name="legacy" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${__P(LEGACY_VALUE)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">legacy</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码400" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="51508">400</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">true</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Path Assertion - 检查错误信息" enabled="true">
+            <stringProp name="JSON_PATH">$.password[0]</stringProp>
+            <stringProp name="EXPECTED_VALUE">Your username or password is incorrect</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.3 Login - Empty Credentials" enabled="false">
+          <stringProp name="TestPlan.comments">使用空密码登录</stringProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.path">${__P(LOGIN_PATH)}</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="username" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${__P(CORRECT_USERNAME)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">username</stringProp>
+              </elementProp>
+              <elementProp name="password" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">password</stringProp>
+              </elementProp>
+              <elementProp name="legacy" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${__P(LEGACY_VALUE)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">legacy</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码400" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="51508">400</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">true</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Path Assertion - 检查错误信息" enabled="true">
+            <stringProp name="JSON_PATH">$.password[0]</stringProp>
+            <stringProp name="EXPECTED_VALUE">Too short. Please enter at least 8 characters.</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="9.9 manage ads" enabled="false">
+          <stringProp name="HTTPSampler.domain">www.gumtree.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/manage/ads</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="构造Cookie字符串" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">// 构造 manage/ads 请求要携带的 Cookie 串
+def parts = []
+def v = vars
+
+// 来自登录脚本的关键认证 cookie
+if (v.get(&apos;AUTH_SESSION_ID&apos;) &amp;&amp; v.get(&apos;AUTH_SESSION_ID&apos;) != &apos;NO_SESSION_ID&apos;)
+  parts &lt;&lt; &quot;GTSELLERSESSIONID=${v.get(&apos;AUTH_SESSION_ID&apos;)}&quot;
+if (v.get(&apos;AUTH_REMEMBER_ME&apos;) &amp;&amp; v.get(&apos;AUTH_REMEMBER_ME&apos;) != &apos;NO_REMEMBER_ME&apos;)
+  parts &lt;&lt; &quot;gt_rememberMe=${v.get(&apos;AUTH_REMEMBER_ME&apos;)}&quot;
+if (v.get(&apos;AUTH_GT_MC&apos;) &amp;&amp; v.get(&apos;AUTH_GT_MC&apos;) != &apos;NO_GT_MC&apos;)
+  parts &lt;&lt; &quot;gt_mc=${v.get(&apos;AUTH_GT_MC&apos;)}&quot;
+if (v.get(&apos;AUTH_CONVERSATIONS_TOKEN&apos;) &amp;&amp; v.get(&apos;AUTH_CONVERSATIONS_TOKEN&apos;) != &apos;NO_CONVERSATIONS_TOKEN&apos;)
+  parts &lt;&lt; &quot;conversationsToken=${v.get(&apos;AUTH_CONVERSATIONS_TOKEN&apos;)}&quot;
+if (v.get(&apos;AUTH_CSRF_TOKEN&apos;) &amp;&amp; v.get(&apos;AUTH_CSRF_TOKEN&apos;) != &apos;NO_CSRF_TOKEN&apos;)
+  parts &lt;&lt; &quot;csrfToken=${v.get(&apos;AUTH_CSRF_TOKEN&apos;)}&quot;
+
+// 可选：把你 curl 里长串的其它 cookie 直接粘到这里（不需要则留空）
+def EXTRA_COOKIES = &quot;&quot;
+if (EXTRA_COOKIES?.trim()) {
+  EXTRA_COOKIES.split(/;\s*/).each { pair -&gt;
+    def idx = pair.indexOf(&quot;=&quot;); if (idx &gt; 0) {
+      def name = pair.substring(0, idx).trim()
+      def value = pair.substring(idx + 1).trim()
+      // 已有同名则不重复
+      if (!parts.any { it.startsWith(name + &quot;=&quot;) }) {
+        parts &lt;&lt; &quot;${name}=${value}&quot;
+      }
+    }
+  }
+}
+
+def cookieString = parts.join(&quot;; &quot;)
+vars.put(&quot;REQ_COOKIE&quot;, cookieString)
+log.info(&quot;构造的Cookie字符串: ${cookieString}&quot;)</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PreProcessor>
+          <hashTree/>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Manage Ads Headers" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept-Language</stringProp>
+                <stringProp name="Header.value">zh-CN,zh;q=0.9</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">User-Agent</stringProp>
+                <stringProp name="Header.value">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua</stringProp>
+                <stringProp name="Header.value">&quot;Not;A=Brand&quot;;v=&quot;99&quot;, &quot;Google Chrome&quot;;v=&quot;139&quot;, &quot;Chromium&quot;;v=&quot;139&quot;</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+                <stringProp name="Header.value">?0</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+                <stringProp name="Header.value">&quot;macOS&quot;</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-dest</stringProp>
+                <stringProp name="Header.value">document</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-mode</stringProp>
+                <stringProp name="Header.value">navigate</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-site</stringProp>
+                <stringProp name="Header.value">same-origin</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-user</stringProp>
+                <stringProp name="Header.value">?1</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">upgrade-insecure-requests</stringProp>
+                <stringProp name="Header.value">1</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Referer</stringProp>
+                <stringProp name="Header.value">https://www.gumtree.com/p/business-for-sale/business-office-chairs-desk-combination/1501114317</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Cookie</stringProp>
+                <stringProp name="Header.value">${REQ_COOKIE}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="提取认证信息并保存到CSV" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">import java.io.File
+import java.io.FileWriter
+import java.text.SimpleDateFormat
+import org.apache.jmeter.services.FileServer
+
+log.info(&quot;=== 从 manage/ads 接口提取并独立保存用户认证信息 ===&quot;)
+
+// 仅按本接口产出的字段
+final List&lt;String&gt; HEADERS = [
+  &quot;timestamp&quot;,&quot;statusCode&quot;,&quot;responseTime&quot;,
+  &quot;sessionId&quot;,&quot;rememberMe&quot;,&quot;gtMc&quot;,&quot;conversationsToken&quot;,&quot;csrfToken&quot;,
+  &quot;location&quot;,&quot;upstreamServiceTime&quot;,&quot;cookieString&quot;
+]
+
+// CSV 转义
+String csvField(Object v) {
+  if (v == null) return &quot;\&quot;\&quot;&quot;
+  String s = v.toString().replace(&quot;\&quot;&quot;,&quot;\&quot;\&quot;&quot;).replace(&quot;\r\n&quot;,&quot;\n&quot;).replace(&quot;\r&quot;,&quot;\n&quot;)
+  return &quot;\&quot;&quot; + s + &quot;\&quot;&quot;
+}
+
+// 定位 &lt;项目根&gt;/data
+File baseDir = new File(FileServer.getFileServer().getBaseDir())
+File projectRoot = baseDir
+int hops = 0
+while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
+  if (projectRoot.name == &quot;jmeter-api-project&quot;) break
+  projectRoot = projectRoot.getParentFile(); hops++
+}
+if (projectRoot == null) projectRoot = baseDir
+File dataDir = new File(projectRoot, &quot;data&quot;); if (!dataDir.exists()) dataDir.mkdirs()
+
+// 本次采样信息
+def timestamp = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;).format(new Date())
+def responseCode = prev.getResponseCode()
+def responseTime = prev.getTime()
+def requestHeaders = prev.getRequestHeaders() ?: &quot;&quot;
+def responseHeaders = prev.getResponseHeaders() ?: &quot;&quot;
+
+// 取 Cookie（优先请求头，其次 prev.getCookies()）
+def cookieLine = null
+def m = (requestHeaders =~ /(?im)^Cookie:\s*(.+)$/)
+if (m.find()) cookieLine = m.group(1).trim()
+if (!cookieLine) {
+  m = (requestHeaders =~ /(?im)^cookie:\s*(.+)$/)
+  if (m.find()) cookieLine = m.group(1).trim()
+}
+if (!cookieLine) {
+  def respCookies = prev.getCookies()
+  if (respCookies) cookieLine = respCookies.trim()
+}
+log.info(&quot;CookieLine: &quot; + (cookieLine ?: &quot;N/A&quot;))
+
+// 响应头字段
+def location = &quot;NO_LOCATION&quot;
+def upstreamServiceTime = &quot;NO_RESPONSE_TIME&quot;
+m = (responseHeaders =~ /(?im)^Location:\s*(.+)$/); if (m.find()) location = m.group(1).trim()
+m = (responseHeaders =~ /(?im)^X-Envoy-Upstream-Service-Time:\s*(.+)$/); if (m.find()) upstreamServiceTime = m.group(1).trim()
+
+// 解析 Cookie
+def sessionId = &quot;NO_SESSION_ID&quot;
+def rememberMe = &quot;NO_REMEMBER_ME&quot;
+def gtMc = &quot;NO_GT_MC&quot;
+def conversationsToken = &quot;NO_CONVERSATIONS_TOKEN&quot;
+def csrfToken = &quot;NO_CSRF_TOKEN&quot;
+
+if (cookieLine) {
+  cookieLine.split(/;\s*/).each { pair -&gt;
+    def idx = pair.indexOf(&quot;=&quot;); if (idx &lt;= 0) return
+    def name = pair.substring(0, idx).trim()
+    def value = pair.substring(idx + 1).trim()
+    switch (name) {
+      case &quot;GTSELLERSESSIONID&quot;: sessionId = value; break
+      case &quot;gt_rememberMe&quot;:     rememberMe = value; break
+      case &quot;gt_mc&quot;:             gtMc = value; break
+      case &quot;conversationsToken&quot;: conversationsToken = value; break
+      case &quot;csrfToken&quot;:         csrfToken = value; break
+    }
+  }
+}
+log.info(&quot;Parsed =&gt; sid=&quot; + sessionId + &quot;, rm.len=&quot; + (rememberMe?.length() ?: 0) + &quot;, gtMc=&quot; + gtMc + &quot;, conv.len=&quot; + (conversationsToken?.length() ?: 0))
+
+// 组装关键 Cookie 串
+def cookieParts = []
+if (!sessionId.startsWith(&quot;NO_&quot;)) cookieParts &lt;&lt; &quot;GTSELLERSESSIONID=${sessionId}&quot;
+if (!rememberMe.startsWith(&quot;NO_&quot;)) cookieParts &lt;&lt; &quot;gt_rememberMe=${rememberMe}&quot;
+if (!gtMc.startsWith(&quot;NO_&quot;)) cookieParts &lt;&lt; &quot;gt_mc=${gtMc}&quot;
+if (!conversationsToken.startsWith(&quot;NO_&quot;)) cookieParts &lt;&lt; &quot;conversationsToken=${conversationsToken}&quot;
+if (!csrfToken.startsWith(&quot;NO_&quot;)) cookieParts &lt;&lt; &quot;csrfToken=${csrfToken}&quot;
+def cookieString = cookieParts.isEmpty() ? &quot;NO_COOKIE_STRING&quot; : cookieParts.join(&quot;; &quot;)
+
+// 覆盖写入独立 CSV：web_user_auth.csv（仅保留最新一行）
+def csvFileUser = new File(dataDir, &quot;web_user_auth.csv&quot;)
+def writer = new FileWriter(csvFileUser, false)
+writer.write(&quot;\uFEFF&quot;)
+writer.write(HEADERS.join(&quot;,&quot;) + &quot;\r\n&quot;)
+def row = [
+  timestamp, responseCode, responseTime,
+  sessionId, rememberMe, gtMc, conversationsToken, csrfToken,
+  location, upstreamServiceTime, cookieString
+]
+writer.write(row.collect { v -&gt; csvField(v) }.join(&quot;,&quot;) + &quot;\r\n&quot;)
+writer.close()
+
+// 可选变量
+vars.put(&quot;AUTH_SESSION_ID&quot;, sessionId)
+vars.put(&quot;AUTH_REMEMBER_ME&quot;, rememberMe)
+vars.put(&quot;AUTH_GT_MC&quot;, gtMc)
+vars.put(&quot;AUTH_CONVERSATIONS_TOKEN&quot;, conversationsToken)
+vars.put(&quot;AUTH_CSRF_TOKEN&quot;, csrfToken)
+vars.put(&quot;AUTH_COOKIE_STRING&quot;, cookieString)
+
+log.info(&quot;✓ 已写入 web_user_auth.csv: ${csvFileUser.absolutePath}&quot;)</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>true</responseData>
+            <samplerData>true</samplerData>
+            <xml>true</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>true</responseHeaders>
+            <requestHeaders>true</requestHeaders>
+            <responseDataOnError>true</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

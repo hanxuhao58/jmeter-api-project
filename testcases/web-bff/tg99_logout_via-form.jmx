@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="logout">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - 读取最新认证信息">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">UTF-8</stringProp>
+          <stringProp name="filename">data/web_auth_tokens.csv</stringProp>
+          <boolProp name="ignoreFirstLine">true</boolProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">false</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,userToken,userAuthorization,conversationsToken,cookieString,testResult</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header Manager with Auth">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="Content-Type" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+            </elementProp>
+            <elementProp name="Accept" elementType="Header">
+              <stringProp name="Header.name">Accept</stringProp>
+              <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+            </elementProp>
+            <elementProp name="Cache-Control" elementType="Header">
+              <stringProp name="Header.name">Cache-Control</stringProp>
+              <stringProp name="Header.value">no-cache</stringProp>
+            </elementProp>
+            <elementProp name="Connection" elementType="Header">
+              <stringProp name="Header.name">Connection</stringProp>
+              <stringProp name="Header.value">keep-alive</stringProp>
+            </elementProp>
+            <elementProp name="Cookie" elementType="Header">
+              <stringProp name="Header.name">Cookie</stringProp>
+              <stringProp name="Header.value">${cookieString}</stringProp>
+            </elementProp>
+            <elementProp name="Authorization" elementType="Header">
+              <stringProp name="Header.name">Authorization</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
+            </elementProp>
+            <elementProp name="User-Agent" elementType="Header">
+              <stringProp name="Header.name">User-Agent</stringProp>
+              <stringProp name="Header.value">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36</stringProp>
+            </elementProp>
+            <elementProp name="Referer" elementType="Header">
+              <stringProp name="Header.name">Referer</stringProp>
+              <stringProp name="Header.value">https://www.gumtree.com/</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="logout">
+          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.path">/logout</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="HTTPArgument.argument_type">Body</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="HTTPArgument.name">token</stringProp>
+                <stringProp name="HTTPArgument.value">${CSRF_TOKEN}</stringProp>
+                <stringProp name="HTTPArgument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.optional">false</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码200">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">true</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="logout/via-form" enabled="false">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - 读取最新认证信息" enabled="true">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">UTF-8</stringProp>
+          <stringProp name="filename">data/web_auth_tokens.csv</stringProp>
+          <boolProp name="ignoreFirstLine">true</boolProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">false</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,userToken,userAuthorization,conversationsToken,cookieString,testResult</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="确保使用最新认证数据" enabled="true">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">// 确保使用最新的认证数据
+log.info(&quot;=== 验证最新认证数据 ===&quot;)
+
+// 检查时间戳，确保使用最新数据
+def currentTimestamp = vars.get(&quot;timestamp&quot;)
+if (currentTimestamp != null &amp;&amp; currentTimestamp != &quot;&quot;) {
+    log.info(&quot;✓ 当前认证数据时间戳: ${currentTimestamp}&quot;)
+    
+    // 检查时间戳是否合理（不是太旧）
+    try {
+        def timestamp = new Date(currentTimestamp)
+        def now = new Date()
+        def diffHours = (now.getTime() - timestamp.getTime()) / (1000 * 60 * 60)
+        
+        if (diffHours &lt; 24) {
+            log.info(&quot;✓ 认证数据较新 (${diffHours.round(2)} 小时前)&quot;)
+        } else {
+            log.warn(&quot;⚠ 认证数据可能较旧 (${diffHours.round(2)} 小时前)，建议重新登录&quot;)
+        }
+    } catch (Exception e) {
+        log.warn(&quot;⚠ 无法解析时间戳: ${currentTimestamp}&quot;)
+    }
+} else {
+    log.warn(&quot;⚠ 未找到时间戳信息&quot;)
+}
+
+// 检查认证数据的有效性
+def hasValidData = false
+def validFields = []
+
+if (sessionId != null &amp;&amp; sessionId != &quot;&quot; &amp;&amp; sessionId != &quot;NO_SESSION_ID&quot;) {
+    validFields.add(&quot;sessionId&quot;)
+    hasValidData = true
+}
+
+if (userAuthorization != null &amp;&amp; userAuthorization != &quot;&quot; &amp;&amp; userAuthorization != &quot;NO_USER_AUTHORIZATION&quot;) {
+    validFields.add(&quot;userAuthorization&quot;)
+    hasValidData = true
+}
+
+if (conversationsToken != null &amp;&amp; conversationsToken != &quot;&quot; &amp;&amp; conversationsToken != &quot;NO_CONVERSATIONS_TOKEN&quot;) {
+    validFields.add(&quot;conversationsToken&quot;)
+    hasValidData = true
+}
+
+if (cookieString != null &amp;&amp; cookieString != &quot;&quot; &amp;&amp; cookieString != &quot;NO_COOKIE_STRING&quot;) {
+    validFields.add(&quot;cookieString&quot;)
+    hasValidData = true
+}
+
+if (hasValidData) {
+    log.info(&quot;✓ 找到有效认证字段: ${validFields.join(&apos;, &apos;)}&quot;)
+} else {
+    log.error(&quot;❌ 未找到任何有效认证数据，请先运行登录测试&quot;)
+}
+
+log.info(&quot;=== 最新认证数据验证完成 ===&quot;)
+</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="验证认证信息" enabled="true">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">// 验证认证信息是否正确读取
+log.info(&quot;=== 认证信息验证 ===&quot;)
+log.info(&quot;SessionID: ${sessionId}&quot;)
+log.info(&quot;RememberMe: ${rememberMe}&quot;)
+log.info(&quot;GT_MC: ${gtMc}&quot;)
+log.info(&quot;UserToken: ${userToken}&quot;)
+log.info(&quot;UserAuthorization: ${userAuthorization}&quot;)
+log.info(&quot;ConversationsToken: ${conversationsToken}&quot;)
+log.info(&quot;Cookie字符串: ${cookieString}&quot;)
+
+// 检查CSV数据是否正确读取
+log.info(&quot;=== CSV数据检查 ===&quot;)
+def csvVariables = [&apos;sessionId&apos;, &apos;rememberMe&apos;, &apos;gtMc&apos;, &apos;userToken&apos;, &apos;userAuthorization&apos;, &apos;conversationsToken&apos;, &apos;cookieString&apos;]
+for (def var : csvVariables) {
+    def value = vars.get(var)
+    if (value == null) {
+        log.error(&quot;❌ 变量 ${var} 未定义&quot;)
+    } else if (value.startsWith(&quot;NO_&quot;) || value == &quot;&quot;) {
+        log.warn(&quot;⚠ 变量 ${var}: ${value} (可能无效)&quot;)
+    } else {
+        log.info(&quot;✓ 变量 ${var}: ${value}&quot;)
+    }
+}
+
+// 检查是否有有效的认证信息
+def hasValidAuth = false
+if (sessionId != &quot;NO_SESSION_ID&quot; &amp;&amp; sessionId != null &amp;&amp; sessionId != &quot;&quot;) {
+    hasValidAuth = true
+    log.info(&quot;✓ 找到有效认证信息&quot;)
+} else if (userAuthorization != &quot;NO_USER_AUTHORIZATION&quot; &amp;&amp; userAuthorization != null &amp;&amp; userAuthorization != &quot;&quot;) {
+    hasValidAuth = true
+    log.info(&quot;✓ 找到有效认证信息&quot;)
+} else if (conversationsToken != &quot;NO_CONVERSATIONS_TOKEN&quot; &amp;&amp; conversationsToken != null &amp;&amp; conversationsToken != &quot;&quot;) {
+    hasValidAuth = true
+    log.info(&quot;✓ 找到有效认证信息&quot;)
+} else {
+    log.warn(&quot;⚠ 未找到有效认证信息，可能需要先运行tg1登录测试&quot;)
+}
+
+// 设置认证状态变量
+vars.put(&quot;HAS_VALID_AUTH&quot;, hasValidAuth.toString())
+vars.put(&quot;AUTH_STATUS&quot;, hasValidAuth ? &quot;AUTHENTICATED&quot; : &quot;NOT_AUTHENTICATED&quot;)
+
+log.info(&quot;认证状态: ${vars.get(&apos;AUTH_STATUS&apos;)}&quot;)
+log.info(&quot;=== 认证信息验证完成 ===&quot;)
+</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="获取CSRF Token" enabled="true">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">// 获取CSRF Token
+log.info(&quot;=== 获取CSRF Token ===&quot;)
+
+// 从Cookie中提取CSRF token
+def csrfToken = &quot;&quot;
+if (cookieString != &quot;NO_COOKIE_STRING&quot; &amp;&amp; cookieString != null) {
+    // 解析Cookie字符串，查找CSRF token
+    def cookies = cookieString.split(&quot;;&quot;)
+    for (def cookie : cookies) {
+        def trimmed = cookie.trim()
+        if (trimmed.startsWith(&quot;csrfToken=&quot;) || trimmed.startsWith(&quot;token=&quot;)) {
+            csrfToken = trimmed.split(&quot;=&quot;)[1]
+            break
+        }
+    }
+}
+
+// 如果没有从Cookie中找到，尝试从其他来源获取
+if (!csrfToken) {
+    // 尝试从userToken或其他字段获取
+    if (userToken != &quot;NO_USER_TOKEN&quot; &amp;&amp; userToken != null) {
+        csrfToken = userToken
+    } else if (userAuthorization != &quot;NO_USER_AUTHORIZATION&quot; &amp;&amp; userAuthorization != null) {
+        // 从Authorization header中提取token
+        if (userAuthorization.startsWith(&quot;Bearer &quot;)) {
+            csrfToken = userAuthorization.substring(7)
+        }
+    }
+}
+
+// 如果还是没有找到，设置一个默认值用于测试
+if (!csrfToken) {
+    csrfToken = &quot;default_csrf_token_for_testing&quot;
+    log.warn(&quot;⚠ 未找到CSRF Token，使用默认值进行测试&quot;)
+}
+
+log.info(&quot;CSRF Token: ${csrfToken}&quot;)
+vars.put(&quot;CSRF_TOKEN&quot;, csrfToken)
+log.info(&quot;=== CSRF Token获取完成 ===&quot;)
+
+// 调试信息：打印所有相关变量
+log.info(&quot;=== 调试信息 ===&quot;)
+log.info(&quot;CSRF_TOKEN: ${vars.get(&apos;CSRF_TOKEN&apos;)}&quot;)
+log.info(&quot;cookieString: ${cookieString}&quot;)
+log.info(&quot;userToken: ${userToken}&quot;)
+log.info(&quot;userAuthorization: ${userAuthorization}&quot;)
+log.info(&quot;sessionId: ${sessionId}&quot;)
+log.info(&quot;=== 调试信息完成 ===&quot;)
+</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header Manager with Auth" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="Content-Type" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+            </elementProp>
+            <elementProp name="Accept" elementType="Header">
+              <stringProp name="Header.name">Accept</stringProp>
+              <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+            </elementProp>
+            <elementProp name="Cache-Control" elementType="Header">
+              <stringProp name="Header.name">Cache-Control</stringProp>
+              <stringProp name="Header.value">no-cache</stringProp>
+            </elementProp>
+            <elementProp name="Connection" elementType="Header">
+              <stringProp name="Header.name">Connection</stringProp>
+              <stringProp name="Header.value">keep-alive</stringProp>
+            </elementProp>
+            <elementProp name="Cookie" elementType="Header">
+              <stringProp name="Header.name">Cookie</stringProp>
+              <stringProp name="Header.value">${cookieString}</stringProp>
+            </elementProp>
+            <elementProp name="Authorization" elementType="Header">
+              <stringProp name="Header.name">Authorization</stringProp>
+              <stringProp name="Header.value">${userAuthorization}</stringProp>
+            </elementProp>
+            <elementProp name="User-Agent" elementType="Header">
+              <stringProp name="Header.name">User-Agent</stringProp>
+              <stringProp name="Header.value">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36</stringProp>
+            </elementProp>
+            <elementProp name="Referer" elementType="Header">
+              <stringProp name="Header.name">Referer</stringProp>
+              <stringProp name="Header.value">https://www.gumtree.com/</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="请求前调试" enabled="true">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">// 请求前调试信息
+log.info(&quot;=== 请求前调试 ===&quot;)
+log.info(&quot;请求URL: ${__P(PROTOCOL)}://${__P(HOST_BFF)}/bff-api/logout/via-form&quot;)
+log.info(&quot;CSRF_TOKEN: ${CSRF_TOKEN}&quot;)
+log.info(&quot;Cookie: ${cookieString}&quot;)
+log.info(&quot;Authorization: ${userAuthorization}&quot;)
+log.info(&quot;请求参数: token=${CSRF_TOKEN}&quot;)
+log.info(&quot;=== 请求前调试完成 ===&quot;)
+</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="logout/via-form">
+          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.path">/bff-api/logout/via-form</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="HTTPArgument.argument_type">Body</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="HTTPArgument.name">token</stringProp>
+                <stringProp name="HTTPArgument.value">${CSRF_TOKEN}</stringProp>
+                <stringProp name="HTTPArgument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.optional">false</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码200">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">true</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查响应内容">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1449032567">redirectTo</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message">响应中应包含redirectTo字段</stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
