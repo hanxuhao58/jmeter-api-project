@@ -36,6 +36,12 @@ jmeter-api-project/
 ├─ scripts/                # 安装&执行脚本
 │  ├─ install_jmeter.sh
 │  └─ run_all.sh
+├─ .github/workflows/      # GitHub Actions 工作流
+│  ├─ app/                 # App BFF 相关测试
+│  │  ├─ app-api-tests.yml
+│  │  └─ mobile-apps-bff-monitor.yml
+│  └─ web/                 # Web BFF 相关测试
+│     └─ web-bff-tests.yml
 ├─ testcases/              # *.jmx 场景文件 (见 5.1)
 ├─ reports/                # 最近一次执行生成的 HTML 报告
 ├─ README.md               # 快速上手文档
@@ -102,13 +108,20 @@ jmeter-api-project/
 
 1. 在公司 GitHub 组织找到 `gumtree/jmeter-api-project` 仓库，点击 **Fork** 到自己的账号（如 `yourname/jmeter-api-project`）。  
 2. 在个人仓库的 **Settings → Secrets and variables → Actions** 中配置必要密钥（如 `JMETER_PLUGINS_MIRROR`、内部 Token 等）。  
-3. 每次向 `1.0`/`main` 分支 push 或创建 Pull Request 时，`.github/workflows/ci.yml` 会自动触发并执行：  
+3. Workflow 分类结构：
+   - **App BFF 测试** (`.github/workflows/app/`)
+     - `app-api-tests.yml`: App BFF API 测试，在 web 分支触发
+     - `mobile-apps-bff-monitor.yml`: 监控 Mobile Apps BFF 仓库，定时检测更新
+   - **Web BFF 测试** (`.github/workflows/web/`)
+     - `web-bff-tests.yml`: Web BFF API 测试，在 web 分支触发
+   
+4. 每次向 `main`/`web` 分支 push 或创建 Pull Request 时，对应的 workflow 会自动触发并执行：  
    1. Checkout 代码  
    2. 缓存并安装 JMeter 及插件  
-   3. 运行 `scripts/run_all.sh test`  
-   4. 将 `reports/all_cases_report` 上传为 Actions Artifact  
-   5. 统计失败用例并把结果注释到 PR，若存在失败则 Workflow 标红  
-4. 也可在 **Actions → Run workflow** 手动触发，选择目标环境后执行。
+   3. 运行对应的测试用例  
+   4. 将测试报告上传为 Actions Artifact  
+   5. 统计失败用例并发送邮件通知  
+5. 也可在 **Actions → Run workflow** 手动触发，选择目标环境后执行。
 
 ## 7 测试指标与报告
 
