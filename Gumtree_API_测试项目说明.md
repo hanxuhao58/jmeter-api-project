@@ -38,10 +38,11 @@ jmeter-api-project/
 │  └─ run_all.sh
 ├─ .github/workflows/      # GitHub Actions 工作流
 │  ├─ app/                 # App BFF 相关测试
-│  │  ├─ app-api-tests.yml
+│  │  ├─ appbff-self-test.yml
 │  │  └─ mobile-apps-bff-monitor.yml
 │  └─ web/                 # Web BFF 相关测试
-│     └─ web-bff-tests.yml
+│     ├─ webbff-self-test.yml
+│     └─ frontend-monitor.yml
 ├─ testcases/              # *.jmx 场景文件 (见 5.1)
 ├─ reports/                # 最近一次执行生成的 HTML 报告
 ├─ README.md               # 快速上手文档
@@ -110,10 +111,11 @@ jmeter-api-project/
 2. 在个人仓库的 **Settings → Secrets and variables → Actions** 中配置必要密钥（如 `JMETER_PLUGINS_MIRROR`、内部 Token 等）。  
 3. Workflow 分类结构：
    - **App BFF 测试** (`.github/workflows/app/`)
-     - `app-api-tests.yml`: App BFF API 测试，在 web 分支触发
+     - `appbff-self-test.yml`: App BFF API 自测，在 web 分支触发
      - `mobile-apps-bff-monitor.yml`: 监控 Mobile Apps BFF 仓库，定时检测更新
    - **Web BFF 测试** (`.github/workflows/web/`)
-     - `web-bff-tests.yml`: Web BFF API 测试，在 web 分支触发
+     - `webbff-self-test.yml`: Web BFF API 自测，在 web 分支触发
+     - `frontend-monitor.yml`: 监控 Frontend 仓库，定时检测更新
    
 4. 每次向 `main`/`web` 分支 push 或创建 Pull Request 时，对应的 workflow 会自动触发并执行：  
    1. Checkout 代码  

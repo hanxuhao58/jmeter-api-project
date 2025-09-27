@@ -1,0 +1,305 @@
+name: Monitor Frontend Master Branch
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+env:
+  FRONTEND_REPO: gumtree-tech/frontend   #  目标仓库
+  BRANCH: master                         #  监控分支
+  STATE: .last_sha_frontend              #  记录文件名
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      updated: ${{ steps.set.outputs.updated }}
+      latest_sha: ${{ steps.latest.outputs.sha }}
+      check_success: ${{ steps.set.outputs.check_success }}
+    steps:
+      - name: Checkoutself
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: prev
+        run: echo "sha=$(cat $STATE 2>/dev/null || echo none)" >> $GITHUB_OUTPUT
+
+      - id: latest
+        run: |
+          # 添加错误处理，避免网络问题导致的失败
+          response=$(curl -s -w "%{http_code}" -H "Authorization: Bearer ${{ secrets.COMPANY_PAT }}" \
+              https://api.github.com/repos/${{ env.FRONTEND_REPO }}/commits/${{ env.BRANCH }})
+          
+          http_code="${response: -3}"
+          body="${response%???}"
+          
+          if [ "$http_code" = "200" ]; then
+            sha=$(echo "$body" | jq -r .sha)
+            echo "sha=$sha" >> $GITHUB_OUTPUT
+          else
+            echo "Error: HTTP $http_code when fetching commit info" >&2
+            echo "Response: $body" >&2
+            exit 1
+          fi
+
+      - id: set
+        run: |
+          if [ "${{ steps.latest.outputs.sha }}" = "${{ steps.prev.outputs.sha }}" ]; then
+            echo "updated=false" >> $GITHUB_OUTPUT
+            echo "check_success=true" >> $GITHUB_OUTPUT
+          else
+            echo "updated=true" >> $GITHUB_OUTPUT
+            echo "check_success=true" >> $GITHUB_OUTPUT
+          fi
+
+  # 检测失败通知 - 只在检测阶段失败时发送
+  check-failure-notification:
+    needs: check
+    if: failure() && needs.check.outputs.check_success != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send check failure notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "⚠️ Frontend仓库监控检测失败 - ${{ env.FRONTEND_REPO }}"
+          to: ${{ secrets.NOTIFICATION_EMAIL }}
+          from: ${{ secrets.MAIL_USERNAME }}
+          body: |
+            ⚠️ Frontend仓库监控检测阶段失败！
+            
+            📊 失败详情:
+            - 监控仓库: ${{ env.FRONTEND_REPO }}
+            - 监控分支: ${{ env.BRANCH }}
+            - 失败时间: ${{ github.event.head_commit.timestamp || '定时触发' }}
+            - 失败原因: 可能是网络问题、API访问权限问题或仓库不存在
+            
+            🔧 可能的解决方案:
+            1. 检查网络连接
+            2. 验证 COMPANY_PAT token 是否有效
+            3. 确认仓库地址和分支名称正确
+            4. 检查 GitHub API 状态
+            
+            🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+  test-frontend:
+    needs: check
+    if: needs.check.outputs.updated == 'true' && needs.check.outputs.check_success == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout self repo (for pushing state file)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Checkout Frontend repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.FRONTEND_REPO }}
+          token: ${{ secrets.COMPANY_PAT }}
+          ref: ${{ env.BRANCH }}
+          path: frontend_src
+          fetch-depth: 0
+          submodules: true
+
+      - name: Install JMeter & plugins
+        run: bash scripts/install_jmeter.sh
+
+      - name: Run Frontend Web BFF API tests
+        run: bash scripts/run_all.sh webbff
+
+      - name: Analyze Frontend Test Results
+        id: test_results
+        run: |
+          # 分析测试结果，提取失败用例信息
+          echo "=== 测试结果分析 ===" > reports/test_summary.txt
+          echo "总测试用例数: $(grep -c '^[0-9]' reports/all_cases.jtl)" >> reports/test_summary.txt
+          echo "成功用例数: $(grep -c 'true' reports/all_cases.jtl)" >> reports/test_summary.txt
+          echo "失败用例数: $(grep -c 'false' reports/all_cases.jtl)" >> reports/test_summary.txt
+          echo "" >> reports/test_summary.txt
+          
+          # 统计失败用例数量
+          failed_count=$(grep -c 'false' reports/all_cases.jtl)
+          echo "failed_count=$failed_count" >> $GITHUB_OUTPUT
+          
+          # 提取失败的用例详情
+          if [ $failed_count -gt 0 ]; then
+            echo "=== 失败的测试用例 ===" >> reports/test_summary.txt
+            # 使用更精确的字段解析，JTL文件格式：timestamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,filename,latencyId,connectTime
+            grep 'false' reports/all_cases.jtl | while IFS=',' read -r timestamp elapsed label responseCode responseMessage threadName dataType success failureMessage bytes sentBytes grpThreads allThreads url filename latencyId connectTime; do
+              echo "用例: $label" >> reports/test_summary.txt
+              echo "响应码: $responseCode" >> reports/test_summary.txt
+              echo "失败原因: $failureMessage" >> reports/test_summary.txt
+              echo "" >> reports/test_summary.txt
+            done
+          else
+            echo "所有测试用例都执行成功！" >> reports/test_summary.txt
+          fi
+          
+          # 显示测试摘要
+          cat reports/test_summary.txt
+          
+          # 设置输出变量
+          echo "summary<<EOF" >> $GITHUB_OUTPUT
+          cat reports/test_summary.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Upload Frontend test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-test-report
+          path: reports/
+
+      - name: Save Frontend master branch sha
+        run: |
+          echo "${{ needs.check.outputs.latest_sha }}" > $STATE
+          git add $STATE
+          git commit -m "update frontend master sha"
+          git push
+
+      - name: Send success notification
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: ${{ steps.test_results.outputs.failed_count > 0 && '❌ Frontend Master 测试失败' || '✅ Frontend Master 测试成功' }} - ${{ env.FRONTEND_REPO }}
+          to: ${{ secrets.NOTIFICATION_EMAIL }}
+          from: ${{ secrets.MAIL_USERNAME }}
+          body: |
+            ${{ steps.test_results.outputs.failed_count > 0 && '🚨 Frontend Master 分支测试执行完成，但有失败用例！' || '🎉 Frontend Master 分支测试执行成功！' }}
+            
+            📊 测试详情:
+            - 监控仓库: ${{ env.FRONTEND_REPO }}
+            - 监控分支: ${{ env.BRANCH }}
+            - 最新提交: ${{ needs.check.outputs.latest_sha }}
+            - 触发时间: ${{ github.event.head_commit.timestamp || '定时触发' }}
+            
+            📈 测试结果摘要:
+            ${{ steps.test_results.outputs.summary }}
+            
+            📁 详细测试报告已生成，可在 GitHub Actions 中下载。
+            
+            🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+      - name: Send failure notification
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "❌ Frontend Master 测试失败 - ${{ env.FRONTEND_REPO }}"
+          to: ${{ secrets.NOTIFICATION_EMAIL }}
+          from: ${{ secrets.MAIL_USERNAME }}
+          body: |
+            🚨 Frontend Master 分支测试执行失败！
+            
+            📊 失败详情:
+            - 监控仓库: ${{ env.FRONTEND_REPO }}
+            - 监控分支: ${{ env.BRANCH }}
+            - 最新提交: ${{ needs.check.outputs.latest_sha }}
+            - 触发时间: ${{ github.event.head_commit.timestamp || '定时触发' }}
+            
+            📈 测试结果摘要:
+            ${{ steps.test_results.outputs.summary }}
+            
+            ⚠️ 请立即检查测试失败原因并修复问题。
+            
+            🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+  # 无更新通知 - 当Frontend Master分支检测成功但没有更新时发送（每天最多一封）
+  no-update-notification:
+    needs: check
+    if: success() && needs.check.outputs.updated == 'false' && needs.check.outputs.check_success == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout self repo (for updating notification file)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Check if notification already sent today
+        id: check_date
+        run: |
+          today=$(date +%Y-%m-%d)
+          last_notification_file=".last_no_update_notification_frontend"
+          
+          if [ -f "$last_notification_file" ]; then
+            last_date=$(cat "$last_notification_file")
+            if [ "$last_date" = "$today" ]; then
+              echo "notification_sent=true" >> $GITHUB_OUTPUT
+              echo "Already sent notification today ($today), skipping..."
+            else
+              echo "notification_sent=false" >> $GITHUB_OUTPUT
+              echo "Last notification was on $last_date, sending today's notification..."
+            fi
+          else
+            echo "notification_sent=false" >> $GITHUB_OUTPUT
+            echo "No previous notification found, sending first notification..."
+          fi
+
+      - name: Send no update notification
+        if: steps.check_date.outputs.notification_sent == 'false'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "ℹ️ Frontend Master 分支无更新 - ${{ env.FRONTEND_REPO }}"
+          to: ${{ secrets.NOTIFICATION_EMAIL }}
+          from: ${{ secrets.MAIL_USERNAME }}
+          body: |
+            ℹ️ Frontend Master 分支监控检测完成，无新更新。
+            
+            📊 检测详情:
+            - 监控仓库: ${{ env.FRONTEND_REPO }}
+            - 监控分支: ${{ env.BRANCH }}
+            - 当前提交: ${{ needs.check.outputs.latest_sha }}
+            - 检测时间: ${{ github.event.head_commit.timestamp || '定时触发' }}
+            
+            ✅ 监控系统运行正常，等待下次检测。
+            
+            📝 注意：为避免邮件轰炸，无更新通知每天最多发送一次。
+            
+            🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+      - name: Mark summary as no update
+        if: steps.check_date.outputs.notification_sent == 'false'
+        run: echo "## 本次检测：无更新" >> $GITHUB_STEP_SUMMARY
+
+      - name: Update notification date
+        if: steps.check_date.outputs.notification_sent == 'false'
+        run: |
+          today=$(date +%Y-%m-%d)
+          echo "$today" > .last_no_update_notification_frontend
+          git add .last_no_update_notification_frontend
+          git commit -m "Update last no-update notification date: $today"
+          git push
+
+      - name: Mark summary as updated
+        if: success()
+        run: echo "## 本次检测：有更新并已执行自动化" >> $GITHUB_STEP_SUMMARY

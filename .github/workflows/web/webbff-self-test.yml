@@ -1,13 +1,13 @@
-name: JMeter App API Tests
+name: Web BFF API Tests
 
 on:
   push:
-    branches: [ "main", "web" ]
+    branches: [ "web" ]
   pull_request:
-    branches: [ "main", "web" ]
+    branches: [ "web" ]
 
 jobs:
-  jmeter:
+  web-bff-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -40,50 +40,47 @@ jobs:
           # 每次执行前清空 jtl 文件，避免历史数据影响报告
           > reports/all_cases.jtl
 
-      - name: Run Login Test
+      - name: Run Web BFF Login Test
         run: |
-          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/app-bff/tg1_auth_login.jmx -q config/appbff.env.properties -l reports/all_cases.jtl
+          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/web-bff/tg1_login_via_form.jmx -q config/webbff.env.properties -l reports/all_cases.jtl
 
-      - name: Check auth_tokens.csv file
+      - name: Check web_auth_tokens.csv file
         run: |
-          echo "Checking if auth_tokens.csv exists..."
+          echo "Checking if web_auth_tokens.csv exists..."
           ls -la data/
-          if [ -f "data/auth_tokens.csv" ]; then
-            echo "auth_tokens.csv exists, content:"
-            cat data/auth_tokens.csv
+          if [ -f "data/web_auth_tokens.csv" ]; then
+            echo "web_auth_tokens.csv exists, content:"
+            cat data/web_auth_tokens.csv
           else
-            echo "ERROR: auth_tokens.csv does not exist!"
+            echo "ERROR: web_auth_tokens.csv does not exist!"
             echo "Creating empty file for testing..."
             mkdir -p data
-            echo "userId,userToken,userAuthorization" > data/auth_tokens.csv
-            echo "test,test,test" >> data/auth_tokens.csv
+            echo "sessionId,rememberMe,gtMc" > data/web_auth_tokens.csv
+            echo "test,test,test" >> data/web_auth_tokens.csv
           fi
 
-      - name: Run App Testcases (黑名单模式)
+      - name: Run Web BFF Testcases (黑名单模式)
         run: |
           # 黑名单：这些测试用例将被跳过
-          # 注意：tg1_auth_login.jmx 已经在前面单独运行过，所以加入黑名单避免重复运行
-          # tg6_forgot_password.jmx 会造成系统登出，放到最后单独运行
-          # tg21_vip_phone.jmx 和 tg22_vip_reply.jmx会造成线上信息污染，可在测试环境运行。
+          # 注意：tg1_login_via_form.jmx 已经在前面单独运行过，所以加入黑名单避免重复运行
+          # tg99_logout_via-form.jmx 会造成系统登出，放到最后单独运行
           blacklist=(
-            testcases/app-bff/tg1_auth_login.jmx
-            testcases/app-bff/tg6_forgot_password.jmx
-            testcases/app-bff/tg21_vip_phone.jmx
-            testcases/app-bff/tg22_vip_reply.jmx
+            testcases/web-bff/tg1_login_via_form.jmx
+            testcases/web-bff/tg99_logout_via-form.jmx
           )
           
           echo "Current working directory: $(pwd)"
           echo "Directory contents:"
-          ls -la testcases/app-bff/
+          ls -la testcases/web-bff/
           echo "Data directory contents:"
           ls -la data/
           echo "CSV file contents before running tests:"
-          cat data/auth_tokens.csv
+          cat data/web_auth_tokens.csv
           
-          # 获取所有app-bff目录下的jmx文件
-          all_files=($(find testcases/app-bff/ -name "*.jmx" | sort))
+          # 获取所有web-bff目录下的jmx文件
+          all_files=($(find testcases/web-bff/ -name "*.jmx" | sort))
           
-          echo "Found ${#all_files[@]} test files in app-bff directory"
+          echo "Found ${#all_files[@]} test files in web-bff directory"
           
           # 运行所有非黑名单的测试用例
           for file in "${all_files[@]}"; do
@@ -99,22 +96,22 @@ jobs:
             
             if [[ "$skip" == false ]]; then
               echo "Running: $file"
-              ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/appbff.env.properties -l reports/all_cases.jtl
+              ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/webbff.env.properties -l reports/all_cases.jtl
             fi
           done
 
-      - name: Run tg6 Forgot Password (最后单独执行)
+      - name: Run tg99 Logout (最后单独执行)
         run: |
-          # tg6_forgot_password.jmx 会造成系统登出，所以放到最后单独运行
-          echo "Running tg6_forgot_password.jmx (最后执行，会造成系统登出)"
-          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/app-bff/tg6_forgot_password.jmx -q config/appbff.env.properties -l reports/all_cases.jtl
+          # tg99_logout_via-form.jmx 会造成系统登出，所以放到最后单独运行
+          echo "Running tg99_logout_via-form.jmx (最后执行，会造成系统登出)"
+          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/web-bff/tg99_logout_via-form.jmx -q config/webbff.env.properties -l reports/all_cases.jtl
 
       - name: Generate Unified HTML Report
         run: |
           # 生成统一的HTML报告
           ./apache-jmeter-5.6.3/bin/jmeter -g reports/all_cases.jtl -e -o reports/all_cases_report
 
-      - name: Analyze Test Results
+      - name: Analyze Web BFF Test Results
         id: test_results
         run: |
           # 分析测试结果，提取失败用例信息
@@ -150,10 +147,10 @@ jobs:
           cat reports/test_summary.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: Upload reports
+      - name: Upload Web BFF test report
         uses: actions/upload-artifact@v4
         with:
-          name: jmeter-reports
+          name: web-bff-test-report
           path: reports/
 
       - name: Send success notification
@@ -164,11 +161,11 @@ jobs:
           server_port: 587
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: ${{ steps.test_results.outputs.failed_count > 0 && '❌ JMeter App API 测试失败' || '✅ JMeter App API 测试成功' }} - ${{ github.repository }}
+          subject: ${{ steps.test_results.outputs.failed_count > 0 && '❌ Web BFF API 测试失败' || '✅ Web BFF API 测试成功' }} - ${{ github.repository }}
           to: ${{ secrets.NOTIFICATION_EMAIL }}
           from: ${{ secrets.MAIL_USERNAME }}
           body: |
-            ${{ steps.test_results.outputs.failed_count > 0 && '🚨 JMeter App API 测试执行完成，但有失败用例！' || '🎉 JMeter App API 测试执行成功！' }}
+            ${{ steps.test_results.outputs.failed_count > 0 && '🚨 Web BFF API 测试执行完成，但有失败用例！' || '🎉 Web BFF API 测试执行成功！' }}
             
             📊 测试详情:
             - 仓库: ${{ github.repository }}
@@ -192,11 +189,11 @@ jobs:
           server_port: 587
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: "❌ JMeter App API 测试失败 - ${{ github.repository }}"
+          subject: "❌ Web BFF API 测试失败 - ${{ github.repository }}"
           to: ${{ secrets.NOTIFICATION_EMAIL }}
           from: ${{ secrets.MAIL_USERNAME }}
           body: |
-            🚨 JMeter App API 测试执行失败！
+            🚨 Web BFF API 测试执行失败！
             
             📊 失败详情:
             - 仓库: ${{ github.repository }}
