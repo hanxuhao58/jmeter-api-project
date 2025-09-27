@@ -1,0 +1,210 @@
+name: Web BFF API Tests
+
+on:
+  push:
+    branches: [ "main", "web" ]
+  pull_request:
+    branches: [ "main", "web" ]
+
+jobs:
+  web-bff-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install JMeter
+        run: |
+          wget https://mirrors.tuna.tsinghua.edu.cn/apache/jmeter/binaries/apache-jmeter-5.6.3.tgz
+          tar -xzf apache-jmeter-5.6.3.tgz
+
+      - name: Install JMeter Plugins Manager and JSON Path Assertion
+        run: |
+          wget https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.3/cmdrunner-2.3.jar -O ./apache-jmeter-5.6.3/lib/cmdrunner-2.3.jar
+          # jmeter-plugins.org/get/ 有时会返回 404，改为从 Maven Central 下载指定版本
+          PLUGIN_VERSION=1.8
+          wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/${PLUGIN_VERSION}/jmeter-plugins-manager-${PLUGIN_VERSION}.jar -O ./apache-jmeter-5.6.3/lib/ext/jmeter-plugins-manager.jar
+          # 直接手动下载 JSON Path Assertion 插件，避免依赖在线仓库
+          JSON_PLUGIN_VERSION=2.7
+          wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-json/${JSON_PLUGIN_VERSION}/jmeter-plugins-json-${JSON_PLUGIN_VERSION}.jar -O ./apache-jmeter-5.6.3/lib/ext/jmeter-plugins-json.jar
+
+      - name: Prepare reports directory
+        run: |
+          # 清理整个reports目录，包括旧的jmeter-report目录
+          rm -rf reports
+          mkdir -p reports
+
+      - name: Run Selected Testcases
+        run: |
+          # 每次执行前清空 jtl 文件，避免历史数据影响报告
+          > reports/all_cases.jtl
+
+      - name: Run Web BFF Login Test
+        run: |
+          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/web-bff/tg1_login_via_form.jmx -q config/webbff.env.properties -l reports/all_cases.jtl
+
+      - name: Check web_auth_tokens.csv file
+        run: |
+          echo "Checking if web_auth_tokens.csv exists..."
+          ls -la data/
+          if [ -f "data/web_auth_tokens.csv" ]; then
+            echo "web_auth_tokens.csv exists, content:"
+            cat data/web_auth_tokens.csv
+          else
+            echo "ERROR: web_auth_tokens.csv does not exist!"
+            echo "Creating empty file for testing..."
+            mkdir -p data
+            echo "sessionId,rememberMe,gtMc" > data/web_auth_tokens.csv
+            echo "test,test,test" >> data/web_auth_tokens.csv
+          fi
+
+      - name: Run Web BFF Testcases (黑名单模式)
+        run: |
+          # 黑名单：这些测试用例将被跳过
+          # 注意：tg1_login_via_form.jmx 已经在前面单独运行过，所以加入黑名单避免重复运行
+          # tg99_logout_via-form.jmx 会造成系统登出，放到最后单独运行
+          blacklist=(
+            testcases/web-bff/tg1_login_via_form.jmx
+            testcases/web-bff/tg99_logout_via-form.jmx
+          )
+          
+          echo "Current working directory: $(pwd)"
+          echo "Directory contents:"
+          ls -la testcases/web-bff/
+          echo "Data directory contents:"
+          ls -la data/
+          echo "CSV file contents before running tests:"
+          cat data/web_auth_tokens.csv
+          
+          # 获取所有web-bff目录下的jmx文件
+          all_files=($(find testcases/web-bff/ -name "*.jmx" | sort))
+          
+          echo "Found ${#all_files[@]} test files in web-bff directory"
+          
+          # 运行所有非黑名单的测试用例
+          for file in "${all_files[@]}"; do
+            # 检查文件是否在黑名单中
+            skip=false
+            for blacklisted in "${blacklist[@]}"; do
+              if [[ "$file" == "$blacklisted" ]]; then
+                echo "Skipping blacklisted test: $file"
+                skip=true
+                break
+              fi
+            done
+            
+            if [[ "$skip" == false ]]; then
+              echo "Running: $file"
+              ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/webbff.env.properties -l reports/all_cases.jtl
+            fi
+          done
+
+      - name: Run tg99 Logout (最后单独执行)
+        run: |
+          # tg99_logout_via-form.jmx 会造成系统登出，所以放到最后单独运行
+          echo "Running tg99_logout_via-form.jmx (最后执行，会造成系统登出)"
+          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/web-bff/tg99_logout_via-form.jmx -q config/webbff.env.properties -l reports/all_cases.jtl
+
+      - name: Generate Unified HTML Report
+        run: |
+          # 生成统一的HTML报告
+          ./apache-jmeter-5.6.3/bin/jmeter -g reports/all_cases.jtl -e -o reports/all_cases_report
+
+      - name: Analyze Web BFF Test Results
+        id: test_results
+        run: |
+          # 分析测试结果，提取失败用例信息
+          echo "=== 测试结果分析 ===" > reports/test_summary.txt
+          echo "总测试用例数: $(grep -c '^[0-9]' reports/all_cases.jtl)" >> reports/test_summary.txt
+          echo "成功用例数: $(grep -c 'true' reports/all_cases.jtl)" >> reports/test_summary.txt
+          echo "失败用例数: $(grep -c 'false' reports/all_cases.jtl)" >> reports/test_summary.txt
+          echo "" >> reports/test_summary.txt
+          
+          # 统计失败用例数量
+          failed_count=$(grep -c 'false' reports/all_cases.jtl)
+          echo "failed_count=$failed_count" >> $GITHUB_OUTPUT
+          
+          # 提取失败的用例详情
+          if [ $failed_count -gt 0 ]; then
+            echo "=== 失败的测试用例 ===" >> reports/test_summary.txt
+            # 使用更精确的字段解析，JTL文件格式：timestamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,filename,latencyId,connectTime
+            grep 'false' reports/all_cases.jtl | while IFS=',' read -r timestamp elapsed label responseCode responseMessage threadName dataType success failureMessage bytes sentBytes grpThreads allThreads url filename latencyId connectTime; do
+              echo "用例: $label" >> reports/test_summary.txt
+              echo "响应码: $responseCode" >> reports/test_summary.txt
+              echo "失败原因: $failureMessage" >> reports/test_summary.txt
+              echo "" >> reports/test_summary.txt
+            done
+          else
+            echo "所有测试用例都执行成功！" >> reports/test_summary.txt
+          fi
+          
+          # 显示测试摘要
+          cat reports/test_summary.txt
+          
+          # 设置输出变量
+          echo "summary<<EOF" >> $GITHUB_OUTPUT
+          cat reports/test_summary.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Upload Web BFF test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-bff-test-report
+          path: reports/
+
+      - name: Send success notification
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: ${{ steps.test_results.outputs.failed_count > 0 && '❌ Web BFF API 测试失败' || '✅ Web BFF API 测试成功' }} - ${{ github.repository }}
+          to: ${{ secrets.NOTIFICATION_EMAIL }}
+          from: ${{ secrets.MAIL_USERNAME }}
+          body: |
+            ${{ steps.test_results.outputs.failed_count > 0 && '🚨 Web BFF API 测试执行完成，但有失败用例！' || '🎉 Web BFF API 测试执行成功！' }}
+            
+            📊 测试详情:
+            - 仓库: ${{ github.repository }}
+            - 分支: ${{ github.ref_name }}
+            - 提交: ${{ github.sha }}
+            - 触发者: ${{ github.actor }}
+            - 执行时间: ${{ github.event.head_commit.timestamp }}
+            
+            📈 测试结果摘要:
+            ${{ steps.test_results.outputs.summary }}
+            
+            📁 详细测试报告已生成，可在 GitHub Actions 中下载。
+            
+            🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+      - name: Send failure notification
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "❌ Web BFF API 测试失败 - ${{ github.repository }}"
+          to: ${{ secrets.NOTIFICATION_EMAIL }}
+          from: ${{ secrets.MAIL_USERNAME }}
+          body: |
+            🚨 Web BFF API 测试执行失败！
+            
+            📊 失败详情:
+            - 仓库: ${{ github.repository }}
+            - 分支: ${{ github.ref_name }}
+            - 提交: ${{ github.sha }}
+            - 触发者: ${{ github.actor }}
+            - 执行时间: ${{ github.event.head_commit.timestamp }}
+            
+            📈 测试结果摘要:
+            ${{ steps.test_results.outputs.summary }}
+            
+            ⚠️ 请立即检查测试失败原因并修复问题。
+            
+            🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
