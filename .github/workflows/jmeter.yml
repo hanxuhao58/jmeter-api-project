@@ -114,6 +114,39 @@ jobs:
           # 生成统一的HTML报告
           ./apache-jmeter-5.6.3/bin/jmeter -g reports/all_cases.jtl -e -o reports/all_cases_report
 
+      - name: Analyze Test Results
+        id: test_results
+        run: |
+          # 分析测试结果，提取失败用例信息
+          echo "=== 测试结果分析 ===" > reports/test_summary.txt
+          echo "总测试用例数: $(grep -c '^[0-9]' reports/all_cases.jtl)" >> reports/test_summary.txt
+          echo "成功用例数: $(grep -c 'true' reports/all_cases.jtl)" >> reports/test_summary.txt
+          echo "失败用例数: $(grep -c 'false' reports/all_cases.jtl)" >> reports/test_summary.txt
+          echo "" >> reports/test_summary.txt
+          
+          # 提取失败的用例详情
+          if [ $(grep -c 'false' reports/all_cases.jtl) -gt 0 ]; then
+            echo "=== 失败的测试用例 ===" >> reports/test_summary.txt
+            grep 'false' reports/all_cases.jtl | while IFS=',' read -r timestamp elapsed responseCode responseMessage threadName dataType success failureMessage bytes sentBytes url filename latencyId connectTime; do
+              echo "用例: $threadName" >> reports/test_summary.txt
+              echo "响应码: $responseCode" >> reports/test_summary.txt
+              echo "响应消息: $responseMessage" >> reports/test_summary.txt
+              echo "失败原因: $failureMessage" >> reports/test_summary.txt
+              echo "URL: $url" >> reports/test_summary.txt
+              echo "---" >> reports/test_summary.txt
+            done
+          else
+            echo "所有测试用例都执行成功！" >> reports/test_summary.txt
+          fi
+          
+          # 显示测试摘要
+          cat reports/test_summary.txt
+          
+          # 设置输出变量
+          echo "summary<<EOF" >> $GITHUB_OUTPUT
+          cat reports/test_summary.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Upload reports
         uses: actions/upload-artifact@v4
         with:
@@ -128,11 +161,11 @@ jobs:
           server_port: 587
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: "✅ JMeter App API 测试成功 - ${{ github.repository }}"
+          subject: "✅ JMeter App API 测试完成 - ${{ github.repository }}"
           to: ${{ secrets.NOTIFICATION_EMAIL }}
           from: ${{ secrets.MAIL_USERNAME }}
           body: |
-            🎉 JMeter CI 测试执行成功！
+            🎉 JMeter App API 测试执行完成！
             
             📊 测试详情:
             - 仓库: ${{ github.repository }}
@@ -141,7 +174,10 @@ jobs:
             - 触发者: ${{ github.actor }}
             - 执行时间: ${{ github.event.head_commit.timestamp }}
             
-            📁 测试报告已生成，可在 GitHub Actions 中下载。
+            📈 测试结果摘要:
+            ${{ steps.test_results.outputs.summary }}
+            
+            📁 详细测试报告已生成，可在 GitHub Actions 中下载。
             
             🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
@@ -157,7 +193,7 @@ jobs:
           to: ${{ secrets.NOTIFICATION_EMAIL }}
           from: ${{ secrets.MAIL_USERNAME }}
           body: |
-            🚨 JMeter CI 测试执行失败！
+            🚨 JMeter App API 测试执行失败！
             
             📊 失败详情:
             - 仓库: ${{ github.repository }}
@@ -165,6 +201,9 @@ jobs:
             - 提交: ${{ github.sha }}
             - 触发者: ${{ github.actor }}
             - 执行时间: ${{ github.event.head_commit.timestamp }}
+            
+            📈 测试结果摘要:
+            ${{ steps.test_results.outputs.summary }}
             
             ⚠️ 请立即检查测试失败原因并修复问题。
             
