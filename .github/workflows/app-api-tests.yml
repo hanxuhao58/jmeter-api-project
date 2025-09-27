@@ -42,7 +42,7 @@ jobs:
 
       - name: Run Login Test
         run: |
-          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/app-bff/tg1_auth_login.jmx -q config/dev.env.properties -l reports/all_cases.jtl
+          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/app-bff/tg1_auth_login.jmx -q config/appbff.env.properties -l reports/all_cases.jtl
 
       - name: Check auth_tokens.csv file
         run: |
@@ -99,7 +99,7 @@ jobs:
             
             if [[ "$skip" == false ]]; then
               echo "Running: $file"
-              ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/dev.env.properties -l reports/all_cases.jtl
+              ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/appbff.env.properties -l reports/all_cases.jtl
             fi
           done
 
@@ -107,7 +107,7 @@ jobs:
         run: |
           # tg6_forgot_password.jmx 会造成系统登出，所以放到最后单独运行
           echo "Running tg6_forgot_password.jmx (最后执行，会造成系统登出)"
-          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/app-bff/tg6_forgot_password.jmx -q config/dev.env.properties -l reports/all_cases.jtl
+          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/app-bff/tg6_forgot_password.jmx -q config/appbff.env.properties -l reports/all_cases.jtl
 
       - name: Generate Unified HTML Report
         run: |

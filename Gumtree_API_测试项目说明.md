@@ -30,7 +30,7 @@ Gumtree 移动端大量依赖后端 REST/GraphQL 接口。为了在发布流程�
 
 ```text
 jmeter-api-project/
-├─ config/                 # 环境变量; dev.env.properties 等
+├─ config/                 # 环境变量; appbff.env.properties 等
 ├─ data/                   # 测试数据，如 auth_tokens.csv
 ├─ lib/                    # JMeter 依赖 Jar/插件
 ├─ scripts/                # 安装&执行脚本
@@ -128,7 +128,7 @@ jmeter-api-project/
 ```bash
 # 只跑登录相关用例
 jmeter -n -t testcases/tg1_auth_login.jmx -l reports/login.jtl \
-       -q config/dev.env.properties -j jmeter.log
+       -q config/appbff.env.properties -j jmeter.log
 
 # 把 HTML 报告打包上传
 tar -czf reports_$(date +%Y%m%d%H%M).tgz reports/html

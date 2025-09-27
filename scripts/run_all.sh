@@ -7,8 +7,8 @@ JTL=${REPORT_DIR}/all_cases.jtl
 mkdir -p ${REPORT_DIR}
 > ${JTL}
 
-# 根据第一个参数决定环境名，默认为 dev
-ENV_NAME=${1:-dev}
+# 根据第一个参数决定环境名，默认为 appbff
+ENV_NAME=${1:-appbff}
 CONFIG_FILE=config/${ENV_NAME}.env.properties
 
 # 若配置文件不存在则报错退出
