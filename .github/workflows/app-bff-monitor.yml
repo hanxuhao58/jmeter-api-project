@@ -1,56 +1,40 @@
-# 工作流名称：监控 Mobile Apps BFF Master 分支
 name: Monitor Mobile Apps BFF Master Branch
-
-# 触发条件
 on:
-  # 定时触发：每小时执行一次（cron 格式：分 时 日 月 周）
   schedule:
     - cron: '0 * * * *'
-  # 手动触发：允许在 GitHub Actions 页面手动执行
   workflow_dispatch:
 
-# 环境变量配置
 env:
-  COMPANY_REPO: gumtree-tech/mobile-apps-bff   # 目标监控仓库
-  BRANCH: master                               # 监控的分支名称
-  STATE: .last_sha_bff                         # 记录最新提交 SHA 的文件名
+  COMPANY_REPO: gumtree-tech/mobile-apps-bff   #  目标仓库
+  BRANCH: master                               #  监控分支
+  STATE: .last_sha_bff                         #  记录文件名
 
-# 工作流任务定义
 jobs:
-  # 任务1：检查仓库更新状态
   check:
     runs-on: ubuntu-latest
-    # 输出变量，供后续任务使用
     outputs:
-      updated: ${{ steps.set.outputs.updated }}        # 是否有更新
-      latest_sha: ${{ steps.set.outputs.latest_sha }}  # 最新提交 SHA
-      check_success: ${{ steps.set.outputs.check_success }}  # 检查是否成功
+      updated: ${{ steps.set.outputs.updated }}
+      latest_sha: ${{ steps.latest.outputs.sha }}
+      check_success: ${{ steps.set.outputs.check_success }}
     steps:
-      # 步骤1：检出当前仓库（用于读取状态文件）
       - name: Checkoutself
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 获取完整历史记录
+          fetch-depth: 0
 
-      # 步骤2：读取上次记录的提交 SHA
       - id: prev
         run: echo "sha=$(cat $STATE 2>/dev/null || echo none)" >> $GITHUB_OUTPUT
 
-      # 步骤3：获取目标仓库最新提交信息
       - id: latest
         run: |
-          # 调用 GitHub API 获取目标仓库最新提交信息
           # 添加错误处理，避免网络问题导致的失败
           response=$(curl -s -w "%{http_code}" -H "Authorization: Bearer ${{ secrets.COMPANY_PAT }}" \
               https://api.github.com/repos/${{ env.COMPANY_REPO }}/commits/${{ env.BRANCH }})
           
-          # 分离 HTTP 状态码和响应体
           http_code="${response: -3}"
           body="${response%???}"
           
-          # 检查 API 调用是否成功
           if [ "$http_code" = "200" ]; then
-            # 解析 JSON 响应，提取 SHA
             sha=$(echo "$body" | jq -r .sha)
             echo "sha=$sha" >> $GITHUB_OUTPUT
           else
@@ -59,26 +43,22 @@ jobs:
             exit 1
           fi
 
-      # 步骤4：比较提交 SHA，判断是否有更新
       - id: set
         run: |
           if [ "${{ steps.latest.outputs.sha }}" = "${{ steps.prev.outputs.sha }}" ]; then
-            # SHA 相同，无更新
             echo "updated=false" >> $GITHUB_OUTPUT
             echo "check_success=true" >> $GITHUB_OUTPUT
           else
-            # SHA 不同，有更新
             echo "updated=true" >> $GITHUB_OUTPUT
             echo "check_success=true" >> $GITHUB_OUTPUT
           fi
 
-  # 任务2：检测失败通知 - 只在检测阶段失败时发送
+  # 检测失败通知 - 只在检测阶段失败时发送
   check-failure-notification:
     needs: check
     if: failure() && needs.check.outputs.check_success != 'true'
     runs-on: ubuntu-latest
     steps:
-      # 发送检测失败邮件通知
       - name: Send check failure notification
         uses: dawidd6/action-send-mail@v3
         with:
@@ -106,28 +86,23 @@ jobs:
             
             🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-  # 任务3：执行 Mobile Apps BFF 测试
   test-mobile-apps-bff:
     needs: check
-    # 只有在检测到更新且检测成功时才执行
     if: needs.check.outputs.updated == 'true' && needs.check.outputs.check_success == 'true'
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # 需要写权限来更新状态文件
+      contents: write
     steps:
-      # 步骤1：检出当前仓库（用于推送状态文件）
       - name: Checkout self repo (for pushing state file)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 步骤2：配置 Git 用户信息
       - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      # 步骤3：检出目标仓库代码
       - name: Checkout Mobile Apps BFF repo
         uses: actions/checkout@v4
         with:
@@ -138,15 +113,12 @@ jobs:
           fetch-depth: 0
           submodules: true
 
-      # 步骤4：安装 JMeter 和相关插件
       - name: Install JMeter & plugins
         run: bash scripts/install_jmeter.sh
 
-      # 步骤5：运行 Mobile Apps BFF API 测试
       - name: Run Mobile Apps BFF API tests
-        run: bash scripts/run_app_tests.sh
+        run: bash scripts/run_all.sh
 
-      # 步骤6：分析测试结果
       - name: Analyze Mobile Apps BFF Test Results
         id: test_results
         run: |
@@ -183,14 +155,12 @@ jobs:
           cat reports/test_summary.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      # 步骤7：上传测试报告
       - name: Upload Mobile Apps BFF test report
         uses: actions/upload-artifact@v4
         with:
           name: mobile-apps-bff-test-report
           path: reports/
 
-      # 步骤8：保存最新的提交 SHA
       - name: Save Mobile Apps BFF master branch sha
         run: |
           echo "${{ needs.check.outputs.latest_sha }}" > $STATE
@@ -198,7 +168,6 @@ jobs:
           git commit -m "update mobile-apps-bff master sha"
           git push
 
-      # 步骤9：发送成功通知邮件
       - name: Send success notification
         if: success()
         uses: dawidd6/action-send-mail@v3
@@ -226,7 +195,6 @@ jobs:
             
             🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-      # 步骤10：发送失败通知邮件
       - name: Send failure notification
         if: failure()
         uses: dawidd6/action-send-mail@v3
@@ -254,28 +222,24 @@ jobs:
             
             🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-  # 任务4：无更新通知 - 当检测成功但没有更新时发送（每天最多一封）
+  # 无更新通知 - 当Mobile Apps BFF Master分支检测成功但没有更新时发送（每天最多一封）
   no-update-notification:
     needs: check
-    # 只有在检测成功且无更新时才执行
     if: success() && needs.check.outputs.updated == 'false' && needs.check.outputs.check_success == 'true'
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # 需要写权限来更新通知文件
+      contents: write
     steps:
-      # 步骤1：检出当前仓库（用于更新通知文件）
       - name: Checkout self repo (for updating notification file)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 步骤2：配置 Git 用户信息
       - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      # 步骤3：检查今天是否已经发送过无更新通知
       - name: Check if notification already sent today
         id: check_date
         run: |
@@ -296,7 +260,6 @@ jobs:
             echo "No previous notification found, sending first notification..."
           fi
 
-      # 步骤4：发送无更新通知邮件
       - name: Send no update notification
         if: steps.check_date.outputs.notification_sent == 'false'
         uses: dawidd6/action-send-mail@v3
@@ -323,12 +286,10 @@ jobs:
             
             🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-      # 步骤5：标记摘要为无更新
       - name: Mark summary as no update
         if: steps.check_date.outputs.notification_sent == 'false'
         run: echo "## 本次检测：无更新" >> $GITHUB_STEP_SUMMARY
 
-      # 步骤6：更新通知日期
       - name: Update notification date
         if: steps.check_date.outputs.notification_sent == 'false'
         run: |
@@ -338,7 +299,6 @@ jobs:
           git commit -m "Update last no-update notification date: $today"
           git push
 
-      # 步骤7：标记摘要为已更新
       - name: Mark summary as updated
         if: success()
         run: echo "## 本次检测：有更新并已执行自动化" >> $GITHUB_STEP_SUMMARY
