@@ -1,4 +1,4 @@
-name: Poll Company Repo & Run JMeter
+name: Monitor Mobile Apps BFF Master Branch
 on:
   schedule:
     - cron: '0 * * * *'
@@ -86,7 +86,7 @@ jobs:
             
             🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-  jmeter:
+  test-mobile-apps-bff:
     needs: check
     if: needs.check.outputs.updated == 'true' && needs.check.outputs.check_success == 'true'
     runs-on: ubuntu-latest
@@ -103,7 +103,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Checkout BFF repo
+      - name: Checkout Mobile Apps BFF repo
         uses: actions/checkout@v4
         with:
           repository: ${{ env.COMPANY_REPO }}
@@ -116,10 +116,10 @@ jobs:
       - name: Install JMeter & plugins
         run: bash scripts/install_jmeter.sh
 
-      - name: Run tests
+      - name: Run Mobile Apps BFF API tests
         run: bash scripts/run_all.sh
 
-      - name: Analyze Test Results
+      - name: Analyze Mobile Apps BFF Test Results
         id: test_results
         run: |
           # 分析测试结果，提取失败用例信息
@@ -155,17 +155,17 @@ jobs:
           cat reports/test_summary.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: Upload report
+      - name: Upload Mobile Apps BFF test report
         uses: actions/upload-artifact@v4
         with:
-          name: jmeter-report
+          name: mobile-apps-bff-test-report
           path: reports/
 
-      - name: Save new sha
+      - name: Save Mobile Apps BFF master branch sha
         run: |
           echo "${{ needs.check.outputs.latest_sha }}" > $STATE
           git add $STATE
-          git commit -m "update sha"
+          git commit -m "update mobile-apps-bff master sha"
           git push
 
       - name: Send success notification
@@ -176,11 +176,11 @@ jobs:
           server_port: 587
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: ${{ steps.test_results.outputs.failed_count > 0 && '❌ 公司仓库监控测试失败' || '✅ 公司仓库监控测试成功' }} - ${{ env.COMPANY_REPO }}
+          subject: ${{ steps.test_results.outputs.failed_count > 0 && '❌ Mobile Apps BFF Master 测试失败' || '✅ Mobile Apps BFF Master 测试成功' }} - ${{ env.COMPANY_REPO }}
           to: ${{ secrets.NOTIFICATION_EMAIL }}
           from: ${{ secrets.MAIL_USERNAME }}
           body: |
-            ${{ steps.test_results.outputs.failed_count > 0 && '🚨 公司仓库监控测试执行完成，但有失败用例！' || '🎉 公司仓库监控测试执行成功！' }}
+            ${{ steps.test_results.outputs.failed_count > 0 && '🚨 Mobile Apps BFF Master 分支测试执行完成，但有失败用例！' || '🎉 Mobile Apps BFF Master 分支测试执行成功！' }}
             
             📊 测试详情:
             - 监控仓库: ${{ env.COMPANY_REPO }}
@@ -203,11 +203,11 @@ jobs:
           server_port: 587
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: "❌ 公司仓库监控测试失败 - ${{ env.COMPANY_REPO }}"
+          subject: "❌ Mobile Apps BFF Master 测试失败 - ${{ env.COMPANY_REPO }}"
           to: ${{ secrets.NOTIFICATION_EMAIL }}
           from: ${{ secrets.MAIL_USERNAME }}
           body: |
-            🚨 公司仓库监控测试执行失败！
+            🚨 Mobile Apps BFF Master 分支测试执行失败！
             
             📊 失败详情:
             - 监控仓库: ${{ env.COMPANY_REPO }}
@@ -222,7 +222,7 @@ jobs:
             
             🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-  # 无更新通知 - 当检测成功但没有更新时发送（每天最多一封）
+  # 无更新通知 - 当Mobile Apps BFF Master分支检测成功但没有更新时发送（每天最多一封）
   no-update-notification:
     needs: check
     if: success() && needs.check.outputs.updated == 'false' && needs.check.outputs.check_success == 'true'
@@ -268,11 +268,11 @@ jobs:
           server_port: 587
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: "ℹ️ 公司仓库无更新 - ${{ env.COMPANY_REPO }}"
+          subject: "ℹ️ Mobile Apps BFF Master 分支无更新 - ${{ env.COMPANY_REPO }}"
           to: ${{ secrets.NOTIFICATION_EMAIL }}
           from: ${{ secrets.MAIL_USERNAME }}
           body: |
-            ℹ️ 公司仓库监控检测完成，无新更新。
+            ℹ️ Mobile Apps BFF Master 分支监控检测完成，无新更新。
             
             📊 检测详情:
             - 监控仓库: ${{ env.COMPANY_REPO }}
