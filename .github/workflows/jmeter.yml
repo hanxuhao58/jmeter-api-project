@@ -124,8 +124,12 @@ jobs:
           echo "失败用例数: $(grep -c 'false' reports/all_cases.jtl)" >> reports/test_summary.txt
           echo "" >> reports/test_summary.txt
           
+          # 统计失败用例数量
+          failed_count=$(grep -c 'false' reports/all_cases.jtl)
+          echo "failed_count=$failed_count" >> $GITHUB_OUTPUT
+          
           # 提取失败的用例详情
-          if [ $(grep -c 'false' reports/all_cases.jtl) -gt 0 ]; then
+          if [ $failed_count -gt 0 ]; then
             echo "=== 失败的测试用例 ===" >> reports/test_summary.txt
             # 使用更精确的字段解析，JTL文件格式：timestamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,filename,latencyId,connectTime
             grep 'false' reports/all_cases.jtl | while IFS=',' read -r timestamp elapsed label responseCode responseMessage threadName dataType success failureMessage bytes sentBytes grpThreads allThreads url filename latencyId connectTime; do
@@ -160,11 +164,11 @@ jobs:
           server_port: 587
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: "✅ JMeter App API 测试完成 - ${{ github.repository }}"
+          subject: ${{ steps.test_results.outputs.failed_count > 0 && '❌ JMeter App API 测试失败' || '✅ JMeter App API 测试成功' }} - ${{ github.repository }}
           to: ${{ secrets.NOTIFICATION_EMAIL }}
           from: ${{ secrets.MAIL_USERNAME }}
           body: |
-            🎉 JMeter App API 测试执行完成！
+            ${{ steps.test_results.outputs.failed_count > 0 && '🚨 JMeter App API 测试执行完成，但有失败用例！' || '🎉 JMeter App API 测试执行成功！' }}
             
             📊 测试详情:
             - 仓库: ${{ github.repository }}
