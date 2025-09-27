@@ -127,12 +127,15 @@ jobs:
           # 提取失败的用例详情
           if [ $(grep -c 'false' reports/all_cases.jtl) -gt 0 ]; then
             echo "=== 失败的测试用例 ===" >> reports/test_summary.txt
-            grep 'false' reports/all_cases.jtl | while IFS=',' read -r timestamp elapsed responseCode responseMessage threadName dataType success failureMessage bytes sentBytes url filename latencyId connectTime; do
-              echo "用例: $threadName" >> reports/test_summary.txt
+            # 使用更精确的字段解析，JTL文件格式：timestamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,filename,latencyId,connectTime
+            grep 'false' reports/all_cases.jtl | while IFS=',' read -r timestamp elapsed label responseCode responseMessage threadName dataType success failureMessage bytes sentBytes grpThreads allThreads url filename latencyId connectTime; do
+              echo "用例: $label" >> reports/test_summary.txt
+              echo "线程组: $threadName" >> reports/test_summary.txt
               echo "响应码: $responseCode" >> reports/test_summary.txt
               echo "响应消息: $responseMessage" >> reports/test_summary.txt
               echo "失败原因: $failureMessage" >> reports/test_summary.txt
               echo "URL: $url" >> reports/test_summary.txt
+              echo "执行时间: ${elapsed}ms" >> reports/test_summary.txt
               echo "---" >> reports/test_summary.txt
             done
           else
