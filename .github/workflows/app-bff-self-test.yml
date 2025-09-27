@@ -35,90 +35,11 @@ jobs:
           rm -rf reports
           mkdir -p reports
 
-      - name: Run Selected Testcases
+      - name: Run App BFF JMeter Tests
         run: |
-          # 每次执行前清空 jtl 文件，避免历史数据影响报告
-          > reports/all_cases.jtl
-
-      - name: Run Login Test
-        run: |
-          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/app-bff/tg1_auth_login.jmx -q config/appbff.env.properties -l reports/all_cases.jtl
-
-      - name: Check auth_tokens.csv file
-        run: |
-          echo "Checking if auth_tokens.csv exists..."
-          ls -la data/
-          if [ -f "data/auth_tokens.csv" ]; then
-            echo "auth_tokens.csv exists, content:"
-            cat data/auth_tokens.csv
-          else
-            echo "ERROR: auth_tokens.csv does not exist!"
-            echo "Creating empty file for testing..."
-            mkdir -p data
-            echo "userId,userToken,userAuthorization" > data/auth_tokens.csv
-            echo "test,test,test" >> data/auth_tokens.csv
-          fi
-
-      - name: Run App Testcases (黑名单模式)
-        run: |
-          # 黑名单：这些测试用例将被跳过
-          # 注意：tg1_auth_login.jmx 已经在前面单独运行过，所以加入黑名单避免重复运行
-          # tg6_forgot_password.jmx 会造成系统登出，放到最后单独运行
-          # tg21_vip_phone.jmx 和 tg22_vip_reply.jmx会造成线上信息污染，可在测试环境运行。
-          blacklist=(
-            testcases/app-bff/tg1_auth_login.jmx
-            testcases/app-bff/tg6_forgot_password.jmx
-            testcases/app-bff/tg21_vip_phone.jmx
-            testcases/app-bff/tg22_vip_reply.jmx
-          )
-          
-          echo "Current working directory: $(pwd)"
-          echo "Directory contents:"
-          ls -la testcases/app-bff/
-          echo "Data directory contents:"
-          ls -la data/
-          echo "CSV file contents before running tests:"
-          cat data/auth_tokens.csv
-          
-          # 获取所有app-bff目录下的jmx文件
-          all_files=($(find testcases/app-bff/ -name "*.jmx" | sort))
-          
-          echo "Found ${#all_files[@]} test files in app-bff directory"
-          
-          # 运行所有非黑名单的测试用例
-          for file in "${all_files[@]}"; do
-            # 检查文件是否在黑名单中
-            skip=false
-            for blacklisted in "${blacklist[@]}"; do
-              if [[ "$file" == "$blacklisted" ]]; then
-                echo "Skipping blacklisted test: $file"
-                skip=true
-                break
-              fi
-            done
-            
-            if [[ "$skip" == false ]]; then
-              echo "Running: $file"
-              # 添加错误处理，单个测试用例失败不影响其他测试
-              if ! ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/appbff.env.properties -l reports/all_cases.jtl; then
-                echo "Warning: Test $file failed, but continuing with other tests..."
-              fi
-            fi
-          done
-
-      - name: Run tg6 Forgot Password (最后单独执行)
-        run: |
-          # tg6_forgot_password.jmx 会造成系统登出，所以放到最后单独运行
-          echo "Running tg6_forgot_password.jmx (最后执行，会造成系统登出)"
-          # 添加错误处理，即使tg6失败也不影响整体测试结果
-          if ! ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/app-bff/tg6_forgot_password.jmx -q config/appbff.env.properties -l reports/all_cases.jtl; then
-            echo "Warning: tg6_forgot_password.jmx failed, but continuing..."
-          fi
-
-      - name: Generate Unified HTML Report
-        run: |
-          # 生成统一的HTML报告
-          ./apache-jmeter-5.6.3/bin/jmeter -g reports/all_cases.jtl -e -o reports/all_cases_report
+          # 使用 App BFF 专用脚本来执行所有测试
+          # 脚本会自动处理黑名单、错误处理和报告生成
+          bash scripts/run_app_tests.sh
 
       - name: Analyze Test Results
         id: test_results

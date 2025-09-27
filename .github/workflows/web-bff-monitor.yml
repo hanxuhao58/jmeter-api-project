@@ -118,7 +118,7 @@ jobs:
         run: bash scripts/install_jmeter.sh
 
       - name: Run Frontend Web BFF API tests
-        run: bash scripts/run_all.sh webbff
+        run: bash scripts/run_web_tests.sh
 
       - name: Analyze Frontend Test Results
         id: test_results

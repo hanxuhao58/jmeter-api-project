@@ -21,7 +21,7 @@ Gumtree 移动端大量依赖后端 REST/GraphQL 接口。为了在发布流程�
 | ------------- | --------------------------------------------- | ------------------------------------ |
 | 测试框架      | Apache JMeter 5.6.3                           | 使用 `.jmx` 场景文件编排线程组     |
 | 依赖管理      | `lib/` 目录 + `scripts/install_jmeter.sh` | 拉取第三方插件（JSON Path、JDBC 等） |
-| 执行脚本      | Bash (`scripts/run_all.sh`)                 | 支持本地/CI 一键执行                 |
+| 执行脚本      | Bash (`scripts/run_app_tests.sh`, `scripts/run_web_tests.sh`) | App/Web 分离，支持本地/CI 一键执行 |
 | 报告          | JMeter HTML Report                            | 本地生成 `reports/all_cases_report`；CI 作为 Artifact 下载 |
 | 解析/二次处理 | Python (可选)                                 | 统计指标或同步至测试平台             |
 | 持续集成      | GitHub Actions (Fork Workflow)                | Fork 后自动在个人仓库执行 CI |
@@ -35,7 +35,8 @@ jmeter-api-project/
 ├─ lib/                    # JMeter 依赖 Jar/插件
 ├─ scripts/                # 安装&执行脚本
 │  ├─ install_jmeter.sh
-│  └─ run_all.sh
+│  ├─ run_app_tests.sh     # App BFF 专用测试脚本
+│  └─ run_web_tests.sh     # Web BFF 专用测试脚本
 ├─ .github/workflows/      # GitHub Actions 工作流
 │  ├─ app-bff-self-test.yml    # App BFF API 自测
 │  ├─ app-bff-monitor.yml      # Mobile Apps BFF 监控
@@ -90,17 +91,22 @@ jmeter-api-project/
 # 安装依赖（首次）
 ./scripts/install_jmeter.sh
 
-# 运行全部用例（默认 dev 环境）
-./scripts/run_all.sh dev
+# 运行 App BFF 测试用例
+./scripts/run_app_tests.sh
+
+# 运行 Web BFF 测试用例  
+./scripts/run_web_tests.sh
 ```
 
 参数说明：
-*第 1 个参数* = 环境名（dev / test / staging / prod），脚本内部会 `source config/${env}.env.properties`。
+- App BFF 脚本：固定使用 `config/appbff.env.properties` 配置
+- Web BFF 脚本：固定使用 `config/webbff.env.properties` 配置
+- 两个脚本完全独立，避免相互干扰
 
 ### 6.2 CI/CD 流水线
 
 1. Checkout → 安装依赖。
-2. `run_all.sh $ENV` —— 生成 `reports/all_cases_report/`。
+2. `run_app_tests.sh` / `run_web_tests.sh` —— 生成 `reports/all_cases_report/`。
 3. 失败用例 > 0 则 Workflow 标红；报告目录被打包为 **Actions Artifact** 供下载。
 
 ### 6.2 CI/CD 流水线（GitHub Actions）
