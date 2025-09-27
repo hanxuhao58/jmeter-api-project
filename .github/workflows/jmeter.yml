@@ -30,7 +30,10 @@ jobs:
           wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-json/${JSON_PLUGIN_VERSION}/jmeter-plugins-json-${JSON_PLUGIN_VERSION}.jar -O ./apache-jmeter-5.6.3/lib/ext/jmeter-plugins-json.jar
 
       - name: Prepare reports directory
-        run: mkdir -p reports
+        run: |
+          # 清理整个reports目录，包括旧的jmeter-report目录
+          rm -rf reports
+          mkdir -p reports
 
       - name: Run Selected Testcases
         run: |
@@ -108,8 +111,6 @@ jobs:
 
       - name: Generate Unified HTML Report
         run: |
-          # 清理可能存在的旧报告
-          rm -rf reports/all_cases_report
           # 生成统一的HTML报告
           ./apache-jmeter-5.6.3/bin/jmeter -g reports/all_cases.jtl -e -o reports/all_cases_report
 
