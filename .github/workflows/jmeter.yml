@@ -108,6 +108,9 @@ jobs:
 
       - name: Generate Unified HTML Report
         run: |
+          # 清理可能存在的旧报告
+          rm -rf reports/all_cases_report
+          # 生成统一的HTML报告
           ./apache-jmeter-5.6.3/bin/jmeter -g reports/all_cases.jtl -e -o reports/all_cases_report
 
       - name: Upload reports
