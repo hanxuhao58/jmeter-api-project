@@ -279,7 +279,7 @@ if (responseHeaders) {
 }
 
 // 2. 从响应体中提取信息
-if (responseData && responseData.trim().startsWith("{")) {
+if (responseData &amp;&amp; responseData.trim().startsWith("{")) {
     log.info("正在解析响应体JSON...")
     try {
         def json = new JsonSlurper().parseText(responseData)
@@ -326,7 +326,7 @@ if (responseData && responseData.trim().startsWith("{")) {
         }
         
         // 如果没有Bearer前缀，自动添加
-        if (userAuthorization != "NO_USER_AUTHORIZATION" && !userAuthorization.startsWith("Bearer ")) {
+        if (userAuthorization != "NO_USER_AUTHORIZATION" &amp;&amp; !userAuthorization.startsWith("Bearer ")) {
             userAuthorization = "Bearer " + userAuthorization
             log.info("✓ 自动添加Bearer前缀: ${userAuthorization}")
         }
@@ -409,7 +409,7 @@ try {
     
     // 安全的CSV写入
     def csvData = csvLine.collect { field ->
-        if (field && field.contains(",") || field.contains("\"") || field.contains("\n")) {
+        if (field &amp;&amp; field.contains(",") || field.contains("\"") || field.contains("\n")) {
             "\"${field.replace("\"", "\"\"")}\""
         } else {
             field ?: ""
