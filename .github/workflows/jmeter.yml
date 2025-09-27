@@ -2,9 +2,9 @@ name: JMeter App API Tests
 
 on:
   push:
-    branches: [ "web" ]
+    branches: [ "main", "web" ]
   pull_request:
-    branches: [ "web" ]
+    branches: [ "main", "web" ]
 
 jobs:
   jmeter:
