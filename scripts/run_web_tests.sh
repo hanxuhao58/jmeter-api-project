@@ -32,7 +32,7 @@ echo "当前工作目录: $(pwd)"
 
 # 先跑登录获取 token
 echo "=== 步骤1: 执行登录测试获取 token ==="
-${JMETER_DIR}/bin/jmeter -n -t testcases/web-bff/tg1_login_via_form_fixed.jmx -q ${CONFIG_FILE} -l ${JTL}
+${JMETER_DIR}/bin/jmeter -n -t testcases/web-bff/tg1_login_via_form.jmx -q ${CONFIG_FILE} -l ${JTL}
 
 # 确保 auth_tokens.csv 存在，若无则创建占位
 echo "=== 步骤2: 检查 auth_tokens.csv 文件 ==="
@@ -49,11 +49,11 @@ fi
 # Web BFF 专用黑名单：这些测试用例将被跳过
 echo "=== 步骤3: 执行 Web BFF 测试用例（黑名单模式）==="
 # 黑名单：这些测试用例将被跳过
-# 注意：tg1_login_via_form_fixed.jmx 已经在前面单独运行过，所以加入黑名单避免重复运行
+# 注意：tg1_login_via_form.jmx 已经在前面单独运行过，所以加入黑名单避免重复运行
 # tg99_logout_via-form.jmx 会造成系统登出，放到最后单独运行
 # tg98_delete.jmx 会删除数据，放到最后单独运行
 blacklist=(
-  testcases/web-bff/tg1_login_via_form_fixed.jmx
+  testcases/web-bff/tg1_login_via_form.jmx
   testcases/web-bff/tg99_logout_via-form.jmx
   testcases/web-bff/tg98_delete.jmx
 )
