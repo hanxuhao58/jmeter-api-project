@@ -1,10 +1,10 @@
-name: JMeter CI
+name: JMeter App API Tests
 
 on:
   push:
-    branches: [ "1.0" ]
+    branches: [ "web" ]
   pull_request:
-    branches: [ "1.0" ]
+    branches: [ "web" ]
 
 jobs:
   jmeter:
@@ -39,7 +39,7 @@ jobs:
 
       - name: Run Login Test
         run: |
-          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/tg1_auth_login.jmx -q config/dev.env.properties -l reports/all_cases.jtl
+          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/app-bff/tg1_auth_login.jmx -q config/dev.env.properties -l reports/all_cases.jtl
 
       - name: Check auth_tokens.csv file
         run: |
@@ -56,50 +56,55 @@ jobs:
             echo "test,test,test" >> data/auth_tokens.csv
           fi
 
-      - name: Run Selected Testcases (白名单)
+      - name: Run App Testcases (黑名单模式)
         run: |
-          whitelist=(
-            testcases/tg2_registration_register.jmx
-            testcases/tg3_auth_logout.jmx
-            testcases/tg4_account_activation.jmx
-            testcases/tg5_password_reset.jmx
-            testcases/tg7_ad_posted_analytics.jmx
-            testcases/tg8_post_ad.jmx
-            testcases/tg9_delete_ad.jmx
-            testcases/tg10_promote_ad_screen.jmx
-            testcases/tg11_user_block.jmx
-            testcases/tg12_vip_screen.jmx
-            testcases/tg13_mygumtree_screen.jmx
-            testcases/tg14_favourites.jmx
-            testcases/tg15_favourites_screen.jmx
-            testcases/tg16_chat_screen.jmx
-            testcases/tg17_conversation_screen.jmx
-            testcases/tg18_conversation_unread_messages.jmx
-            testcases/tg19_conversation.jmx
-            testcases/tg20_reviews_conversation.jmx
+          # 黑名单：这些测试用例将被跳过
+          # 注意：tg1_auth_login.jmx 已经在前面单独运行过，所以加入黑名单避免重复运行
+          # tg6_forgot_password.jmx 会造成系统登出，放到最后单独运行
+          # tg21_vip_phone.jmx 和 tg22_vip_reply.jmx会造成线上信息污染，可在测试环境运行。
+          blacklist=(
+            testcases/app-bff/tg1_auth_login.jmx
+            testcases/app-bff/tg6_forgot_password.jmx
+            testcases/app-bff/tg21_vip_phone.jmx
+            testcases/app-bff/tg22_vip_reply.jmx
           )
-          # whitelist=(
-            
-          #   testcases/tg9_delete_ad.jmx
-            
-          # )
           
           echo "Current working directory: $(pwd)"
           echo "Directory contents:"
-          ls -la
+          ls -la testcases/app-bff/
           echo "Data directory contents:"
           ls -la data/
-          echo "CSV file contents before running tg9:"
+          echo "CSV file contents before running tests:"
           cat data/auth_tokens.csv
           
-          for file in "${whitelist[@]}"; do
-            echo "Running: $file"
-            ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/dev.env.properties -l reports/all_cases.jtl
+          # 获取所有app-bff目录下的jmx文件
+          all_files=($(find testcases/app-bff/ -name "*.jmx" | sort))
+          
+          echo "Found ${#all_files[@]} test files in app-bff directory"
+          
+          # 运行所有非黑名单的测试用例
+          for file in "${all_files[@]}"; do
+            # 检查文件是否在黑名单中
+            skip=false
+            for blacklisted in "${blacklist[@]}"; do
+              if [[ "$file" == "$blacklisted" ]]; then
+                echo "Skipping blacklisted test: $file"
+                skip=true
+                break
+              fi
+            done
+            
+            if [[ "$skip" == false ]]; then
+              echo "Running: $file"
+              ./apache-jmeter-5.6.3/bin/jmeter -n -t "$file" -q config/dev.env.properties -l reports/all_cases.jtl
+            fi
           done
 
       - name: Run tg6 Forgot Password (最后单独执行)
         run: |
-          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/tg6_forgot_password.jmx -q config/dev.env.properties -l reports/all_cases.jtl
+          # tg6_forgot_password.jmx 会造成系统登出，所以放到最后单独运行
+          echo "Running tg6_forgot_password.jmx (最后执行，会造成系统登出)"
+          ./apache-jmeter-5.6.3/bin/jmeter -n -t testcases/app-bff/tg6_forgot_password.jmx -q config/dev.env.properties -l reports/all_cases.jtl
 
       - name: Generate Unified HTML Report
         run: |
@@ -119,7 +124,7 @@ jobs:
           server_port: 587
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: "✅ JMeter CI 测试成功 - ${{ github.repository }}"
+          subject: "✅ JMeter App API 测试成功 - ${{ github.repository }}"
           to: ${{ secrets.NOTIFICATION_EMAIL }}
           from: ${{ secrets.MAIL_USERNAME }}
           body: |
@@ -144,7 +149,7 @@ jobs:
           server_port: 587
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: "❌ JMeter CI 测试失败 - ${{ github.repository }}"
+          subject: "❌ JMeter App API 测试失败 - ${{ github.repository }}"
           to: ${{ secrets.NOTIFICATION_EMAIL }}
           from: ${{ secrets.MAIL_USERNAME }}
           body: |
