@@ -138,12 +138,7 @@ jobs:
           if [ $failed_count -gt 0 ]; then
             echo "=== 失败的测试用例 ===" >> reports/test_summary.txt
             # 使用更精确的字段解析，JTL文件格式：timestamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,filename,latencyId,connectTime
-            grep 'false' reports/all_cases.jtl | while IFS=',' read -r timestamp elapsed label responseCode responseMessage threadName dataType success failureMessage bytes sentBytes grpThreads allThreads url filename latencyId connectTime; do
-              echo "用例: $label" >> reports/test_summary.txt
-              echo "响应码: $responseCode" >> reports/test_summary.txt
-              echo "失败原因: $failureMessage" >> reports/test_summary.txt
-              echo "" >> reports/test_summary.txt
-            done
+            awk -F',' '$8 == "false" {print "用例: " $3 "\n响应码: " $4 "\n失败原因: " $9 "\n"}' reports/all_cases.jtl >> reports/test_summary.txt
           else
             echo "所有测试用例都执行成功！" >> reports/test_summary.txt
           fi

@@ -206,7 +206,7 @@
         </HeaderManager>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="9.1.1 Delete Ad API Availability Check">
-          <stringProp name="TestPlan.comments">验证删除广告接口的可用性。使用一个不存在的广告ID来测试接口是否正常响应，预期返回404 Not Found。</stringProp>
+          <stringProp name="TestPlan.comments">验证删除广告接口的可用性。使用一个不存在的广告ID来测试接口是否正常响应，预期返回500 Internal Server Error。</stringProp>
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
           <stringProp name="HTTPSampler.path">/v2/my-gumtree/ad/999999999</stringProp>
