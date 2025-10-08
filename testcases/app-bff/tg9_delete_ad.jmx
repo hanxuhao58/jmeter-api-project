@@ -219,18 +219,19 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 500">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 400 or 500">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="52469">500</stringProp>
+              <stringProp name="51508">400</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">期望删除不存在的广告返回状态码 500</stringProp>
+            <stringProp name="Assertion.custom_message">期望删除不存在的广告返回状态码 400 or 500</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">8</intProp>
+            <intProp name="Assertion.test_type">40</intProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="9.1.2 Delete Ad API Error Handling Check">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="9.1.2 Delete Ad API Error Handling Check" enabled="true">
           <stringProp name="TestPlan.comments">验证删除广告接口的错误处理。使用无效的广告ID格式来测试接口的错误处理能力，预期返回400 Bad Request。</stringProp>
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>

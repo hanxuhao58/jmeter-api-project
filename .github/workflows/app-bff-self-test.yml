@@ -1,4 +1,4 @@
-name: JMeter App API Tests
+name: App BFF API Tests
 
 on:
   push:
