@@ -130,17 +130,20 @@ jobs:
           echo "失败用例数: $(awk -F',' '$8 == "false" {count++} END {print count+0}' reports/all_cases.jtl)" >> reports/test_summary.txt
           echo "" >> reports/test_summary.txt
           
-          # 统计失败用例数量 - 使用更精确的字段解析
-          # JTL文件格式：timestamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,filename,latencyId,connectTime
-          # 第8个字段是success字段，应该用逗号分割来精确匹配
+          # 统计失败用例数量 - 使用精确的字段解析
           failed_count=$(awk -F',' '$8 == "false" {count++} END {print count+0}' reports/all_cases.jtl)
           echo "failed_count=$failed_count" >> $GITHUB_OUTPUT
           
           # 提取失败的用例详情
           if [ $failed_count -gt 0 ]; then
             echo "=== 失败的测试用例 ===" >> reports/test_summary.txt
-            # 使用awk精确解析第8个字段为false的行
-            awk -F',' '$8 == "false" {print "用例: " $3 "\n响应码: " $4 "\n失败原因: " $9 "\n"}' reports/all_cases.jtl >> reports/test_summary.txt
+            # 使用更精确的字段解析，JTL文件格式：timestamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,filename,latencyId,connectTime
+            grep 'false' reports/all_cases.jtl | while IFS=',' read -r timestamp elapsed label responseCode responseMessage threadName dataType success failureMessage bytes sentBytes grpThreads allThreads url filename latencyId connectTime; do
+              echo "用例: $label" >> reports/test_summary.txt
+              echo "响应码: $responseCode" >> reports/test_summary.txt
+              echo "失败原因: $failureMessage" >> reports/test_summary.txt
+              echo "" >> reports/test_summary.txt
+            done
           else
             echo "所有测试用例都执行成功！" >> reports/test_summary.txt
           fi
