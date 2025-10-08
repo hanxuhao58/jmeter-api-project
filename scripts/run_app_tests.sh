@@ -9,10 +9,10 @@ set -e
 # JMeter 配置
 JMETER_DIR=apache-jmeter-5.6.3
 REPORT_DIR=reports
-JTL=${REPORT_DIR}/all_cases.jtl
+JTL=${REPORT_DIR}/jmeter-report/all_cases.jtl
 
 # 创建报告目录并清空 JTL 文件
-mkdir -p ${REPORT_DIR}
+mkdir -p ${REPORT_DIR}/jmeter-report
 > ${JTL}
 
 # App BFF 专用配置

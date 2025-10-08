@@ -124,7 +124,7 @@ jobs:
           echo "已清理上一次的报告"
 
       - name: Run Mobile Apps BFF API tests
-        run: bash scripts/run_all.sh
+        run: bash scripts/run_app_tests.sh
 
       - name: Analyze Mobile Apps BFF Test Results
         id: test_results
