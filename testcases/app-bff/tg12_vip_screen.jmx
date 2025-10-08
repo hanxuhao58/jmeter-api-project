@@ -103,7 +103,7 @@
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="12.0 for sale Screen">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="12.0 For Sale Screen">
           <intProp name="HTTPSampler.concurrentPool">6</intProp>
           <intProp name="HTTPSampler.connect_timeout">0</intProp>
           <intProp name="HTTPSampler.response_timeout">0</intProp>
@@ -127,7 +127,7 @@
             <stringProp name="JSONPostProcessor.concat_separator">,</stringProp>
           </JSONPostProcessor>
           <hashTree/>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="设置 VIP_AD_ID 变量">
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="设置 VIP_AD_ID 变量" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -135,7 +135,7 @@
             <stringProp name="scriptLanguage">groovy</stringProp>
           </JSR223PostProcessor>
           <hashTree/>
-          <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="断言 VIP_AD_ID 已成功提取">
+          <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="断言 VIP_AD_ID 已成功提取" enabled="true">
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
             <stringProp name="script">def v = vars.get(&apos;VIP_AD_ID&apos;)
@@ -165,7 +165,7 @@ if (v == null || v.trim().isEmpty() || v == &apos;NOT_FOUND&apos;) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应代码断言 - 200 OK">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应代码断言 - 200 OK" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
             </collectionProp>
@@ -175,7 +175,7 @@ if (v == null || v.trim().isEmpty() || v == &apos;NOT_FOUND&apos;) {
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
           <hashTree/>
-          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.gui.JSONPathAssertionGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion" testname="JSON断言 - 检查帖子标题非空">
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.gui.JSONPathAssertionGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion" testname="JSON断言 - 检查帖子标题非空" enabled="true">
             <stringProp name="JSON_PATH">$..[?(@.type==&apos;VIP_TITLE_ROW&apos;)].data[0].text</stringProp>
             <stringProp name="EXPECTED_VALUE">.+</stringProp>
             <boolProp name="JSONVALIDATION">true</boolProp>
