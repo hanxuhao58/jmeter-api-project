@@ -2,9 +2,9 @@ name: Web BFF API Tests
 
 on:
   push:
-    branches: [ "web" ]
+    branches: [ "web", "hxh-apitest-development" ]
   pull_request:
-    branches: [ "web" ]
+    branches: [ "web", "hxh-apitest-development" ]
 
 jobs:
   web-bff-tests:
