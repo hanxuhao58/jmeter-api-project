@@ -11,7 +11,7 @@
       <boolProp name="TestPlan.functional_mode">false</boolProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG9: Delete Ad Scenario (iOS)" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG9: Delete Ad Scenario (iOS)" enabled="true">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -109,11 +109,11 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 204 (No Content)" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 500 (Internal Server Error)" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="49590">204</stringProp>
+              <stringProp name="49590">500</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">期望删除广告成功返回状态码 204 (No Content)。</stringProp>
+            <stringProp name="Assertion.custom_message">期望删除广告返回状态码 500 (Internal Server Error)。</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">8</intProp>
@@ -230,7 +230,7 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="9.1.2 Delete Ad API Error Handling Check">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="9.1.2 Delete Ad API Error Handling Check" enabled="true">
           <stringProp name="TestPlan.comments">验证删除广告接口的错误处理。使用无效的广告ID格式来测试接口的错误处理能力，预期返回400 Bad Request。</stringProp>
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
@@ -244,7 +244,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码范围 4xx(客户端错误)">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码范围 4xx(客户端错误)" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="52">4</stringProp>
             </collectionProp>
