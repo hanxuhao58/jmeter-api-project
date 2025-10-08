@@ -124,20 +124,20 @@ jobs:
         run: |
           # 分析测试结果，提取失败用例信息
           echo "=== 测试结果分析 ===" > reports/test_summary.txt
-          echo "总测试用例数: $(grep -c '^[0-9]' reports/all_cases.jtl)" >> reports/test_summary.txt
-          echo "成功用例数: $(awk -F',' '$8 == "true" {count++} END {print count+0}' reports/all_cases.jtl)" >> reports/test_summary.txt
-          echo "失败用例数: $(awk -F',' '$8 == "false" {count++} END {print count+0}' reports/all_cases.jtl)" >> reports/test_summary.txt
+          echo "总测试用例数: $(grep -c '^[0-9]' reports/jmeter-report/all_cases.jtl)" >> reports/test_summary.txt
+          echo "成功用例数: $(awk -F',' '$8 == "true" {count++} END {print count+0}' reports/jmeter-report/all_cases.jtl)" >> reports/test_summary.txt
+          echo "失败用例数: $(awk -F',' '$8 == "false" {count++} END {print count+0}' reports/jmeter-report/all_cases.jtl)" >> reports/test_summary.txt
           echo "" >> reports/test_summary.txt
           
           # 统计失败用例数量 - 使用精确的字段解析
-          failed_count=$(awk -F',' '$8 == "false" {count++} END {print count+0}' reports/all_cases.jtl)
+          failed_count=$(awk -F',' '$8 == "false" {count++} END {print count+0}' reports/jmeter-report/all_cases.jtl)
           echo "failed_count=$failed_count" >> $GITHUB_OUTPUT
           
           # 提取失败的用例详情
           if [ $failed_count -gt 0 ]; then
             echo "=== 失败的测试用例 ===" >> reports/test_summary.txt
             # 使用更精确的字段解析，JTL文件格式：timestamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,filename,latencyId,connectTime
-            awk -F',' '$8 == "false" {print "用例: " $3 "\n响应码: " $4 "\n失败原因: " $9 "\n"}' reports/all_cases.jtl >> reports/test_summary.txt
+            awk -F',' '$8 == "false" {print "用例: " $3 "\n响应码: " $4 "\n失败原因: " $9 "\n"}' reports/jmeter-report/all_cases.jtl >> reports/test_summary.txt
           else
             echo "所有测试用例都执行成功！" >> reports/test_summary.txt
           fi
