@@ -219,9 +219,9 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码范围 4xx或5xx(客户端或服务器错误)" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码范围 4xx或5xx(客户端或服务器错误)">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="52469">4</stringProp>
+              <stringProp name="53">5</stringProp>
             </collectionProp>
             <stringProp name="Assertion.custom_message">期望删除不存在的广告返回4xx或5xx错误状态码</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
@@ -230,7 +230,7 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="9.1.2 Delete Ad API Error Handling Check" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="9.1.2 Delete Ad API Error Handling Check">
           <stringProp name="TestPlan.comments">验证删除广告接口的错误处理。使用无效的广告ID格式来测试接口的错误处理能力，预期返回400 Bad Request。</stringProp>
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
@@ -244,9 +244,9 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码范围 4xx(客户端错误)" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码范围 4xx(客户端错误)">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="51508">4</stringProp>
+              <stringProp name="52">4</stringProp>
             </collectionProp>
             <stringProp name="Assertion.custom_message">期望删除无效ID格式的广告返回4xx错误状态码，说明接口错误处理正常。</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
@@ -256,7 +256,7 @@
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
