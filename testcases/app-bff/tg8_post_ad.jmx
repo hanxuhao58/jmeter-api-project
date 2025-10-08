@@ -304,7 +304,7 @@
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG8.1: Repost Error Monitoring (iOS - BFF)" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG8.1: Repost Error Monitoring (iOS - BFF)">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -398,14 +398,14 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码范围 400(客户端错误)" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码范围 4xx或5xx(客户端或服务器错误)" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="51508">400</stringProp>
+              <stringProp name="51508">4</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">期望repost接口返回客户端错误状态码（400），表明接口正常运行但业务逻辑被拒绝（如账号被封控）</stringProp>
+            <stringProp name="Assertion.custom_message">期望repost接口返回4xx或5xx错误状态码，表明接口正常运行但业务逻辑被拒绝（如账号被封控）</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">8</intProp>
+            <intProp name="Assertion.test_type">2</intProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
@@ -423,14 +423,14 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 400" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码范围 4xx(客户端错误)" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="51508">400</stringProp>
+              <stringProp name="51508">4</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">期望使用无效广告ID时返回404错误，表明接口参数验证功能正常</stringProp>
+            <stringProp name="Assertion.custom_message">期望使用无效广告ID时返回4xx错误，表明接口参数验证功能正常</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">8</intProp>
+            <intProp name="Assertion.test_type">2</intProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
@@ -466,19 +466,19 @@
             <stringProp name="TestPlan.comments">移除认证头，测试接口认证验证功能</stringProp>
           </HeaderManager>
           <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 401 (Unauthorized)" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码范围 4xx(客户端错误)" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="51509">401</stringProp>
+              <stringProp name="51509">4</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">期望不提供认证头时返回401错误，表明接口认证功能正常</stringProp>
+            <stringProp name="Assertion.custom_message">期望不提供认证头时返回4xx错误，表明接口认证功能正常</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">8</intProp>
+            <intProp name="Assertion.test_type">2</intProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>

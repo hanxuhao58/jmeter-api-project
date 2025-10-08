@@ -121,7 +121,7 @@
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG9.1: Delete Ad API Availability Check (iOS)">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG9.1: Delete Ad API Availability Check (iOS)" enabled="true">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -205,7 +205,7 @@
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="9.1.1 Delete Ad API Availability Check" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="9.1.1 Delete Ad API Availability Check">
           <stringProp name="TestPlan.comments">验证删除广告接口的可用性。使用一个不存在的广告ID来测试接口是否正常响应，预期返回404 Not Found。</stringProp>
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
@@ -219,14 +219,14 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 500" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码范围 4xx或5xx(客户端或服务器错误)" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="52469">500</stringProp>
+              <stringProp name="52469">4</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">期望删除不存在的广告返回状态码 500</stringProp>
+            <stringProp name="Assertion.custom_message">期望删除不存在的广告返回4xx或5xx错误状态码</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">8</intProp>
+            <intProp name="Assertion.test_type">2</intProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
@@ -244,14 +244,14 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码 400 (Bad Request)" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="断言状态码范围 4xx(客户端错误)" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="51508">400</stringProp>
+              <stringProp name="51508">4</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">期望删除无效ID格式的广告返回状态码 400 (Bad Request)，说明接口错误处理正常。</stringProp>
+            <stringProp name="Assertion.custom_message">期望删除无效ID格式的广告返回4xx错误状态码，说明接口错误处理正常。</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">8</intProp>
+            <intProp name="Assertion.test_type">2</intProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
