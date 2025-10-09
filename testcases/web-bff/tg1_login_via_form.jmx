@@ -393,23 +393,10 @@ setCookieMatcher.findAll().each { List groups -&gt;
   }
 }
 
-// 保存认证数据到properties文件
+// 保存认证数据到properties文件（重用前面已定义的 dataDir）
 try {
   def props = new Properties()
-  // 动态定位项目根目录
-import org.apache.jmeter.services.FileServer
-
-File baseDir = new File(FileServer.getFileServer().getBaseDir())
-File projectRoot = baseDir
-int hops = 0
-while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
-  if (projectRoot.name == &quot;jmeter-api-project&quot;) break
-  projectRoot = projectRoot.getParentFile()
-  hops++
-}
-if (projectRoot == null) projectRoot = baseDir
-
-def authDataFile = new File(projectRoot, &quot;data/auth_data.properties&quot;)
+  def authDataFile = new File(dataDir, &quot;auth_data.properties&quot;)
   
   // 如果文件存在，先读取现有数据
   if (authDataFile.exists()) {
@@ -477,39 +464,22 @@ String csvField(Object v) {
 }
 
 // 4) CSV 输出：覆盖写，仅保留最新一行
-File csvFile = new File(dataDir, &quot;web_auth_tokens.csv&quot;)
-try {
-  def writer = new FileWriter(csvFile, false) // 覆盖写入
-  // 始终写入 BOM + 表头（仅保留与登录响应对应的字段）
-  writer.write(&quot;\uFEFF&quot;)
-  writer.write(&quot;timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,cookieString\r\n&quot;)
+// 注意：先不生成CSV，等后续的manage/ads请求完成后再生成
+// 因为某些token（userToken/userAuthorization/conversationsToken）需要从manage/ads响应中提取
+log.info(&quot;✓ 第一步认证信息提取完成，等待后续请求完成后生成CSV&quot;)
 
-  // 所有值都用 csvField 包起来，避免逗号/引号导致错列
-  def cols = [
-    timestamp, username, responseCode, responseTime, sessionId, rememberMe, gtMc, location,
-    upstreamServiceTime, cookieString
-  ].collect { v -&gt; csvField(v) }
+// 暴露变量（保留原样）
+vars.put(&quot;AUTH_SESSION_ID&quot;, sessionId)
+vars.put(&quot;AUTH_REMEMBER_ME&quot;, rememberMe)
+vars.put(&quot;AUTH_GT_MC&quot;, gtMc)
+vars.put(&quot;AUTH_COOKIE_STRING&quot;, cookieString)
+vars.put(&quot;AUTH_LOCATION&quot;, location)
+vars.put(&quot;AUTH_USER_TOKEN&quot;, userToken)
+vars.put(&quot;AUTH_USER_AUTHORIZATION&quot;, userAuthorization)
+vars.put(&quot;AUTH_CONVERSATIONS_TOKEN&quot;, conversationsToken)
+vars.put(&quot;AUTH_CSRF_TOKEN&quot;, csrfToken)
 
-  writer.write(cols.join(&quot;,&quot;) + &quot;\r\n&quot;)
-  writer.close()
-
-  // 暴露变量（保留原样）
-  vars.put(&quot;AUTH_SESSION_ID&quot;, sessionId)
-  vars.put(&quot;AUTH_REMEMBER_ME&quot;, rememberMe)
-  vars.put(&quot;AUTH_GT_MC&quot;, gtMc)
-  vars.put(&quot;AUTH_COOKIE_STRING&quot;, cookieString)
-  vars.put(&quot;AUTH_LOCATION&quot;, location)
-  vars.put(&quot;AUTH_USER_TOKEN&quot;, userToken)
-  vars.put(&quot;AUTH_USER_AUTHORIZATION&quot;, userAuthorization)
-  vars.put(&quot;AUTH_CONVERSATIONS_TOKEN&quot;, conversationsToken)
-  vars.put(&quot;AUTH_CSRF_TOKEN&quot;, csrfToken)
-
-  log.info(&quot;✓ 认证信息已保存到: ${csvFile.absolutePath}&quot;)
-} catch (Exception e) {
-  log.error(&quot;❌ 保存认证信息时出错: ${e.message}&quot;)
-  prev.setSuccessful(false)
-  prev.setResponseMessage(&quot;认证信息保存失败: ${e.message}&quot;)
-}
+log.info(&quot;✓ 第一步认证信息提取完成&quot;)
 
 // 打印摘要
 log.info(&quot;=== 认证信息提取完成 ===&quot;)
@@ -611,7 +581,10 @@ log.info(&quot;Host: ${host}&quot;)</stringProp>
           <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="提取页面访问的额外cookies" enabled="true">
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
-            <stringProp name="script">// 提取页面访问时获得的额外cookies
+            <stringProp name="script">import org.apache.jmeter.services.FileServer
+import java.text.SimpleDateFormat
+
+// 提取页面访问时获得的额外cookies
 def responseHeaders = prev.getResponseHeaders()
 def additionalAuthData = [:]
 
@@ -691,6 +664,80 @@ if (!additionalAuthData.isEmpty()) {
   }
 } else {
   log.info(&quot;页面访问未发现额外cookies&quot;)
+}
+
+// === 生成 web_auth_tokens.csv（最终版本，包含所有14列）===
+log.info(&quot;=== 开始生成最终 web_auth_tokens.csv ===&quot;)
+
+// CSV字段转义（闭包形式）
+def csvFieldEscape = { v -&gt;
+  if (v == null) return &apos;&quot;&quot;&apos;
+  String s = v.toString()
+  s = s.replace(&apos;&quot;&apos;, &apos;&quot;&quot;&apos;)
+  s = s.replace(&quot;\r\n&quot;, &quot;\n&quot;).replace(&quot;\r&quot;, &quot;\n&quot;)
+  return &apos;&quot;&apos; + s + &apos;&quot;&apos;
+}
+
+try {
+  // 定位 data 目录
+  File baseDir = new File(FileServer.getFileServer().getBaseDir())
+  File projectRoot = baseDir
+  int hops = 0
+  while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
+    if (projectRoot.name == &quot;jmeter-api-project&quot;) break
+    projectRoot = projectRoot.getParentFile()
+    hops++
+  }
+  if (projectRoot == null) projectRoot = baseDir
+  File dataDir = new File(projectRoot, &quot;data&quot;)
+  if (!dataDir.exists()) dataDir.mkdirs()
+
+  // 从 auth_data.properties 读取第一步保存的数据
+  def authDataFile = new File(dataDir, &quot;auth_data.properties&quot;)
+  def props = new Properties()
+  if (authDataFile.exists()) {
+    props.load(new FileReader(authDataFile))
+  }
+
+  // 从props和vars中获取所有14列数据
+  def timestamp = props.getProperty(&quot;timestamp&quot;, new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;).format(new Date()))
+  def username = props.getProperty(&quot;username&quot;, &quot;&quot;)
+  def statusCode = props.getProperty(&quot;statusCode&quot;, &quot;&quot;)
+  def responseTime = props.getProperty(&quot;responseTime&quot;, &quot;&quot;)
+  def sessionId = props.getProperty(&quot;sessionId&quot;, vars.get(&quot;AUTH_SESSION_ID&quot;) ?: &quot;NO_SESSION_ID&quot;)
+  def rememberMe = props.getProperty(&quot;rememberMe&quot;, vars.get(&quot;AUTH_REMEMBER_ME&quot;) ?: &quot;NO_REMEMBER_ME&quot;)
+  def gtMc = props.getProperty(&quot;gtMc&quot;, vars.get(&quot;AUTH_GT_MC&quot;) ?: &quot;NO_GT_MC&quot;)
+  def location = props.getProperty(&quot;location&quot;, vars.get(&quot;AUTH_LOCATION&quot;) ?: &quot;&quot;)
+  def upstreamServiceTime = props.getProperty(&quot;upstreamServiceTime&quot;, &quot;&quot;)
+  def userToken = props.getProperty(&quot;userToken&quot;, vars.get(&quot;AUTH_USER_TOKEN&quot;) ?: &quot;NO_USER_TOKEN&quot;)
+  def userAuthorization = props.getProperty(&quot;userAuthorization&quot;, vars.get(&quot;AUTH_USER_AUTHORIZATION&quot;) ?: &quot;NO_USER_AUTHORIZATION&quot;)
+  def conversationsToken = props.getProperty(&quot;conversationsToken&quot;, vars.get(&quot;AUTH_CONVERSATIONS_TOKEN&quot;) ?: &quot;NO_CONVERSATIONS_TOKEN&quot;)
+  def cookieString = props.getProperty(&quot;cookieString&quot;, vars.get(&quot;AUTH_COOKIE_STRING&quot;) ?: &quot;NO_COOKIE_STRING&quot;)
+
+  // 生成 web_auth_tokens.csv（14列）
+  def csvFile = new File(dataDir, &quot;web_auth_tokens.csv&quot;)
+  def writer = new FileWriter(csvFile, false)
+  writer.write(&quot;\uFEFF&quot;) // BOM
+  writer.write(&quot;timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,userToken,userAuthorization,conversationsToken,cookieString,testResult\r\n&quot;)
+
+  // 所有值都用 csvField 包起来
+  def cols = [
+    timestamp, username, statusCode, responseTime,
+    sessionId, rememberMe, gtMc, location, upstreamServiceTime,
+    userToken, userAuthorization, conversationsToken, cookieString, &quot;SUCCESS&quot;
+  ].collect { v -&gt; csvFieldEscape(v) }
+
+  writer.write(cols.join(&quot;,&quot;) + &quot;\r\n&quot;)
+  writer.close()
+
+  log.info(&quot;✓✓✓ 成功生成 web_auth_tokens.csv: ${csvFile.absolutePath}&quot;)
+  log.info(&quot;  - userToken: ${userToken?.take(30)}...&quot;)
+  log.info(&quot;  - userAuthorization: ${userAuthorization?.take(30)}...&quot;)
+  log.info(&quot;  - conversationsToken: ${conversationsToken?.take(30)}...&quot;)
+  log.info(&quot;=== web_auth_tokens.csv 生成完成 ===&quot;)
+} catch (Exception e) {
+  log.error(&quot;❌ 生成 web_auth_tokens.csv 失败: ${e.message}&quot;)
+  e.printStackTrace()
 }</stringProp>
             <stringProp name="scriptLanguage">groovy</stringProp>
             <stringProp name="cacheKey">false</stringProp>
@@ -1035,7 +1082,70 @@ vars.put(&quot;AUTH_CONVERSATIONS_TOKEN&quot;, conversationsToken)
 vars.put(&quot;AUTH_CSRF_TOKEN&quot;, csrfToken)
 vars.put(&quot;AUTH_COOKIE_STRING&quot;, cookieString)
 
-log.info(&quot;✓ 已写入 web_user_auth.csv: ${csvFileUser.absolutePath}&quot;)</stringProp>
+log.info(&quot;✓ 已写入 web_user_auth.csv: ${csvFileUser.absolutePath}&quot;)
+
+// === 生成 web_auth_tokens.csv（包含所有14列）===
+log.info(&quot;=== 开始生成 web_auth_tokens.csv ===&quot;)
+
+// 从 auth_data.properties 读取第一步登录时保存的数据
+def authDataFile = new File(dataDir, &quot;auth_data.properties&quot;)
+def loginTimestamp = &quot;&quot;
+def loginUsername = &quot;&quot;
+def loginStatusCode = &quot;&quot;
+def loginResponseTime = &quot;&quot;
+def loginSessionId = &quot;&quot;
+def loginRememberMe = &quot;&quot;
+def loginGtMc = &quot;&quot;
+def loginLocation = &quot;&quot;
+def loginUpstreamServiceTime = &quot;&quot;
+def loginCookieString = &quot;&quot;
+
+if (authDataFile.exists()) {
+  def props = new Properties()
+  props.load(new FileReader(authDataFile))
+  loginTimestamp = props.getProperty(&quot;timestamp&quot;, &quot;&quot;)
+  loginUsername = props.getProperty(&quot;username&quot;, &quot;&quot;)
+  loginStatusCode = props.getProperty(&quot;statusCode&quot;, &quot;&quot;)
+  loginResponseTime = props.getProperty(&quot;responseTime&quot;, &quot;&quot;)
+  loginSessionId = props.getProperty(&quot;sessionId&quot;, &quot;NO_SESSION_ID&quot;)
+  loginRememberMe = props.getProperty(&quot;rememberMe&quot;, &quot;NO_REMEMBER_ME&quot;)
+  loginGtMc = props.getProperty(&quot;gtMc&quot;, &quot;NO_GT_MC&quot;)
+  loginLocation = props.getProperty(&quot;location&quot;, &quot;&quot;)
+  loginUpstreamServiceTime = props.getProperty(&quot;upstreamServiceTime&quot;, &quot;&quot;)
+  loginCookieString = props.getProperty(&quot;cookieString&quot;, &quot;NO_COOKIE_STRING&quot;)
+  log.info(&quot;✓ 已从 auth_data.properties 读取登录信息&quot;)
+}
+
+// CSV字段转义函数
+String csvField(Object v) {
+  if (v == null) return &apos;&quot;&quot;&apos;
+  String s = v.toString()
+  s = s.replace(&apos;&quot;&apos;, &apos;&quot;&quot;&apos;)
+  s = s.replace(&quot;\r\n&quot;, &quot;\n&quot;).replace(&quot;\r&quot;, &quot;\n&quot;)
+  return &apos;&quot;&apos; + s + &apos;&quot;&apos;
+}
+
+// 生成 web_auth_tokens.csv（14列）
+def csvFile = new File(dataDir, &quot;web_auth_tokens.csv&quot;)
+def writer = new FileWriter(csvFile, false)
+writer.write(&quot;\uFEFF&quot;) // BOM
+writer.write(&quot;timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,userToken,userAuthorization,conversationsToken,cookieString,testResult\r\n&quot;)
+
+// 所有值都用 csvField 包起来
+def cols = [
+  loginTimestamp, loginUsername, loginStatusCode, loginResponseTime,
+  sessionId, rememberMe, gtMc, loginLocation, loginUpstreamServiceTime,
+  userToken, userAuthorization, conversationsToken, cookieString, &quot;SUCCESS&quot;
+].collect { v -&gt; csvField(v) }
+
+writer.write(cols.join(&quot;,&quot;) + &quot;\r\n&quot;)
+writer.close()
+
+log.info(&quot;✓✓✓ 已生成 web_auth_tokens.csv: ${csvFile.absolutePath}&quot;)
+log.info(&quot;  - userToken: ${userToken.take(30)}...&quot;)
+log.info(&quot;  - userAuthorization: ${userAuthorization.take(30)}...&quot;)
+log.info(&quot;  - conversationsToken: ${conversationsToken.take(30)}...&quot;)
+log.info(&quot;=== web_auth_tokens.csv 生成完成 ===&quot;)</stringProp>
             <stringProp name="scriptLanguage">groovy</stringProp>
           </JSR223PostProcessor>
           <hashTree/>
