@@ -125,14 +125,12 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
         <hashTree>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="49586">200</stringProp>
-              <stringProp name="51508">400</stringProp>
-              <stringProp name="51510">504</stringProp>
+              <stringProp name="1750395813">200|400|504</stringProp>
             </collectionProp>
             <stringProp name="Assertion.custom_message">Resend activation 可能返回 200/400/504</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">40</intProp>
+            <intProp name="Assertion.test_type">2</intProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
