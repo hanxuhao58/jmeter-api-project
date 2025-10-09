@@ -74,6 +74,7 @@ all_files=($(find testcases/web-bff/ -name "*.jmx" | sort))
 echo "找到 ${#all_files[@]} 个 Web BFF 测试文件"
 
 # 运行所有非黑名单的 Web BFF 测试用例
+executed_count=0
 for file in "${all_files[@]}"; do
   # 检查文件是否在黑名单中
   skip=false
@@ -86,13 +87,19 @@ for file in "${all_files[@]}"; do
   done
   
   if [[ "$skip" == false ]]; then
-    echo "执行 Web BFF 测试: $file"
+    executed_count=$((executed_count + 1))
+    echo "=== [$executed_count] 执行 Web BFF 测试: $file ==="
     # 添加错误处理，单个测试用例失败不影响其他测试
     # 使用 || true 确保即使测试失败也继续执行
-    ${JMETER_DIR}/bin/jmeter -n -t "$file" -q ${CONFIG_FILE} -l ${JTL} || true
-    echo "测试 $file 完成，继续下一个..."
+    ${JMETER_DIR}/bin/jmeter -n -t "$file" -q ${CONFIG_FILE} -l ${JTL} || {
+      echo "警告: 测试 $file 执行失败，但继续..."
+    }
+    echo "=== [$executed_count] 测试 $file 完成 ==="
+    echo ""
   fi
 done
+
+echo "=== 已执行 $executed_count 个测试文件（不含黑名单） ==="
 
 # 最后单独执行删除和登出测试
 echo "=== 步骤4: 执行删除和登出测试（最后执行，会造成数据删除和系统登出）==="
@@ -108,7 +115,22 @@ echo "tg99_logout_via-form.jmx 完成"
 
 # 生成统一 HTML 报告
 echo "=== 步骤5: 生成 Web BFF HTML 报告 ==="
-${JMETER_DIR}/bin/jmeter -g ${JTL} -e -o ${REPORT_DIR}/all_cases_report
+echo "检查 JTL 文件内容："
+if [ -f ${JTL} ]; then
+  echo "JTL 文件大小: $(wc -l < ${JTL}) 行"
+  echo "JTL 文件前3行:"
+  head -3 ${JTL} || echo "无法读取 JTL 文件内容"
+else
+  echo "错误: JTL 文件不存在！"
+fi
+
+# 尝试生成 HTML 报告，即使失败也不影响整个流程
+if ${JMETER_DIR}/bin/jmeter -g ${JTL} -e -o ${REPORT_DIR}/all_cases_report 2>&1; then
+  echo "✓ HTML 报告生成成功"
+else
+  echo "⚠ HTML 报告生成失败，但测试结果已保存在 JTL 文件中"
+fi
 
 echo "=== Web BFF 测试执行完成 ==="
 echo "所有 Web BFF 测试已执行，报告生成在 ${REPORT_DIR}/all_cases_report"
+echo "JTL 结果文件: ${JTL}"
