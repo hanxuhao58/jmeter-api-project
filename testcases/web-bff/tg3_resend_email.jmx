@@ -60,15 +60,24 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码">
-            <collectionProp name="Asserion.test_strings">
-              <stringProp name="1750395813">200|400|504</stringProp>
-            </collectionProp>
-            <stringProp name="Assertion.custom_message">Resend email 可能返回 200/400/504</stringProp>
-            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
-            <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">2</intProp>
-          </ResponseAssertion>
+          <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="检查状态码" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">def responseCode = prev.getResponseCode()
+def allowedCodes = [&apos;200&apos;, &apos;400&apos;, &apos;504&apos;]
+
+if (!allowedCodes.contains(responseCode)) {
+    AssertionResult.setFailure(true)
+    AssertionResult.setFailureMessage(&quot;响应码 ${responseCode} 不在允许的范围内 (200/400/504)&quot;)
+    log.error(&quot;❌ Resend email 响应码断言失败: ${responseCode}&quot;)
+} else {
+    AssertionResult.setFailure(false)
+    log.info(&quot;✓ Resend email 响应码正常: ${responseCode}&quot;)
+}
+</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223Assertion>
           <hashTree/>
         </hashTree>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
