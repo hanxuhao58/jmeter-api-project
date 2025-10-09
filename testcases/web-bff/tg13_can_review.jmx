@@ -37,7 +37,20 @@
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="script">// 直接加载认证数据
-def authDataFile = new File(&quot;/Users/a58/Documents/文稿 - Xuhao的MacBook Pro/frontend-master/jmeter-api-project/data/auth_data.properties&quot;)
+// 动态定位项目根目录
+import org.apache.jmeter.services.FileServer
+
+File baseDir = new File(FileServer.getFileServer().getBaseDir())
+File projectRoot = baseDir
+int hops = 0
+while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
+  if (projectRoot.name == &quot;jmeter-api-project&quot;) break
+  projectRoot = projectRoot.getParentFile()
+  hops++
+}
+if (projectRoot == null) projectRoot = baseDir
+
+def authDataFile = new File(projectRoot, &quot;data/auth_data.properties&quot;)
 
 if (authDataFile.exists()) {
   try {
@@ -136,7 +149,20 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="script">// 从 auth_data.properties 尝试读取 csrfToken
-def authPropsFile = new File(&quot;/Users/a58/Documents/文稿 - Xuhao的MacBook Pro/frontend-master/jmeter-api-project/data/auth_data.properties&quot;)
+// 动态定位项目根目录
+import org.apache.jmeter.services.FileServer
+
+File baseDir = new File(FileServer.getFileServer().getBaseDir())
+File projectRoot = baseDir
+int hops = 0
+while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
+  if (projectRoot.name == &quot;jmeter-api-project&quot;) break
+  projectRoot = projectRoot.getParentFile()
+  hops++
+}
+if (projectRoot == null) projectRoot = baseDir
+
+def authPropsFile = new File(projectRoot, &quot;data/auth_data.properties&quot;)
 def csrfToken = null
 try {
   if (authPropsFile.exists()) {
@@ -254,7 +280,7 @@ if (csrfToken &amp;&amp; csrfToken.trim()) {
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="can review">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="can review" enabled="true">
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
           <stringProp name="HTTPSampler.path">${__P(CAN_REVIEW_PATH)}</stringProp>
@@ -284,7 +310,7 @@ if (csrfToken &amp;&amp; csrfToken.trim()) {
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -322,7 +348,7 @@ if (csrfToken &amp;&amp; csrfToken.trim()) {
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="healthChecks">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="dependent-services">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -345,12 +371,25 @@ if (csrfToken &amp;&amp; csrfToken.trim()) {
           <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,userToken,userAuthorization,conversationsToken,cookieString,testResult</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="1. 加载动态认证数据">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="1. 加载动态认证数据" enabled="true">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="script">// 直接加载认证数据
-def authDataFile = new File(&quot;/Users/a58/Documents/文稿 - Xuhao的MacBook Pro/frontend-master/jmeter-api-project/data/auth_data.properties&quot;)
+// 动态定位项目根目录
+import org.apache.jmeter.services.FileServer
+
+File baseDir = new File(FileServer.getFileServer().getBaseDir())
+File projectRoot = baseDir
+int hops = 0
+while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
+  if (projectRoot.name == &quot;jmeter-api-project&quot;) break
+  projectRoot = projectRoot.getParentFile()
+  hops++
+}
+if (projectRoot == null) projectRoot = baseDir
+
+def authDataFile = new File(projectRoot, &quot;data/auth_data.properties&quot;)
 
 if (authDataFile.exists()) {
   try {
@@ -414,7 +453,7 @@ if (authDataFile.exists()) {
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="2. 验证认证信息" enabled="true">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="2. 验证认证信息">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
@@ -444,12 +483,25 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="3. 注入CSRF Token（可用则注入）" enabled="true">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="3. 注入CSRF Token（可用则注入）">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="script">// 从 auth_data.properties 尝试读取 csrfToken
-def authPropsFile = new File(&quot;/Users/a58/Documents/文稿 - Xuhao的MacBook Pro/frontend-master/jmeter-api-project/data/auth_data.properties&quot;)
+// 动态定位项目根目录
+import org.apache.jmeter.services.FileServer
+
+File baseDir = new File(FileServer.getFileServer().getBaseDir())
+File projectRoot = baseDir
+int hops = 0
+while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
+  if (projectRoot.name == &quot;jmeter-api-project&quot;) break
+  projectRoot = projectRoot.getParentFile()
+  hops++
+}
+if (projectRoot == null) projectRoot = baseDir
+
+def authPropsFile = new File(projectRoot, &quot;data/auth_data.properties&quot;)
 def csrfToken = null
 try {
   if (authPropsFile.exists()) {
@@ -470,7 +522,7 @@ if (csrfToken &amp;&amp; csrfToken.trim()) {
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header Manager with Auth" enabled="true">
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header Manager with Auth">
           <collectionProp name="HeaderManager.headers">
             <elementProp name="cookie" elementType="Header">
               <stringProp name="Header.name">Cookie</stringProp>
@@ -567,7 +619,7 @@ if (csrfToken &amp;&amp; csrfToken.trim()) {
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="healthChecks">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="dependent-services">
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
           <stringProp name="HTTPSampler.path">/bff-api/diagnostics/dependent-services</stringProp>
@@ -591,7 +643,7 @@ if (csrfToken &amp;&amp; csrfToken.trim()) {
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -657,7 +709,20 @@ if (csrfToken &amp;&amp; csrfToken.trim()) {
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="script">// 直接加载认证数据
-def authDataFile = new File(&quot;/Users/a58/Documents/文稿 - Xuhao的MacBook Pro/frontend-master/jmeter-api-project/data/auth_data.properties&quot;)
+// 动态定位项目根目录
+import org.apache.jmeter.services.FileServer
+
+File baseDir = new File(FileServer.getFileServer().getBaseDir())
+File projectRoot = baseDir
+int hops = 0
+while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
+  if (projectRoot.name == &quot;jmeter-api-project&quot;) break
+  projectRoot = projectRoot.getParentFile()
+  hops++
+}
+if (projectRoot == null) projectRoot = baseDir
+
+def authDataFile = new File(projectRoot, &quot;data/auth_data.properties&quot;)
 
 if (authDataFile.exists()) {
   try {
@@ -756,7 +821,20 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="script">// 从 auth_data.properties 尝试读取 csrfToken
-def authPropsFile = new File(&quot;/Users/a58/Documents/文稿 - Xuhao的MacBook Pro/frontend-master/jmeter-api-project/data/auth_data.properties&quot;)
+// 动态定位项目根目录
+import org.apache.jmeter.services.FileServer
+
+File baseDir = new File(FileServer.getFileServer().getBaseDir())
+File projectRoot = baseDir
+int hops = 0
+while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
+  if (projectRoot.name == &quot;jmeter-api-project&quot;) break
+  projectRoot = projectRoot.getParentFile()
+  hops++
+}
+if (projectRoot == null) projectRoot = baseDir
+
+def authPropsFile = new File(projectRoot, &quot;data/auth_data.properties&quot;)
 def csrfToken = null
 try {
   if (authPropsFile.exists()) {

@@ -1,46 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
-    <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="block user">
-      <intProp name="ThreadGroup.num_threads">1</intProp>
-      <intProp name="ThreadGroup.ramp_time">1</intProp>
-      <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-      <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-      <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController">
-        <stringProp name="LoopController.loops">1</stringProp>
-        <boolProp name="LoopController.continue_forever">false</boolProp>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <collectionProp name="Arguments.arguments"/>
       </elementProp>
-    </ThreadGroup>
+    </TestPlan>
     <hashTree>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - 读取认证信息" enabled="true">
-        <stringProp name="delimiter">,</stringProp>
-        <stringProp name="fileEncoding">UTF-8</stringProp>
-        <stringProp name="filename">data/web_auth_tokens.csv</stringProp>
-        <boolProp name="ignoreFirstLine">true</boolProp>
-        <boolProp name="quotedData">false</boolProp>
-        <boolProp name="recycle">false</boolProp>
-        <stringProp name="shareMode">shareMode.all</stringProp>
-        <boolProp name="stopThread">false</boolProp>
-        <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,userToken,userAuthorization,conversationsToken,cookieString,testResult</stringProp>
-      </CSVDataSet>
-      <hashTree/>
-      <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="1. 加载动态认证数据" enabled="true">
-        <stringProp name="cacheKey">true</stringProp>
-        <stringProp name="filename"></stringProp>
-        <stringProp name="parameters"></stringProp>
-        <stringProp name="script">// 直接加载认证数据
-def authDataFile = new File(&quot;/Users/a58/Documents/文稿 - Xuhao的MacBook Pro/frontend-master/jmeter-api-project/data/auth_data.properties&quot;)
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="block &amp; unblock user">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - 读取认证信息" enabled="false">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">UTF-8</stringProp>
+          <stringProp name="filename">data/web_auth_tokens.csv</stringProp>
+          <boolProp name="ignoreFirstLine">true</boolProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">false</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,cookieString</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="1. 加载动态认证数据" enabled="true">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">import org.apache.jmeter.services.FileServer
+
+// 动态定位项目根目录
+File baseDir = new File(FileServer.getFileServer().getBaseDir())
+File projectRoot = baseDir
+int hops = 0
+while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
+  if (projectRoot.name == &quot;jmeter-api-project&quot;) break
+  projectRoot = projectRoot.getParentFile()
+  hops++
+}
+if (projectRoot == null) projectRoot = baseDir
+
+// 加载认证数据
+def authDataFile = new File(projectRoot, &quot;data/auth_data.properties&quot;)
+log.info(&quot;尝试加载认证文件: ${authDataFile.absolutePath}&quot;)
 
 if (authDataFile.exists()) {
   try {
     def props = new Properties()
     props.load(new FileReader(authDataFile))
     
-    // 检查数据是否过期（30分钟）
+    // 检查数据是否过期
     def lastUpdated = props.getProperty(&quot;last_updated&quot;)
     def currentTime = System.currentTimeMillis()
     def dataAge = currentTime - Long.parseLong(lastUpdated)
-    def maxAge = 30 * 60 * 1000 // 30分钟
+    def maxAge = 24 * 60 * 60 * 1000 // 1天
     
     if (dataAge &gt; maxAge) {
       log.warn(&quot;⚠ 认证数据已过期，数据年龄: ${dataAge / 1000 / 60} 分钟&quot;)
@@ -51,9 +71,8 @@ if (authDataFile.exists()) {
       def priorityCookies = [
         &apos;gt_p&apos;, &apos;gt_s&apos;, &apos;GTSELLERSESSIONID&apos;, &apos;gt_tm&apos;, 
         &apos;conversationsToken&apos;, &apos;gt_rememberMe&apos;, &apos;gt_mc&apos;,
-        &apos;_ga&apos;, &apos;_fbp&apos;, &apos;pbjs-unifiedid&apos;, &apos;gt_userPref&apos;,
-        &apos;waap_id&apos;, &apos;lux_uid&apos;, &apos;gt_bff_ab2&apos;, &apos;gt_gb_exp_uid&apos;,
-        &apos;eupubconsent-v2&apos;, &apos;OptanonConsent&apos;
+        &apos;gt_userPref&apos;, &apos;waap_id&apos;, &apos;gt_bff_ab2&apos;, &apos;gt_gb_exp_uid&apos;,
+        &apos;gt_userType&apos;, &apos;gt_userIntr&apos;, &apos;gt_appBanner&apos;
       ]
       
       priorityCookies.each { cookieName -&gt;
@@ -76,14 +95,14 @@ if (authDataFile.exists()) {
   log.warn(&quot;⚠ 认证数据文件不存在，请先运行登录测试&quot;)
   vars.put(&quot;AUTH_COOKIE_STRING&quot;, &quot;NO_AUTH_DATA&quot;)
 }</stringProp>
-        <stringProp name="scriptLanguage">groovy</stringProp>
-      </JSR223PreProcessor>
-      <hashTree/>
-      <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="2. 验证认证信息" enabled="true">
-        <stringProp name="cacheKey">true</stringProp>
-        <stringProp name="filename"></stringProp>
-        <stringProp name="parameters"></stringProp>
-        <stringProp name="script">// 验证认证信息是否正确读取
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="2. 验证认证信息" enabled="true">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">// 验证认证信息是否正确读取
 log.info(&quot;=== 认证信息验证 ===&quot;)
 log.info(&quot;动态Cookie字符串: ${vars.get(&apos;AUTH_COOKIE_STRING&apos;)}&quot;)
 
@@ -106,197 +125,192 @@ vars.put(&quot;AUTH_STATUS&quot;, hasValidAuth ? &quot;AUTHENTICATED&quot; : &qu
 log.info(&quot;认证状态: ${vars.get(&apos;AUTH_STATUS&apos;)}&quot;)
 log.info(&quot;=== 认证信息验证完成 ===&quot;)
 </stringProp>
-        <stringProp name="scriptLanguage">groovy</stringProp>
-      </JSR223PreProcessor>
-      <hashTree/>
-      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header Manager with Auth" enabled="true">
-        <collectionProp name="HeaderManager.headers">
-          <elementProp name="cookie" elementType="Header">
-            <stringProp name="Header.name">Cookie</stringProp>
-            <stringProp name="Header.value">${AUTH_COOKIE_STRING}</stringProp>
-          </elementProp>
-          <elementProp name="if-none-match" elementType="Header">
-            <stringProp name="Header.name">if-none-match</stringProp>
-            <stringProp name="Header.value">W/&quot;afe1-ZFtcpo3oJPsAQ+ULmU063d4FJ6k&quot;</stringProp>
-          </elementProp>
-          <elementProp name="priority" elementType="Header">
-            <stringProp name="Header.name">priority</stringProp>
-            <stringProp name="Header.value">u=1, i</stringProp>
-          </elementProp>
-          <elementProp name="Content-Type" elementType="Header">
-            <stringProp name="Header.name">Content-Type</stringProp>
-            <stringProp name="Header.value">${__P(CONTENT_TYPE)}</stringProp>
-          </elementProp>
-          <elementProp name="User-Agent" elementType="Header">
-            <stringProp name="Header.name">User-Agent</stringProp>
-            <stringProp name="Header.value">${__P(USER_AGENT)}</stringProp>
-          </elementProp>
-          <elementProp name="Accept" elementType="Header">
-            <stringProp name="Header.name">Accept</stringProp>
-            <stringProp name="Header.value">${__P(ACCEPT)}</stringProp>
-          </elementProp>
-          <elementProp name="Accept-Language" elementType="Header">
-            <stringProp name="Header.name">Accept-Language</stringProp>
-            <stringProp name="Header.value">${__P(ACCEPT_LANGUAGE)}</stringProp>
-          </elementProp>
-          <elementProp name="Accept-Encoding" elementType="Header">
-            <stringProp name="Header.name">Accept-Encoding</stringProp>
-            <stringProp name="Header.value">${__P(ACCEPT_ENCODING)}</stringProp>
-          </elementProp>
-          <elementProp name="Origin" elementType="Header">
-            <stringProp name="Header.name">Origin</stringProp>
-            <stringProp name="Header.value">${__P(ORIGIN)}</stringProp>
-          </elementProp>
-          <elementProp name="Referer" elementType="Header">
-            <stringProp name="Header.name">Referer</stringProp>
-            <stringProp name="Header.value">${__P(REFERER)}</stringProp>
-          </elementProp>
-          <elementProp name="Connection" elementType="Header">
-            <stringProp name="Header.name">Connection</stringProp>
-            <stringProp name="Header.value">${__P(CONNECTION)}</stringProp>
-          </elementProp>
-          <elementProp name="sec-ch-ua" elementType="Header">
-            <stringProp name="Header.name">sec-ch-ua</stringProp>
-            <stringProp name="Header.value">${__P(SEC_CH_UA)}</stringProp>
-          </elementProp>
-          <elementProp name="sec-ch-ua-mobile" elementType="Header">
-            <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
-            <stringProp name="Header.value">${__P(SEC_CH_UA_MOBILE)}</stringProp>
-          </elementProp>
-          <elementProp name="sec-ch-ua-platform" elementType="Header">
-            <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
-            <stringProp name="Header.value">${__P(SEC_CH_UA_PLATFORM)}</stringProp>
-          </elementProp>
-          <elementProp name="sec-fetch-site" elementType="Header">
-            <stringProp name="Header.name">sec-fetch-site</stringProp>
-            <stringProp name="Header.value">${__P(SEC_FETCH_SITE)}</stringProp>
-          </elementProp>
-          <elementProp name="sec-fetch-mode" elementType="Header">
-            <stringProp name="Header.name">sec-fetch-mode</stringProp>
-            <stringProp name="Header.value">${__P(SEC_FETCH_MODE)}</stringProp>
-          </elementProp>
-          <elementProp name="sec-fetch-dest" elementType="Header">
-            <stringProp name="Header.name">sec-fetch-dest</stringProp>
-            <stringProp name="Header.value">${__P(SEC_FETCH_DEST)}</stringProp>
-          </elementProp>
-          <elementProp name="Cache-Control" elementType="Header">
-            <stringProp name="Header.name">Cache-Control</stringProp>
-            <stringProp name="Header.value">${__P(CACHE_CONTROL)}</stringProp>
-          </elementProp>
-          <elementProp name="Pragma" elementType="Header">
-            <stringProp name="Header.name">Pragma</stringProp>
-            <stringProp name="Header.value">${__P(PRAGMA)}</stringProp>
-          </elementProp>
-          <elementProp name="Host" elementType="Header">
-            <stringProp name="Header.name">Host</stringProp>
-            <stringProp name="Header.value">${__P(HOST)}</stringProp>
-          </elementProp>
-        </collectionProp>
-      </HeaderManager>
-      <hashTree/>
-      <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="block user">
-        <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
-        <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
-        <stringProp name="HTTPSampler.path">/bff-api/message-centre/users/block</stringProp>
-        <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-        <stringProp name="HTTPSampler.method">POST</stringProp>
-        <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-        <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-        <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-          <collectionProp name="Arguments.arguments">
-            <elementProp name="" elementType="HTTPArgument">
-              <boolProp name="HTTPArgument.always_encode">false</boolProp>
-              <stringProp name="Argument.value">{&#xd;
-	&quot;id&quot;: {__P(BLOCK_ID$)},&#xd;
-	&quot;targetUserId&quot;: {__P(BLOCK_TARGET_USER_ID$)}&#xd;
-}</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header Manager with Auth" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="cookie" elementType="Header">
+              <stringProp name="Header.name">Cookie</stringProp>
+              <stringProp name="Header.value">${AUTH_COOKIE_STRING}</stringProp>
+            </elementProp>
+            <elementProp name="if-none-match" elementType="Header">
+              <stringProp name="Header.name">if-none-match</stringProp>
+              <stringProp name="Header.value">W/&quot;afe1-ZFtcpo3oJPsAQ+ULmU063d4FJ6k&quot;</stringProp>
+            </elementProp>
+            <elementProp name="priority" elementType="Header">
+              <stringProp name="Header.name">priority</stringProp>
+              <stringProp name="Header.value">u=1, i</stringProp>
+            </elementProp>
+            <elementProp name="Content-Type" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">${__P(CONTENT_TYPE_JSON)}</stringProp>
+            </elementProp>
+            <elementProp name="User-Agent" elementType="Header">
+              <stringProp name="Header.name">User-Agent</stringProp>
+              <stringProp name="Header.value">${__P(USER_AGENT)}</stringProp>
+            </elementProp>
+            <elementProp name="Accept" elementType="Header">
+              <stringProp name="Header.name">Accept</stringProp>
+              <stringProp name="Header.value">${__P(ACCEPT)}</stringProp>
+            </elementProp>
+            <elementProp name="Accept-Language" elementType="Header">
+              <stringProp name="Header.name">Accept-Language</stringProp>
+              <stringProp name="Header.value">${__P(ACCEPT_LANGUAGE)}</stringProp>
+            </elementProp>
+            <elementProp name="Accept-Encoding" elementType="Header">
+              <stringProp name="Header.name">Accept-Encoding</stringProp>
+              <stringProp name="Header.value">${__P(ACCEPT_ENCODING)}</stringProp>
+            </elementProp>
+            <elementProp name="Origin" elementType="Header">
+              <stringProp name="Header.name">Origin</stringProp>
+              <stringProp name="Header.value">${__P(ORIGIN)}</stringProp>
+            </elementProp>
+            <elementProp name="Referer" elementType="Header">
+              <stringProp name="Header.name">Referer</stringProp>
+              <stringProp name="Header.value">${__P(REFERER)}</stringProp>
+            </elementProp>
+            <elementProp name="Connection" elementType="Header">
+              <stringProp name="Header.name">Connection</stringProp>
+              <stringProp name="Header.value">${__P(CONNECTION)}</stringProp>
+            </elementProp>
+            <elementProp name="sec-ch-ua" elementType="Header">
+              <stringProp name="Header.name">sec-ch-ua</stringProp>
+              <stringProp name="Header.value">${__P(SEC_CH_UA)}</stringProp>
+            </elementProp>
+            <elementProp name="sec-ch-ua-mobile" elementType="Header">
+              <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+              <stringProp name="Header.value">${__P(SEC_CH_UA_MOBILE)}</stringProp>
+            </elementProp>
+            <elementProp name="sec-ch-ua-platform" elementType="Header">
+              <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+              <stringProp name="Header.value">${__P(SEC_CH_UA_PLATFORM)}</stringProp>
+            </elementProp>
+            <elementProp name="sec-fetch-site" elementType="Header">
+              <stringProp name="Header.name">sec-fetch-site</stringProp>
+              <stringProp name="Header.value">${__P(SEC_FETCH_SITE)}</stringProp>
+            </elementProp>
+            <elementProp name="sec-fetch-mode" elementType="Header">
+              <stringProp name="Header.name">sec-fetch-mode</stringProp>
+              <stringProp name="Header.value">${__P(SEC_FETCH_MODE)}</stringProp>
+            </elementProp>
+            <elementProp name="sec-fetch-dest" elementType="Header">
+              <stringProp name="Header.name">sec-fetch-dest</stringProp>
+              <stringProp name="Header.value">${__P(SEC_FETCH_DEST)}</stringProp>
+            </elementProp>
+            <elementProp name="Cache-Control" elementType="Header">
+              <stringProp name="Header.name">Cache-Control</stringProp>
+              <stringProp name="Header.value">${__P(CACHE_CONTROL)}</stringProp>
+            </elementProp>
+            <elementProp name="Pragma" elementType="Header">
+              <stringProp name="Header.name">Pragma</stringProp>
+              <stringProp name="Header.value">${__P(PRAGMA)}</stringProp>
+            </elementProp>
+            <elementProp name="Host" elementType="Header">
+              <stringProp name="Header.name">Host</stringProp>
+              <stringProp name="Header.value">${__P(HOST)}</stringProp>
             </elementProp>
           </collectionProp>
-        </elementProp>
-      </HTTPSamplerProxy>
-      <hashTree>
-        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码200">
-          <collectionProp name="Asserion.test_strings">
-            <stringProp name="49586">200</stringProp>
-          </collectionProp>
-          <stringProp name="Assertion.custom_message"></stringProp>
-          <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
-          <boolProp name="Assertion.assume_success">true</boolProp>
-          <intProp name="Assertion.test_type">8</intProp>
-        </ResponseAssertion>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="block user">
+          <stringProp name="HTTPSampler.domain">www.gumtree.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/bff-api/message-centre/users/block</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;id&quot;:99639924,&quot;targetUserId&quot;:68425624}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码200" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">true</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="unblock user">
+          <stringProp name="HTTPSampler.domain">www.gumtree.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/bff-api/message-centre/users/unblock</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;id&quot;:99639924,&quot;targetUserId&quot;:68425624}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码200">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">true</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
         <hashTree/>
       </hashTree>
-      <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="unblock user">
-        <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
-        <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
-        <stringProp name="HTTPSampler.path">/bff-api/message-centre/users/unblock</stringProp>
-        <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-        <stringProp name="HTTPSampler.method">POST</stringProp>
-        <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-        <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-        <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-          <collectionProp name="Arguments.arguments">
-            <elementProp name="" elementType="HTTPArgument">
-              <boolProp name="HTTPArgument.always_encode">false</boolProp>
-              <stringProp name="Argument.value">{&#xd;
-	&quot;id&quot;: {__P(BLOCK_ID$)},&#xd;
-	&quot;targetUserId&quot;: {__P(BLOCK_TARGET_USER_ID$)}&#xd;
-}</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
-            </elementProp>
-          </collectionProp>
-        </elementProp>
-      </HTTPSamplerProxy>
-      <hashTree>
-        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码200">
-          <collectionProp name="Asserion.test_strings">
-            <stringProp name="49586">200</stringProp>
-          </collectionProp>
-          <stringProp name="Assertion.custom_message"></stringProp>
-          <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
-          <boolProp name="Assertion.assume_success">true</boolProp>
-          <intProp name="Assertion.test_type">8</intProp>
-        </ResponseAssertion>
-        <hashTree/>
-      </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
-        <boolProp name="ResultCollector.error_logging">false</boolProp>
-        <objProp>
-          <name>saveConfig</name>
-          <value class="SampleSaveConfiguration">
-            <time>true</time>
-            <latency>true</latency>
-            <timestamp>true</timestamp>
-            <success>true</success>
-            <label>true</label>
-            <code>true</code>
-            <message>true</message>
-            <threadName>true</threadName>
-            <dataType>true</dataType>
-            <encoding>false</encoding>
-            <assertions>true</assertions>
-            <subresults>true</subresults>
-            <responseData>false</responseData>
-            <samplerData>false</samplerData>
-            <xml>false</xml>
-            <fieldNames>true</fieldNames>
-            <responseHeaders>false</responseHeaders>
-            <requestHeaders>false</requestHeaders>
-            <responseDataOnError>false</responseDataOnError>
-            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-            <assertionsResultsToSave>0</assertionsResultsToSave>
-            <bytes>true</bytes>
-            <sentBytes>true</sentBytes>
-            <url>true</url>
-            <threadCounts>true</threadCounts>
-            <idleTime>true</idleTime>
-            <connectTime>true</connectTime>
-          </value>
-        </objProp>
-        <stringProp name="filename"></stringProp>
-      </ResultCollector>
-      <hashTree/>
     </hashTree>
   </hashTree>
 </jmeterTestPlan>

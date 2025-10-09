@@ -30,6 +30,56 @@
           <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,userToken,userAuthorization,conversationsToken,cookieString,testResult</stringProp>
         </CSVDataSet>
         <hashTree/>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="加载 CSRF Token">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">// 从 CSV 读取的 userToken 设置为 CSRF_TOKEN
+def csrfToken = vars.get(&quot;userToken&quot;)
+
+// 如果 CSV 中的 userToken 不存在，尝试从 auth_data.properties 读取
+if (!csrfToken || csrfToken == &quot;NO_USER_TOKEN&quot; || csrfToken.trim().isEmpty()) {
+  import org.apache.jmeter.services.FileServer
+  
+  File baseDir = new File(FileServer.getFileServer().getBaseDir())
+  File projectRoot = baseDir
+  int hops = 0
+  while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
+    if (projectRoot.name == &quot;jmeter-api-project&quot;) break
+    projectRoot = projectRoot.getParentFile()
+    hops++
+  }
+  if (projectRoot == null) projectRoot = baseDir
+  
+  def authPropsFile = new File(projectRoot, &quot;data/auth_data.properties&quot;)
+  
+  if (authPropsFile.exists()) {
+    try {
+      def props = new Properties()
+      props.load(new FileReader(authPropsFile))
+      csrfToken = props.getProperty(&quot;csrfToken&quot;)
+      if (!csrfToken) {
+        csrfToken = props.getProperty(&quot;userToken&quot;)
+      }
+      log.info(&quot;✓ 从 auth_data.properties 加载 CSRF Token&quot;)
+    } catch (Exception e) {
+      log.error(&quot;❌ 加载 CSRF Token 失败: ${e.message}&quot;)
+    }
+  }
+}
+
+// 设置 CSRF_TOKEN 变量
+if (csrfToken &amp;&amp; csrfToken != &quot;NO_USER_TOKEN&quot;) {
+  vars.put(&quot;CSRF_TOKEN&quot;, csrfToken)
+  log.info(&quot;✓ CSRF Token 已设置: ${csrfToken.take(20)}...&quot;)
+} else {
+  vars.put(&quot;CSRF_TOKEN&quot;, &quot;&quot;)
+  log.warn(&quot;⚠ 无法获取 CSRF Token，使用空字符串&quot;)
+}
+</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
         <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header Manager with Auth">
           <collectionProp name="HeaderManager.headers">
             <elementProp name="Content-Type" elementType="Header">
