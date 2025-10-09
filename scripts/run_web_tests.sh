@@ -36,16 +36,18 @@ echo "=== 步骤1: 执行登录测试获取 token ==="
 ${JMETER_DIR}/bin/jmeter -n -t testcases/web-bff/tg1_login_via_form.jmx -q ${CONFIG_FILE} -l ${JTL} || true
 echo "登录测试完成，继续..."
 
-# 确保 auth_tokens.csv 存在，若无则创建占位
-echo "=== 步骤2: 检查 auth_tokens.csv 文件 ==="
-if [ ! -f data/auth_tokens.csv ]; then
-  echo "创建 auth_tokens.csv 占位文件..."
-  mkdir -p data
-  echo "userId,userToken,userAuthorization" > data/auth_tokens.csv
-  echo "test,test,test" >> data/auth_tokens.csv
+# 确保 web_auth_tokens.csv 存在（Web BFF 测试使用这个文件名）
+echo "=== 步骤2: 检查 web_auth_tokens.csv 文件 ==="
+mkdir -p data
+if [ ! -f data/web_auth_tokens.csv ]; then
+  echo "⚠️  警告: web_auth_tokens.csv 不存在，创建占位文件..."
+  echo "timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,userToken,userAuthorization,conversationsToken,cookieString,testResult" > data/web_auth_tokens.csv
+  echo "0,test@test.com,200,0,test_session,test_remember,test_gtmc,test_location,0,test_token,test_auth,test_conv_token,test_cookie,PLACEHOLDER" >> data/web_auth_tokens.csv
 else
-  echo "auth_tokens.csv 已存在，内容："
-  cat data/auth_tokens.csv
+  echo "✓ web_auth_tokens.csv 已存在"
+  echo "文件大小: $(wc -l < data/web_auth_tokens.csv) 行"
+  echo "最新一行数据（不含header）："
+  tail -1 data/web_auth_tokens.csv || echo "无法读取"
 fi
 
 # Web BFF 专用黑名单：这些测试用例将被跳过
@@ -88,13 +90,22 @@ for file in "${all_files[@]}"; do
   
   if [[ "$skip" == false ]]; then
     executed_count=$((executed_count + 1))
-    echo "=== [$executed_count] 执行 Web BFF 测试: $file ==="
-    # 添加错误处理，单个测试用例失败不影响其他测试
-    # 使用 || true 确保即使测试失败也继续执行
-    ${JMETER_DIR}/bin/jmeter -n -t "$file" -q ${CONFIG_FILE} -l ${JTL} || {
-      echo "警告: 测试 $file 执行失败，但继续..."
+    echo "=== [$executed_count/$((${#all_files[@]}-3))] 开始执行: $file ==="
+    echo "时间: $(date '+%Y-%m-%d %H:%M:%S')"
+    
+    # 设置超时保护，防止单个测试卡死
+    timeout 180s ${JMETER_DIR}/bin/jmeter -n -t "$file" -q ${CONFIG_FILE} -l ${JTL} 2>&1 || {
+      exit_code=$?
+      if [ $exit_code -eq 124 ]; then
+        echo "❌ 错误: 测试 $file 超时（180秒），强制终止"
+      else
+        echo "⚠️  警告: 测试 $file 执行失败（退出码: $exit_code），但继续..."
+      fi
     }
-    echo "=== [$executed_count] 测试 $file 完成 ==="
+    
+    echo "=== [$executed_count/$((${#all_files[@]}-3))] 完成: $file ==="
+    echo "时间: $(date '+%Y-%m-%d %H:%M:%S')"
+    echo "JTL 当前行数: $(wc -l < ${JTL} 2>/dev/null || echo '0')"
     echo ""
   fi
 done

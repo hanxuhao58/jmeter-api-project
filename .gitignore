@@ -13,3 +13,5 @@ jmeter_*.log
 Thumbs.db
 
 
+.DS_Store
+web-bff-test-report*
