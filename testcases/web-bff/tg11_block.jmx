@@ -20,7 +20,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - 读取认证信息" enabled="false">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - 读取认证信息" enabled="true">
           <stringProp name="delimiter">,</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
           <stringProp name="filename">data/web_auth_tokens.csv</stringProp>
@@ -32,7 +32,7 @@
           <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,cookieString</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="1. 加载动态认证数据" enabled="true">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="1. 加载动态认证数据" enabled="false">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
@@ -100,7 +100,7 @@ if (authDataFile.exists()) {
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="2. 验证认证信息" enabled="true">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="2. 验证认证信息" enabled="false">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
@@ -134,7 +134,7 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
           <collectionProp name="HeaderManager.headers">
             <elementProp name="cookie" elementType="Header">
               <stringProp name="Header.name">Cookie</stringProp>
-              <stringProp name="Header.value">${AUTH_COOKIE_STRING}</stringProp>
+              <stringProp name="Header.value">${cookieString}</stringProp>
             </elementProp>
             <elementProp name="if-none-match" elementType="Header">
               <stringProp name="Header.name">if-none-match</stringProp>
@@ -324,7 +324,7 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - 读取认证信息" enabled="false">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - 读取认证信息" enabled="true">
           <stringProp name="delimiter">,</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
           <stringProp name="filename">data/web_auth_tokens.csv</stringProp>
@@ -336,7 +336,7 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
           <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,cookieString</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="1. 加载动态认证数据" enabled="true">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="1. 加载动态认证数据" enabled="false">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
@@ -404,7 +404,7 @@ if (authDataFile.exists()) {
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="2. 验证认证信息" enabled="true">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="2. 验证认证信息" enabled="false">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
@@ -438,7 +438,7 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
           <collectionProp name="HeaderManager.headers">
             <elementProp name="cookie" elementType="Header">
               <stringProp name="Header.name">Cookie</stringProp>
-              <stringProp name="Header.value">${AUTH_COOKIE_STRING}</stringProp>
+              <stringProp name="Header.value">${cookieString}</stringProp>
             </elementProp>
             <elementProp name="if-none-match" elementType="Header">
               <stringProp name="Header.name">if-none-match</stringProp>

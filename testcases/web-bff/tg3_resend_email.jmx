@@ -69,7 +69,7 @@
             <stringProp name="Assertion.custom_message">Resend email 可能返回 200/400/504</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">8</intProp>
+            <intProp name="Assertion.test_type">40</intProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
