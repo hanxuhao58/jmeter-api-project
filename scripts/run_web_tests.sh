@@ -33,9 +33,8 @@ echo "当前工作目录: $(pwd)"
 
 # 先跑登录获取 token
 echo "=== 步骤1: 执行登录测试获取 token ==="
-${JMETER_DIR}/bin/jmeter -n -t testcases/web-bff/tg1_login_via_form.jmx -q ${CONFIG_FILE} -l ${JTL} || {
-  echo "警告: 登录测试失败，但继续执行..."
-}
+${JMETER_DIR}/bin/jmeter -n -t testcases/web-bff/tg1_login_via_form.jmx -q ${CONFIG_FILE} -l ${JTL} || true
+echo "登录测试完成，继续..."
 
 # 确保 auth_tokens.csv 存在，若无则创建占位
 echo "=== 步骤2: 检查 auth_tokens.csv 文件 ==="
@@ -90,9 +89,8 @@ for file in "${all_files[@]}"; do
     echo "执行 Web BFF 测试: $file"
     # 添加错误处理，单个测试用例失败不影响其他测试
     # 使用 || true 确保即使测试失败也继续执行
-    ${JMETER_DIR}/bin/jmeter -n -t "$file" -q ${CONFIG_FILE} -l ${JTL} || {
-      echo "警告: Web BFF 测试 $file 失败，但继续执行其他测试..."
-    }
+    ${JMETER_DIR}/bin/jmeter -n -t "$file" -q ${CONFIG_FILE} -l ${JTL} || true
+    echo "测试 $file 完成，继续下一个..."
   fi
 done
 
@@ -100,15 +98,13 @@ done
 echo "=== 步骤4: 执行删除和登出测试（最后执行，会造成数据删除和系统登出）==="
 # tg98_delete.jmx 会删除数据，所以放到最后单独运行
 echo "执行 tg98_delete.jmx (最后执行，会删除数据)"
-${JMETER_DIR}/bin/jmeter -n -t testcases/web-bff/tg98_delete.jmx -q ${CONFIG_FILE} -l ${JTL} || {
-  echo "警告: tg98_delete.jmx 失败，但继续..."
-}
+${JMETER_DIR}/bin/jmeter -n -t testcases/web-bff/tg98_delete.jmx -q ${CONFIG_FILE} -l ${JTL} || true
+echo "tg98_delete.jmx 完成"
 
 # tg99_logout_via-form.jmx 会造成系统登出，所以放到最后单独运行
 echo "执行 tg99_logout_via-form.jmx (最后执行，会造成系统登出)"
-${JMETER_DIR}/bin/jmeter -n -t testcases/web-bff/tg99_logout_via-form.jmx -q ${CONFIG_FILE} -l ${JTL} || {
-  echo "警告: tg99_logout_via-form.jmx 失败，但继续..."
-}
+${JMETER_DIR}/bin/jmeter -n -t testcases/web-bff/tg99_logout_via-form.jmx -q ${CONFIG_FILE} -l ${JTL} || true
+echo "tg99_logout_via-form.jmx 完成"
 
 # 生成统一 HTML 报告
 echo "=== 步骤5: 生成 Web BFF HTML 报告 ==="
