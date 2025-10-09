@@ -1,0 +1,15 @@
+# JMeter runtime files and sensitive data
+data/*.properties
+data/*.csv
+reports/
+logs/
+*.jtl
+*.log
+jmeter.log
+jmeter_*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+

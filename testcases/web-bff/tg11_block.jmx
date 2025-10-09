@@ -5,6 +5,8 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="block user">
@@ -18,7 +20,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - 读取认证信息" enabled="true">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - 读取认证信息" enabled="false">
           <stringProp name="delimiter">,</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
           <stringProp name="filename">data/web_auth_tokens.csv</stringProp>
@@ -27,15 +29,29 @@
           <boolProp name="recycle">false</boolProp>
           <stringProp name="shareMode">shareMode.all</stringProp>
           <boolProp name="stopThread">false</boolProp>
-          <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,userToken,userAuthorization,conversationsToken,cookieString,testResult</stringProp>
+          <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,cookieString</stringProp>
         </CSVDataSet>
         <hashTree/>
         <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="1. 加载动态认证数据" enabled="true">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
-          <stringProp name="script">// 直接加载认证数据
-def authDataFile = new File(&quot;/Users/a58/Documents/文稿 - Xuhao的MacBook Pro/frontend-master/jmeter-api-project/data/auth_data.properties&quot;)
+          <stringProp name="script">import org.apache.jmeter.services.FileServer
+
+// 动态定位项目根目录
+File baseDir = new File(FileServer.getFileServer().getBaseDir())
+File projectRoot = baseDir
+int hops = 0
+while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
+  if (projectRoot.name == &quot;jmeter-api-project&quot;) break
+  projectRoot = projectRoot.getParentFile()
+  hops++
+}
+if (projectRoot == null) projectRoot = baseDir
+
+// 加载认证数据
+def authDataFile = new File(projectRoot, &quot;data/auth_data.properties&quot;)
+log.info(&quot;尝试加载认证文件: ${authDataFile.absolutePath}&quot;)
 
 if (authDataFile.exists()) {
   try {
@@ -57,9 +73,8 @@ if (authDataFile.exists()) {
       def priorityCookies = [
         &apos;gt_p&apos;, &apos;gt_s&apos;, &apos;GTSELLERSESSIONID&apos;, &apos;gt_tm&apos;, 
         &apos;conversationsToken&apos;, &apos;gt_rememberMe&apos;, &apos;gt_mc&apos;,
-        &apos;_ga&apos;, &apos;_fbp&apos;, &apos;pbjs-unifiedid&apos;, &apos;gt_userPref&apos;,
-        &apos;waap_id&apos;, &apos;lux_uid&apos;, &apos;gt_bff_ab2&apos;, &apos;gt_gb_exp_uid&apos;,
-        &apos;eupubconsent-v2&apos;, &apos;OptanonConsent&apos;
+        &apos;gt_userPref&apos;, &apos;waap_id&apos;, &apos;gt_bff_ab2&apos;, &apos;gt_gb_exp_uid&apos;,
+        &apos;gt_userType&apos;, &apos;gt_userIntr&apos;, &apos;gt_appBanner&apos;
       ]
       
       priorityCookies.each { cookieName -&gt;
@@ -131,7 +146,7 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
             </elementProp>
             <elementProp name="Content-Type" elementType="Header">
               <stringProp name="Header.name">Content-Type</stringProp>
-              <stringProp name="Header.value">${__P(CONTENT_TYPE)}</stringProp>
+              <stringProp name="Header.value">${__P(CONTENT_TYPE_JSON)}</stringProp>
             </elementProp>
             <elementProp name="User-Agent" elementType="Header">
               <stringProp name="Header.name">User-Agent</stringProp>
@@ -260,7 +275,7 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -298,7 +313,7 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="unblock user">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="unblock user" enabled="true">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -309,7 +324,7 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - 读取认证信息" enabled="true">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - 读取认证信息" enabled="false">
           <stringProp name="delimiter">,</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
           <stringProp name="filename">data/web_auth_tokens.csv</stringProp>
@@ -318,15 +333,29 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
           <boolProp name="recycle">false</boolProp>
           <stringProp name="shareMode">shareMode.all</stringProp>
           <boolProp name="stopThread">false</boolProp>
-          <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,userToken,userAuthorization,conversationsToken,cookieString,testResult</stringProp>
+          <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,cookieString</stringProp>
         </CSVDataSet>
         <hashTree/>
         <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="1. 加载动态认证数据" enabled="true">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
-          <stringProp name="script">// 直接加载认证数据
-def authDataFile = new File(&quot;/Users/a58/Documents/文稿 - Xuhao的MacBook Pro/frontend-master/jmeter-api-project/data/auth_data.properties&quot;)
+          <stringProp name="script">import org.apache.jmeter.services.FileServer
+
+// 动态定位项目根目录
+File baseDir = new File(FileServer.getFileServer().getBaseDir())
+File projectRoot = baseDir
+int hops = 0
+while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
+  if (projectRoot.name == &quot;jmeter-api-project&quot;) break
+  projectRoot = projectRoot.getParentFile()
+  hops++
+}
+if (projectRoot == null) projectRoot = baseDir
+
+// 加载认证数据
+def authDataFile = new File(projectRoot, &quot;data/auth_data.properties&quot;)
+log.info(&quot;尝试加载认证文件: ${authDataFile.absolutePath}&quot;)
 
 if (authDataFile.exists()) {
   try {
@@ -348,9 +377,8 @@ if (authDataFile.exists()) {
       def priorityCookies = [
         &apos;gt_p&apos;, &apos;gt_s&apos;, &apos;GTSELLERSESSIONID&apos;, &apos;gt_tm&apos;, 
         &apos;conversationsToken&apos;, &apos;gt_rememberMe&apos;, &apos;gt_mc&apos;,
-        &apos;_ga&apos;, &apos;_fbp&apos;, &apos;pbjs-unifiedid&apos;, &apos;gt_userPref&apos;,
-        &apos;waap_id&apos;, &apos;lux_uid&apos;, &apos;gt_bff_ab2&apos;, &apos;gt_gb_exp_uid&apos;,
-        &apos;eupubconsent-v2&apos;, &apos;OptanonConsent&apos;
+        &apos;gt_userPref&apos;, &apos;waap_id&apos;, &apos;gt_bff_ab2&apos;, &apos;gt_gb_exp_uid&apos;,
+        &apos;gt_userType&apos;, &apos;gt_userIntr&apos;, &apos;gt_appBanner&apos;
       ]
       
       priorityCookies.each { cookieName -&gt;
@@ -406,7 +434,7 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header Manager with Auth">
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header Manager with Auth" enabled="true">
           <collectionProp name="HeaderManager.headers">
             <elementProp name="cookie" elementType="Header">
               <stringProp name="Header.name">Cookie</stringProp>
@@ -422,7 +450,7 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
             </elementProp>
             <elementProp name="Content-Type" elementType="Header">
               <stringProp name="Header.name">Content-Type</stringProp>
-              <stringProp name="Header.value">${__P(CONTENT_TYPE)}</stringProp>
+              <stringProp name="Header.value">${__P(CONTENT_TYPE_JSON)}</stringProp>
             </elementProp>
             <elementProp name="User-Agent" elementType="Header">
               <stringProp name="Header.name">User-Agent</stringProp>
@@ -491,7 +519,7 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="unblock user">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="unblock user" enabled="true">
           <stringProp name="HTTPSampler.domain">www.gumtree.com</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/bff-api/message-centre/users/unblock</stringProp>

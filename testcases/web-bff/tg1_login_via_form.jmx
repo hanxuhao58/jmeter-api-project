@@ -22,13 +22,13 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
           <collectionProp name="CookieManager.cookies"/>
           <boolProp name="CookieManager.clearEachIteration">false</boolProp>
           <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
         </CookieManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="0.9 Preheat - GET /login">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="0.9 Preheat - GET /login" enabled="true">
           <intProp name="HTTPSampler.connect_timeout">30000</intProp>
           <intProp name="HTTPSampler.response_timeout">60000</intProp>
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
@@ -115,7 +115,7 @@
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Login - Correct Credentials">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Login - Correct Credentials" enabled="true">
           <stringProp name="TestPlan.comments">使用正确的用户名和密码登录</stringProp>
           <intProp name="HTTPSampler.connect_timeout">60000</intProp>
           <intProp name="HTTPSampler.response_timeout">120000</intProp>
@@ -640,8 +640,21 @@ setCookieMatcher.findAll().each { List groups -&gt;
 // 将额外cookies合并到现有认证数据中
 if (!additionalAuthData.isEmpty()) {
   try {
+    // 动态定位项目根目录
+    File baseDir = new File(FileServer.getFileServer().getBaseDir())
+    File projectRoot = baseDir
+    int hops = 0
+    while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
+      if (projectRoot.name == &quot;jmeter-api-project&quot;) break
+      projectRoot = projectRoot.getParentFile()
+      hops++
+    }
+    if (projectRoot == null) projectRoot = baseDir
+    File dataDir = new File(projectRoot, &quot;data&quot;)
+    if (!dataDir.exists()) dataDir.mkdirs()
+    
     def props = new Properties()
-    def authDataFile = new File(&quot;/Users/a58/Documents/文稿 - Xuhao的MacBook Pro/frontend-master/jmeter-api-project/data/auth_data.properties&quot;)
+    def authDataFile = new File(dataDir, &quot;auth_data.properties&quot;)
     
     if (authDataFile.exists()) {
       props.load(new FileReader(authDataFile))
