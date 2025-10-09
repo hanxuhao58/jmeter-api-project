@@ -26,7 +26,7 @@
           <stringProp name="filename">data/web_auth_tokens.csv</stringProp>
           <boolProp name="ignoreFirstLine">true</boolProp>
           <boolProp name="quotedData">false</boolProp>
-          <boolProp name="recycle">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
           <stringProp name="shareMode">shareMode.all</stringProp>
           <boolProp name="stopThread">false</boolProp>
           <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,userToken,userAuthorization,conversationsToken,cookieString,testResult</stringProp>
@@ -330,7 +330,7 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
           <stringProp name="filename">data/web_auth_tokens.csv</stringProp>
           <boolProp name="ignoreFirstLine">true</boolProp>
           <boolProp name="quotedData">false</boolProp>
-          <boolProp name="recycle">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
           <stringProp name="shareMode">shareMode.all</stringProp>
           <boolProp name="stopThread">false</boolProp>
           <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,userToken,userAuthorization,conversationsToken,cookieString,testResult</stringProp>
