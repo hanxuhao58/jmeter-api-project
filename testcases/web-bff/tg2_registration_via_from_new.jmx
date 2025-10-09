@@ -114,8 +114,9 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码200">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码200或400">
             <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
               <stringProp name="51508">400</stringProp>
             </collectionProp>
             <stringProp name="Assertion.custom_message"></stringProp>

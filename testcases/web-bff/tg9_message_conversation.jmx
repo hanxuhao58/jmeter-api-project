@@ -36,8 +36,20 @@
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
-          <stringProp name="script">// 直接加载认证数据
-def authDataFile = new File(&quot;/Users/a58/Documents/文稿 - Xuhao的MacBook Pro/frontend-master/jmeter-api-project/data/auth_data.properties&quot;)
+          <stringProp name="script">// 动态定位项目根目录并加载认证数据
+import org.apache.jmeter.services.FileServer
+
+File baseDir = new File(FileServer.getFileServer().getBaseDir())
+File projectRoot = baseDir
+int hops = 0
+while (hops &lt; 6 &amp;&amp; projectRoot != null &amp;&amp; !new File(projectRoot, &quot;data&quot;).exists()) {
+  if (projectRoot.name == &quot;jmeter-api-project&quot;) break
+  projectRoot = projectRoot.getParentFile()
+  hops++
+}
+if (projectRoot == null) projectRoot = baseDir
+
+def authDataFile = new File(projectRoot, &quot;data/auth_data.properties&quot;)
 
 if (authDataFile.exists()) {
   try {
