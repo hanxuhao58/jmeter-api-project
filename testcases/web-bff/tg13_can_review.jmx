@@ -348,7 +348,7 @@ if (csrfToken &amp;&amp; csrfToken.trim()) {
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="dependent-services">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="dependent-services" enabled="false">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
