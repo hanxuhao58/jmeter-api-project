@@ -161,3 +161,5 @@ jmeter -n -t testcases/web-bff/tg11_block.jmx -p config/webbff.env.properties
 
 通过系统化排查和修复认证路径、Content-Type、Cookie完整性等问题，成功将tg11_block接口从HTTP 500错误修复为200成功响应。所有修改已经过实际测试验证。
 
+
+
