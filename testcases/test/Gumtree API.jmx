@@ -2279,7 +2279,7 @@ if (prev.isSuccessful() &amp;&amp; responseData) { // Only process if sampler wa
           <hashTree/>
           <com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.gui.JSONPathAssertionGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion" testname="JSON断言 - 检查 portraitData 结构" enabled="true">
             <stringProp name="JSON_PATH">$.portraitData[0].type</stringProp>
-            <stringProp name="EXPECTED_VALUE">MY_GUMTREE_LISTING_ROW</stringProp>
+            <stringProp name="EXPECTED_VALUE">MY_GUMTREE_GOOGLE_REVIEW_ROW</stringProp>
             <boolProp name="JSONVALIDATION">true</boolProp>
             <boolProp name="EXPECT_NULL">false</boolProp>
             <boolProp name="INVERT">false</boolProp>

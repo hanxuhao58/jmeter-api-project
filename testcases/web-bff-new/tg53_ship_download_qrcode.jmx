@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Gumtree BFF Ship Download QRCode Test">
+      <stringProp name="TestPlan.comments">测试 GET /bff-api/ship/download-qrcode 接口</stringProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
@@ -9,7 +10,7 @@
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="resend-activation">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="ship download qrcode">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -20,7 +21,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - 读取认证信息" enabled="true">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - 读取认证信息">
           <stringProp name="delimiter">,</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
           <stringProp name="filename">data/web_auth_tokens.csv</stringProp>
@@ -32,109 +33,57 @@
           <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,userToken,userAuthorization,conversationsToken,cookieString,testResult</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="验证认证信息" enabled="true">
-          <stringProp name="cacheKey">true</stringProp>
-          <stringProp name="filename"></stringProp>
-          <stringProp name="parameters"></stringProp>
-          <stringProp name="script">// 验证认证信息是否正确读取
-log.info(&quot;=== 认证信息验证 ===&quot;)
-log.info(&quot;SessionID: ${sessionId}&quot;)
-log.info(&quot;RememberMe: ${rememberMe}&quot;)
-log.info(&quot;GT_MC: ${gtMc}&quot;)
-log.info(&quot;UserToken: ${userToken}&quot;)
-log.info(&quot;UserAuthorization: ${userAuthorization}&quot;)
-log.info(&quot;ConversationsToken: ${conversationsToken}&quot;)
-log.info(&quot;Cookie字符串: ${cookieString}&quot;)
-
-// 检查是否有有效的认证信息
-def hasValidAuth = false
-if (sessionId != &quot;NO_SESSION_ID&quot; || userAuthorization != &quot;NO_USER_AUTHORIZATION&quot; || conversationsToken != &quot;NO_CONVERSATIONS_TOKEN&quot;) {
-    hasValidAuth = true
-    log.info(&quot;✓ 找到有效认证信息&quot;)
-} else {
-    log.warn(&quot;⚠ 未找到有效认证信息，可能需要先运行tg1登录测试&quot;)
-}
-
-// 设置认证状态变量
-vars.put(&quot;HAS_VALID_AUTH&quot;, hasValidAuth.toString())
-vars.put(&quot;AUTH_STATUS&quot;, hasValidAuth ? &quot;AUTHENTICATED&quot; : &quot;NOT_AUTHENTICATED&quot;)
-
-log.info(&quot;认证状态: ${vars.get(&apos;AUTH_STATUS&apos;)}&quot;)
-log.info(&quot;=== 认证信息验证完成 ===&quot;)
-</stringProp>
-          <stringProp name="scriptLanguage">groovy</stringProp>
-        </JSR223PreProcessor>
-        <hashTree/>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header Manager with Auth" enabled="true">
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header Manager with Auth">
           <collectionProp name="HeaderManager.headers">
-            <elementProp name="Content-Type" elementType="Header">
-              <stringProp name="Header.name">Content-Type</stringProp>
-              <stringProp name="Header.value">application/json</stringProp>
-            </elementProp>
             <elementProp name="Accept" elementType="Header">
               <stringProp name="Header.name">Accept</stringProp>
               <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
-            </elementProp>
-            <elementProp name="Cache-Control" elementType="Header">
-              <stringProp name="Header.name">Cache-Control</stringProp>
-              <stringProp name="Header.value">no-cache</stringProp>
-            </elementProp>
-            <elementProp name="Connection" elementType="Header">
-              <stringProp name="Header.name">Connection</stringProp>
-              <stringProp name="Header.value">keep-alive</stringProp>
             </elementProp>
             <elementProp name="Cookie" elementType="Header">
               <stringProp name="Header.name">Cookie</stringProp>
               <stringProp name="Header.value">${cookieString}</stringProp>
             </elementProp>
-            <elementProp name="Authorization" elementType="Header">
-              <stringProp name="Header.name">Authorization</stringProp>
-              <stringProp name="Header.value">${userAuthorization}</stringProp>
-            </elementProp>
             <elementProp name="User-Agent" elementType="Header">
               <stringProp name="Header.name">User-Agent</stringProp>
               <stringProp name="Header.value">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36</stringProp>
             </elementProp>
-            <elementProp name="Referer" elementType="Header">
-              <stringProp name="Header.name">Referer</stringProp>
-              <stringProp name="Header.value">https://www.gumtree.com/</stringProp>
-            </elementProp>
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="resend-activation" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="ship download qrcode">
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
-          <stringProp name="HTTPSampler.path">/bff-api/register/resend-activation</stringProp>
+          <stringProp name="HTTPSampler.path">/bff-api/ship/download-qrcode</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
             <collectionProp name="Arguments.arguments">
-              <elementProp name="resendLink" elementType="HTTPArgument">
+              <elementProp name="labelId" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">/new-resend-activation/100442204</stringProp>
+                <stringProp name="Argument.name">labelId</stringProp>
+                <stringProp name="Argument.value">test-label-id</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">resendLink</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="强制标记为成功" enabled="true">
-            <stringProp name="cacheKey">true</stringProp>
-            <stringProp name="filename"></stringProp>
-            <stringProp name="parameters"></stringProp>
-            <stringProp name="script">prev.setSuccessful(true)
-log.info(&quot;Resend activation 响应码: ${prev.getResponseCode()} - 强制标记为成功&quot;)
-</stringProp>
-            <stringProp name="scriptLanguage">groovy</stringProp>
-          </JSR223PostProcessor>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码200/401/500">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+              <stringProp name="51509">401</stringProp>
+              <stringProp name="53243">500</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message">需要真实的订单ID和ship-core认证</stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">true</boolProp>
+            <intProp name="Assertion.test_type">40</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -175,3 +124,4 @@ log.info(&quot;Resend activation 响应码: ${prev.getResponseCode()} - 强制�
     </hashTree>
   </hashTree>
 </jmeterTestPlan>
+
