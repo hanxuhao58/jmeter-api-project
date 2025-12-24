@@ -17,7 +17,7 @@
         <stringProp name="fileEncoding">UTF-8</stringProp>
         <stringProp name="filename">data/web_auth_tokens.csv</stringProp>
         <boolProp name="ignoreFirstLine">true</boolProp>
-        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="quotedData">true</boolProp>
         <boolProp name="recycle">true</boolProp>
         <stringProp name="shareMode">shareMode.all</stringProp>
         <boolProp name="stopThread">false</boolProp>

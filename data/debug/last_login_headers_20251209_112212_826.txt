@@ -1,0 +1,24 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 09 Dec 2025 03:22:12 GMT
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+x-powered-by: Express
+x-frame-options: SAMEORIGIN
+access-control-allow-origin: https://my.gumtree.com
+vary: Origin, Accept-Encoding
+access-control-allow-credentials: true
+content-security-policy: frame-ancestors self https://*.gumtree.com https://*.gumtree.io
+set-cookie: GTSELLERSESSIONID=node0d5livv3ls2op1xtycz4e7yh60458739.node0;Path=/;Domain=gumtree.com;Expires=Tue, 09-Dec-2025 04:22:12 GMT;Max-Age=3600;Secure;HttpOnly
+set-cookie: gt_rememberMe=deleteMe; Domain=gumtree.com; Path=/; Max-Age=0; Expires=Mon, 08-Dec-2025 03:22:12 GMT; Secure
+set-cookie: gt_rememberMe=Nx9a2MMr6okEuXYdHIAYbGmNcsdlAKHPT++vdeSV7L+TzSPYfC9M2ddBZNZJcju5rp1I3Tn9bFySxJsVVfShvFYTBEGh3HemvwIFKHYwvKDCPZKGp7lW4i27NSSCS6Q/RT94Gw4OwADCZWh6iatLcHeKZUHekJtSHqvmgf88F2w=; Domain=gumtree.com; Path=/; Max-Age=31536000; Expires=Wed, 09-Dec-2026 03:22:12 GMT; Secure; HttpOnly
+set-cookie: gt_mc=rcd:MA==|nuc:MA==; Domain=gumtree.com; Path=/; Max-Age=157680000; Expires=Sun, 08-Dec-2030 03:22:12 GMT; Secure
+expires: Thu, 01 Jan 1970 00:00:00 GMT
+location: https://my.gumtree.com/manage/ads
+x-envoy-upstream-service-time: 37
+etag: W/"30-TW0YwqubLX7MTerKyj7p/FBcR5o"
+Via: 1.1 google
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+X-L11-Trace: sgp1-lb2
+content-encoding: gzip

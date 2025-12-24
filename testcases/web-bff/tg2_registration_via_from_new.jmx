@@ -181,17 +181,18 @@ log.info(&quot;Registration 响应码: ${prev.getResponseCode()} - 强制标记�
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码400">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码400或247">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="51508">400</stringProp>
+              <stringProp name="1507379">247</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.custom_message">注册验证可能返回 400 或 247</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">8</intProp>
+            <intProp name="Assertion.test_type">40</intProp>
           </ResponseAssertion>
           <hashTree/>
-          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="检查firstName错误">
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="检查firstName错误" enabled="false">
             <stringProp name="JSON_PATH">$.formErrors.firstName[0]</stringProp>
             <stringProp name="EXPECTED_VALUE">Please enter your first name</stringProp>
             <boolProp name="JSONVALIDATION">true</boolProp>

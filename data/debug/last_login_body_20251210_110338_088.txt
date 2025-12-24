@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+    <head>
+        <title>Gumtree | Work in progress</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            @font-face {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 300;
+                font-display: swap;
+                src: url(https://fonts.gstatic.com/s/inter/v2/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2JL7W0Q5n-wU.woff2)
+                    format('woff2');
+                unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+                    U+FE2E-FE2F;
+            }
+            /* cyrillic */
+            @font-face {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 300;
+                font-display: swap;
+                src: url(https://fonts.gstatic.com/s/inter/v2/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa0ZL7W0Q5n-wU.woff2)
+                    format('woff2');
+                unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+            }
+            /* greek-ext */
+            @font-face {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 300;
+                font-display: swap;
+                src: url(https://fonts.gstatic.com/s/inter/v2/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2ZL7W0Q5n-wU.woff2)
+                    format('woff2');
+                unicode-range: U+1F00-1FFF;
+            }
+            /* greek */
+            @font-face {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 300;
+                font-display: swap;
+                src: url(https://fonts.gstatic.com/s/inter/v2/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1pL7W0Q5n-wU.woff2)
+                    format('woff2');
+                unicode-range: U+0370-03FF;
+            }
+            /* vietnamese */
+            @font-face {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 300;
+                font-display: swap;
+                src: url(https://fonts.gstatic.com/s/inter/v2/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2pL7W0Q5n-wU.woff2)
+                    format('woff2');
+                unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+                    U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+            }
+            /* latin-ext */
+            @font-face {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 300;
+                font-display: swap;
+                src: url(https://fonts.gstatic.com/s/inter/v2/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7W0Q5n-wU.woff2)
+                    format('woff2');
+                unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF,
+                    U+2113, U+2C60-2C7F, U+A720-A7FF;
+            }
+            /* latin */
+            @font-face {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 300;
+                font-display: swap;
+                src: url(https://fonts.gstatic.com/s/inter/v2/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2)
+                    format('woff2');
+                unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+                    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+                    U+FFFD;
+            }
+            /* cyrillic-ext */
+            @font-face {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 600;
+                font-display: swap;
+                src: url(https://fonts.gstatic.com/s/inter/v2/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2JL7W0Q5n-wU.woff2)
+                    format('woff2');
+                unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+                    U+FE2E-FE2F;
+            }
+            /* cyrillic */
+            @font-face {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 600;
+                font-display: swap;
+                src: url(https://fonts.gstatic.com/s/inter/v2/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa0ZL7W0Q5n-wU.woff2)
+                    format('woff2');
+                unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+            }
+            /* greek-ext */
+            @font-face {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 600;
+                font-display: swap;
+                src: url(https://fonts.gstatic.com/s/inter/v2/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2ZL7W0Q5n-wU.woff2)
+                    format('woff2');
+                unicode-range: U+1F00-1FFF;
+            }
+            /* greek */
+            @font-face {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 600;
+                font-display: swap;
+                src: url(https://fonts.gstatic.com/s/inter/v2/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1pL7W0Q5n-wU.woff2)
+                    format('woff2');
+                unicode-range: U+0370-03FF;
+            }
+            /* vietnamese */
+            @font-face {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 600;
+                font-display: swap;
+                src: url(https://fonts.gstatic.com/s/inter/v2/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2pL7W0Q5n-wU.woff2)
+                    format('woff2');
+                unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+                    U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+            }
+            /* latin-ext */
+            @font-face {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 600;
+                font-display: swap;
+                src: url(https://fonts.gstatic.com/s/inter/v2/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7W0Q5n-wU.woff2)
+                    format('woff2');
+                unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF,
+                    U+2113, U+2C60-2C7F, U+A720-A7FF;
+            }
+            /* latin */
+            @font-face {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 600;
+                font-display: swap;
+                src: url(https://fonts.gstatic.com/s/inter/v2/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2)
+                    format('woff2');
+                unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+                    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+                    U+FFFD;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                background-color: #f5f5f5;
+                font-family: Inter, HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue,
+                    Helvetica, Arial, Lucida Grande, sans-serif;
+                font-size: 15px;
+                line-height: 22px;
+                font-weight: 400;
+                letter-spacing: 0.01em;
+                margin: 0;
+            }
+
+            header {
+                background-color: #0d475c;
+                padding: 8px 0;
+            }
+
+            .container {
+                width: calc(100% - 48px);
+                max-width: 1350px;
+                margin: auto;
+                display: flex;
+                align-items: center;
+            }
+
+            .gumtree-logo {
+                height: 40px;
+                width: auto;
+            }
+
+            .gumtree-text {
+                width: 114px;
+                height: auto;
+                margin-left: 12px;
+            }
+
+            .main-content {
+                width: calc(100% - 48px);
+                max-width: 600px;
+                margin: 100px auto;
+            }
+
+            h1 {
+                letter-spacing: 0.5px;
+                margin-top: 32px;
+                line-height: 1.1;
+                font-weight: 600;
+            }
+
+            p {
+                margin: 12px 0 32px;
+                letter-spacing: 0.02em;
+                font-weight: 300;
+                line-height: 1.5;
+            }
+
+            button {
+                background-color: #e75462;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                font-size: 15px;
+                padding: 12px 36px;
+                letter-spacing: 0.01em;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <!--Corresponding to gumtree-logo.svg-->
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="19.52"
+                    height="24.298"
+                    viewBox="27.74 5.25 19.52 24.298"
+                    class="gumtree-logo"
+                >
+                    <path
+                        fill="#72EF36"
+                        d="M44.433 11.914a.707.707 0 0 1-.337-.606C43.76 7.942 40.933 5.25 37.5 5.25s-6.327 2.625-6.596 6.058a.806.806 0 0 1-.336.606c-1.683 1.211-2.827 3.164-2.827 5.384 0 3.029 2.087 5.654 4.914 6.395.471.135 1.01.202 1.144.067.337-.202.808-1.885.606-2.221-.135-.203-.539-.404-1.077-.539-1.683-.471-2.895-1.952-2.895-3.769 0-1.01.404-1.885 1.01-2.625a2.964 2.964 0 0 1 1.01-.808c.74-.404 1.144-1.144 1.144-1.952 0-.404.067-.808.202-1.211.539-1.548 1.952-2.692 3.702-2.692s3.164 1.144 3.702 2.692c.134.404.202.808.202 1.211 0 .808.403 1.548 1.144 1.952.404.202.673.471 1.01.808a3.967 3.967 0 0 1 1.01 2.625 3.907 3.907 0 0 1-3.903 3.904c-2.491 0-4.443 2.02-4.443 4.51v2.558c0 .471.067 1.009.202 1.144.27.27 2.02.27 2.288 0 .135-.135.203-.673.203-1.144v-2.625c0-.942.807-1.75 1.75-1.75 3.634 0 6.596-2.962 6.596-6.596-.002-2.155-1.147-4.107-2.829-5.318z"
+                    ></path>
+                </svg>
+                <!--Corresponding to gumtree-text.svg-->
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="383.756"
+                    height="64.291"
+                    viewBox="169.06 371.734 383.756 64.291"
+                    class="gumtree-text"
+                >
+                    <path
+                        fill="#F0ECE6"
+                        d="M281.766 388.8h-9.92c-.794 0-1.19.396-1.19 1.189v19.049c0 10.318-3.572 15.477-11.112 15.477-2.778 0-5.159-.793-6.746-2.777-1.588-1.984-2.382-4.365-2.382-7.539v-23.812c0-.793-.396-1.189-1.19-1.189h-9.921c-.794 0-1.19.396-1.19 1.189v26.588c0 5.557 1.587 10.318 5.158 13.891 3.175 3.572 7.541 5.16 13.097 5.16 5.556 0 9.921-1.588 13.493-4.764.396-.396.794 0 .794.396v1.588c0 .793.396 1.189 1.19 1.189h9.921c.793 0 1.189-.396 1.189-1.189v-43.654c-.001-.395-.396-.792-1.191-.792zm67.861-1.588c-7.143 0-12.699 2.381-16.667 7.541-3.571-4.764-8.334-7.541-15.081-7.541-5.158 0-9.523 1.586-12.699 4.365-.396.396-.793 0-.793-.396v-1.588c0-.793-.396-1.189-1.191-1.189h-9.523c-.793 0-1.189.396-1.189 1.189v43.258c0 .793.396 1.189 1.189 1.189h9.922c.793 0 1.19-.396 1.19-1.189v-20.637c0-4.762.794-7.936 2.776-10.316 1.984-2.383 4.367-3.572 7.541-3.572 2.381 0 4.763.793 6.351 2.777 1.587 1.588 2.381 3.969 2.381 7.143v24.605c0 .795.396 1.189 1.19 1.189h9.922c.793 0 1.189-.395 1.189-1.189v-20.637c0-4.762.793-7.936 2.777-10.316 1.984-2.383 4.365-3.572 7.541-3.572 2.381 0 4.762.793 6.35 2.777 1.588 1.588 2.381 3.969 2.381 7.143v24.605c0 .795.396 1.189 1.19 1.189h9.524c.793 0 1.189-.395 1.189-1.189v-27.383c0-5.557-1.587-9.922-5.158-13.096-3.57-3.175-7.538-5.16-12.302-5.16zm57.941 36.114c-.396-.793-.793-.793-1.588-.793-2.381 1.189-4.364 1.588-6.35 1.588-4.365 0-6.746-2.779-6.746-7.939v-16.666c0-.795.396-1.191 1.19-1.191h12.698c.795 0 1.19-.396 1.19-1.189v-7.541c0-.793-.396-1.189-1.19-1.189h-12.698c-.794 0-1.19-.396-1.19-1.191v-11.508c0-.793-.396-1.191-1.189-1.191h-9.922c-.795 0-1.19.398-1.19 1.191v11.508c0 .795-.396 1.191-1.19 1.191h-7.539c-.795 0-1.191.396-1.191 1.189v7.541c0 .793.396 1.189 1.191 1.189h7.539c.795 0 1.19.396 1.19 1.191v17.857c0 5.953 1.588 10.715 4.762 13.494 3.177 3.174 7.541 4.365 13.097 4.365 3.572 0 7.145-.793 11.112-2.777.396-.398.794-.795.396-1.191l-2.382-7.938zm41.67-35.321h-2.381c-6.351 0-11.111 2.381-15.08 7.541-.397.396-.794 0-.794-.396v-5.16c0-.793-.794-1.586-1.589-1.586h-9.127c-.793 0-1.189.395-1.189 1.189v43.256c0 .795.396 1.191 1.189 1.191h9.922c.794 0 1.189-.396 1.189-1.191v-13.492c0-13.096 5.557-19.445 16.271-19.445h1.587c.396 0 1.19-.396 1.19-1.191l.396-9.523c-.393-.398-.791-.794-1.584-1.193zm28.176-.793c-6.746 0-12.302 2.381-16.668 6.746-4.365 4.365-6.746 10.318-6.746 17.461 0 7.145 2.381 12.701 6.746 17.066 4.366 4.363 9.922 6.746 16.668 6.746 5.159 0 9.523-1.191 13.493-3.572 3.571-1.984 5.953-5.158 7.938-9.127.396-.795 0-1.191-.794-1.588l-8.729-1.984c-.397 0-.794 0-1.191.396-2.381 3.572-5.952 5.557-10.715 5.557-2.777 0-5.159-.793-7.145-2.777-1.982-1.588-3.175-3.969-3.968-7.145 0-.396 0-.793.396-.793h33.731v-3.969c-.396-6.746-2.776-12.303-7.144-16.668-4.363-3.968-9.522-6.349-15.872-6.349zm9.922 19.049h-20.24c-.396 0-.793-.396-.396-.793.794-2.381 1.983-3.969 3.969-5.557 1.985-1.586 4.365-1.984 6.746-1.984s4.763.793 6.747 1.984c1.587 1.191 3.175 3.176 3.968 5.557-.001.397-.397.793-.794.793zm31.748 8.334h33.732v-3.969c-.396-6.746-2.778-12.303-7.145-16.668s-9.921-6.35-15.874-6.35c-6.746 0-12.303 2.381-16.668 6.748-4.365 4.363-6.746 10.316-6.746 17.461 0 7.143 2.381 12.697 6.746 17.062s9.922 6.748 16.668 6.748c5.159 0 9.524-1.189 13.493-3.572 3.571-1.984 5.953-5.158 7.937-9.127.397-.795 0-1.191-.793-1.588l-8.729-1.984c-.397 0-.794 0-1.191.396-2.381 3.572-5.952 5.557-10.715 5.557-2.777 0-5.159-.795-7.144-2.777-1.984-1.588-3.175-3.969-3.969-7.145-.396-.395.002-.792.398-.792zm0-9.127c.794-2.381 1.984-3.969 3.969-5.557 1.985-1.586 4.365-1.984 6.746-1.984s4.763.793 6.747 1.984c1.587 1.191 3.175 3.176 3.968 5.557 0 .396 0 .793-.396.793h-20.239c-.795 0-1.191-.396-.795-.793zm-289.305-7.144h-31.352c-.794 0-1.19.396-1.19 1.191v9.127c0 .793.396 1.189 1.19 1.189h19.843c.396 0 .793.398.396.795-1.19 3.967-3.175 7.143-6.35 9.523-3.175 2.381-7.144 3.57-11.905 3.57-5.557 0-10.318-1.982-14.287-5.953-3.969-3.969-5.953-8.729-5.953-14.285s1.984-10.318 5.557-14.287c3.571-3.971 8.73-5.953 14.286-5.953 7.144 0 12.699 2.777 16.668 7.936.397.398.794.398 1.588.398l8.334-5.557c.396-.396.793-1.189.396-1.588a22.932 22.932 0 0 0-8.334-7.936c-5.159-3.176-11.509-4.762-17.858-4.762-9.128 0-16.668 3.174-22.621 9.127-6.35 5.953-9.127 13.492-9.127 22.621 0 9.127 3.175 16.668 9.524 22.621 6.35 5.951 13.89 9.127 23.018 9.127 9.127 0 16.271-3.176 22.224-9.127 5.953-5.953 8.73-13.494 8.73-22.621v-4.365c-1.587.004-1.984-.791-2.777-.791z"
+                    ></path>
+                </svg>
+            </div>
+        </header>
+        <main>
+            <div class="main-content">
+                <!--Corresponding to cloud-offline.svg-->
+                <svg
+                    width="149"
+                    height="103"
+                    viewBox="0 0 149 103"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        opacity="0.1"
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M84.2174 103C112.84 103 136.043 79.9427 136.043 51.5C136.043 23.0573 112.84 0 84.2174 0C55.5946 0 32.3913 23.0573 32.3913 51.5C32.3913 79.9427 55.5946 103 84.2174 103Z"
+                        fill="#938F93"
+                    />
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M111.75 28.9688C109.067 28.9688 106.891 26.8071 106.891 24.1406C106.891 21.4741 109.067 19.3125 111.75 19.3125C111.788 19.3125 111.827 19.3129 111.865 19.3138C111.789 18.7878 111.75 18.25 111.75 17.7031C111.75 11.4813 116.826 6.4375 123.087 6.4375C127.636 6.4375 131.56 9.10036 133.365 12.9431C133.712 12.8982 134.065 12.875 134.424 12.875C138.896 12.875 142.522 16.4777 142.522 20.9219C142.522 25.366 138.896 28.9688 134.424 28.9688H123.087H111.75Z"
+                        fill="#DBDADB"
+                    />
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M64.7713 57.1328H35.6447C35.6399 57.1328 35.6352 57.1328 35.6304 57.1328C35.6257 57.1328 35.6209 57.1328 35.6162 57.1328H9.71739C4.35062 57.1328 0 52.8096 0 47.4766C0 42.1436 4.35062 37.8203 9.71739 37.8203C9.99537 37.8203 10.2706 37.8319 10.5427 37.8546C10.004 35.7868 9.71739 33.618 9.71739 31.3828C9.71739 17.1615 21.3191 5.63281 35.6304 5.63281C47.8777 5.63281 58.1405 14.0758 60.8461 25.424C62.1063 25.1113 63.425 24.9453 64.7826 24.9453C73.7272 24.9453 80.9783 32.1507 80.9783 41.0391C80.9783 49.9274 73.7272 57.1328 64.7826 57.1328C64.7788 57.1328 64.7751 57.1328 64.7713 57.1328Z"
+                        fill="#DBDADB"
+                    />
+                    <path
+                        d="M63.0979 49.8303C60.6406 48.3371 57.7517 47.4766 54.6606 47.4766C51.5418 47.4766 48.629 48.3525 46.1576 49.8704"
+                        stroke="#938F93"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                    />
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M46.9674 41.8438C48.3091 41.8438 49.3967 40.7629 49.3967 39.4297C49.3967 38.0964 48.3091 37.0156 46.9674 37.0156C45.6257 37.0156 44.538 38.0964 44.538 39.4297C44.538 40.7629 45.6257 41.8438 46.9674 41.8438Z"
+                        fill="#938F93"
+                    />
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M61.5435 41.8438C62.8852 41.8438 63.9728 40.7629 63.9728 39.4297C63.9728 38.0964 62.8852 37.0156 61.5435 37.0156C60.2018 37.0156 59.1141 38.0964 59.1141 39.4297C59.1141 40.7629 60.2018 41.8438 61.5435 41.8438Z"
+                        fill="#938F93"
+                    />
+                    <path
+                        d="M42.9185 92.5391C42.9185 94.3167 44.3687 95.7578 46.1576 95.7578"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M39.6794 70.0078C37.8904 70.0078 36.4402 71.4489 36.4402 73.2266"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M42.9185 73.2266C42.9185 71.4489 41.4683 70.0078 39.6794 70.0078"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M29.9619 82.8828C29.9619 84.6605 31.4122 86.1016 33.2011 86.1016"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M33.2011 86.1016C34.99 86.1016 36.4402 84.6605 36.4402 82.8828"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M46.1576 95.7578C47.9465 95.7578 49.3967 94.3167 49.3967 92.5391"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <rect x="42.1087" y="73.2266" width="1.61956" height="19.3125" fill="#A9ACAE" />
+                    <rect x="35.6304" y="73.2266" width="1.61956" height="9.65625" fill="#A9ACAE" />
+                    <rect x="29.1522" y="79.6641" width="1.61956" height="3.21875" fill="#A9ACAE" />
+                    <rect x="29.1522" y="73.2266" width="1.61956" height="3.21875" fill="#A9ACAE" />
+                    <rect x="29.1522" y="66.7891" width="1.61956" height="3.21875" fill="#A9ACAE" />
+                    <rect x="29.1522" y="57.1328" width="1.61956" height="22.5312" fill="#A9ACAE" />
+                    <rect x="48.587" y="79.6641" width="1.61957" height="12.875" fill="#A9ACAE" />
+                    <path
+                        d="M55.875 86.1016C55.875 87.8792 57.3252 89.3203 59.1141 89.3203"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M52.6359 76.4453C50.8469 76.4453 49.3967 77.8864 49.3967 79.6641"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M55.875 79.6641C55.875 77.8864 54.4248 76.4453 52.6359 76.4453"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M59.1141 89.3203C60.9031 89.3203 62.3533 87.8792 62.3533 86.1016"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <rect x="55.0652" y="79.6641" width="1.61957" height="6.4375" fill="#A9ACAE" />
+                    <rect x="61.5435" y="73.2266" width="1.61956" height="12.875" fill="#A9ACAE" />
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M80.9783 63.5703H82.5978V87.7109H80.9783V63.5703Z"
+                        fill="#A9ACAE"
+                    />
+                    <path
+                        d="M68.8315 92.5391C68.8315 94.3167 70.2817 95.7578 72.0706 95.7578"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M65.5924 70.0078C63.8035 70.0078 62.3533 71.4489 62.3533 73.2266"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M68.8315 73.2266C68.8315 71.4489 67.3813 70.0078 65.5924 70.0078"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M91.5054 63.5703C89.7165 63.5703 88.2663 65.0114 88.2663 66.7891"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M94.7446 66.7891C94.7446 65.0114 93.2943 63.5703 91.5054 63.5703"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M72.0706 95.7578C73.8596 95.7578 75.3098 94.3167 75.3098 92.5391"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <rect x="68.0217" y="73.2266" width="1.61958" height="19.3125" fill="#A9ACAE" />
+                    <rect x="74.5" y="63.5703" width="1.61956" height="28.9688" fill="#A9ACAE" />
+                    <path
+                        d="M81.788 87.7109C81.788 89.4886 83.2383 90.9297 85.0272 90.9297"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M78.5489 60.3516C76.76 60.3516 75.3098 61.7926 75.3098 63.5703"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M81.7881 63.5703C81.7881 61.7926 80.3378 60.3516 78.5489 60.3516"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M85.0272 90.9297C86.8161 90.9297 88.2663 89.4886 88.2663 87.7109"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M94.7446 75.6406C94.7446 77.4183 96.1948 78.8594 97.9837 78.8594"
+                        stroke="#A9ACAE"
+                        stroke-width="2"
+                    />
+                    <rect x="87.4565" y="66.7891" width="1.61957" height="20.9219" fill="#A9ACAE" />
+                    <rect x="93.9348" y="66.7891" width="1.61957" height="8.85156" fill="#A9ACAE" />
+                    <rect x="97.9837" y="78.0547" width="2.42936" height="1.60938" fill="#A9ACAE" />
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M136.043 90.9297C143.199 90.9297 149 85.1654 149 78.0547C149 70.944 143.199 65.1797 136.043 65.1797C128.888 65.1797 123.087 70.944 123.087 78.0547C123.087 85.1654 128.888 90.9297 136.043 90.9297Z"
+                        fill="#F1F1F1"
+                    />
+                    <rect x="131.185" y="73.2266" width="2.42934" height="7.24219" fill="#938F93" />
+                    <rect x="138.473" y="73.2266" width="2.42935" height="7.24219" fill="#938F93" />
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M132.804 85.2969H139.283C139.283 83.5192 137.832 82.0781 136.043 82.0781C134.255 82.0781 132.804 83.5192 132.804 85.2969Z"
+                        fill="#938F93"
+                    />
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M106.891 84.4922C110.022 84.4922 112.56 81.9703 112.56 78.8594C112.56 75.7485 110.022 73.2266 106.891 73.2266C103.761 73.2266 101.223 75.7485 101.223 78.8594C101.223 81.9703 103.761 84.4922 106.891 84.4922Z"
+                        fill="#8E9294"
+                    />
+                    <rect x="106.891" y="73.2266" width="5.66849" height="11.2656" fill="#8E9294" />
+                    <rect x="100.413" y="76.4453" width="5.66847" height="4.82812" fill="#8E9294" />
+                    <rect x="112.56" y="75.6406" width="4.0489" height="1.60938" fill="#8E9294" />
+                    <rect x="112.56" y="80.4688" width="4.0489" height="1.60938" fill="#8E9294" />
+                </svg>
+                <h1>Work in progress</h1>
+                <p>
+                    We are currently undergoing essential maintenance to provide you with a better
+                    experience and apologise for any inconvenience caused. We aim to be back up and running by 4am on Tuesday.
+                    Thank you for your patience and understanding.
+                </p>
+                <button onclick="location.reload();">Refresh page</button>
+            </div>
+        </main>
+    </body>
+</html>
+

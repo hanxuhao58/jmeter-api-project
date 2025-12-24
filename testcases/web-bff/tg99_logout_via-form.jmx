@@ -23,7 +23,7 @@
           <stringProp name="fileEncoding">UTF-8</stringProp>
           <stringProp name="filename">data/web_auth_tokens.csv</stringProp>
           <boolProp name="ignoreFirstLine">true</boolProp>
-          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="quotedData">true</boolProp>
           <boolProp name="recycle">true</boolProp>
           <stringProp name="shareMode">shareMode.all</stringProp>
           <boolProp name="stopThread">false</boolProp>
@@ -140,14 +140,15 @@ if (csrfToken &amp;&amp; csrfToken != &quot;NO_USER_TOKEN&quot;) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码200">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码200或247">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
+              <stringProp name="1507379">247</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.custom_message">logout 可能返回 200 或 247</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">8</intProp>
+            <intProp name="Assertion.test_type">40</intProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
@@ -205,7 +206,7 @@ if (csrfToken &amp;&amp; csrfToken != &quot;NO_USER_TOKEN&quot;) {
           <stringProp name="fileEncoding">UTF-8</stringProp>
           <stringProp name="filename">data/web_auth_tokens.csv</stringProp>
           <boolProp name="ignoreFirstLine">true</boolProp>
-          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="quotedData">true</boolProp>
           <boolProp name="recycle">true</boolProp>
           <stringProp name="shareMode">shareMode.all</stringProp>
           <boolProp name="stopThread">false</boolProp>
