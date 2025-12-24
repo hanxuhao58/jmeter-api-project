@@ -1,138 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="TG7 Search and AdInfo Test">
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">true</boolProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="search">
-        <intProp name="ThreadGroup.num_threads">1</intProp>
-        <intProp name="ThreadGroup.ramp_time">1</intProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController">
-          <stringProp name="LoopController.loops">1</stringProp>
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-        </elementProp>
-      </ThreadGroup>
-      <hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - 读取认证信息">
-          <stringProp name="delimiter">,</stringProp>
-          <stringProp name="fileEncoding">UTF-8</stringProp>
-          <stringProp name="filename">data/web_auth_tokens.csv</stringProp>
-          <boolProp name="ignoreFirstLine">true</boolProp>
-          <boolProp name="quotedData">true</boolProp>
-          <boolProp name="recycle">true</boolProp>
-          <stringProp name="shareMode">shareMode.all</stringProp>
-          <boolProp name="stopThread">false</boolProp>
-          <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,userToken,userAuthorization,conversationsToken,cookieString,testResult</stringProp>
-        </CSVDataSet>
-        <hashTree/>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header Manager with Auth">
-          <collectionProp name="HeaderManager.headers">
-            <elementProp name="Content-Type" elementType="Header">
-              <stringProp name="Header.name">Content-Type</stringProp>
-              <stringProp name="Header.value">application/json</stringProp>
-            </elementProp>
-            <elementProp name="Accept" elementType="Header">
-              <stringProp name="Header.name">Accept</stringProp>
-              <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
-            </elementProp>
-            <elementProp name="Cache-Control" elementType="Header">
-              <stringProp name="Header.name">Cache-Control</stringProp>
-              <stringProp name="Header.value">no-cache</stringProp>
-            </elementProp>
-            <elementProp name="Connection" elementType="Header">
-              <stringProp name="Header.name">Connection</stringProp>
-              <stringProp name="Header.value">keep-alive</stringProp>
-            </elementProp>
-            <elementProp name="Cookie" elementType="Header">
-              <stringProp name="Header.name">Cookie</stringProp>
-              <stringProp name="Header.value">${cookieString}</stringProp>
-            </elementProp>
-            <elementProp name="Authorization" elementType="Header">
-              <stringProp name="Header.name">Authorization</stringProp>
-              <stringProp name="Header.value">${userAuthorization}</stringProp>
-            </elementProp>
-            <elementProp name="User-Agent" elementType="Header">
-              <stringProp name="Header.name">User-Agent</stringProp>
-              <stringProp name="Header.value">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36</stringProp>
-            </elementProp>
-            <elementProp name="Referer" elementType="Header">
-              <stringProp name="Header.name">Referer</stringProp>
-              <stringProp name="Header.value">https://www.gumtree.com/</stringProp>
-            </elementProp>
-          </collectionProp>
-        </HeaderManager>
-        <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="search">
-          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
-          <stringProp name="HTTPSampler.path">/for-sale/swap-shop</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码200/301/302/471">
-            <collectionProp name="Asserion.test_strings">
-              <stringProp name="49586">200</stringProp>
-              <stringProp name="50547">301</stringProp>
-              <stringProp name="50548">302</stringProp>
-              <stringProp name="51708">471</stringProp>
-            </collectionProp>
-            <stringProp name="Assertion.custom_message">471是安全防护拦截，301/302是重定向</stringProp>
-            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
-            <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">40</intProp>
-          </ResponseAssertion>
-          <hashTree/>
-        </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>true</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <sentBytes>true</sentBytes>
-              <url>true</url>
-              <threadCounts>true</threadCounts>
-              <idleTime>true</idleTime>
-              <connectTime>true</connectTime>
-            </value>
-          </objProp>
-          <stringProp name="filename"></stringProp>
-        </ResultCollector>
-        <hashTree/>
-      </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="adinfo">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Search and AdInfo">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -155,48 +32,15 @@
           <stringProp name="variableNames">timestamp,username,statusCode,responseTime,sessionId,rememberMe,gtMc,location,upstreamServiceTime,userToken,userAuthorization,conversationsToken,cookieString,testResult</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="验证认证信息">
-          <stringProp name="cacheKey">true</stringProp>
-          <stringProp name="filename"></stringProp>
-          <stringProp name="parameters"></stringProp>
-          <stringProp name="script">// 验证认证信息是否正确读取
-log.info(&quot;=== 认证信息验证 ===&quot;)
-log.info(&quot;SessionID: ${sessionId}&quot;)
-log.info(&quot;RememberMe: ${rememberMe}&quot;)
-log.info(&quot;GT_MC: ${gtMc}&quot;)
-log.info(&quot;UserToken: ${userToken}&quot;)
-log.info(&quot;UserAuthorization: ${userAuthorization}&quot;)
-log.info(&quot;ConversationsToken: ${conversationsToken}&quot;)
-log.info(&quot;Cookie字符串: ${cookieString}&quot;)
-
-// 检查是否有有效的认证信息
-def hasValidAuth = false
-if (sessionId != &quot;NO_SESSION_ID&quot; || userAuthorization != &quot;NO_USER_AUTHORIZATION&quot; || conversationsToken != &quot;NO_CONVERSATIONS_TOKEN&quot;) {
-    hasValidAuth = true
-    log.info(&quot;✓ 找到有效认证信息&quot;)
-} else {
-    log.warn(&quot;⚠ 未找到有效认证信息，可能需要先运行tg1登录测试&quot;)
-}
-
-// 设置认证状态变量
-vars.put(&quot;HAS_VALID_AUTH&quot;, hasValidAuth.toString())
-vars.put(&quot;AUTH_STATUS&quot;, hasValidAuth ? &quot;AUTHENTICATED&quot; : &quot;NOT_AUTHENTICATED&quot;)
-
-log.info(&quot;认证状态: ${vars.get(&apos;AUTH_STATUS&apos;)}&quot;)
-log.info(&quot;=== 认证信息验证完成 ===&quot;)
-</stringProp>
-          <stringProp name="scriptLanguage">groovy</stringProp>
-        </JSR223PreProcessor>
-        <hashTree/>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header Manager with Auth">
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
           <collectionProp name="HeaderManager.headers">
-            <elementProp name="Content-Type" elementType="Header">
-              <stringProp name="Header.name">Content-Type</stringProp>
-              <stringProp name="Header.value">application/json</stringProp>
-            </elementProp>
             <elementProp name="Accept" elementType="Header">
               <stringProp name="Header.name">Accept</stringProp>
-              <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+              <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8</stringProp>
+            </elementProp>
+            <elementProp name="Accept-Language" elementType="Header">
+              <stringProp name="Header.name">Accept-Language</stringProp>
+              <stringProp name="Header.value">en-GB,en;q=0.9</stringProp>
             </elementProp>
             <elementProp name="Cache-Control" elementType="Header">
               <stringProp name="Header.name">Cache-Control</stringProp>
@@ -210,13 +54,9 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
               <stringProp name="Header.name">Cookie</stringProp>
               <stringProp name="Header.value">${cookieString}</stringProp>
             </elementProp>
-            <elementProp name="Authorization" elementType="Header">
-              <stringProp name="Header.name">Authorization</stringProp>
-              <stringProp name="Header.value">${userAuthorization}</stringProp>
-            </elementProp>
             <elementProp name="User-Agent" elementType="Header">
               <stringProp name="Header.name">User-Agent</stringProp>
-              <stringProp name="Header.value">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36</stringProp>
+              <stringProp name="Header.value">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36</stringProp>
             </elementProp>
             <elementProp name="Referer" elementType="Header">
               <stringProp name="Header.name">Referer</stringProp>
@@ -225,10 +65,10 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="adinfo">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="search" enabled="true">
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
-          <stringProp name="HTTPSampler.path">/p/christmas-decorations/best-garden-pots-/1489109538</stringProp>
+          <stringProp name="HTTPSampler.path">/for-sale/swap-shop</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -238,21 +78,97 @@ log.info(&quot;=== 认证信息验证完成 ===&quot;)
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查状态码200/301/302/471">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查搜索响应" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
-              <stringProp name="50547">301</stringProp>
-              <stringProp name="50548">302</stringProp>
-              <stringProp name="51708">471</stringProp>
+              <stringProp name="50548">301</stringProp>
+              <stringProp name="50549">302</stringProp>
+              <stringProp name="51726">471</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">471是安全防护拦截，301/302是重定向</stringProp>
+            <stringProp name="Assertion.custom_message">搜索页面返回异常</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">true</boolProp>
             <intProp name="Assertion.test_type">40</intProp>
           </ResponseAssertion>
           <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="提取广告URL" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">AD_URL</stringProp>
+            <stringProp name="RegexExtractor.regex">href=&quot;(/p/[^&quot;]+/\d+)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">/p/for-sale/default-ad/0</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+            <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
+          </RegexExtractor>
+          <hashTree/>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="记录提取结果" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">def adUrl = vars.get(&quot;AD_URL&quot;)
+log.info(&quot;=== 广告URL提取结果 ===&quot;)
+log.info(&quot;提取的广告URL: &quot; + adUrl)
+if (adUrl == null || adUrl.contains(&quot;default-ad&quot;)) {
+    log.warn(&quot;⚠ 未能从搜索结果中提取广告URL，将使用默认值&quot;)
+} else {
+    log.info(&quot;✓ 成功提取广告URL&quot;)
+}
+</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="adinfo" enabled="true">
+          <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.path">${AD_URL}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="检查广告详情响应" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+              <stringProp name="50548">301</stringProp>
+              <stringProp name="50549">302</stringProp>
+              <stringProp name="51726">471</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message">广告详情可能返回301重定向(过期广告)或471(安全拦截)</stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">true</boolProp>
+            <intProp name="Assertion.test_type">40</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="验证广告详情" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">def responseCode = prev.getResponseCode()
+def adUrl = vars.get(&quot;AD_URL&quot;)
+
+log.info(&quot;=== 广告详情验证 ===&quot;)
+log.info(&quot;请求URL: &quot; + adUrl)
+log.info(&quot;响应码: &quot; + responseCode)
+
+if (responseCode == &quot;200&quot;) {
+    log.info(&quot;✓ 广告详情获取成功&quot;)
+} else if (responseCode == &quot;301&quot; || responseCode == &quot;302&quot;) {
+    log.info(&quot;✓ 广告重定向 (可能已过期或移动)&quot;)
+} else if (responseCode == &quot;471&quot;) {
+    log.warn(&quot;⚠ 安全防护拦截&quot;)
+} else {
+    log.warn(&quot;⚠ 其他响应: &quot; + responseCode)
+}
+</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
