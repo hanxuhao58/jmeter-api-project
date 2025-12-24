@@ -5,10 +5,19 @@
 # ========================================
 # Web BFF API 测试脚本
 # 专门用于执行 Web BFF 相关的 API 测试
+# 包含 web-bff 和 web-bff-new 两个目录
 # ========================================
 
 # JMeter 配置
-JMETER_DIR=apache-jmeter-5.6.3
+# 优先使用系统安装的 JMeter，如果没有则使用本地目录
+if command -v jmeter &> /dev/null; then
+  JMETER_CMD="jmeter"
+elif [ -f "apache-jmeter-5.6.3/bin/jmeter" ]; then
+  JMETER_CMD="apache-jmeter-5.6.3/bin/jmeter"
+else
+  echo "ERROR: JMeter not found. Please install JMeter or place it in apache-jmeter-5.6.3/"
+  exit 1
+fi
 REPORT_DIR=reports
 JTL=${REPORT_DIR}/jmeter-report/all_cases.jtl
 
@@ -33,7 +42,7 @@ echo "当前工作目录: $(pwd)"
 
 # 先跑登录获取 token
 echo "=== 步骤1: 执行登录测试获取 token ==="
-${JMETER_DIR}/bin/jmeter -n -t testcases/web-bff/tg1_login_via_form.jmx -q ${CONFIG_FILE} -l ${JTL} || true
+${JMETER_CMD} -n -t testcases/web-bff/tg1_login_via_form.jmx -q ${CONFIG_FILE} -l ${JTL} || true
 echo "登录测试完成，继续..."
 
 # 确保 web_auth_tokens.csv 存在（Web BFF 测试使用这个文件名）
@@ -65,15 +74,17 @@ blacklist=(
 echo "当前工作目录: $(pwd)"
 echo "Web BFF 测试用例目录内容:"
 ls -la testcases/web-bff/
+echo "Web BFF New 测试用例目录内容:"
+ls -la testcases/web-bff-new/
 echo "数据目录内容:"
 ls -la data/
 echo "CSV 文件内容:"
 cat data/auth_tokens.csv
 
-# 获取所有 Web BFF 测试用例目录下的 jmx 文件
-all_files=($(find testcases/web-bff/ -name "*.jmx" | sort))
+# 获取所有 Web BFF 测试用例目录下的 jmx 文件（包括 web-bff 和 web-bff-new）
+all_files=($(find testcases/web-bff/ testcases/web-bff-new/ -name "*.jmx" | sort))
 
-echo "找到 ${#all_files[@]} 个 Web BFF 测试文件"
+echo "找到 ${#all_files[@]} 个 Web BFF 测试文件（包含 web-bff 和 web-bff-new）"
 
 # 运行所有非黑名单的 Web BFF 测试用例
 executed_count=0
@@ -94,7 +105,7 @@ for file in "${all_files[@]}"; do
     echo "时间: $(date '+%Y-%m-%d %H:%M:%S')"
     
     # 设置超时保护，防止单个测试卡死
-    timeout 180s ${JMETER_DIR}/bin/jmeter -n -t "$file" -q ${CONFIG_FILE} -l ${JTL} 2>&1 || {
+    timeout 180s ${JMETER_CMD} -n -t "$file" -q ${CONFIG_FILE} -l ${JTL} 2>&1 || {
       exit_code=$?
       if [ $exit_code -eq 124 ]; then
         echo "❌ 错误: 测试 $file 超时（180秒），强制终止"
@@ -116,12 +127,12 @@ echo "=== 已执行 $executed_count 个测试文件（不含黑名单） ==="
 echo "=== 步骤4: 执行删除和登出测试（最后执行，会造成数据删除和系统登出）==="
 # tg98_delete.jmx 会删除数据，所以放到最后单独运行
 echo "执行 tg98_delete.jmx (最后执行，会删除数据)"
-${JMETER_DIR}/bin/jmeter -n -t testcases/web-bff/tg98_delete.jmx -q ${CONFIG_FILE} -l ${JTL} || true
+${JMETER_CMD} -n -t testcases/web-bff/tg98_delete.jmx -q ${CONFIG_FILE} -l ${JTL} || true
 echo "tg98_delete.jmx 完成"
 
 # tg99_logout_via-form.jmx 会造成系统登出，所以放到最后单独运行
 echo "执行 tg99_logout_via-form.jmx (最后执行，会造成系统登出)"
-${JMETER_DIR}/bin/jmeter -n -t testcases/web-bff/tg99_logout_via-form.jmx -q ${CONFIG_FILE} -l ${JTL} || true
+${JMETER_CMD} -n -t testcases/web-bff/tg99_logout_via-form.jmx -q ${CONFIG_FILE} -l ${JTL} || true
 echo "tg99_logout_via-form.jmx 完成"
 
 # 生成统一 HTML 报告
@@ -136,7 +147,7 @@ else
 fi
 
 # 尝试生成 HTML 报告，即使失败也不影响整个流程
-if ${JMETER_DIR}/bin/jmeter -g ${JTL} -e -o ${REPORT_DIR}/all_cases_report 2>&1; then
+if ${JMETER_CMD} -g ${JTL} -e -o ${REPORT_DIR}/all_cases_report 2>&1; then
   echo "✓ HTML 报告生成成功"
 else
   echo "⚠ HTML 报告生成失败，但测试结果已保存在 JTL 文件中"

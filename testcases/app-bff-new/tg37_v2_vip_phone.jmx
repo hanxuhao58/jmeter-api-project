@@ -113,7 +113,7 @@
           <intProp name="HTTPSampler.response_timeout">0</intProp>
           <stringProp name="HTTPSampler.domain">${__P(HOST_BFF)}</stringProp>
           <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
-          <stringProp name="HTTPSampler.path">/v2/vip/phone/${__P(SERVICES_AD_ID_PHONE)}</stringProp>
+          <stringProp name="HTTPSampler.path">/v2/vip/phone/${__P(SERVICES_AD_ID_MAIN)}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
