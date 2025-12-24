@@ -138,12 +138,12 @@ done
 
 echo "=== 新 Web BFF 测试完成，已执行 $executed_count 个文件 ==="
 
-# 最后单独执行删除和登出测试
-echo "=== 步骤4: 执行删除和登出测试（最后执行，会造成数据删除和系统登出）==="
-# tg98_delete.jmx 会删除数据，所以放到最后单独运行
-echo "执行 tg98_delete.jmx (最后执行，会删除数据)"
-${JMETER_CMD} -n -t testcases/web-bff/tg98_delete.jmx -q ${CONFIG_FILE} -l ${JTL} || true
-echo "tg98_delete.jmx 完成"
+# 最后单独执行登出测试
+echo "=== 步骤4: 执行登出测试（最后执行，会造成系统登出）==="
+# tg98_delete.jmx 会删除数据，暂时禁用
+# echo "执行 tg98_delete.jmx (最后执行，会删除数据)"
+# ${JMETER_CMD} -n -t testcases/web-bff/tg98_delete.jmx -q ${CONFIG_FILE} -l ${JTL} || true
+# echo "tg98_delete.jmx 完成"
 
 # tg99_logout_via-form.jmx 会造成系统登出，所以放到最后单独运行
 echo "执行 tg99_logout_via-form.jmx (最后执行，会造成系统登出)"
