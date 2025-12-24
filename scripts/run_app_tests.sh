@@ -117,6 +117,8 @@ fi
 
 # 生成统一 HTML 报告
 echo "=== 步骤5: 生成 App BFF HTML 报告 ==="
+# 先清理旧的报告目录
+rm -rf ${REPORT_DIR}/all_cases_report
 ${JMETER_CMD} -g ${JTL} -e -o ${REPORT_DIR}/all_cases_report
 
 echo "=== App BFF 测试执行完成 ==="
