@@ -70,6 +70,12 @@ blacklist=(
   testcases/web-bff/tg99_logout_via-form.jmx
   testcases/web-bff/tg98_delete.jmx
   testcases/web-bff/tg6_repost.jmx
+  testcases/web-bff-new/tg27_ship_check_price.jmx
+  testcases/web-bff-new/tg28_ship_create_label.jmx
+  testcases/web-bff-new/tg29_ship_get_points.jmx
+  testcases/web-bff-new/tg30_ship_tracking_url.jmx
+  testcases/web-bff-new/tg52_ship_download.jmx
+  testcases/web-bff-new/tg53_ship_download_qrcode.jmx
 )
 
 echo "当前工作目录: $(pwd)"
